@@ -1,38 +1,238 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Share+Tech&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+/*
+  font-family: "Ubuntu", sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-family: "Share Tech", sans-serif;
+  font-family: "Michroma", sans-serif;
+*/
+
+:root {
+  --border-radius: 15px;
+  --border-radius-l: 25px;
+  --spacing-xs: 5px;
+  --spacing-s: 10px;
+  --spacing-m: 15px;
+  --spacing-l: 20px;
+  --spacing-xl: 60px;
+  --spacing-xxl: 100px;
+  --shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --bg: rgb(16, 18, 23);
+  --fg: rgba(255, 255, 255, 1);
+  --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  color: var(--fg);
+  font-family: "Ubuntu", sans-serif;
+  user-select: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+html, body {
+  background-color: var(--bg);
+  padding: 0px;
+  margin: 0px;
+  width: auto;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
+  justify-content: flex-start;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
+  background-color: var(--bg);
+  height: 100%;
+  width: calc(100vw - var(--spacing-xl) - var(--spacing-xl));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.welcome-block {
+  height: calc(100vh - var(--spacing-xl) - var(--spacing-xl));
+  margin: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-end;
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  gap: var(--spacing-xl);
+}
+
+.welcome-tiling {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  gap: var(--spacing-xl);
+}
+
+.welcome-content h1 {
+  font-size: 90px;
+  font-family: "Share Tech", sans-serif;
+  padding: 0px;
+  margin: 0px;
+  letter-spacing: 20px;
+}
+
+.welcome-content p {
+  width: 100%;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.underline {
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--fg);
+  width: 100%;
+}
+
+.avatar-image {
+  width: 40%;
+  min-width: 200px;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+  margin: 0px;
+  filter: contrast(110%) saturate(30%);
+  border-radius: 5px;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  gap: var(--spacing-xl);
+}
+
+.content-block {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.content-block p {
+  width: 100%;
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+  font-size: 1rem;
+  line-height: 2.5rem;
+}
+
+.content-block h2 {
+  width: 100%;
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+  font-size: 2.5rem;
+  line-height: 4rem;
+}
+
+.about-block {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px) {
+  .welcome-content h1 {
+    font-size: 50px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .avatar-image {
+    width: 300px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .welcome-tiling {
+    flex-direction: column;
+  }
+
+  .welcome-content h1 {
+    font-size: 50px;
+    letter-spacing: 10px;
+  }
+
+  .welcome-content p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .avatar-image {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .content-block {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--spacing-xl);
+  }
+
+  .content-block h2 {
+    line-height: 2rem;
+    font-size: 1.1rem;
+    font-weight: bolder;
+  }
+
+  .content-block p {
+    font-size: 0.9rem;
+  }
+
+  .content-block .avatar-image {
+    width: 100px;
+    min-width: 40px;
+    max-width: 100px;
+  }
+
+  .about-block {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1000px) {
+  .avatar-image {
+    max-width: 550px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .avatar-image {
+    max-width: 750px;
+  }
+
+  .welcome-content h1 {
+    font-size: 250px;
   }
 }
