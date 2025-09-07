@@ -161,6 +161,21 @@ html, body {
   justify-content: space-between;
 }
 
+.work-block h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  line-height: 2rem;
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+  width: 100%;
+  padding-left: var(--spacing-l);
+}
+
+.work-block p {
+  padding-left: var(--spacing-xl);
+}
+
 @media (max-width: 1000px) {
   .welcome-content h1 {
     font-size: 50px;
@@ -207,6 +222,15 @@ html, body {
   }
 
   .content-block p {
+    font-size: 0.9rem;
+  }
+
+  .work-block h3 {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+
+  .work-block p {
     font-size: 0.9rem;
   }
 
