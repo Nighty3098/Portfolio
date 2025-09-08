@@ -19,8 +19,7 @@ const Navigation = () => {
               hidden: { opacity: 0, y: 10 },
               visible: { opacity: 1, y: 0 },
             }}
-            whileHover={{ scale: 1.1, letterSpacing: "10px" }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ letterSpacing: "10px" }}
             style={{ margin: "0 10px" }}
           >
             {text}

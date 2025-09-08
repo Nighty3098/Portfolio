@@ -161,6 +161,19 @@ html, body {
   height: 100vh;
 }
 
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 0px;
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+}
+
 .contacts-list a {
   text-decoration: none;
   font-size: 1.3rem;
@@ -168,6 +181,7 @@ html, body {
   letter-spacing: 6px;
   padding: 0px;
   margin: 0px;
+  height: 4rem;
 }
 
 .contacts-tiling {
