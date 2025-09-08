@@ -65,7 +65,7 @@ function ContactCard({ contact }: { contact: Contact }) {
 
 function MyContacts() {
     return (
-        <div id="my-contacts" className="content-block content contacts-block" style={{ height: "100vh", padding: "var(--spacing-xl)", width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: "var(--bg-2)" }}>
+        <div id="my-contacts" className="content-block content contacts-block" style={{ height: "100vh", padding: "var(--spacing-xl)", width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
             <h2>// My contacts</h2>
             <div className="contacts-tiling">
                 <div className="contacts-list">

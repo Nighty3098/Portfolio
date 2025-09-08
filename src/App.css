@@ -176,7 +176,7 @@ html, body {
 
 .contacts-list a {
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1rem;
   line-height: 4rem;
   letter-spacing: 6px;
   padding: 0px;
@@ -253,13 +253,13 @@ html, body {
 }
 
 .review-card {
-  flex: 0 0 75vw;
+  flex: 0 0 calc(75vw - 6px);
   margin-right: 1.5rem;
   padding: 1rem;
-  background-color: var(--bg-2);
-  border-radius: var(--border-radius);
   box-sizing: border-box;
   text-wrap: pretty;
+  border-radius: var(--border-radius);
+  background-color: var(--bg-2);
 }
 
 @media (max-width: 1000px) {
