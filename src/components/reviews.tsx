@@ -59,7 +59,7 @@ function ReviewCard({ review }: { review: Review }) {
             title={review.text}
         >
             <p style={{ fontWeight: "bold", letterSpacing: "4px", fontSize: "1.05rem", lineHeight: "4rem" }}>{review.name}</p>
-            <p style={{ fontSize: "0.9rem", lineHeight: "2.5rem", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "normal" }}>{review.text}</p>
+            <p style={{ fontSize: "0.9rem", lineHeight: "2.5rem", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "normal" }}>{review.text}</p>
         </motion.div>
     );
 }

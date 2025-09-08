@@ -175,14 +175,14 @@ html, body {
   width: 100%;
 }
 
-.contacts-list a {
+.contact-link {
   text-decoration: none;
   font-size: 1rem;
   line-height: 1rem;
   letter-spacing: 6px;
   padding: var(--spacing-m);
   margin: 0px;
-  width: 100%;
+  width: calc(100% - var(--spacing-m) - var(--spacing-m));
   position: relative;
   display: inline-block;
   background: linear-gradient(to right, var(--bg-2) 0%, var(--bg-2) 100%);
@@ -200,7 +200,10 @@ html, body {
   justify-content: space-evenly;
   align-items: center;
   align-content: center;
-  gap: var(--spacing-xl);
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .content {
@@ -316,6 +319,10 @@ html, body {
 }
 
 @media (max-width: 1200px) {
+  .contacts-tiling {
+    flex-direction: column;
+  }
+
   .content-block {
     flex-direction: column;
     justify-content: flex-start;
@@ -328,7 +335,7 @@ html, body {
     font-weight: bolder;
   }
 
-  .contacts-list a {
+  .contact-link {
     font-size: 1rem;
     line-height: 2rem;
     letter-spacing: 3px;

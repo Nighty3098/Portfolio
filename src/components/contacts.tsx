@@ -56,7 +56,7 @@ const resources: Resource[] = [
 
 function ContactCard({ contact }: { contact: Contact }) {
     return (
-        <motion.div style={{ width: "100%" }}>
+        <motion.div style={{ width: "100%", padding: "0px", margin: "0px" }}>
             <motion.a 
                 href={contact.link} 
                 target="_blank" 
@@ -70,15 +70,15 @@ function ContactCard({ contact }: { contact: Contact }) {
 
 function MyContacts() {
     return (
-        <div id="my-contacts" className="content-block content contacts-block" style={{ height: "100vh", padding: "var(--spacing-xl)", width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
+        <div id="my-contacts" className="content-block content contacts-block" style={{ height: "100vh", padding: "var(--spacing-xl)", width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))", margin: "0px", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
             <h2>// My contacts</h2>
             <div className="contacts-tiling">
-                <div className="contacts-list">
+                <div className="contacts-list" style={{ width: "100%" }}>
                     {contacts.map((contact) => (
                         <ContactCard key={contact.id} contact={contact} />
                     ))}
                 </div>
-                <div className="contacts-list">
+                <div className="contacts-list" style={{ width: "100%" }}>
                     {resources.map((resource) => (
                         <ContactCard key={resource.id} contact={resource} />
                     ))}
