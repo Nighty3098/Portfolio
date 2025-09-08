@@ -15,7 +15,7 @@
   --spacing-m: 15px;
   --spacing-l: 20px;
   --spacing-xl: 60px;
-  --spacing-xxl: 100px;
+  --spacing-xxl: 80px;
   --shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -190,7 +190,7 @@ html, body {
   justify-content: space-evenly;
   align-items: center;
   align-content: center;
-  gap: 100px
+  gap: var(--spacing-xl);
 }
 
 .content {
@@ -252,6 +252,16 @@ html, body {
   padding-left: var(--spacing-xl);
 }
 
+.review-card {
+  flex: 0 0 75vw;
+  margin-right: 1.5rem;
+  padding: 1rem;
+  background-color: var(--bg-2);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  text-wrap: pretty;
+}
+
 @media (max-width: 1000px) {
   .welcome-content h1 {
     font-size: 50px;
@@ -286,6 +296,10 @@ html, body {
   .avatar-image {
     width: 100%;
     max-width: 100%;
+  }
+
+  :root {
+    --spacing-xl: 40px;
   }
 }
 
@@ -335,6 +349,10 @@ html, body {
 @media (min-width: 1000px) {
   .avatar-image {
     max-width: 550px;
+  }
+
+  .review-card {
+    flex: 0 0 700px;
   }
 }
 

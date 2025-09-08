@@ -58,7 +58,7 @@ function ContactCard({ contact }: { contact: Contact }) {
     return (
         <motion.div
         >
-            <motion.a href={contact.link}>{contact.name}</motion.a>
+            <motion.a href={contact.link} target="_blank">| {contact.name}</motion.a>
         </motion.div>
     );
 }
