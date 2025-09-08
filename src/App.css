@@ -20,7 +20,8 @@
 }
 
 :root {
-  --bg: rgb(16, 18, 23);
+  --bg-2: #0A0E15;
+  --bg: #202531;
   --fg: rgba(255, 255, 255, 1);
   --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
@@ -35,8 +36,9 @@ html, body {
   background-color: var(--bg);
   padding: 0px;
   margin: 0px;
-  width: auto;
+  width: 100%;
   height: 100%;
+  gap: 0px;
 
   display: flex;
   flex-direction: column;
@@ -48,7 +50,10 @@ html, body {
 .App {
   background-color: var(--bg);
   height: 100%;
-  width: calc(100vw - var(--spacing-xl) - var(--spacing-xl));
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  gap: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,15 +64,36 @@ html, body {
 .welcome-block {
   height: calc(100vh - var(--spacing-xl) - var(--spacing-xl));
   margin: 0px;
-  width: 100%;
+  width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
   justify-content: flex-end;
-  margin-top: var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-xl);
   gap: var(--spacing-xl);
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  padding-bottom: var(--spacing-xl);
+  gap: var(--spacing-l);
+}
+
+.navigation a {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  text-decoration: none;
+  letter-spacing: 5px;
+  padding: 5px;
 }
 
 .welcome-tiling {
@@ -109,7 +135,7 @@ html, body {
   max-width: 300px;
   aspect-ratio: 1/1;
   margin: 0px;
-  filter: contrast(110%) saturate(30%);
+  filter: contrast(110%) saturate(70%);
   border-radius: 5px;
 }
 
@@ -123,6 +149,11 @@ html, body {
   padding: 0px;
   margin: 0px;
   gap: var(--spacing-xl);
+}
+
+.content {
+  padding: var(--spacing-xl);
+  width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
 }
 
 .content-block {
@@ -168,11 +199,12 @@ html, body {
   padding: 0px;
   margin: 0px;
   text-align: left;
-  width: 100%;
+  width: calc(100% - var(--spacing-l));
   padding-left: var(--spacing-l);
 }
 
 .work-block p {
+  width: calc(100% var(--spacing-xl));
   padding-left: var(--spacing-xl);
 }
 
@@ -184,6 +216,11 @@ html, body {
   .avatar-image {
     width: 300px;
     max-width: 300px;
+  }
+
+  .navigation {
+    align-items: center;
+    padding-bottom: 0px;
   }
 }
 
