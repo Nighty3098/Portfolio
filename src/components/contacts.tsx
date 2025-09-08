@@ -56,9 +56,14 @@ const resources: Resource[] = [
 
 function ContactCard({ contact }: { contact: Contact }) {
     return (
-        <motion.div
-        >
-            <motion.a href={contact.link} target="_blank">| {contact.name}</motion.a>
+        <motion.div style={{ width: "100%" }}>
+            <motion.a 
+                href={contact.link} 
+                target="_blank" 
+                className="contact-link"
+            >
+                | {contact.name}
+            </motion.a>
         </motion.div>
     );
 }
