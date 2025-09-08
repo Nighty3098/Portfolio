@@ -254,12 +254,11 @@ html, body {
 
 .review-card {
   flex: 0 0 calc(75vw - 6px);
-  margin-right: 1.5rem;
   padding: 1rem;
   box-sizing: border-box;
   text-wrap: pretty;
   border-radius: var(--border-radius);
-  background-color: var(--bg-2);
+  background-color: var(--bg);
 }
 
 @media (max-width: 1000px) {

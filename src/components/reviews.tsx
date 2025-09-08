@@ -58,14 +58,14 @@ function ReviewCard({ review }: { review: Review }) {
             className="review-card"
             title={review.text}
         >
-            <p style={{ fontWeight: "bold", letterSpacing: "4px" }}>{review.name}</p>
+            <p style={{ fontWeight: "bold", letterSpacing: "4px", fontSize: "1.05rem" }}>{review.name}</p>
             <p style={{ opacity: "0.8", display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "normal" }}>{review.text}</p>
         </motion.div>
     );
 }
 
 function Reviews() {
-    const duration = 50;
+    const duration = 30;
 
     return (
         <div
@@ -81,6 +81,7 @@ function Reviews() {
                 overflow: "hidden",
                 userSelect: "none",
                 textWrap: "balance",
+                backgroundColor: "var(--bg-2)",
             }}
         >
             <h2 style={{ width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))", paddingLeft: "var(--spacing-xl)", paddingRight: "var(--spacing-xl)" }}>// Reviews</h2>
@@ -99,6 +100,7 @@ function Reviews() {
                     style={{
                         display: "flex",
                         flexWrap: "nowrap",
+                        gap: "3rem",
                     }}
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{
