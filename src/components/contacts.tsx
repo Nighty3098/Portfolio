@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 type Contact = {
-    id: number,
-    name: string,
-    link: string,
+    readonly id: number;
+    readonly name: string;
+    readonly link: string;
 };
 
 const contacts: Contact[] = [
@@ -31,9 +31,9 @@ const contacts: Contact[] = [
 ];
 
 type Resource = {
-    id: number,
-    name: string,
-    link: string,
+    readonly id: number;
+    readonly name: string;
+    readonly link: string;
 };
 
 const resources: Resource[] = [
@@ -54,12 +54,16 @@ const resources: Resource[] = [
     },
 ];
 
-function ContactCard({ contact }: { contact: Contact }) {
+type ContactCardProps = Readonly<{
+    contact: Contact;
+}>;
+
+function ContactCard({ contact }: ContactCardProps) {
     return (
         <motion.div style={{ width: "100%", padding: "0px", margin: "0px" }}>
-            <motion.a 
-                href={contact.link} 
-                target="_blank" 
+            <motion.a
+                href={contact.link}
+                target="_blank"
                 className="contact-link"
             >
                 | {contact.name}
@@ -70,8 +74,22 @@ function ContactCard({ contact }: { contact: Contact }) {
 
 function MyContacts() {
     return (
-        <div id="my-contacts" className="content-block content contacts-block" style={{ height: "100vh", padding: "var(--spacing-xl)", width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))", margin: "0px", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
-            <h2>// My contacts</h2>
+        <div
+            id="my-contacts"
+            className="content-block content contacts-block"
+            style={{
+                height: "100vh",
+                padding: "var(--spacing-xl)",
+                width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))",
+                margin: "0px",
+                flexDirection: "column",
+                alignContent: "center",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+        >
+            {/* My contacts */}
+            <h2>My contacts</h2>
             <div className="contacts-tiling">
                 <div className="contacts-list" style={{ width: "100%" }}>
                     {contacts.map((contact) => (

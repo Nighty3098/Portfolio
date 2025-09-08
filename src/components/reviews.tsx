@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 type Review = {
-    id: number;
-    name: string;
-    text: string;
-    source?: string;
+    readonly id: number;
+    readonly name: string;
+    readonly text: string;
+    readonly source?: string;
 };
 
 const reviews: Review[] = [
@@ -52,21 +52,47 @@ const reviews: Review[] = [
     },
 ];
 
-function ReviewCard({ review }: { review: Review }) {
+// Explicit readonly props
+type ReviewCardProps = Readonly<{
+    review: Review;
+}>;
+
+function ReviewCard({ review }: ReviewCardProps) {
     return (
         <motion.div
             className="review-card"
             title={review.text}
         >
-            <p style={{ fontWeight: "bold", letterSpacing: "4px", fontSize: "1.05rem", lineHeight: "4rem" }}>{review.name}</p>
-            <p style={{ fontSize: "0.9rem", lineHeight: "2.5rem", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "normal" }}>{review.text}</p>
+            <p
+                style={{
+                    fontWeight: "bold",
+                    letterSpacing: "4px",
+                    fontSize: "1.05rem",
+                    lineHeight: "4rem",
+                }}
+            >
+                {review.name}
+            </p>
+            <p
+                style={{
+                    fontSize: "0.9rem",
+                    lineHeight: "2.5rem",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "normal",
+                }}
+            >
+                {review.text}
+            </p>
         </motion.div>
     );
 }
 
 function Reviews() {
     const duration = 30;
-
     return (
         <div
             id="my-reviews"
@@ -84,7 +110,16 @@ function Reviews() {
                 backgroundColor: "var(--bg-2)",
             }}
         >
-            <h2 style={{ width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))", paddingLeft: "var(--spacing-xl)", paddingRight: "var(--spacing-xl)" }}>// Reviews</h2>
+            {/* Reviews */}
+            <h2
+                style={{
+                    width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))",
+                    paddingLeft: "var(--spacing-xl)",
+                    paddingRight: "var(--spacing-xl)",
+                }}
+            >
+                Reviews
+            </h2>
             <div
                 style={{
                     marginTop: "2rem",
@@ -111,7 +146,7 @@ function Reviews() {
                     }}
                 >
                     {[...reviews, ...reviews].map((review, idx) => (
-                        <ReviewCard key={idx} review={review} />
+                        <ReviewCard key={`${review.id}-${idx}`} review={review} />
                     ))}
                 </motion.div>
             </div>
