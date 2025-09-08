@@ -1,5 +1,4 @@
-import React from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 type Review = {
     id: number;
@@ -57,15 +56,16 @@ function ReviewCard({ review }: { review: Review }) {
     return (
         <motion.div
             className="review-card"
+            title={review.text}
         >
-            <p style={{ fontWeight: "bold", letterSpacing: "2px" }}>{review.name}</p>
-            <p style={{ opacity: "0.8" }}>{review.text}</p>
+            <p style={{ fontWeight: "bold", letterSpacing: "4px" }}>{review.name}</p>
+            <p style={{ opacity: "0.8", display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "normal" }}>{review.text}</p>
         </motion.div>
     );
 }
 
 function Reviews() {
-    const duration = 40;
+    const duration = 50;
 
     return (
         <div
