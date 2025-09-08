@@ -86,6 +86,7 @@ function MyContacts() {
                 alignContent: "center",
                 alignItems: "center",
                 justifyContent: "center",
+                backgroundColor: "var(--bg-2)",
             }}
         >
             {/* My contacts */}

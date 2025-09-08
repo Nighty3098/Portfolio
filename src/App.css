@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Share+Tech&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Michroma&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Share+Tech&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
 :root {
   --border-radius: 15px;
@@ -9,7 +9,7 @@
   --spacing-l: 20px;
   --spacing-xl: 60px;
   --spacing-xxl: 80px;
-  --bg-2: #0A0E15;
+  --bg-2: #0a0e15;
   --bg: #202531;
   --fg: rgba(255, 255, 255, 1);
   --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
@@ -21,7 +21,8 @@
   user-select: none;
 }
 
-html, body {
+html,
+body {
   background-color: var(--bg);
   padding: 0px;
   margin: 0px;
@@ -174,7 +175,7 @@ html, body {
   width: calc(100% - var(--spacing-m) - var(--spacing-m));
   position: relative;
   display: inline-block;
-  background: linear-gradient(to right, var(--bg-2) 0%, var(--bg-2) 100%);
+  background: linear-gradient(to right, var(--bg) 0%, var(--bg) 100%);
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: 0% 100%;
@@ -191,7 +192,8 @@ html, body {
   padding: 0px;
   margin: 0px;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
+  gap: var(--spacing-l);
 }
 
 .content {
@@ -258,11 +260,105 @@ html, body {
   padding: 1rem;
   box-sizing: border-box;
   text-wrap: pretty;
-  border-left: 4px solid var(--fg);
+  background-color: var(--bg-2);
+  border-radius: 4px;
 }
 
 .contact-link:hover {
   background-size: 100% 100%;
+}
+
+
+
+
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  gap: var(--spacing-l);
+  padding: 0;
+  margin: 0;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1500px;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  gap: var(--spacing-l);
+}
+
+.project-image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.project-image {
+  width: 100%;
+  display: block;
+  border-radius: var(--border-radius);
+}
+
+.project-description-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-2);
+  color: var(--fg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  border-radius: var(--border-radius);
+  pointer-events: none;
+  align-content: center;
+  text-wrap: pretty;
+}
+
+.project-title {
+  margin: 0.5rem 0 0 0;
+  text-align: center;
+  user-select: none;
+}
+
+.project-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-end;
+  width: auto;
+  height: auto;
+  gap: var(--spacing-m);
+}
+
+.project-header h3 {
+  position: absolute;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--bg-2);
+  border-radius: 5px;
+  margin: 0px;
+  margin-bottom: var(--spacing-m);
+  z-index: 100;
+  letter-spacing: 2px;
 }
 
 @media (max-width: 1000px) {

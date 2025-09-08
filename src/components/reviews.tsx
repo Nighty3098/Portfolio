@@ -52,7 +52,6 @@ const reviews: Review[] = [
     },
 ];
 
-// Explicit readonly props
 type ReviewCardProps = Readonly<{
     review: Review;
 }>;
@@ -78,7 +77,7 @@ function ReviewCard({ review }: ReviewCardProps) {
                     fontSize: "0.9rem",
                     lineHeight: "2.5rem",
                     display: "-webkit-box",
-                    WebkitLineClamp: 3,
+                    WebkitLineClamp: 5,
                     WebkitBoxOrient: "vertical",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
@@ -107,7 +106,6 @@ function Reviews() {
                 overflow: "hidden",
                 userSelect: "none",
                 textWrap: "balance",
-                backgroundColor: "var(--bg-2)",
             }}
         >
             {/* Reviews */}
