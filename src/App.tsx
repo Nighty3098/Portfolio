@@ -1,14 +1,14 @@
 import './App.css';
 import WelcomePage from "./components/welcome" 
 import AboutMePage from "./components/aboutme"
-import WorkExp from "./components/workexp"
+import MyContacts from "./components/contacts"
 
 function App() {
   return (
     <div className="App">
       <WelcomePage />
       <AboutMePage />
-      <WorkExp />
+      <MyContacts />
     </div>
   );
 }
