@@ -99,6 +99,14 @@ function Projects() {
                 }}
               >
                 “ {project.description} „
+                <motion.a
+
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open
+                </motion.a>
               </motion.div>
             </motion.div>
           </motion.a>

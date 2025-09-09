@@ -289,7 +289,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1200px;
   color: inherit;
   cursor: pointer;
   overflow: hidden;
@@ -306,7 +306,7 @@ body {
 .project-image {
   width: 100%;
   display: block;
-  border-radius: var(--border-radius);
+  border-radius: 5px;
 }
 
 .project-description-overlay {
@@ -326,6 +326,14 @@ body {
   pointer-events: none;
   align-content: center;
   text-wrap: pretty;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  font-size: 1.1rem;
+}
+
+.project-description-overlay a {
+  text-decoration: none;
+  font-size: 1rem;
 }
 
 .project-title {
@@ -360,6 +368,47 @@ body {
   z-index: 100;
   letter-spacing: 2px;
 }
+
+@media (max-width: 600px) {
+  .projects-grid {
+    flex-direction: column;
+    padding: var(--spacing-m);
+    gap: var(--spacing-m);
+  }
+  .project-card {
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: var(--bg-2);
+    border-radius: 5px;
+  }
+  .project-image-wrapper {
+    border-radius: 0;
+  }
+  .project-description-overlay {
+    position: relative;
+    background-color: transparent;
+    color: var(--fg);
+    opacity: 1 !important;
+    pointer-events: auto;
+    margin: 0px;
+    text-wrap: normal;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 2rem;
+    padding: 10px;
+  }
+  .project-header h3 {
+    position: static;
+    background-color: transparent;
+    margin: 0.1rem 0 0 0;
+    letter-spacing: normal;
+  }
+}
+
+
+
 
 @media (max-width: 1000px) {
   .welcome-content h1 {
