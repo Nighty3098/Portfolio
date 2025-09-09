@@ -379,7 +379,6 @@ body {
     width: 100%;
     max-width: none;
     box-shadow: none;
-    border-radius: 0;
     background-color: var(--bg-2);
     border-radius: 5px;
   }
