@@ -27,7 +27,7 @@ const projectsData = {
         "Generate a pretty art style profile card from your GitHub data",
       image: "/images/PrettyProfile.png",
       technologies: ["NodeJS", "Vercel"],
-      link: "https://github.com/Nighty3098/pretty-profile/",
+      link: "https://pretty-profile.vercel.app/",
     },
     {
       id: 1,
