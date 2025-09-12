@@ -11,10 +11,10 @@ const Navigation = () => {
           visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
         }}
       >
-        {["PROJECTS", "CONTACTS"].map((text, index) => (
+        {["PROJECTS", "CONTACTS", "PENTESTING"].map((text, index) => (
           <motion.a
             key={text}
-            href={index === 0 ? "#projects" : "#my-contacts"}
+            href={index === 0 ? "#projects" : index === 1 ? "#my-contacts" : "/pentesting"}
             variants={{
               hidden: { opacity: 0, y: 10 },
               visible: { opacity: 1, y: 0 },

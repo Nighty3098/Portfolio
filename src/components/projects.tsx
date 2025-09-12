@@ -98,7 +98,7 @@ function Projects() {
                   hover: { opacity: 1, transition: { duration: 0.3 } },
                 }}
               >
-                “ {project.description} „
+                {project.description}
                 <motion.a
 
                   href={project.link}
