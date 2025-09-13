@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ProjectCard from "./project_card";
 
 const projectsData = {
   projects: [
@@ -60,56 +61,13 @@ function Projects() {
       <h2>My projects</h2>
       <div className="projects-grid">
         {projectsData.projects.map((project) => (
-          <motion.a
-            key={project.id}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="project-card"
-            style={{ textDecoration: "none", color: "inherit" }}
-            whileHover="hover"
-          >
-            <motion.div
-              className="project-image-wrapper"
-              initial="rest"
-              animate="rest"
-              whileHover="hover"
-              variants={{
-                rest: { y: 0 },
-                hover: { y: 0, transition: { duration: 0.3 } },
-              }}
-            >
-              <motion.div className="project-header">
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-image"
-                  variants={{
-                    rest: { scale: 1 },
-                    hover: { opacity: 0, transition: { duration: 0.3 } },
-                  }}
-                />
-                <motion.h3 className="project-title">{project.title}</motion.h3>
-              </motion.div>
-              <motion.div
-                className="project-description-overlay"
-                variants={{
-                  rest: { opacity: 0 },
-                  hover: { opacity: 1, transition: { duration: 0.3 } },
-                }}
-              >
-                {project.description}
-                <motion.a
-
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open
-                </motion.a>
-              </motion.div>
-            </motion.div>
-          </motion.a>
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            link={project.link}
+            id={project.id}
+          />
         ))}
       </div>
     </section>
