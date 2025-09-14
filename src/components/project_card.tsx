@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -26,48 +26,78 @@ const Modal: React.FC<ModalProps> = ({
   image,
   link,
 }) => {
-  if (!show) return null;
+  useEffect(() => {
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (show) {
+      document.addEventListener("keydown", handleEscKey);
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+      document.body.style.overflow = "unset";
+    };
+  }, [show, onClose]);
 
   return (
-    <div className="modal">
-      <section
-        className="modal-content"
-        style={{
-          height: "100vh",
-          overflowY: "auto",
-        }}
-        onClick={(e) => e.stopPropagation()}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.stopPropagation();
-          } else if (e.key === 'Escape') {
-            onClose();
-          }
-        }}
-        tabIndex={0}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-title"
-      >
-        <h2 id="modal-title">{title}</h2>
-        <img
-          src={image}
-          alt={title}
-          style={{ width: "100%", borderRadius: 6 }}
-        />
-        <p>{description}</p>
-        <a href={link} target="_blank" rel="noopener noreferrer">
-          Open
-        </a>
-        <button
-          style={{ position: "fixed", top: 10, right: 10 }}
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          className="modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           onClick={onClose}
-          aria-label="Close"
         >
-          ✕
-        </button>
-      </section>
-    </div>
+          <motion.section
+            className="modal-content"
+            style={{
+              height: "100vh",
+              overflowY: "auto",
+            }}
+            initial={{ y: "200px", opacity: 0 }}
+            animate={{ y: "0px", opacity: 1 }}
+            exit={{ y: "200px", opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.stopPropagation();
+              } else if (e.key === "Escape") {
+                onClose();
+              }
+            }}
+            tabIndex={0}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+          >
+            <div style={{ width: "100%", display: "flex", flexDirection: "row-reverse", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
+              <button
+                onClick={onClose}
+                aria-label="Close"
+              >
+                ✕
+              </button>
+              <h2 id="modal-title" style={{ width: "100%", textAlign: "left" }}>{title}</h2>
+            </div>
+            <img
+              src={image}
+              alt={title}
+              style={{ width: "100%", borderRadius: 6 }}
+            />
+            <p>{description}</p>
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              Open
+            </a>
+          </motion.section>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

@@ -430,6 +430,10 @@ body {
   font-size: 1.3rem;
 }
 
+.modal-content {
+  max-width: 1000px;
+}
+
 @media (max-width: 600px) {
   .modal-content {
     top: 0px;
