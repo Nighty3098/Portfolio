@@ -24,6 +24,8 @@
 html,
 body {
   background-color: var(--bg);
+  scrollbar-color: var(--fg) var(--bg-2);
+  scrollbar-arrow-color: var(--fg) var(--bg-2);
   padding: 0px;
   margin: 0px;
   width: 100%;
