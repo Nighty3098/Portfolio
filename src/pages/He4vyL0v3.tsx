@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import ProjectCard from "./../components/project_card";
 
 const projectsData = {
@@ -28,7 +27,7 @@ const projectsData = {
       link: "https://github.com/He4vyL0v3/IStealU/",
     },
     {
-      id: 1,
+      id: 3,
       title: "Thunder",
       description:
         "Thunder is a multi-threaded HTTP HTTPS load testing tool designed for stress-testing web services",
@@ -36,7 +35,7 @@ const projectsData = {
       link: "https://github.com/He4vyL0v3/Thunder/",
     },
     {
-      id: 1,
+      id: 4,
       title: "ProxySniffer",
       description:
         "A simple program for obtaining and testing working proxy sheets [ HTTP - HTTPS - SOCKS4 - SOCKS5 ]",
@@ -68,6 +67,7 @@ function He4vyL0v3() {
       <div className="projects-grid">
         {projectsData.projects.map((project) => (
           <ProjectCard
+            key={project.id}
             title={project.title}
             description={project.description}
             image={project.image}

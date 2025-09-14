@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import ProjectCard from "./project_card";
 
 const projectsData = {
@@ -22,7 +21,7 @@ const projectsData = {
       link: "https://github.com/Nighty3098/InvestingAssistant/",
     },
     {
-      id: 1,
+      id: 3,
       title: "PrettyProfile",
       description:
         "Generate a pretty art style profile card from your GitHub data",
@@ -31,7 +30,7 @@ const projectsData = {
       link: "https://pretty-profile.vercel.app/",
     },
     {
-      id: 1,
+      id: 4,
       title: "LogInsight",
       description:
         "Program for analyzing log files and detecting anomalies in program operation ",
@@ -62,6 +61,7 @@ function Projects() {
       <div className="projects-grid">
         {projectsData.projects.map((project) => (
           <ProjectCard
+            key={project.id}
             title={project.title}
             description={project.description}
             image={project.image}

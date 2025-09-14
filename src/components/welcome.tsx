@@ -11,20 +11,28 @@ const Navigation = () => {
           visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
         }}
       >
-        {["PROJECTS", "CONTACTS", "PENTESTING"].map((text, index) => (
-          <motion.a
-            key={text}
-            href={index === 0 ? "#projects" : index === 1 ? "#my-contacts" : "/pentesting"}
-            variants={{
-              hidden: { opacity: 0, y: 10 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            whileHover={{ letterSpacing: "10px" }}
-            style={{ margin: "0 10px" }}
-          >
-            {text}
-          </motion.a>
-        ))}
+        {["PROJECTS", "CONTACTS", "PENTESTING"].map((text, index) => {
+          const getHref = (index: number) => {
+            if (index === 0) return "#projects";
+            if (index === 1) return "#my-contacts";
+            return "/pentesting";
+          };
+
+          return (
+            <motion.a
+              key={text}
+              href={getHref(index)}
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ letterSpacing: "10px" }}
+              style={{ margin: "0 10px" }}
+            >
+              {text}
+            </motion.a>
+          );
+        })}
       </motion.div>
     );
   };

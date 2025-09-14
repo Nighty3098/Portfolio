@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 
-interface projectCardProps {
+interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
@@ -30,15 +30,26 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div className="modal">
-      <div
+      <section
         className="modal-content"
         style={{
           height: "100vh",
           overflowY: "auto",
         }}
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.stopPropagation();
+          } else if (e.key === 'Escape') {
+            onClose();
+          }
+        }}
+        tabIndex={0}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
       >
-        <h2>{title}</h2>
+        <h2 id="modal-title">{title}</h2>
         <img
           src={image}
           alt={title}
@@ -55,12 +66,12 @@ const Modal: React.FC<ModalProps> = ({
         >
           ✕
         </button>
-      </div>
+      </section>
     </div>
   );
 };
 
-const ProjectCard: React.FC<projectCardProps> = ({
+const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
   image,
