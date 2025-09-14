@@ -53,7 +53,7 @@ function He4vyL0v3() {
       style={{
         height: "auto",
         padding: "var(--spacing-xl)",
-        width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))",
+        width: "calc(100vw - var(--spacing-xl) - var(--spacing-xl))",
         margin: "0px",
         flexDirection: "column",
         alignContent: "center",
