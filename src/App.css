@@ -19,6 +19,15 @@
   color: var(--fg);
   font-family: "Ubuntu", sans-serif;
   user-select: none;
+  outline: none;
+  font-display: swap;
+  font-size: medium;
+  font-weight: default;
+  -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none;
+  cursor: default;
+  font-optical-sizing: auto;
+  border: none;
 }
 
 html,
@@ -414,7 +423,7 @@ body {
   width: 100%;
   height: 100%;
   gap: var(--spacing-xl);
-  max-width: 60vw;
+  max-width: 1000px;
 }
 
 .modal-content h2,
@@ -435,10 +444,6 @@ body {
   aspect-ratio: 1/1;
   border: none;
   font-size: 1.3rem;
-}
-
-.modal-content {
-  max-width: 1000px;
 }
 
 @media (max-width: 1000px) {

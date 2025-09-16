@@ -26,6 +26,8 @@ const Modal: React.FC<ModalProps> = ({
   image,
   link,
 }) => {
+  const dialogRef = React.useRef<HTMLDialogElement>(null);
+
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -34,8 +36,11 @@ const Modal: React.FC<ModalProps> = ({
     };
 
     if (show) {
+      dialogRef.current?.showModal();
       document.addEventListener("keydown", handleEscKey);
       document.body.style.overflow = "hidden";
+    } else {
+      dialogRef.current?.close();
     }
 
     return () => {
@@ -47,7 +52,8 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <AnimatePresence>
       {show && (
-        <motion.div
+        <motion.dialog
+          ref={dialogRef}
           className="modal"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -71,11 +77,8 @@ const Modal: React.FC<ModalProps> = ({
                 onClose();
               }
             }}
-            tabIndex={0}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
           >
+            <div style={{ backgroundColor: "transparent", height: "200px", minHeight: "200px", width: "100%" }} ></div>
             <div style={{ width: "100%", display: "flex", flexDirection: "row-reverse", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
               <button
                 onClick={onClose}
@@ -83,7 +86,7 @@ const Modal: React.FC<ModalProps> = ({
               >
                 ✕
               </button>
-              <h2 id="modal-title" style={{ width: "100%", textAlign: "left" }}>{title}</h2>
+              <h2 style={{ width: "100%", textAlign: "left" }}>{title}</h2>
             </div>
             <img
               src={image}
@@ -95,7 +98,7 @@ const Modal: React.FC<ModalProps> = ({
               Open
             </a>
           </motion.section>
-        </motion.div>
+        </motion.dialog>
       )}
     </AnimatePresence>
   );
