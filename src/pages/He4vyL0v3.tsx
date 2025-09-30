@@ -52,8 +52,8 @@ function He4vyL0v3() {
       className="content-block content projects-block"
       style={{
         height: "auto",
-        padding: "var(--spacing-xl)",
-        width: "calc(100vw - var(--spacing-xl) - var(--spacing-xl))",
+        padding: "0px",
+        width: "calc(100vw)",
         margin: "0px",
         flexDirection: "column",
         alignContent: "center",
@@ -61,9 +61,18 @@ function He4vyL0v3() {
         justifyContent: "center",
       }}
     >
-      <div className="content-block about-block heavylove_tiling">
-        <h1>He4vyL0v3</h1>
+      <div
+        className="content-block about-block heavylove_tiling"
+        style={{
+          backgroundColor: "var(--bg-2)",
+          width: "100%",
+          margin: "0px",
+          padding: "0px",
+        }}
+      >
+        <h1 style={{ color: "var(--accent)" }}>He4vyL0v3</h1>
       </div>
+      <div className="spacer" style={{ height: "100px" }}></div>
       <div className="projects-grid">
         {projectsData.projects.map((project) => (
           <ProjectCard
@@ -76,6 +85,7 @@ function He4vyL0v3() {
           />
         ))}
       </div>
+      <div className="spacer" style={{ height: "100px" }}></div>
     </section>
   );
 }

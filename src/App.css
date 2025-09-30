@@ -9,9 +9,10 @@
   --spacing-l: 20px;
   --spacing-xl: 60px;
   --spacing-xxl: 80px;
-  --bg-2: #0a0e15;
-  --bg: #202531;
-  --fg: rgba(255, 255, 255, 1);
+  --bg-2: #191724;
+  --bg: #232136;
+  --fg: #e0def4;
+  --accent: #eb6f92;
   --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -190,7 +191,7 @@ body {
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: 0% 100%;
-  transition: background-size 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   color: inherit;
 }
 
