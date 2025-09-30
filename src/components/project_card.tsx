@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -16,6 +16,28 @@ interface ModalProps {
   description: string;
   image: string;
   link: string;
+}
+
+function useInView(ref: React.RefObject<Element | null>, options?: IntersectionObserverInit) {
+  const [inView, setInView] = React.useState(false);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      options
+    );
+
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [ref, options]);
+
+  return inView;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -63,12 +85,11 @@ const Modal: React.FC<ModalProps> = ({
           <motion.section
             className="modal-content"
             style={{
-              height: "100vh",
               overflowY: "auto",
             }}
-            initial={{ y: "200px", opacity: 0 }}
-            animate={{ y: "0px", opacity: 1 }}
-            exit={{ y: "200px", opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -78,14 +99,27 @@ const Modal: React.FC<ModalProps> = ({
               }
             }}
           >
-            <div style={{ backgroundColor: "transparent", height: "200px", minHeight: "200px", width: "100%" }} ></div>
-            <div style={{ width: "100%", display: "flex", flexDirection: "row-reverse", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
-              <button
-                onClick={onClose}
-                aria-label="Close"
-              >
+            <div
+              style={{
+                backgroundColor: "transparent",
+                height: "200px",
+                minHeight: "200px",
+                width: "100%",
+              }}
+            ></div>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "row-reverse",
+                alignItems: "center",
+                alignContent: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <motion.button onClick={onClose} aria-label="Close">
                 ✕
-              </button>
+              </motion.button>
               <h2 style={{ width: "100%", textAlign: "left" }}>{title}</h2>
             </div>
             <img
@@ -94,7 +128,18 @@ const Modal: React.FC<ModalProps> = ({
               style={{ width: "100%", borderRadius: 6 }}
             />
             <p>{description}</p>
-            <a href={link} target="_blank" rel="noopener noreferrer">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                backgroundColor: "var(--bg)",
+                padding: "var(--spacing-m)",
+                borderRadius: "5px",
+                width: "200px",
+                textAlign: "center",
+              }}
+            >
               Open
             </a>
           </motion.section>
@@ -112,14 +157,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   id,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const isInView = useInView(cardRef, { threshold: 0.1 });
 
   return (
     <>
       <motion.div
         key={id}
+        ref={cardRef}
         className="project-card"
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "grab" }}
         onClick={() => setModalOpen(true)}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <motion.div
           className="project-image-wrapper"

@@ -1,4 +1,6 @@
 import ProjectCard from "./project_card";
+import { motion } from "framer-motion";
+
 const projectsData = {
   projects: [
     {
@@ -22,7 +24,8 @@ const projectsData = {
     {
       id: 3,
       title: "IPSA",
-      description: "IPSA is a Telegram bot designed to provide users with stock market insights, including price predictions, news parsing, and fundamental analysis. Built using the Pyrogram library, the bot integrates with a deep learning model for stock price forecasting, a news parser for real-time market updates, and a database for user and stock management. The bot supports user authentication, stock tracking, and admin controls, with a token-based system for accessing premium features. The project leverages TensorFlow for stock price predictions, yfinance for financial data, and BeautifulSoup for web scraping. It includes asynchronous news parsing, real-time notifications, and report generation in Excel format.",
+      description:
+        "IPSA is a Telegram bot designed to provide users with stock market insights, including price predictions, news parsing, and fundamental analysis. Built using the Pyrogram library, the bot integrates with a deep learning model for stock price forecasting, a news parser for real-time market updates, and a database for user and stock management. The bot supports user authentication, stock tracking, and admin controls, with a token-based system for accessing premium features. The project leverages TensorFlow for stock price predictions, yfinance for financial data, and BeautifulSoup for web scraping. It includes asynchronous news parsing, real-time notifications, and report generation in Excel format.",
       image: "/images/IPSA.png",
       technologies: ["Python", "Tensorflow", "Keras", "Pyrogram"],
       link: "https://github.com/Nighty3098/InvestingAssistant/",
@@ -30,7 +33,8 @@ const projectsData = {
     {
       id: 4,
       title: "IPSA AI MODEL",
-      description: "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score.",
+      description:
+        "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score.",
       image: "/images/ipsa_model.png",
       technologies: ["Python", "Tensorflow", "Keras"],
       link: "https://github.com/Nighty3098/IPSA_MODEL/",
@@ -72,7 +76,15 @@ function Projects() {
         justifyContent: "center",
       }}
     >
-      <h2>My projects</h2>
+      {/* My projects */}
+      <motion.h2
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        My projects
+      </motion.h2>
       <div className="projects-grid">
         {projectsData.projects.map((project) => (
           <ProjectCard

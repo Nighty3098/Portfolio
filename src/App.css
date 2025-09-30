@@ -287,7 +287,7 @@ body {
   justify-content: flex-start;
   height: 100%;
   width: 100%;
-  gap: var(--spacing-l);
+  gap: var(--spacing-xl);
   padding: 0;
   margin: 0;
 }
@@ -298,12 +298,13 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   color: inherit;
   cursor: pointer;
   overflow: hidden;
   gap: var(--spacing-l);
   aspect-ratio: 20/11;
+  cursor: zoom-in;
 }
 
 .project-image-wrapper {
