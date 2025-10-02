@@ -116,6 +116,7 @@ function MyContacts() {
       >
         My contacts
       </motion.h2>
+      <div className="spacer" style={{ height: "100px" }}></div>
       <motion.div
         className="contacts-tiling"
         variants={containerVariants}

@@ -85,6 +85,7 @@ function Projects() {
       >
         My projects
       </motion.h2>
+      <div className="spacer" style={{ height: "100px" }}></div>
       <div className="projects-grid">
         {projectsData.projects.map((project) => (
           <ProjectCard
@@ -97,6 +98,7 @@ function Projects() {
           />
         ))}
       </div>
+      <div className="spacer" style={{ height: "100px" }}></div>
     </section>
   );
 }
