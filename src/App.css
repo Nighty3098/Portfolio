@@ -300,7 +300,6 @@ body {
   width: 100%;
   max-width: 1600px;
   color: inherit;
-  cursor: pointer;
   overflow: hidden;
   gap: var(--spacing-l);
   aspect-ratio: 20/11;
