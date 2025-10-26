@@ -38,6 +38,11 @@ type Resource = {
 
 const resources: Resource[] = [
   {
+    id: 0,
+    name: "KWork",
+    link: "https://kwork.ru/user/nighty_3098",
+  },
+  {
     id: 1,
     name: "GitHub",
     link: "https://github.com/Nighty3098",
