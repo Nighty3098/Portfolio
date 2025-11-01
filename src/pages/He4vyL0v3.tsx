@@ -6,7 +6,7 @@ const projectsData = {
       id: 0,
       title: "Crimson",
       description:
-        "Crimson is a remote access tool written in C++ with the ability to build for windows and linux",
+        "Crimson is a remote access tool written in C++ and Python with the ability to build for windows and linux",
       image: "/images/Crimson.png",
       link: "https://github.com/Nighty3098/Crimson/",
     },
