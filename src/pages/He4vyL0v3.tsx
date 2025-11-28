@@ -5,6 +5,7 @@ const projectsData = {
     {
       id: 0,
       title: "Crimson",
+      info: "Simple RAT written in C++ and Python. (windows / linux)",
       description:
         "Crimson is a remote access tool written in C++ and Python with the ability to build for windows and linux",
       image: "/images/Crimson.png",
@@ -13,6 +14,7 @@ const projectsData = {
     {
       id: 1,
       title: "GhostlyGrabber",
+      info: "A utility for automatically downloading media files from Telegram",
       description:
         "A utility for automatically downloading media files from Telegram channels and chats with convenient storage and organization of content",
       image: "/images/grabber.png",
@@ -21,6 +23,7 @@ const projectsData = {
     {
       id: 2,
       title: "IStealU",
+      info: "Keylogger with sending logs via Telegram API",
       description:
         "IStealU is a spyware program for Windows designed to intercept and log user keystrokes, as well as send logs to Telegram via the Telegram API",
       image: "/images/IStealU.png",
@@ -29,6 +32,7 @@ const projectsData = {
     {
       id: 3,
       title: "Thunder",
+      info: "Simple multi-threaded DoS tool",
       description:
         "Thunder is a multi-threaded HTTP HTTPS load testing tool designed for stress-testing web services",
       image: "/images/Thunder.png",
@@ -37,6 +41,7 @@ const projectsData = {
     {
       id: 4,
       title: "ProxySniffer",
+      info: "Proxy parser and checker",
       description:
         "A simple program for obtaining and testing working proxy sheets [ HTTP - HTTPS - SOCKS4 - SOCKS5 ]",
       image: "/images/ProxySniffer.png",
@@ -79,6 +84,7 @@ function He4vyL0v3() {
             key={project.id}
             title={project.title}
             description={project.description}
+            info={project.info}
             image={project.image}
             link={project.link}
             id={project.id}

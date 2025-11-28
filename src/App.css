@@ -35,7 +35,6 @@ html,
 body {
   background-color: var(--bg);
   scrollbar-color: var(--fg) var(--bg-2);
-  scrollbar-arrow-color: var(--fg) var(--bg-2);
   padding: 0px;
   margin: 0px;
   width: 100%;
@@ -187,7 +186,7 @@ body {
   width: calc(100% - var(--spacing-m) - var(--spacing-m));
   position: relative;
   display: inline-block;
-  background: linear-gradient(to right, var(--bg) 0%, var(--bg) 100%);
+  background: linear-gradient(to right, var(--bg-2) 0%, var(--bg-2) 100%);
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: 0% 100%;
@@ -302,7 +301,7 @@ body {
   color: inherit;
   overflow: hidden;
   gap: var(--spacing-l);
-  aspect-ratio: 20/11;
+  aspect-ratio: 20/12;
   cursor: zoom-in;
 }
 
@@ -319,7 +318,7 @@ body {
   object-fit: cover;
   display: block;
   border-radius: 5px;
-  aspect-ratio: 20/11;
+  aspect-ratio: 20/12;
 }
 
 .project-description-overlay {
@@ -402,11 +401,14 @@ body {
   position: fixed;
   top: 0px;
   left: 0px;
+  padding: 0px;
+  margin: 0px;
   z-index: 1000;
   background-color: var(--bg-2);
-  height: calc(100vh - var(--padding-xl) - var(--padding-xl));
+  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  min-width: calc(100vw - var(--padding-xl) - var(--padding-xl));
+  min-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -421,9 +423,14 @@ body {
   align-items: center;
   align-content: center;
   justify-content: center;
-  width: 100%;
+  width: calc(100% - 300px - 300px);
   height: 100%;
+  margin: 0px;
   gap: var(--spacing-xl);
+  padding: 300px;
+}
+
+.modal-content * {
   max-width: 1000px;
 }
 
@@ -494,7 +501,8 @@ body {
   .modal-content {
     top: 0px;
     left: 0px;
-    max-width: 90vw;
+    padding: 20px;
+    width: calc(100% - 40px);
   }
 
   .modal-content h2,

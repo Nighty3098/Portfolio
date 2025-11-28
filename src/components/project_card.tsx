@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 interface ProjectCardProps {
   title: string;
   description: string;
+  info: string;
   image: string;
   link: string;
   id: number;
@@ -152,6 +153,7 @@ const Modal: React.FC<ModalProps> = ({
 const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
+  info,
   image,
   link,
   id,
@@ -202,7 +204,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               hover: { opacity: 1, transition: { duration: 0.3 } },
             }}
           >
-            {description}
+            {info}
           </motion.div>
         </motion.div>
       </motion.div>
