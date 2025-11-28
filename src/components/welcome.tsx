@@ -79,13 +79,7 @@ function WelcomePage() {
             S.Artem
           </motion.h1>
           <motion.div
-            className="underline"
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          />
-          <motion.div
-            style={{ width: "100%", gap: "0px" }}
+            style={{ width: "100%", padding: "0px", margin: "0px" }}
             initial="hidden"
             animate="visible"
             variants={{
@@ -99,14 +93,7 @@ function WelcomePage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.3, delay: 1.2 }}
             >
-              Backend Developer
-            </motion.p>
-            <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 1.4 }}
-            >
-              Freelancer
+              Backend Developer | Freelancer
             </motion.p>
           </motion.div>
         </motion.div>
