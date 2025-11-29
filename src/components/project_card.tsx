@@ -143,6 +143,14 @@ const Modal: React.FC<ModalProps> = ({
             >
               Open
             </a>
+            <div
+              style={{
+                backgroundColor: "transparent",
+                height: "200px",
+                minHeight: "200px",
+                width: "100%",
+              }}
+            ></div>
           </motion.section>
         </motion.dialog>
       )}

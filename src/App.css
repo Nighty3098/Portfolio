@@ -9,10 +9,10 @@
   --spacing-l: 20px;
   --spacing-xl: 60px;
   --spacing-xxl: 80px;
-  --bg-2: #191724;
-  --bg: #232136;
-  --fg: #e0def4;
-  --accent: #eb6f92;
+  --bg-2: #16161D;
+  --bg: #1F1F28;
+  --fg: #DCD7BA;
+  --accent: #72A7BC;
   --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -123,6 +123,7 @@ body {
   text-align: left;
   padding: 0px;
   margin: 0px;
+  height: auto;
 }
 
 .underline {
@@ -151,7 +152,7 @@ body {
   height: 100%;
   padding: 0px;
   margin: 0px;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-m);
 }
 
 .contacts-block {
@@ -461,6 +462,11 @@ body {
     font-size: 50px;
   }
 
+  .welcome-content p {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+
   .avatar-image {
     width: 300px;
     max-width: 300px;
@@ -555,11 +561,11 @@ body {
 
 @media (max-width: 1200px) {
   .contacts-tiling {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .content-block {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: flex-start;
     gap: var(--spacing-xl);
   }
@@ -571,9 +577,9 @@ body {
   }
 
   .contact-link {
-    font-size: 1rem;
-    line-height: 2rem;
-    letter-spacing: 3px;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    letter-spacing: 2px;
   }
 
   .content-block p {
@@ -590,9 +596,9 @@ body {
   }
 
   .content-block .avatar-image {
-    width: 100px;
+    width: 150px;
     min-width: 40px;
-    max-width: 100px;
+    max-width: 150px;
   }
 
   .about-block {
@@ -617,5 +623,14 @@ body {
 
   .welcome-content h1 {
     font-size: 250px;
+  }
+
+  .welcome-content p {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+
+  .about-block p {
+    font-size: large;
   }
 }

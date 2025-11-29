@@ -79,7 +79,7 @@ function WelcomePage() {
             S.Artem
           </motion.h1>
           <motion.div
-            style={{ width: "100%", padding: "0px", margin: "0px" }}
+            style={{ width: "100%", padding: "0px", margin: "0px", height: "auto" }}
             initial="hidden"
             animate="visible"
             variants={{
