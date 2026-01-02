@@ -11,11 +11,10 @@ const Navigation = () => {
         visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
       }}
     >
-      {["PROJECTS", "CONTACTS", "PENTESTING"].map((text, index) => {
+      {["PROJECTS", "CONTACTS"].map((text, index) => {
         const getHref = (index: number) => {
           if (index === 0) return "#projects";
           if (index === 1) return "#my-contacts";
-          return "/pentesting";
         };
 
         return (
@@ -79,7 +78,12 @@ function WelcomePage() {
             S.Artem
           </motion.h1>
           <motion.div
-            style={{ width: "100%", padding: "0px", margin: "0px", height: "auto" }}
+            style={{
+              width: "100%",
+              padding: "0px",
+              margin: "0px",
+              height: "auto",
+            }}
             initial="hidden"
             animate="visible"
             variants={{
