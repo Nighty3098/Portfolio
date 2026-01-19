@@ -9,10 +9,10 @@
   --spacing-l: 20px;
   --spacing-xl: 60px;
   --spacing-xxl: 80px;
-  --bg-2: #16161D;
-  --bg: #1F1F28;
-  --fg: #DCD7BA;
-  --accent: #72A7BC;
+  --bg-2: #16161d;
+  --bg: #1f1f28;
+  --fg: #dcd7ba;
+  --accent: #72a7bc;
   --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -265,7 +265,7 @@ body {
 }
 
 .work-block p {
-  width: calc(100% var(--spacing-xl));
+  width: calc(100% - var(--spacing-xl));
   padding-left: var(--spacing-xl);
 }
 
