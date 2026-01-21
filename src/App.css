@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Michroma&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Share+Tech&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Momo+Signature&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Silkscreen:wght@400;700&display=swap');
 
 :root {
   --border-radius: 15px;
@@ -9,21 +9,22 @@
   --spacing-l: 20px;
   --spacing-xl: 60px;
   --spacing-xxl: 80px;
-  --bg-2: #16161d;
-  --bg: #1f1f28;
-  --fg: #dcd7ba;
-  --accent: #72a7bc;
+  --bg-2: hsl(192deg 100% 8%);
+  --bg: hsl(192deg 100% 5%);
+  --fg: hsl(46deg 42% 88%);
+  --accent: hsl(76deg 100% 39%);
+  --red: hsl(1deg 71% 52%);
   --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 * {
   color: var(--fg);
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Montserrat", sans-serif;
   user-select: none;
   outline: none;
   font-display: swap;
   font-size: medium;
-  font-weight: default;
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
   cursor: default;
@@ -40,7 +41,6 @@ body {
   width: 100%;
   height: 100%;
   gap: 0px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,6 +95,7 @@ body {
   text-decoration: none;
   letter-spacing: 5px;
   padding: 5px;
+  font-weight: bolder;
 }
 
 .welcome-tiling {
@@ -109,21 +110,24 @@ body {
 }
 
 .welcome-content h1 {
-  font-size: 90px;
-  font-family: "Share Tech", sans-serif;
+  font-size: 75px;
+  font-family: "Momo Signature", sans-serif;
   padding: 0px;
   margin: 0px;
   letter-spacing: 20px;
+  font-weight: bolder;
 }
 
 .welcome-content p {
   width: 100%;
+  font-family: "Momo Signature", sans-serif;
   line-height: 2rem;
   font-size: 1.5rem;
   text-align: left;
   padding: 0px;
   margin: 0px;
   height: auto;
+  font-weight: bolder;
 }
 
 .underline {
@@ -217,11 +221,12 @@ body {
 
 .content-block {
   width: 100%;
+  max-width: 1400px;
   height: auto;
   padding: 0px;
   margin: 0px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   align-content: center;
   justify-content: space-between;
@@ -244,7 +249,7 @@ body {
   margin: 0px;
   font-size: 3.5rem;
   line-height: 6rem;
-  font-family: "Share Tech", sans-serif;
+  font-family: "Momo Signature", sans-serif;
   letter-spacing: 4px;
 }
 
@@ -300,7 +305,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1600px;
+  max-width: 100%;
   color: inherit;
   overflow: hidden;
   gap: var(--spacing-l);
@@ -392,7 +397,7 @@ body {
 }
 
 .heavylove_tiling h1 {
-  font-family: "Share Tech", sans-serif;
+  font-family: "Momo Signature", sans-serif;
   width: 100%;
   text-align: center;
   font-size: 17vw;
@@ -455,6 +460,11 @@ body {
   aspect-ratio: 1/1;
   border: none;
   font-size: 1.3rem;
+}
+
+.close-button{
+  font-size: large;
+  color: var(--red);
 }
 
 @media (max-width: 1000px) {
@@ -622,7 +632,7 @@ body {
   }
 
   .welcome-content h1 {
-    font-size: 250px;
+    font-size: 150px;
   }
 
   .welcome-content p {

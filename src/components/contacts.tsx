@@ -73,7 +73,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, },
+  hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.6, ease: easeOut } },
 };
 
@@ -83,11 +83,7 @@ function ContactCard({ contact }: ContactCardProps) {
       style={{ width: "100%", padding: "0px", margin: "0px" }}
       variants={itemVariants}
     >
-      <motion.a
-        href={contact.link}
-        target="_blank"
-        className="contact-link"
-      >
+      <motion.a href={contact.link} target="_blank" className="contact-link">
         | {contact.name}
       </motion.a>
     </motion.div>
@@ -98,7 +94,7 @@ function MyContacts() {
   return (
     <div
       id="my-contacts"
-      className="content-block content contacts-block"
+      className="content"
       style={{
         height: "100vh",
         padding: "var(--spacing-xl)",
@@ -112,51 +108,53 @@ function MyContacts() {
         backgroundColor: "var(--bg-2)",
       }}
     >
-      {/* My contacts */}
-      <motion.h2
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        My contacts
-      </motion.h2>
-      <div className="spacer" style={{ height: "100px" }}></div>
-      <motion.div
-        className="contacts-tiling"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        style={{ width: "100%", display: "flex", gap: "var(--spacing-m)" }}
-      >
-        <motion.div
-          className="contacts-list"
-          style={{
-            width: "50%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--spacing-s)",
-          }}
+      <div className="content-block contacts-block">
+        {/* My contacts */}
+        <motion.h2
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {contacts.map((contact) => (
-            <ContactCard key={contact.id} contact={contact} />
-          ))}
-        </motion.div>
+          My contacts
+        </motion.h2>
+        <div className="spacer" style={{ height: "100px" }}></div>
         <motion.div
-          className="contacts-list"
-          style={{
-            width: "50%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--spacing-s)",
-          }}
+          className="contacts-tiling"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          style={{ width: "100%", display: "flex", gap: "var(--spacing-m)" }}
         >
-          {resources.map((resource) => (
-            <ContactCard key={resource.id} contact={resource} />
-          ))}
+          <motion.div
+            className="contacts-list"
+            style={{
+              width: "50%",
+              display: "flex",
+              flexDirection: "column",
+              gap: "var(--spacing-s)",
+            }}
+          >
+            {contacts.map((contact) => (
+              <ContactCard key={contact.id} contact={contact} />
+            ))}
+          </motion.div>
+          <motion.div
+            className="contacts-list"
+            style={{
+              width: "50%",
+              display: "flex",
+              flexDirection: "column",
+              gap: "var(--spacing-s)",
+            }}
+          >
+            {resources.map((resource) => (
+              <ContactCard key={resource.id} contact={resource} />
+            ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 }

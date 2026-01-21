@@ -118,7 +118,7 @@ const Modal: React.FC<ModalProps> = ({
                 justifyContent: "space-between",
               }}
             >
-              <motion.button onClick={onClose} aria-label="Close">
+              <motion.button onClick={onClose} aria-label="Close" className="close-button" style={{ color: "var(--red)", fontSize: "30px", height: "100%", width: "40px" }}>
                 ✕
               </motion.button>
               <h2 style={{ width: "100%", textAlign: "left" }}>{title}</h2>
