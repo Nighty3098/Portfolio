@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Momo+Signature&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Silkscreen:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Momo+Signature&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Glitch&family=Share+Tech&display=swap");
 
 :root {
   --border-radius: 15px;
@@ -19,7 +19,8 @@
 
 * {
   color: var(--fg);
-  font-family: "Montserrat", sans-serif;
+  font-family: "Share Tech", sans-serif;
+  font-style: italic;
   user-select: none;
   outline: none;
   font-display: swap;
@@ -111,7 +112,7 @@ body {
 
 .welcome-content h1 {
   font-size: 75px;
-  font-family: "Momo Signature", sans-serif;
+  font-family: "Rubik Glitch", sans-serif;
   padding: 0px;
   margin: 0px;
   letter-spacing: 20px;
@@ -120,7 +121,6 @@ body {
 
 .welcome-content p {
   width: 100%;
-  font-family: "Momo Signature", sans-serif;
   line-height: 2rem;
   font-size: 1.5rem;
   text-align: left;
@@ -165,7 +165,7 @@ body {
   align-items: center;
   align-content: center;
   justify-content: center;
-  width: auto;
+  width: 100%;
   height: 100vh;
 }
 
@@ -193,7 +193,7 @@ body {
   width: calc(100% - var(--spacing-m) - var(--spacing-m));
   position: relative;
   display: inline-block;
-  background: linear-gradient(to right, var(--bg-2) 0%, var(--bg-2) 100%);
+  background: linear-gradient(to right, var(--fg) 0%, var(--fg) 100%);
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: 0% 100%;
@@ -210,7 +210,6 @@ body {
   padding: 0px;
   margin: 0px;
   width: 100%;
-  max-width: 450px;
   gap: var(--spacing-l);
 }
 
@@ -247,9 +246,9 @@ body {
   text-align: left;
   padding: 0px;
   margin: 0px;
-  font-size: 3.5rem;
+  font-size: 4rem;
   line-height: 6rem;
-  font-family: "Momo Signature", sans-serif;
+  font-family: "Rubik Glitch", sans-serif;
   letter-spacing: 4px;
 }
 
@@ -285,6 +284,7 @@ body {
 
 .contact-link:hover {
   background-size: 100% 100%;
+  color: var(--bg);
 }
 
 .projects-grid {
@@ -462,7 +462,7 @@ body {
   font-size: 1.3rem;
 }
 
-.close-button{
+.close-button {
   font-size: large;
   color: var(--red);
 }
@@ -575,14 +575,14 @@ body {
   }
 
   .content-block {
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: flex-start;
     gap: var(--spacing-xl);
   }
 
   .content-block h2 {
     line-height: 4rem;
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: bolder;
   }
 
