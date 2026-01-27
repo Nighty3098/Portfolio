@@ -31,18 +31,21 @@ function AboutMePage() {
           margin: "0px",
         }}
       >
-        <h2>Hello! I am Artem</h2>
+        <h2>About me</h2>
+        <p>
+          Hello! I am Artem.
+        </p>
         <p>
           I am 18 years old, and I spent 5 of them at the SAIKT Programming
-          Academy, and now I am studying at SibSUTIS University
+          Academy, and now I am studying at SibSUTIS University.
         </p>
         <p>
           I strive to grow in IT and work on large-scale projects that improve
-          people's lives
+          people's lives.
         </p>
         <p>
           You can check out my open source projects on GitHub and in my
-          organizations
+          organizations.
         </p>
       </div>
       <CatSvg />
