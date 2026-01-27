@@ -100,11 +100,14 @@ const Modal: React.FC<ModalProps> = ({
               }
             }}
           >
+              <motion.button onClick={onClose} aria-label="Close" className="close-button" style={{ color: "var(--red)", fontSize: "30px", height: "40px", width: "100%", textAlign: "right" }}>
+                ✕
+              </motion.button>
             <div
               style={{
                 backgroundColor: "transparent",
-                height: "200px",
-                minHeight: "200px",
+                height: "150px",
+                minHeight: "150px",
                 width: "100%",
               }}
             ></div>
@@ -118,9 +121,6 @@ const Modal: React.FC<ModalProps> = ({
                 justifyContent: "space-between",
               }}
             >
-              <motion.button onClick={onClose} aria-label="Close" className="close-button" style={{ color: "var(--red)", fontSize: "30px", height: "100%", width: "40px" }}>
-                ✕
-              </motion.button>
               <h2 style={{ width: "100%", textAlign: "left" }}>{title}</h2>
             </div>
             <img
@@ -146,8 +146,8 @@ const Modal: React.FC<ModalProps> = ({
             <div
               style={{
                 backgroundColor: "transparent",
-                height: "200px",
-                minHeight: "200px",
+                height: "150px",
+                minHeight: "150px",
                 width: "100%",
               }}
             ></div>
