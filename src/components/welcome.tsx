@@ -7,7 +7,7 @@ const Navigation = () => {
       initial="hidden"
       animate="visible"
       variants={{
-        hidden: { opacity: 0, y: -20 },
+        hidden: { opacity: 0, y: 0 },
         visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
       }}
     >
@@ -22,11 +22,12 @@ const Navigation = () => {
             key={text}
             href={getHref(index)}
             variants={{
-              hidden: { opacity: 0, y: 10 },
+              hidden: { opacity: 0, y: -100 },
               visible: { opacity: 1, y: 0 },
             }}
             whileHover={{ letterSpacing: "10px", color: "var(--accent)" }}
             style={{ margin: "0 10px" }}
+            transition={{ delay: 0.5, duration: 0.5 }}
           >
             {text}
           </motion.a>
@@ -68,12 +69,12 @@ function WelcomePage() {
             hidden: { opacity: 0, x: 20 },
             visible: { opacity: 1, x: 0 },
           }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.0 }}
         >
           <motion.h1
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
           >
             S.Artem
           </motion.h1>
@@ -90,12 +91,11 @@ function WelcomePage() {
               hidden: { opacity: 0 },
               visible: { opacity: 1 },
             }}
-            transition={{ duration: 0.5, delay: 1 }}
           >
             <motion.p
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 1.2 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
               Backend Developer | Freelancer
             </motion.p>
@@ -106,7 +106,7 @@ function WelcomePage() {
           className="avatar-image"
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
         />
       </motion.div>
     </motion.div>
