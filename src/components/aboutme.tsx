@@ -36,7 +36,7 @@ function AboutMePage() {
           Hello! I am Artem.
         </p>
         <p>
-          I am 18 years old, and I spent 5 of them at the SAIKT Programming
+          I am 19 years old, and I spent 5 of them at the SAIKT Programming
           Academy, and now I am studying at SibSUTIS University.
         </p>
         <p>
