@@ -29,12 +29,11 @@ function AboutMePage() {
           gap: "var(--spacing-l)",
           padding: "0px",
           margin: "0px",
+          width: "100%",
         }}
       >
         <h2>About me</h2>
-        <p>
-          Hello! I am Artem.
-        </p>
+        <p>Hello! I am Artem.</p>
         <p>
           I am 19 years old, and I spent 5 of them at the SAIKT Programming
           Academy, and now I am studying at SibSUTIS University.

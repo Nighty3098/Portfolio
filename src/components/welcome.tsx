@@ -27,7 +27,7 @@ const Navigation = () => {
             }}
             whileHover={{ letterSpacing: "10px", color: "var(--accent)" }}
             style={{ margin: "0 10px" }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ duration: 0.5 }}
           >
             {text}
           </motion.a>

@@ -256,6 +256,10 @@ body {
 .about-block {
   flex-direction: row;
   justify-content: space-between;
+
+  p {
+    font-size: 1rem;
+  }
 }
 
 .work-block h3 {
@@ -594,7 +598,7 @@ body {
   }
 
   .content-block p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .work-block h3 {
