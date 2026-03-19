@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   info: string;
-  image: string;
+  images: string[];
   link: string;
   id: number;
 }
@@ -15,8 +15,14 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   link: string;
+}
+
+interface CarouselProps {
+  images: string[];
+  title: string;
+  isModal?: boolean;
 }
 
 function useInView(ref: React.RefObject<Element | null>, options?: IntersectionObserverInit) {
@@ -41,12 +47,118 @@ function useInView(ref: React.RefObject<Element | null>, options?: IntersectionO
   return inView;
 }
 
+const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startAutoPlay = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+  }, [images.length]);
+
+  const stopAutoPlay = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (images.length > 1 && isAutoPlaying) {
+      startAutoPlay();
+    }
+    return () => stopAutoPlay();
+  }, [images.length, isAutoPlaying, startAutoPlay, stopAutoPlay]);
+
+  const goToNext = () => {
+    stopAutoPlay();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+    if (isAutoPlaying) setTimeout(startAutoPlay, 100);
+  };
+
+  const goToPrev = () => {
+    stopAutoPlay();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    if (isAutoPlaying) setTimeout(startAutoPlay, 100);
+  };
+
+  const goToIndex = (index: number) => {
+    stopAutoPlay();
+    setCurrentIndex(index);
+    if (isAutoPlaying) setTimeout(startAutoPlay, 100);
+  };
+
+  if (images.length === 0) return null;
+
+  return (
+    <div
+      className={`carousel-container ${isModal ? "carousel-modal" : "carousel-card"}`}
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => {
+        if (images.length > 1) {
+          setIsAutoPlaying(true);
+        }
+      }}
+    >
+      <div className="carousel-wrapper">
+        <div className="carousel-image-container">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentIndex}
+              src={images[currentIndex]}
+              alt={`${title} - ${currentIndex + 1}`}
+              className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </AnimatePresence>
+        </div>
+
+        {images.length > 1 && (
+          <>
+            <button
+              className="carousel-btn carousel-btn-prev"
+              onClick={goToPrev}
+              aria-label="Previous image"
+            >
+              ‹
+            </button>
+            <button
+              className="carousel-btn carousel-btn-next"
+              onClick={goToNext}
+              aria-label="Next image"
+            >
+              ›
+            </button>
+
+            <div className="carousel-indicators">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  className={`carousel-indicator ${index === currentIndex ? "active" : ""}`}
+                  onClick={() => goToIndex(index)}
+                  aria-label={`Go to image ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Modal: React.FC<ModalProps> = ({
   show,
   onClose,
   title,
   description,
-  image,
+  images,
   link,
 }) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
@@ -123,11 +235,9 @@ const Modal: React.FC<ModalProps> = ({
             >
               <h2 style={{ width: "100%", textAlign: "left" }}>{title}</h2>
             </div>
-            <img
-              src={image}
-              alt={title}
-              style={{ width: "100%", borderRadius: 6 }}
-            />
+            <div style={{ width: "100%", maxWidth: "800px" }}>
+              <Carousel images={images} title={title} isModal={true} />
+            </div>
             <p>{description}</p>
             <a
               href={link}
@@ -162,7 +272,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
   info,
-  image,
+  images,
   link,
   id,
 }) => {
@@ -194,15 +304,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           }}
         >
           <motion.div className="project-header">
-            <motion.img
-              src={image}
-              alt={title}
-              className="project-image"
-              variants={{
-                rest: { scale: 1 },
-                hover: { opacity: 0, transition: { duration: 0.3 } },
-              }}
-            />
+            <Carousel images={images} title={title} isModal={false} />
             <motion.h3 className="project-title">{title}</motion.h3>
           </motion.div>
           <motion.div
@@ -222,7 +324,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         onClose={() => setModalOpen(false)}
         title={title}
         description={description}
-        image={image}
+        images={images}
         link={link}
       />
     </>
