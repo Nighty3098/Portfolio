@@ -39,7 +39,7 @@ const projectsData = {
       info: "Neural network model for IPSA",
       description:
         "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score.",
-      images: ["/images/ipsa_model.png"],
+      images: ["/images/ipsa_model_1.png", "/images/ipsa_model_2.png"],
       technologies: ["Python", "Tensorflow", "Keras"],
       link: "https://github.com/Nighty3098/IPSA_MODEL/",
     },
@@ -59,7 +59,7 @@ const projectsData = {
       info: "Program for analyzing log files and detecting anomalies in program operation",
       description:
         "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli.",
-      images: ["/images/LogInsight.png"],
+      images: ["/images/LogInsight_1.png", "/images/LogInsight_2.png", "/images/LogInsight_3.png", "/images/LogInsight_4.png"],
       technologies: ["C"],
       link: "https://github.com/He4vyL0v3/LogInsight",
     },
