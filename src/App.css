@@ -11,6 +11,7 @@
     --spacing-xxl: 80px;
     --bg-2: hsl(192deg 100% 8%);
     --bg: hsl(192deg 100% 5%);
+    --tr: rgba(0, 20, 26, 0.7);
     --fg: hsl(46deg 42% 88%);
     --accent: hsl(76deg 100% 39%);
     --red: hsl(1deg 71% 52%);
@@ -340,7 +341,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--bg-2);
+    background-color: var(--tr);
+    backdrop-filter: blur(10px);
     color: var(--fg);
     display: flex;
     justify-content: center;
