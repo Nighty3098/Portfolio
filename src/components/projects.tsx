@@ -4,6 +4,21 @@ import { motion } from "framer-motion";
 const projectsData = {
   projects: [
     {
+      id: 0,
+      title: "GhostlyGrabber",
+      info: "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
+      description:
+        "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
+      images: [
+        "images/gg_1.png",
+        "images/gg_2.png",
+        "images/gg_3.png",
+        "images/gg_4.png",
+      ],
+      technologies: ["python", "telethon", "telegram", "osint"],
+      link: "",
+    },
+    {
       id: 1,
       title: "The OWL",
       info: "OWL - task and project management app designed specifically for developers",
@@ -59,7 +74,12 @@ const projectsData = {
       info: "Program for analyzing log files and detecting anomalies in program operation",
       description:
         "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli.",
-      images: ["/images/LogInsight_1.png", "/images/LogInsight_2.png", "/images/LogInsight_3.png", "/images/LogInsight_4.png"],
+      images: [
+        "/images/LogInsight_1.png",
+        "/images/LogInsight_2.png",
+        "/images/LogInsight_3.png",
+        "/images/LogInsight_4.png",
+      ],
       technologies: ["C"],
       link: "https://github.com/He4vyL0v3/LogInsight",
     },

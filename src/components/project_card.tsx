@@ -25,17 +25,17 @@ interface CarouselProps {
   isModal?: boolean;
 }
 
-function useInView(ref: React.RefObject<Element | null>, options?: IntersectionObserverInit) {
+function useInView(
+  ref: React.RefObject<Element | null>,
+  options?: IntersectionObserverInit,
+) {
   const [inView, setInView] = React.useState(false);
 
   useEffect(() => {
     if (!ref.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
-      },
-      options
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      setInView(entry.isIntersecting);
+    }, options);
 
     observer.observe(ref.current);
 
@@ -47,7 +47,11 @@ function useInView(ref: React.RefObject<Element | null>, options?: IntersectionO
   return inView;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false }) => {
+const Carousel: React.FC<CarouselProps> = ({
+  images,
+  title,
+  isModal = false,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -212,9 +216,20 @@ const Modal: React.FC<ModalProps> = ({
               }
             }}
           >
-              <motion.button onClick={onClose} aria-label="Close" className="close-button" style={{ color: "var(--red)", fontSize: "30px", height: "40px", width: "100%", textAlign: "right" }}>
-                ✕
-              </motion.button>
+            <motion.button
+              onClick={onClose}
+              aria-label="Close"
+              className="close-button"
+              style={{
+                color: "var(--red)",
+                fontSize: "30px",
+                height: "40px",
+                width: "100%",
+                textAlign: "right",
+              }}
+            >
+              ✕
+            </motion.button>
             <div
               style={{
                 backgroundColor: "transparent",
@@ -290,7 +305,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         style={{ cursor: "grab" }}
         onClick={() => setModalOpen(true)}
         initial={{ opacity: 0, scale: 0.95 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+        animate={
+          isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }
+        }
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <motion.div
