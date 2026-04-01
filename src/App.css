@@ -9,11 +9,11 @@
   --spacing-l: 20px;
   --spacing-xl: 60px;
   --spacing-xxl: 80px;
-  --bg-2: hsl(192deg 100% 8%);
-  --bg: hsl(192deg 100% 5%);
+  --bg-2: #021b2e;
+  --bg: #011627;
   --tr: rgba(0, 20, 26, 0.7);
-  --fg: hsl(46deg 42% 88%);
-  --accent: hsl(76deg 100% 39%);
+  --fg: #bdc1c6;
+  --accent: #1d3b53;
   --red: hsl(1deg 71% 52%);
   --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
@@ -331,7 +331,7 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   aspect-ratio: 20/12;
 }
 
@@ -495,7 +495,7 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 }
 
 .carousel-image-container {
@@ -699,10 +699,10 @@ body {
     max-width: none;
     box-shadow: none;
     background-color: var(--bg-2);
-    border-radius: 5px;
+    border-radius: var(--border-radius);
   }
   .project-image-wrapper {
-    border-radius: 0;
+    border-radius: var(--border-radius);
   }
   .project-header h3 {
     margin-bottom: 2px;
