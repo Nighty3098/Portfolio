@@ -26,7 +26,6 @@
   outline: none;
   font-display: swap;
   font-size: medium;
-  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
   cursor: default;
@@ -97,7 +96,6 @@ body {
   text-decoration: none;
   letter-spacing: 5px;
   padding: 5px;
-  font-weight: bolder;
 }
 
 .welcome-tiling {
@@ -128,7 +126,6 @@ body {
   padding: 0px;
   margin: 0px;
   height: auto;
-  font-weight: bolder;
 }
 
 .underline {
@@ -265,7 +262,6 @@ body {
 
 .work-block h3 {
   font-size: 1.3rem;
-  font-weight: bold;
   line-height: 2rem;
   padding: 0px;
   margin: 0px;
@@ -609,12 +605,15 @@ body {
 }
 
 @media (max-width: 1000px) {
+  * {
+    font-size: 0.85rem;
+  }
+
   .welcome-content h1 {
     font-size: 50px;
   }
 
   .welcome-content p {
-    font-size: 1rem;
     line-height: 1rem;
   }
 
@@ -627,21 +626,9 @@ body {
     align-items: center;
     padding-bottom: 0px;
   }
-}
 
-@media (max-width: 1000px) {
   .welcome-tiling {
     flex-direction: column;
-  }
-
-  .welcome-content h1 {
-    font-size: 50px;
-    letter-spacing: 10px;
-  }
-
-  .welcome-content p {
-    font-size: 1rem;
-    line-height: 1.5rem;
   }
 
   :root {
@@ -724,7 +711,6 @@ body {
   .content-block h2 {
     line-height: 4rem;
     font-size: 4rem;
-    font-weight: bolder;
   }
 
   .contact-link {
