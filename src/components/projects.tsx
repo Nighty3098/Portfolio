@@ -66,6 +66,11 @@ const projectsData = {
   ],
 };
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
 function Projects() {
   return (
     <section
@@ -85,8 +90,8 @@ function Projects() {
       <motion.h2
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
       >
         My projects
       </motion.h2>

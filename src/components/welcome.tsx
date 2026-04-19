@@ -26,7 +26,7 @@ const Navigation = () => {
               visible: { opacity: 1, y: 0 },
             }}
             whileHover={{ letterSpacing: "10px", color: "var(--accent)" }}
-            style={{ margin: "0 10px" }}
+            style={{ margin: "0 10px", color: "var(--fg)" }}
             transition={{ duration: 0.5 }}
           >
             {text}

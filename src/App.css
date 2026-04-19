@@ -9,12 +9,12 @@
     --spacing-l: 20px;
     --spacing-xl: 60px;
     --spacing-xxl: 80px;
-    --bg-2: hsl(192deg 100% 8%);
-    --bg: hsl(192deg 100% 5%);
-    --tr: rgba(0, 20, 26, 0.7);
-    --fg: hsl(46deg 42% 88%);
-    --accent: hsl(76deg 100% 39%);
-    --red: hsl(1deg 71% 52%);
+    --bg-2: #181c26;
+    --bg: #242936;
+    --tr: rgba(36, 41, 54, 0.7);
+    --fg: #8592a8;
+    --accent: #73d0ff;
+    --red: #f28779;
     --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -48,6 +48,7 @@ body {
     align-items: center;
     align-content: center;
     justify-content: flex-start;
+    scroll-behavior: smooth;
 }
 
 .App {
@@ -89,6 +90,7 @@ body {
     margin: 0px;
     padding-bottom: var(--spacing-xl);
     gap: var(--spacing-l);
+    color: var(--fg);
 }
 
 .navigation a {
@@ -98,6 +100,7 @@ body {
     letter-spacing: 5px;
     padding: 5px;
     font-weight: bolder;
+    color: var(--fg);
 }
 
 .welcome-tiling {
@@ -139,13 +142,28 @@ body {
 }
 
 .avatar-image {
-    width: 40%;
-    min-width: 200px;
-    max-width: 200px;
+    flex: 1;
+    min-width: 240px;
+    max-width: 380px;
     aspect-ratio: 1/1;
-    margin: 0px;
-    filter: contrast(110%) saturate(70%);
-    border-radius: 5px;
+    object-fit: cover;
+    border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+    box-shadow: var(--shadow-lg);
+    border: 3px solid var(--fg);
+    transition: border-radius 0.4s ease;
+}
+
+.avatar-image:hover {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.image {
+    flex: 1;
+    min-width: 240px;
+    max-width: 380px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
 }
 
 .welcome-content {

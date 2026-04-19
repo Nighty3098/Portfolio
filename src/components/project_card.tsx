@@ -1,6 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -23,28 +28,6 @@ interface CarouselProps {
   images: string[];
   title: string;
   isModal?: boolean;
-}
-
-function useInView(ref: React.RefObject<Element | null>, options?: IntersectionObserverInit) {
-  const [inView, setInView] = React.useState(false);
-
-  useEffect(() => {
-    if (!ref.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
-      },
-      options
-    );
-
-    observer.observe(ref.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [ref, options]);
-
-  return inView;
 }
 
 const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false }) => {
@@ -111,10 +94,10 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false }) =
               src={images[currentIndex]}
               alt={`${title} - ${currentIndex + 1}`}
               className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.25 }}
             />
           </AnimatePresence>
         </div>
@@ -277,21 +260,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   id,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const isInView = useInView(cardRef, { threshold: 0.1 });
 
   return (
     <>
       <motion.div
         key={id}
-        ref={cardRef}
         className="project-card"
         style={{ cursor: "grab" }}
         onClick={() => setModalOpen(true)}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div
           className="project-image-wrapper"

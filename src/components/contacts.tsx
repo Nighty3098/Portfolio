@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, easeOut } from "framer-motion";
+import { motion } from "framer-motion";
 
 type Contact = {
   readonly id: number;
@@ -66,15 +66,13 @@ type ContactCardProps = Readonly<{
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.6, ease: easeOut } },
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
 };
 
 function ContactCard({ contact }: ContactCardProps) {
@@ -114,7 +112,7 @@ function MyContacts() {
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
         >
           My contacts
         </motion.h2>
