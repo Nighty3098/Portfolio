@@ -2,7 +2,7 @@
   "name": "nighty3098profile",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nighty3098.github.io/Portfolio",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
