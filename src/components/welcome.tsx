@@ -8,9 +8,16 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const navItems = [
-    { text: "PROJECTS", href: "#projects" },
-    { text: "CONTACTS", href: "#my-contacts" },
+    { text: "PROJECTS", action: () => scrollToSection("projects") },
+    { text: "CONTACTS", action: () => scrollToSection("my-contacts") },
     { text: "GITHUB", action: onGitHubStatsClick },
   ];
 
@@ -24,48 +31,32 @@ const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
         visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
       }}
     >
-      {navItems.map((item, index) => {
-        if (item.action) {
-          return (
-            <motion.button
-              key={item.text}
-              onClick={item.action}
-              variants={{
-                hidden: { opacity: 0, y: -100 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              whileHover={{ letterSpacing: "10px", color: "var(--accent)" }}
-              style={{
-                margin: "0 10px",
-                color: "var(--fg)",
-                background: "transparent",
-                border: "none",
-                fontSize: "1rem",
-                letterSpacing: "5px",
-                cursor: "pointer",
-                fontWeight: "bolder",
-              }}
-              transition={{ duration: 0.5 }}
-            >
-              {item.text}
-            </motion.button>
-          );
-        }
-
+      {navItems.map((item) => {
         return (
-          <motion.a
+          <motion.button
             key={item.text}
-            href={item.href}
+            onClick={item.action}
             variants={{
               hidden: { opacity: 0, y: -100 },
               visible: { opacity: 1, y: 0 },
             }}
             whileHover={{ letterSpacing: "10px", color: "var(--accent)" }}
-            style={{ margin: "0 10px", color: "var(--fg)" }}
+            style={{
+              margin: "0 10px",
+              color: "var(--fg)",
+              background: "transparent",
+              border: "none",
+              fontSize: "1rem",
+              letterSpacing: "5px",
+              cursor: "pointer",
+              fontWeight: "bolder",
+              fontFamily: "inherit",
+              fontStyle: "inherit",
+            }}
             transition={{ duration: 0.5 }}
           >
             {item.text}
-          </motion.a>
+          </motion.button>
         );
       })}
     </motion.div>

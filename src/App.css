@@ -103,6 +103,12 @@ body {
   color: var(--fg);
 }
 
+#projects,
+#my-contacts,
+#about-me {
+  scroll-margin-top: var(--spacing-xl);
+}
+
 .welcome-tiling {
   display: flex;
   flex-direction: row;
