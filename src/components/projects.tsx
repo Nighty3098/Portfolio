@@ -59,7 +59,12 @@ const projectsData = {
       info: "Program for analyzing log files and detecting anomalies in program operation",
       description:
         "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli.",
-      images: ["/images/LogInsight_1.png", "/images/LogInsight_2.png", "/images/LogInsight_3.png", "/images/LogInsight_4.png"],
+      images: [
+        "/images/LogInsight_1.png",
+        "/images/LogInsight_2.png",
+        "/images/LogInsight_3.png",
+        "/images/LogInsight_4.png",
+      ],
       technologies: ["C"],
       link: "https://github.com/He4vyL0v3/LogInsight",
     },
@@ -82,6 +87,7 @@ function Projects() {
         justifyContent: "center",
       }}
     >
+      <div className="spacer" style={{ height: "100px" }}></div>
       <motion.h2
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}

@@ -20,6 +20,7 @@ function AboutMePage() {
     "Hello! I am Artem.",
     "I am 19 years old, and I spent 5 of them at the SAIKT Programming Academy, and now I am studying at SibSUTIS University.",
     "I strive to grow in IT and work on large-scale projects that improve people's lives.",
+    "I develop Telegram bots, websites, backend, and desktop applications.",
     "You can check out my open source projects on GitHub and in my organizations.",
   ];
 

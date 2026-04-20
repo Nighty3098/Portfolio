@@ -1,6 +1,19 @@
 import { motion } from "framer-motion";
+import React from "react";
+import GitHubStats from "./github_stats";
+import { useState } from "react";
 
-const Navigation = () => {
+interface NavigationProps {
+  onGitHubStatsClick?: () => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
+  const navItems = [
+    { text: "PROJECTS", href: "#projects" },
+    { text: "CONTACTS", href: "#my-contacts" },
+    { text: "GITHUB", action: onGitHubStatsClick },
+  ];
+
   return (
     <motion.div
       className="navigation"
@@ -11,16 +24,38 @@ const Navigation = () => {
         visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
       }}
     >
-      {["PROJECTS", "CONTACTS"].map((text, index) => {
-        const getHref = (index: number) => {
-          if (index === 0) return "#projects";
-          if (index === 1) return "#my-contacts";
-        };
+      {navItems.map((item, index) => {
+        if (item.action) {
+          return (
+            <motion.button
+              key={item.text}
+              onClick={item.action}
+              variants={{
+                hidden: { opacity: 0, y: -100 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ letterSpacing: "10px", color: "var(--accent)" }}
+              style={{
+                margin: "0 10px",
+                color: "var(--fg)",
+                background: "transparent",
+                border: "none",
+                fontSize: "1rem",
+                letterSpacing: "5px",
+                cursor: "pointer",
+                fontWeight: "bolder",
+              }}
+              transition={{ duration: 0.5 }}
+            >
+              {item.text}
+            </motion.button>
+          );
+        }
 
         return (
           <motion.a
-            key={text}
-            href={getHref(index)}
+            key={item.text}
+            href={item.href}
             variants={{
               hidden: { opacity: 0, y: -100 },
               visible: { opacity: 1, y: 0 },
@@ -29,7 +64,7 @@ const Navigation = () => {
             style={{ margin: "0 10px", color: "var(--fg)" }}
             transition={{ duration: 0.5 }}
           >
-            {text}
+            {item.text}
           </motion.a>
         );
       })}
@@ -38,6 +73,8 @@ const Navigation = () => {
 };
 
 function WelcomePage() {
+  const [githubStatsOpen, setGitHubStatsOpen] = useState(false);
+
   return (
     <motion.div
       className="welcome-block content"
@@ -50,7 +87,8 @@ function WelcomePage() {
       }}
       transition={{ duration: 0.5 }}
     >
-      <Navigation />
+      <Navigation onGitHubStatsClick={() => setGitHubStatsOpen(true)} />
+      <GitHubStats show={githubStatsOpen} onClose={() => setGitHubStatsOpen(false)} />
       <motion.div
         className="welcome-tiling"
         initial="hidden"
