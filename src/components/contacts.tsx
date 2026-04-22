@@ -78,7 +78,7 @@ const itemVariants = {
 function ContactCard({ contact }: ContactCardProps) {
   return (
     <motion.div
-      style={{ width: "100%", padding: "0px", margin: "0px" }}
+      className="contact-card-wrapper"
       variants={itemVariants}
     >
       <motion.a href={contact.link} target="_blank" className="contact-link">
@@ -92,19 +92,7 @@ function MyContacts() {
   return (
     <div
       id="my-contacts"
-      className="content"
-      style={{
-        height: "100vh",
-        padding: "var(--spacing-xl)",
-        width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))",
-        margin: "0px",
-        display: "flex",
-        flexDirection: "column",
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "var(--bg-2)",
-      }}
+      className="content contacts-page-wrapper"
     >
       <div className="content-block contacts-block">
         {/* My contacts */}
@@ -116,37 +104,20 @@ function MyContacts() {
         >
           My contacts
         </motion.h2>
-        <div className="spacer" style={{ height: "100px" }}></div>
+        <div className="spacer-h-100"></div>
         <motion.div
-          className="contacts-tiling"
+          className="contacts-tiling contacts-tiling-inner"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          style={{ width: "100%", display: "flex", gap: "var(--spacing-m)" }}
         >
-          <motion.div
-            className="contacts-list"
-            style={{
-              width: "50%",
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--spacing-s)",
-            }}
-          >
+          <motion.div className="contacts-list contacts-list-half">
             {contacts.map((contact) => (
               <ContactCard key={contact.id} contact={contact} />
             ))}
           </motion.div>
-          <motion.div
-            className="contacts-list"
-            style={{
-              width: "50%",
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--spacing-s)",
-            }}
-          >
+          <motion.div className="contacts-list contacts-list-half">
             {resources.map((resource) => (
               <ContactCard key={resource.id} contact={resource} />
             ))}

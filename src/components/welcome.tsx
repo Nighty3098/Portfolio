@@ -41,18 +41,7 @@ const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
               visible: { opacity: 1, y: 0 },
             }}
             whileHover={{ letterSpacing: "10px", color: "var(--accent)" }}
-            style={{
-              margin: "0 10px",
-              color: "var(--fg)",
-              background: "transparent",
-              border: "none",
-              fontSize: "1rem",
-              letterSpacing: "5px",
-              cursor: "pointer",
-              fontWeight: "bolder",
-              fontFamily: "inherit",
-              fontStyle: "inherit",
-            }}
+            className="navigation-button"
             transition={{ duration: 0.5 }}
           >
             {item.text}
@@ -68,10 +57,9 @@ function WelcomePage() {
 
   return (
     <motion.div
-      className="welcome-block content"
+      className="welcome-block content welcome-block-bg"
       initial="hidden"
       animate="visible"
-      style={{ backgroundColor: "var(--bg-2)" }}
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
@@ -108,12 +96,7 @@ function WelcomePage() {
             S.Artem
           </motion.h1>
           <motion.div
-            style={{
-              width: "100%",
-              padding: "0px",
-              margin: "0px",
-              height: "auto",
-            }}
+            className="welcome-text-container"
             initial="hidden"
             animate="visible"
             variants={{

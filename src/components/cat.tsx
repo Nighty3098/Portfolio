@@ -3,14 +3,7 @@ import { motion } from "framer-motion";
 function CatSvg() {
   return (
     <motion.div
-      className="image"
-      style={{
-        color: "var(--fg)",
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
-        alignItems: "center",
-      }}
+      className="image cat-svg-container"
       initial="hidden"
       animate="visible"
       variants={{
@@ -24,13 +17,7 @@ function CatSvg() {
         height="100%"
         viewBox="0 0 32.623001 58.785"
         version="1.1"
-        style={{
-          maxWidth: "200px",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-          strokeMiterlimit: 1.5,
-          transform: "scaleX(-1)",
-        }}
+        className="cat-svg-image"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g id="layer1" transform="translate(-177.9889,-10.10772)">

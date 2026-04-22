@@ -75,19 +75,9 @@ function Projects() {
   return (
     <section
       id="projects"
-      className="content-block content projects-block"
-      style={{
-        height: "auto",
-        padding: "var(--spacing-xl)",
-        width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))",
-        margin: "0px",
-        flexDirection: "column",
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      className="content-block content projects-block projects-page-wrapper"
     >
-      <div className="spacer" style={{ height: "100px" }}></div>
+      <div className="spacer-h-100"></div>
       <motion.h2
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -96,7 +86,7 @@ function Projects() {
       >
         My projects
       </motion.h2>
-      <div className="spacer" style={{ height: "100px" }}></div>
+      <div className="spacer-h-100"></div>
       <div className="projects-grid">
         {projectsData.projects.map((project) => (
           <ProjectCard
@@ -110,7 +100,7 @@ function Projects() {
           />
         ))}
       </div>
-      <div className="spacer" style={{ height: "100px" }}></div>
+      <div className="spacer-h-100"></div>
     </section>
   );
 }

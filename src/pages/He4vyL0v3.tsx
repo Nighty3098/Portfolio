@@ -54,30 +54,12 @@ function He4vyL0v3() {
   return (
     <section
       id="projects"
-      className="content-block content projects-block"
-      style={{
-        height: "auto",
-        padding: "0px",
-        width: "calc(100vw)",
-        margin: "0px",
-        flexDirection: "column",
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      className="content-block content projects-block projects-page-tiling"
     >
-      <div
-        className="content-block about-block heavylove_tiling"
-        style={{
-          backgroundColor: "var(--bg-2)",
-          width: "100%",
-          margin: "0px",
-          padding: "0px",
-        }}
-      >
-        <h1 style={{ color: "var(--accent)" }}>He4vyL0v3</h1>
+      <div className="content-block about-block heavylove_tiling projects-page-header">
+        <h1>He4vyL0v3</h1>
       </div>
-      <div className="spacer" style={{ height: "100px" }}></div>
+      <div className="spacer-h-100"></div>
       <div className="projects-grid">
         {projectsData.projects.map((project) => (
           <ProjectCard
@@ -91,7 +73,7 @@ function He4vyL0v3() {
           />
         ))}
       </div>
-      <div className="spacer" style={{ height: "100px" }}></div>
+      <div className="spacer-h-100"></div>
     </section>
   );
 }

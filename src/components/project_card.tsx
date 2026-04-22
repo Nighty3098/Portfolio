@@ -178,11 +178,8 @@ const Modal: React.FC<ModalProps> = ({
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
-          <motion.section
-            className="modal-content"
-            style={{
-              overflowY: "auto",
-            }}
+<motion.section
+            className="modal-content modal-content-scrollable"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -195,30 +192,14 @@ const Modal: React.FC<ModalProps> = ({
               }
             }}
           >
-              <motion.button onClick={onClose} aria-label="Close" className="close-button" style={{ color: "var(--red)", fontSize: "30px", height: "40px", width: "100%", textAlign: "right" }}>
-                ✕
-              </motion.button>
-            <div
-              style={{
-                backgroundColor: "transparent",
-                height: "150px",
-                minHeight: "150px",
-                width: "100%",
-              }}
-            ></div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "row-reverse",
-                alignItems: "center",
-                alignContent: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <h2 style={{ width: "100%", textAlign: "left" }}>{title}</h2>
+            <motion.button onClick={onClose} aria-label="Close" className="close-button modal-close-button">
+              ✕
+            </motion.button>
+            <div className="spacer-h-150"></div>
+            <div className="modal-header-container">
+              <h2>{title}</h2>
             </div>
-            <div style={{ width: "100%", maxWidth: "800px" }}>
+            <div className="modal-image-container">
               <Carousel images={images} title={title} isModal={true} />
             </div>
             <p>{description}</p>
@@ -226,24 +207,11 @@ const Modal: React.FC<ModalProps> = ({
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                backgroundColor: "var(--bg)",
-                padding: "var(--spacing-m)",
-                borderRadius: "5px",
-                width: "200px",
-                textAlign: "center",
-              }}
+              className="modal-action-link"
             >
               Open
             </a>
-            <div
-              style={{
-                backgroundColor: "transparent",
-                height: "150px",
-                minHeight: "150px",
-                width: "100%",
-              }}
-            ></div>
+            <div className="spacer-h-150"></div>
           </motion.section>
         </motion.dialog>
       )}
@@ -265,8 +233,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     <>
       <motion.div
         key={id}
-        className="project-card"
-        style={{ cursor: "grab" }}
+        className="project-card project-card-grab"
         onClick={() => setModalOpen(true)}
         variants={cardVariants}
         initial="hidden"

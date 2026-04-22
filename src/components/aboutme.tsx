@@ -27,32 +27,14 @@ function AboutMePage() {
   return (
     <motion.div
       id="about-me"
-      className="content-block about-block content"
-      style={{
-        height: "auto",
-        minHeight: "100vh",
-        padding: "var(--spacing-xl)",
-        width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))",
-      }}
+      className="content-block about-block content about-section-wrapper"
+      style={{}}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "left",
-          gap: "var(--spacing-l)",
-          padding: "0px",
-          margin: "0px",
-          width: "100%",
-        }}
-      >
+      <div className="about-section-container">
         <motion.h2 variants={itemVariants}>About me</motion.h2>
         {aboutTexts.map((text, i) => (
           <motion.p key={i} variants={itemVariants}>
