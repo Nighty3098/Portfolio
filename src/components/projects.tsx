@@ -5,6 +5,39 @@ const projectsData = {
   projects: [
     {
       id: 1,
+      title: "GhostlyGrabber",
+      info: "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
+      description:
+        "OSINT is a tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication",
+      images: [
+        "/images/gh_1.png",
+        "/images/gh_2.png",
+        "/images/gh_3.png",
+        "/images/gh_4.png",
+        "/images/gh_5.png",
+      ],
+      technologies: ["Python", "C++", "QT"],
+      link: "https://he4vyl0v3.vercel.app/",
+    },
+    {
+      id: 2,
+      title: "Crimson",
+      info: "Crimson is a remote access tool written in C++ with the ability to build for windows and linux",
+      description:
+        "Crimson is a remote access tool with the ability to create payloads for windows and linux",
+      images: [
+        "/images/crimson_1.png",
+        "/images/crimson_2.png",
+        "/images/crimson_3.png",
+        "/images/crimson_4.png",
+        "/images/crimson_5.png",
+        "/images/crimson_6.png",
+      ],
+      technologies: ["Python", "C"],
+      link: "https://he4vyl0v3.vercel.app/",
+    },
+    {
+      id: 3,
       title: "The OWL",
       info: "OWL - task and project management app designed specifically for developers",
       description:
@@ -14,7 +47,7 @@ const projectsData = {
       link: "https://owl-gamma.vercel.app/",
     },
     {
-      id: 2,
+      id: 4,
       title: "OWL Rest API",
       info: "A microservice-based RESTful API for OWL APP",
       description:
@@ -24,7 +57,7 @@ const projectsData = {
       link: "https://owl-gamma.vercel.app/",
     },
     {
-      id: 3,
+      id: 5,
       title: "IPSA",
       info: "IPSA is a bot investment assistant with the ability to predict stock prices using its own neural network",
       description:
@@ -34,7 +67,7 @@ const projectsData = {
       link: "https://github.com/Nighty3098/InvestingAssistant/",
     },
     {
-      id: 4,
+      id: 6,
       title: "IPSA AI MODEL",
       info: "Neural network model for IPSA",
       description:
@@ -44,7 +77,7 @@ const projectsData = {
       link: "https://github.com/Nighty3098/IPSA_MODEL/",
     },
     {
-      id: 5,
+      id: 7,
       title: "PrettyProfile",
       info: "Generate a pretty art style profile card from your GitHub data!",
       description:
@@ -54,7 +87,7 @@ const projectsData = {
       link: "https://pretty-profile.vercel.app/",
     },
     {
-      id: 6,
+      id: 8,
       title: "LogInsight",
       info: "Program for analyzing log files and detecting anomalies in program operation",
       description:
