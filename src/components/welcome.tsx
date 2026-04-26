@@ -67,7 +67,10 @@ function WelcomePage() {
       transition={{ duration: 0.5 }}
     >
       <Navigation onGitHubStatsClick={() => setGitHubStatsOpen(true)} />
-      <GitHubStats show={githubStatsOpen} onClose={() => setGitHubStatsOpen(false)} />
+      <GitHubStats
+        show={githubStatsOpen}
+        onClose={() => setGitHubStatsOpen(false)}
+      />
       <motion.div
         className="welcome-tiling"
         initial="hidden"
@@ -109,7 +112,7 @@ function WelcomePage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              Backend Developer | Freelancer
+              BACKEND DEVELOPER | FREELACER
             </motion.p>
           </motion.div>
         </motion.div>
