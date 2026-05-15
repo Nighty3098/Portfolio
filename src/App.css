@@ -157,7 +157,7 @@ body {
 .image {
     flex: 1;
     min-width: 240px;
-    max-width: 380px;
+    max-width: 400px;
     aspect-ratio: 1/1;
     object-fit: cover;
     box-shadow: var(--shadow-lg);
@@ -822,10 +822,14 @@ body {
     justify-content: center;
     align-content: center;
     align-items: center;
+    height: 300px;
+    max-height: 300px;
+    max-width: 300px;
+    aspect-ratio: 1/1;
 }
 
 .cat-svg-image {
-    max-width: 200px;
+    max-width: 300px;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-miterlimit: 1.5;
@@ -833,6 +837,10 @@ body {
 }
 
 @media (max-width: 1000px) {
+    .cat-svg-container {
+        height: 200px;
+    }
+
     .welcome-content h1 {
         font-size: 50px;
     }
@@ -857,9 +865,7 @@ body {
     .navigation-button {
         font-size: 0.8rem;
     }
-}
 
-@media (max-width: 1000px) {
     .welcome-tiling {
         flex-direction: column;
     }

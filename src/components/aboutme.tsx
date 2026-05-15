@@ -42,7 +42,17 @@ function AboutMePage() {
           </motion.p>
         ))}
       </div>
-      <motion.div variants={itemVariants}>
+      <motion.div
+        variants={itemVariants}
+        style={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "center",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <CatSvg />
       </motion.div>
     </motion.div>
