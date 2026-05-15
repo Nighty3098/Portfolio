@@ -812,6 +812,73 @@ body {
     gap: var(--spacing-xl);
 }
 
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-l);
+    width: 100%;
+    max-width: 700px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-l);
+    background-color: var(--bg);
+    border-radius: var(--border-radius);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--fg);
+    text-align: center;
+}
+
+.stat-item-languages {
+    grid-column: 1 / -1;
+}
+
+.stat-languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    justify-content: center;
+    margin-top: var(--spacing-xs);
+}
+
+.stat-language-tag {
+    background-color: var(--bg-2);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.stat-loading,
+.stat-error {
+    font-size: 1rem;
+    letter-spacing: 3px;
+}
+
+.stat-error {
+    color: var(--red);
+}
+
+@media (max-width: 600px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 .project-card-grab {
     cursor: grab;
 }
