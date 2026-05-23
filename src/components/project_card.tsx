@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useTranslate } from "../context/I18nContext";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -22,15 +23,17 @@ interface ModalProps {
   description: string;
   images: string[];
   link: string;
+  t: (key: string, params?: Record<string, string | number>) => string;
 }
 
 interface CarouselProps {
   images: string[];
   title: string;
   isModal?: boolean;
+  t: (key: string, params?: Record<string, string | number>) => string;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false }) => {
+const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false, t }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -107,14 +110,14 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false }) =
             <button
               className="carousel-btn carousel-btn-prev"
               onClick={goToPrev}
-              aria-label="Previous image"
+              aria-label={t("project_card.prev_image")}
             >
               ‹
             </button>
             <button
               className="carousel-btn carousel-btn-next"
               onClick={goToNext}
-              aria-label="Next image"
+              aria-label={t("project_card.next_image")}
             >
               ›
             </button>
@@ -125,7 +128,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false }) =
                   key={index}
                   className={`carousel-indicator ${index === currentIndex ? "active" : ""}`}
                   onClick={() => goToIndex(index)}
-                  aria-label={`Go to image ${index + 1}`}
+                  aria-label={t("project_card.go_to_image", { n: index + 1 })}
                 />
               ))}
             </div>
@@ -143,6 +146,7 @@ const Modal: React.FC<ModalProps> = ({
   description,
   images,
   link,
+  t,
 }) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
 
@@ -192,7 +196,7 @@ const Modal: React.FC<ModalProps> = ({
               }
             }}
           >
-            <motion.button onClick={onClose} aria-label="Close" className="close-button modal-close-button">
+            <motion.button onClick={onClose} aria-label={t("project_card.close")} className="close-button modal-close-button">
               ✕
             </motion.button>
             <div className="spacer-h-150"></div>
@@ -200,7 +204,7 @@ const Modal: React.FC<ModalProps> = ({
               <h2>{title}</h2>
             </div>
             <div className="modal-image-container">
-              <Carousel images={images} title={title} isModal={true} />
+              <Carousel images={images} title={title} isModal={true} t={t} />
             </div>
             <p>{description}</p>
             <a
@@ -209,7 +213,7 @@ const Modal: React.FC<ModalProps> = ({
               rel="noopener noreferrer"
               className="modal-action-link"
             >
-              Open
+              {t("project_card.open")}
             </a>
             <div className="spacer-h-150"></div>
           </motion.section>
@@ -227,6 +231,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   link,
   id,
 }) => {
+  const { t } = useTranslate();
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -251,7 +256,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           }}
         >
           <motion.div className="project-header">
-            <Carousel images={images} title={title} isModal={false} />
+            <Carousel images={images} title={title} isModal={false} t={t} />
             <motion.h3 className="project-title">{title}</motion.h3>
           </motion.div>
           <motion.div
@@ -273,6 +278,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         description={description}
         images={images}
         link={link}
+        t={t}
       />
     </>
   );

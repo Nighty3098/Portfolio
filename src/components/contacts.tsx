@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslate } from "../context/I18nContext";
 
 type Contact = {
   readonly id: number;
@@ -33,6 +34,7 @@ const contacts: Contact[] = [
 type Resource = {
   readonly id: number;
   readonly name: string;
+  readonly nameKey?: string;
   readonly link: string;
 };
 
@@ -55,12 +57,14 @@ const resources: Resource[] = [
   {
     id: 3,
     name: "Tg Channel",
+    nameKey: "contacts.tg_channel",
     link: "https://t.me/W2N3098",
   },
 ];
 
 type ContactCardProps = Readonly<{
-  contact: Contact;
+  contact: Contact | Resource;
+  t: (key: string, params?: Record<string, string | number>) => string;
 }>;
 
 const containerVariants = {
@@ -75,34 +79,35 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-function ContactCard({ contact }: ContactCardProps) {
+function ContactCard({ contact, t }: ContactCardProps) {
+  const displayName = "nameKey" in contact && contact.nameKey ? t(contact.nameKey) : contact.name;
   return (
     <motion.div
       className="contact-card-wrapper"
       variants={itemVariants}
     >
       <motion.a href={contact.link} target="_blank" className="contact-link">
-        | {contact.name}
+        | {displayName}
       </motion.a>
     </motion.div>
   );
 }
 
 function MyContacts() {
+  const { t } = useTranslate();
   return (
     <div
       id="my-contacts"
       className="content contacts-page-wrapper"
     >
       <div className="content-block contacts-block">
-        {/* My contacts */}
         <motion.h2
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
         >
-          My contacts
+          {t("contacts.title")}
         </motion.h2>
         <div className="spacer-h-100"></div>
         <motion.div
@@ -114,12 +119,12 @@ function MyContacts() {
         >
           <motion.div className="contacts-list contacts-list-half">
             {contacts.map((contact) => (
-              <ContactCard key={contact.id} contact={contact} />
+              <ContactCard key={contact.id} contact={contact} t={t} />
             ))}
           </motion.div>
           <motion.div className="contacts-list contacts-list-half">
             {resources.map((resource) => (
-              <ContactCard key={resource.id} contact={resource} />
+              <ContactCard key={resource.id} contact={resource} t={t} />
             ))}
           </motion.div>
         </motion.div>

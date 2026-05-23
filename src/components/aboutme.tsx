@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import CatSvg from "./cat";
-import React from "react";
+import { useTranslate } from "../context/I18nContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -16,13 +16,8 @@ const itemVariants = {
 };
 
 function AboutMePage() {
-  const aboutTexts = [
-    "Hello! I am Artem.",
-    "I am 19 years old, and I spent 5 of them at the SAIKT Programming Academy, and now I am studying at SibSUTIS University.",
-    "I strive to grow in IT and work on large-scale projects that improve people's lives.",
-    "I develop Telegram bots, websites, backend, and desktop applications.",
-    "You can check out my open source projects on GitHub and in my organizations.",
-  ];
+  const { t } = useTranslate();
+  const aboutTexts = ["about.p1", "about.p2", "about.p3", "about.p4"];
 
   return (
     <motion.div
@@ -35,10 +30,10 @@ function AboutMePage() {
       variants={containerVariants}
     >
       <div className="about-section-container">
-        <motion.h2 variants={itemVariants}>About me</motion.h2>
-        {aboutTexts.map((text, i) => (
+        <motion.h2 variants={itemVariants}>{t("about.title")}</motion.h2>
+        {aboutTexts.map((key, i) => (
           <motion.p key={i} variants={itemVariants}>
-            {text}
+            {t(key)}
           </motion.p>
         ))}
       </div>

@@ -2,12 +2,14 @@ import { motion } from "framer-motion";
 import React from "react";
 import GitHubStats from "./github_stats";
 import { useState } from "react";
+import { useTranslate } from "../context/I18nContext";
 
 interface NavigationProps {
   onGitHubStatsClick?: () => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
+  const { t, locale, setLocale } = useTranslate();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -16,9 +18,9 @@ const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
   };
 
   const navItems = [
-    { text: "PROJECTS", action: () => scrollToSection("projects") },
-    { text: "CONTACTS", action: () => scrollToSection("my-contacts") },
-    { text: "GITHUB", action: onGitHubStatsClick },
+    { key: "nav.projects", action: () => scrollToSection("projects") },
+    { key: "nav.contacts", action: () => scrollToSection("my-contacts") },
+    { key: "nav.github", action: onGitHubStatsClick },
   ];
 
   return (
@@ -34,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
       {navItems.map((item) => {
         return (
           <motion.button
-            key={item.text}
+            key={item.key}
             onClick={item.action}
             variants={{
               hidden: { opacity: 0, y: -100 },
@@ -44,15 +46,28 @@ const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
             className="navigation-button"
             transition={{ duration: 0.5 }}
           >
-            {item.text}
+            {t(item.key)}
           </motion.button>
         );
       })}
+      <motion.button
+        onClick={() => setLocale(locale === "en" ? "ru" : "en")}
+        className="navigation-button lang-switcher"
+        variants={{
+          hidden: { opacity: 0, y: -100 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        whileHover={{ letterSpacing: "5px", color: "var(--accent)" }}
+        transition={{ duration: 0.5 }}
+      >
+        {locale === "en" ? "EN" : "RU"}
+      </motion.button>
     </motion.div>
   );
 };
 
 function WelcomePage() {
+  const { t } = useTranslate();
   const [githubStatsOpen, setGitHubStatsOpen] = useState(false);
 
   return (
@@ -96,7 +111,7 @@ function WelcomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            S.Artem
+            {t("welcome.name")}
           </motion.h1>
           <motion.div
             className="welcome-text-container"
@@ -112,7 +127,7 @@ function WelcomePage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              BACKEND DEVELOPER | FREELACER
+              {t("welcome.tagline")}
             </motion.p>
           </motion.div>
         </motion.div>

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { getAggregatedStats, type AggregatedStats } from "../api/github";
+import { useTranslate } from "../context/I18nContext";
 
 interface GitHubStatsProps {
   show: boolean;
@@ -8,6 +9,7 @@ interface GitHubStatsProps {
 }
 
 const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
+  const { t } = useTranslate();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [stats, setStats] = useState<AggregatedStats | null>(null);
   const [loading, setLoading] = useState(false);
@@ -84,42 +86,42 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
           >
             <motion.button
               onClick={onClose}
-              aria-label="Close"
+              aria-label={t("github_stats.close")}
               className="close-button modal-close-button-alt"
             >
               ✕
             </motion.button>
             <div className="spacer-h-50"></div>
-            <h2>GitHub Stats</h2>
+            <h2>{t("github_stats.title")}</h2>
             <div className="modal-stats-container">
-              {loading && <p className="stat-loading">Loading...</p>}
+              {loading && <p className="stat-loading">{t("github_stats.loading")}</p>}
               {error && <p className="stat-error">{error}</p>}
               {stats && (
                 <div className="stats-grid">
                   <div className="stat-item">
                     <span className="stat-value">{stats.totalStars}</span>
-                    <span className="stat-label">Total Stars</span>
+                    <span className="stat-label">{t("github_stats.stars")}</span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-value">{stats.totalRepos}</span>
-                    <span className="stat-label">Repositories</span>
+                    <span className="stat-label">{t("github_stats.repos")}</span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-value">
-                      {stats.totalCommits === -1 ? "N/A" : stats.totalCommits}
+                      {stats.totalCommits === -1 ? t("github_stats.na") : stats.totalCommits}
                     </span>
-                    <span className="stat-label">Commits</span>
+                    <span className="stat-label">{t("github_stats.commits")}</span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-value">{stats.totalPRs}</span>
-                    <span className="stat-label">Pull Requests</span>
+                    <span className="stat-label">{t("github_stats.pull_requests")}</span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-value">{stats.totalIssues}</span>
-                    <span className="stat-label">Issues</span>
+                    <span className="stat-label">{t("github_stats.issues")}</span>
                   </div>
                   <div className="stat-item stat-item-languages">
-                    <span className="stat-label">Languages</span>
+                    <span className="stat-label">{t("github_stats.languages")}</span>
                     <div className="stat-languages">
                       {stats.languages.map((l) => (
                         <span key={l.name} className="stat-language-tag">

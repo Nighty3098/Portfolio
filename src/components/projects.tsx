@@ -1,14 +1,11 @@
 import ProjectCard from "./project_card";
 import { motion } from "framer-motion";
+import { useTranslate } from "../context/I18nContext";
 
 const projectsData = {
   projects: [
     {
       id: 1,
-      title: "GhostlyGrabber",
-      info: "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
-      description:
-        "OSINT is a tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication",
       images: [
         "/images/gh_1.png",
         "/images/gh_2.png",
@@ -21,10 +18,6 @@ const projectsData = {
     },
     {
       id: 2,
-      title: "Crimson",
-      info: "Crimson is a remote access tool written in C++ with the ability to build for windows and linux",
-      description:
-        "Crimson is a remote access tool with the ability to create payloads for windows and linux",
       images: [
         "/images/crimson_1.png",
         "/images/crimson_2.png",
@@ -38,60 +31,36 @@ const projectsData = {
     },
     {
       id: 3,
-      title: "The OWL",
-      info: "OWL - task and project management app designed specifically for developers",
-      description:
-        "OWL is a powerful and intuitive desktop application for managing projects, boards, columns, and tasks, designed specifically for developers. It features a seamless interface, advanced statistics, keyboard shortcuts, and deep integration with the OWL_BACKEND REST API.",
       images: ["/images/the_owl.png"],
       technologies: ["React", "TypeScript"],
       link: "https://owl-gamma.vercel.app/",
     },
     {
       id: 4,
-      title: "OWL Rest API",
-      info: "A microservice-based RESTful API for OWL APP",
-      description:
-        "OWL API is a microservice-based RESTful API for project, board, and task management, featuring user authentication, subscription management, and admin monitoring. All services are built with Flask, use PostgreSQL, and are orchestrated via Docker Compose.",
       images: ["/images/owl_rest_api.png"],
       technologies: ["Python", "Flask", "PostgreSQL"],
       link: "https://owl-gamma.vercel.app/",
     },
     {
       id: 5,
-      title: "IPSA",
-      info: "IPSA is a bot investment assistant with the ability to predict stock prices using its own neural network",
-      description:
-        "IPSA is a Telegram bot designed to provide users with stock market insights, including price predictions, news parsing, and fundamental analysis. Built using the Pyrogram library, the bot integrates with a deep learning model for stock price forecasting, a news parser for real-time market updates, and a database for user and stock management. The bot supports user authentication, stock tracking, and admin controls, with a token-based system for accessing premium features. The project leverages TensorFlow for stock price predictions, yfinance for financial data, and BeautifulSoup for web scraping. It includes asynchronous news parsing, real-time notifications, and report generation in Excel format.",
       images: ["/images/IPSA.png"],
       technologies: ["Python", "Tensorflow", "Keras", "Pyrogram"],
       link: "https://github.com/Nighty3098/InvestingAssistant/",
     },
     {
       id: 6,
-      title: "IPSA AI MODEL",
-      info: "Neural network model for IPSA",
-      description:
-        "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score.",
       images: ["/images/ipsa_model_1.png", "/images/ipsa_model_2.png"],
       technologies: ["Python", "Tensorflow", "Keras"],
       link: "https://github.com/Nighty3098/IPSA_MODEL/",
     },
     {
       id: 7,
-      title: "PrettyProfile",
-      info: "Generate a pretty art style profile card from your GitHub data!",
-      description:
-        "Pretty Banner is a Next.js-based service for generating beautiful, customizable SVG banners with GitHub profile statistics. It is designed for use in GitHub READMEs, personal websites, and dashboards, providing visually appealing, themeable, and informative profile cards.",
       images: ["/images/PrettyProfile_1.png", "/images/PrettyProfile_2.png"],
       technologies: ["NodeJS", "Vercel"],
       link: "https://pretty-profile.vercel.app/",
     },
     {
       id: 8,
-      title: "LogInsight",
-      info: "Program for analyzing log files and detecting anomalies in program operation",
-      description:
-        "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli.",
       images: [
         "/images/LogInsight_1.png",
         "/images/LogInsight_2.png",
@@ -105,6 +74,13 @@ const projectsData = {
 };
 
 function Projects() {
+  const { t, tt } = useTranslate();
+  const items = tt("projects.items") as Array<{
+    title: string;
+    info: string;
+    description: string;
+  }>;
+
   return (
     <section
       id="projects"
@@ -117,16 +93,16 @@ function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        My projects
+        {t("projects.title")}
       </motion.h2>
       <div className="spacer-h-100"></div>
       <div className="projects-grid">
-        {projectsData.projects.map((project) => (
+        {projectsData.projects.map((project, i) => (
           <ProjectCard
             key={project.id}
-            title={project.title}
-            description={project.description}
-            info={project.info}
+            title={items[i].title}
+            description={items[i].description}
+            info={items[i].info}
             images={project.images}
             link={project.link}
             id={project.id}
