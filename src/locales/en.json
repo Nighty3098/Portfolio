@@ -67,6 +67,39 @@
     "go_to_image": "Go to image {{n}}",
     "close": "Close"
   },
+  "reviews": {
+    "title": "Customer Reviews",
+    "items": [
+      {
+        "name": "eyusmain",
+        "text": "Everything went smoothly from the very beginning, clear details on each point. During the implementation, communication was fast and responses were precise. They did it very quickly and exactly what was needed. Minor adjustments during the process were resolved very quickly. Extremely satisfied."
+      },
+      {
+        "name": "Alexei_Alexnetica",
+        "text": "The main advantage is speed – if you want it fast and high‑quality, contact this specialist."
+      },
+      {
+        "name": "Andrey Andreevich",
+        "text": "Already completed the second order for developing a Telegram bot. Everything is good, it works!"
+      },
+      {
+        "name": "Andrey Andreevich",
+        "text": "We developed the Telegram bot quite quickly and in constant contact with Artem. Artem did the development, of course – I only helped and assisted with testing. Essentially, we started working around 8 AM and by 12 PM everything was finished, which is very, very good (the bot was tested and deployed on my server). I recommend Artem as a responsible person who quickly handles the assigned task."
+      },
+      {
+        "name": "alik7107",
+        "text": "The executor did everything professionally, I recommend!"
+      },
+      {
+        "name": "maxsol2106",
+        "text": "The seller is good, completed the order quickly and with high quality."
+      },
+      {
+        "name": "andreyponomarev73",
+        "text": "Helped solve the problem quickly, while also answering any questions that came up. Stayed in touch. I recommend!"
+      }
+    ]
+  },
   "contacts": {
     "title": "My contacts",
     "tg_channel": "Tg Channel"

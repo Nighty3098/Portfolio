@@ -29,6 +29,7 @@ function AboutMePage() {
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
+      <div className="spacer-h-150 mobile"></div>
       <div className="about-section-container">
         <motion.h2 variants={itemVariants}>{t("about.title")}</motion.h2>
         {aboutTexts.map((key, i) => (
@@ -37,6 +38,7 @@ function AboutMePage() {
           </motion.p>
         ))}
       </div>
+      <div className="spacer-h-100 mobile"></div>
       <motion.div
         variants={itemVariants}
         style={{
