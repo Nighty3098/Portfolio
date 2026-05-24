@@ -25,8 +25,7 @@ function Reviews() {
     (newDirection: number) => {
       setPage((prev) => {
         const nextIdx = prev[0] + newDirection;
-        if (nextIdx < 0 || nextIdx >= items.length)
-          return [0, 1];
+        if (nextIdx < 0 || nextIdx >= items.length) return [0, 1];
         return [nextIdx, newDirection];
       });
     },
@@ -61,7 +60,6 @@ function Reviews() {
         >
           {t("reviews.title")}
         </motion.h2>
-        <div className="spacer-h-50" />
         <div className="reviews-carousel">
           <AnimatePresence custom={direction}>
             <motion.div

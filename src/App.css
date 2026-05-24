@@ -2,6 +2,18 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bad+Script&display=swap");
 
+/*
+
+Momo Signature
+Montserrat
+Roboto
+Rubik Glitch
+Share Tech
+JetBrains Mono
+Bad Script
+
+*/
+
 :root {
     --border-radius: 15px;
     --border-radius-l: 25px;
@@ -173,18 +185,6 @@ body {
     height: auto;
     gap: var(--spacing-xl);
 }
-
-/*
-
-Momo Signature
-Montserrat
-Roboto
-Rubik Glitch
-Share Tech
-JetBrains Mono
-Bad Script
-
-*/
 
 .welcome-content h1 {
     font-size: 85px;
@@ -401,15 +401,7 @@ Bad Script
 .reviews-slide {
     position: absolute;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-}
-
-.reviews-slide {
-    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -426,7 +418,6 @@ Bad Script
     display: flex;
     flex-direction: column;
     gap: var(--spacing-l);
-    box-shadow: var(--shadow);
     width: 100%;
     max-width: 700px;
 }
@@ -450,8 +441,8 @@ Bad Script
 }
 
 .reviews-dot {
-    width: 12px;
-    height: 12px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background-color: var(--fg);
     opacity: 0.4;
@@ -485,7 +476,6 @@ Bad Script
     display: flex;
     flex-direction: column;
     gap: var(--spacing-m);
-    box-shadow: var(--shadow);
 }
 
 .review-card-name {
@@ -535,6 +525,11 @@ Bad Script
     gap: var(--spacing-l);
     aspect-ratio: 20/12;
     cursor: zoom-in;
+    border-radius: var(--border-radius);
+}
+
+.carousel-card {
+    border-radius: var(--border-radius);
 }
 
 .project-image-wrapper {
@@ -708,7 +703,6 @@ Bad Script
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 5px;
 }
 
 .carousel-image-container {
@@ -1050,7 +1044,7 @@ Bad Script
 .stat-language-tag {
     background-color: var(--bg-2);
     padding: 4px 12px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     letter-spacing: 1px;
 }
 
@@ -1113,8 +1107,10 @@ Bad Script
         display: flex;
     }
 
-    .cat-svg-container {
+    .cat-svg-container,
+    .cat-svg-image {
         height: 200px;
+        width: 200px;
     }
 
     .welcome-content h1 {
@@ -1198,7 +1194,6 @@ Bad Script
         max-width: none;
         box-shadow: none;
         background-color: var(--bg-2);
-        border-radius: 5px;
     }
     .project-image-wrapper {
         border-radius: 0;
