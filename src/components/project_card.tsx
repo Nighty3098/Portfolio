@@ -33,17 +33,60 @@ interface CarouselProps {
   t: (key: string, params?: Record<string, string | number>) => string;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false, t }) => {
+const Carousel: React.FC<CarouselProps> = ({
+  images,
+  title,
+  isModal = false,
+  t,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fadeOut, setFadeOut] = useState<string | null>(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const currentIndexRef = useRef(currentIndex);
+  const transitioningRef = useRef(false);
+
+  currentIndexRef.current = currentIndex;
+
+  const completeTransition = useCallback(() => {
+    setFadeOut(null);
+    transitioningRef.current = false;
+  }, []);
+
+  const goToNext = useCallback(() => {
+    if (transitioningRef.current) return;
+    const idx = currentIndexRef.current;
+    transitioningRef.current = true;
+    setFadeOut(images[idx]);
+    setCurrentIndex((idx + 1) % images.length);
+  }, [images]);
+
+  const goToPrev = useCallback(() => {
+    if (transitioningRef.current) return;
+    const idx = currentIndexRef.current;
+    transitioningRef.current = true;
+    setFadeOut(images[idx]);
+    setCurrentIndex((idx - 1 + images.length) % images.length);
+  }, [images]);
+
+  const goToIndex = useCallback((index: number) => {
+    if (transitioningRef.current) return;
+    const idx = currentIndexRef.current;
+    transitioningRef.current = true;
+    setFadeOut(images[idx]);
+    setCurrentIndex(index);
+  }, [images]);
 
   const startAutoPlay = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
+      if (transitioningRef.current) return;
+      const idx = currentIndexRef.current;
+      transitioningRef.current = true;
+      setFadeOut(images[idx]);
+      setCurrentIndex((idx + 1) % images.length);
     }, 3000);
-  }, [images.length]);
+  }, [images]);
 
   const stopAutoPlay = useCallback(() => {
     if (intervalRef.current) {
@@ -59,24 +102,6 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false, t }
     return () => stopAutoPlay();
   }, [images.length, isAutoPlaying, startAutoPlay, stopAutoPlay]);
 
-  const goToNext = () => {
-    stopAutoPlay();
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-    if (isAutoPlaying) setTimeout(startAutoPlay, 100);
-  };
-
-  const goToPrev = () => {
-    stopAutoPlay();
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-    if (isAutoPlaying) setTimeout(startAutoPlay, 100);
-  };
-
-  const goToIndex = (index: number) => {
-    stopAutoPlay();
-    setCurrentIndex(index);
-    if (isAutoPlaying) setTimeout(startAutoPlay, 100);
-  };
-
   if (images.length === 0) return null;
 
   return (
@@ -91,18 +116,25 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, isModal = false, t }
     >
       <div className="carousel-wrapper">
         <div className="carousel-image-container">
-          <AnimatePresence mode="wait">
+          <img
+            src={images[currentIndex]}
+            alt={`${title} - ${currentIndex + 1}`}
+            className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
+            style={{ position: "absolute", inset: 0 }}
+          />
+          {fadeOut && (
             <motion.img
-              key={currentIndex}
-              src={images[currentIndex]}
-              alt={`${title} - ${currentIndex + 1}`}
+              key={fadeOut}
+              src={fadeOut}
+              alt=""
               className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.25 }}
+              style={{ position: "absolute", inset: 0 }}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              onAnimationComplete={completeTransition}
             />
-          </AnimatePresence>
+          )}
         </div>
 
         {images.length > 1 && (
@@ -182,7 +214,7 @@ const Modal: React.FC<ModalProps> = ({
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
-<motion.section
+          <motion.section
             className="modal-content modal-content-scrollable"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -196,10 +228,13 @@ const Modal: React.FC<ModalProps> = ({
               }
             }}
           >
-            <motion.button onClick={onClose} aria-label={t("project_card.close")} className="close-button modal-close-button">
+            <motion.button
+              onClick={onClose}
+              aria-label={t("project_card.close")}
+              className="close-button modal-close-button"
+            >
               ✕
             </motion.button>
-            <div className="spacer-h-150"></div>
             <div className="modal-header-container">
               <h2>{title}</h2>
             </div>

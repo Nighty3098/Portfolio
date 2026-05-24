@@ -715,9 +715,10 @@ Bad Script
 }
 
 .carousel-image-container {
-    width: 100%;
-    aspect-ratio: 20/12;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 20/12;
+  overflow: hidden;
 }
 
 .carousel-container.carousel-modal {
@@ -732,7 +733,8 @@ Bad Script
 }
 
 .carousel-container.carousel-modal .carousel-image-container {
-    aspect-ratio: 20/12;
+  position: relative;
+  aspect-ratio: 20/12;
     width: 100%;
     overflow: hidden;
     border-radius: var(--border-radius);
