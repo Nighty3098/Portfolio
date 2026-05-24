@@ -69,13 +69,16 @@ const Carousel: React.FC<CarouselProps> = ({
     setCurrentIndex((idx - 1 + images.length) % images.length);
   }, [images]);
 
-  const goToIndex = useCallback((index: number) => {
-    if (transitioningRef.current) return;
-    const idx = currentIndexRef.current;
-    transitioningRef.current = true;
-    setFadeOut(images[idx]);
-    setCurrentIndex(index);
-  }, [images]);
+  const goToIndex = useCallback(
+    (index: number) => {
+      if (transitioningRef.current) return;
+      const idx = currentIndexRef.current;
+      transitioningRef.current = true;
+      setFadeOut(images[idx]);
+      setCurrentIndex(index);
+    },
+    [images],
+  );
 
   const startAutoPlay = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -228,6 +231,7 @@ const Modal: React.FC<ModalProps> = ({
               }
             }}
           >
+            <div className="spacer-h-50 mobile"></div>
             <motion.button
               onClick={onClose}
               aria-label={t("project_card.close")}
