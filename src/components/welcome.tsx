@@ -101,8 +101,12 @@ function WelcomePage() {
   return (
     <div className="welcome-block content welcome-block-bg" ref={sectionRef}>
       <div className="split-screen-container">
-        <div className="split-top" ref={topRef} />
-        <div className="split-bottom" ref={bottomRef} />
+        <div className="split-top" ref={topRef}>
+          <span className="split-text split-text-top">Nighty</span>
+        </div>
+        <div className="split-bottom" ref={bottomRef}>
+          <span className="split-text split-text-bottom">Nighty</span>
+        </div>
       </div>
       <Navigation onGitHubStatsClick={() => setGitHubStatsOpen(true)} />
       <GitHubStats
