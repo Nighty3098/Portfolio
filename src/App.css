@@ -65,6 +65,8 @@ body {
 }
 
 .welcome-block {
+  position: relative;
+  overflow: hidden;
   height: calc(100vh - var(--spacing-xl) - var(--spacing-xl));
   margin: 0px;
   width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
@@ -75,6 +77,33 @@ body {
   justify-content: flex-end;
   padding: var(--spacing-xl);
   gap: var(--spacing-xl);
+}
+
+.split-screen-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.split-top,
+.split-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: var(--bg);
+}
+
+.split-top {
+  top: 0;
+}
+
+.split-bottom {
+  bottom: 0;
 }
 
 .navigation {
