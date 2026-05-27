@@ -106,6 +106,9 @@ function WelcomePage() {
         </div>
         <div className="split-bottom" ref={bottomRef}>
           <span className="split-text split-text-bottom">Nighty</span>
+          <div className="welcome-text-container">
+            <p>{t("welcome.tagline")}</p>
+          </div>
         </div>
       </div>
       <Navigation onGitHubStatsClick={() => setGitHubStatsOpen(true)} />
@@ -117,7 +120,7 @@ function WelcomePage() {
         <div className="welcome-content">
           <h1>{t("welcome.name")}</h1>
           <div className="welcome-text-container">
-            <p>{t("welcome.tagline")}</p>
+            <p>{t("welcome.whoami")}</p>
           </div>
         </div>
         <img src="me.png" className="avatar-image" alt="me" />

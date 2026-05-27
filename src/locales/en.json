@@ -6,7 +6,8 @@
   },
   "welcome": {
     "name": "S.Artem",
-    "tagline": "BACKEND DEVELOPER | FREELACER"
+    "whoami": "BACKEND DEVELOPER | FREELANCER",
+    "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION"
   },
   "about": {
     "title": "About me",
