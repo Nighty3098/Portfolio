@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import GitHubStats from "./github_stats";
 import { useState } from "react";
 import { useTranslate } from "../context/I18nContext";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface NavigationProps {
   onGitHubStatsClick?: () => void;
@@ -73,44 +71,9 @@ function WelcomePage() {
   const [githubStatsOpen, setGitHubStatsOpen] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
-  const topRef = useRef<HTMLDivElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=100%",
-        scrub: true,
-        pin: true,
-        pinSpacing: true,
-      },
-    });
-
-    tl.to(topRef.current, { yPercent: -100, ease: "none" }, 0);
-    tl.to(bottomRef.current, { yPercent: 100, ease: "none" }, 0);
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
 
   return (
     <div className="welcome-block content welcome-block-bg" ref={sectionRef}>
-      <div className="split-screen-container">
-        <div className="split-top" ref={topRef}>
-          <span className="split-text split-text-top">Nighty</span>
-        </div>
-        <div className="split-bottom" ref={bottomRef}>
-          <span className="split-text split-text-bottom">Nighty</span>
-          <div className="welcome-text-container">
-            <p>{t("welcome.tagline")}</p>
-          </div>
-        </div>
-      </div>
       <Navigation onGitHubStatsClick={() => setGitHubStatsOpen(true)} />
       <GitHubStats
         show={githubStatsOpen}
