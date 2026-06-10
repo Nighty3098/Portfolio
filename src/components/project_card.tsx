@@ -2,11 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslate } from "../context/I18nContext";
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
-
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -14,6 +9,7 @@ interface ProjectCardProps {
   images: string[];
   link: string;
   id: number;
+  technologies: string[];
 }
 
 interface ModalProps {
@@ -109,7 +105,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
   return (
     <div
-      className={`carousel-container ${isModal ? "carousel-modal" : "carousel-card"}`}
+      className="carousel-container"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => {
         if (images.length > 1) {
@@ -122,7 +118,7 @@ const Carousel: React.FC<CarouselProps> = ({
           <img
             src={images[currentIndex]}
             alt={`${title} - ${currentIndex + 1}`}
-            className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
+            className="carousel-image"
             style={{ position: "absolute", inset: 0 }}
           />
           {fadeOut && (
@@ -130,7 +126,7 @@ const Carousel: React.FC<CarouselProps> = ({
               key={fadeOut}
               src={fadeOut}
               alt=""
-              className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
+              className="carousel-image"
               style={{ position: "absolute", inset: 0 }}
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
@@ -139,7 +135,6 @@ const Carousel: React.FC<CarouselProps> = ({
             />
           )}
         </div>
-
         {images.length > 1 && (
           <>
             <button
@@ -156,7 +151,6 @@ const Carousel: React.FC<CarouselProps> = ({
             >
               ›
             </button>
-
             <div className="carousel-indicators">
               {images.map((_, index) => (
                 <button
@@ -218,10 +212,11 @@ const Modal: React.FC<ModalProps> = ({
           onClick={onClose}
         >
           <motion.section
-            className="modal-content modal-content-scrollable"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="modal-content"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -231,11 +226,10 @@ const Modal: React.FC<ModalProps> = ({
               }
             }}
           >
-            <div className="spacer-h-50 mobile"></div>
             <motion.button
               onClick={onClose}
               aria-label={t("project_card.close")}
-              className="close-button modal-close-button"
+              className="modal-close-button"
             >
               ✕
             </motion.button>
@@ -254,7 +248,6 @@ const Modal: React.FC<ModalProps> = ({
             >
               {t("project_card.open")}
             </a>
-            <div className="spacer-h-150"></div>
           </motion.section>
         </motion.dialog>
       )}
@@ -269,45 +262,39 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   images,
   link,
   id,
+  technologies,
 }) => {
   const { t } = useTranslate();
   const [modalOpen, setModalOpen] = useState(false);
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
     <>
       <motion.div
         key={id}
-        className="project-card project-card-grab"
+        className="project-card"
         onClick={() => setModalOpen(true)}
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.div
-          className="project-image-wrapper"
-          initial="rest"
-          animate="rest"
-          whileHover="hover"
-          variants={{
-            rest: { y: 0 },
-            hover: { y: 0, transition: { duration: 0.3 } },
-          }}
-        >
-          <motion.div className="project-header">
-            <Carousel images={images} title={title} isModal={false} t={t} />
-            <motion.h3 className="project-title">{title}</motion.h3>
-          </motion.div>
-          <motion.div
-            className="project-description-overlay"
-            variants={{
-              rest: { opacity: 0 },
-              hover: { opacity: 1, transition: { duration: 0.3 } },
-            }}
-          >
-            {info}
-          </motion.div>
-        </motion.div>
+        <Carousel images={images} title={title} isModal={false} t={t} />
+        <div className="project-card-body">
+          <h3 className="project-card-title">{title}</h3>
+          <p className="project-card-desc">{info}</p>
+          <div className="project-card-tags">
+            {technologies.map((tech) => (
+              <span key={tech} className="project-tag">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
       </motion.div>
 
       <Modal

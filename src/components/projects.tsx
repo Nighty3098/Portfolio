@@ -1,6 +1,6 @@
-import ProjectCard from "./project_card";
 import { motion } from "framer-motion";
 import { useTranslate } from "../context/I18nContext";
+import ProjectCard from "./project_card";
 
 const projectsData = {
   projects: [
@@ -82,20 +82,16 @@ function Projects() {
   }>;
 
   return (
-    <section
-      id="projects"
-      className="content-block content projects-block projects-page-wrapper"
-    >
-      <div className="spacer-h-100"></div>
+    <section id="projects" className="section">
       <motion.h2
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        className="section-title"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
       >
         {t("projects.title")}
       </motion.h2>
-      <div className="spacer-h-100"></div>
       <div className="projects-grid">
         {projectsData.projects.map((project, i) => (
           <ProjectCard
@@ -106,10 +102,10 @@ function Projects() {
             images={project.images}
             link={project.link}
             id={project.id}
+            technologies={project.technologies}
           />
         ))}
       </div>
-      <div className="spacer-h-100"></div>
     </section>
   );
 }

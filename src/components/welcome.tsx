@@ -1,15 +1,10 @@
 import { motion } from "framer-motion";
-import React, { useRef } from "react";
-import GitHubStats from "./github_stats";
-import { useState } from "react";
+import CatSvg from "./cat";
 import { useTranslate } from "../context/I18nContext";
 
-interface NavigationProps {
-  onGitHubStatsClick?: () => void;
-}
+function WelcomePage() {
+  const { t } = useTranslate();
 
-const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
-  const { t, locale, setLocale } = useTranslate();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -17,78 +12,59 @@ const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
     }
   };
 
-  const navItems = [
-    { key: "nav.projects", action: () => scrollToSection("projects") },
-    { key: "nav.contacts", action: () => scrollToSection("my-contacts") },
-    { key: "nav.github", action: onGitHubStatsClick },
-  ];
-
   return (
-    <motion.div
-      className="navigation"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: { opacity: 0, y: 0 },
-        visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
-      }}
-    >
-      {navItems.map((item) => {
-        return (
-          <motion.button
-            key={item.key}
-            onClick={item.action}
-            variants={{
-              hidden: { opacity: 0, y: -100 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            whileHover={{ letterSpacing: "10px", color: "var(--accent)" }}
-            className="navigation-button"
-            transition={{ duration: 0.5 }}
-          >
-            {t(item.key)}
-          </motion.button>
-        );
-      })}
-      <motion.button
-        onClick={() => setLocale(locale === "en" ? "ru" : "en")}
-        className="navigation-button lang-switcher"
-        variants={{
-          hidden: { opacity: 0, y: -100 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        whileHover={{ letterSpacing: "5px", color: "var(--accent)" }}
-        transition={{ duration: 0.5 }}
-      >
-        {locale === "en" ? "EN" : "RU"}
-      </motion.button>
-    </motion.div>
-  );
-};
-
-function WelcomePage() {
-  const { t } = useTranslate();
-  const [githubStatsOpen, setGitHubStatsOpen] = useState(false);
-
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  return (
-    <div className="welcome-block content welcome-block-bg" ref={sectionRef}>
-      <Navigation onGitHubStatsClick={() => setGitHubStatsOpen(true)} />
-      <GitHubStats
-        show={githubStatsOpen}
-        onClose={() => setGitHubStatsOpen(false)}
-      />
-      <div className="welcome-tiling">
-        <div className="welcome-content">
-          <h1>{t("welcome.name")}</h1>
-          <div className="welcome-text-container">
-            <p>{t("welcome.whoami")}</p>
+    <section className="hero-section">
+      <div className="hero-inner">
+        <motion.div
+          className="hero-top"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <div className="hero-avatar-wrapper">
+            <img src="me.png" className="hero-avatar" alt="me" />
           </div>
-        </div>
-        <img src="me.png" className="avatar-image" alt="me" />
+        </motion.div>
+        <motion.h1
+          className="hero-name"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+        >
+          {t("welcome.name")}
+        </motion.h1>
+        <motion.p
+          className="hero-tagline"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+        >
+          {t("welcome.whoami")}
+        </motion.p>
+        <motion.div
+          className="hero-actions"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
+        >
+          <button
+            className="hero-btn hero-btn-primary"
+            onClick={() => scrollToSection("projects")}
+          >
+            {t("nav.projects")}
+          </button>
+          <button
+            className="hero-btn hero-btn-secondary"
+            onClick={() => scrollToSection("my-contacts")}
+          >
+            {t("nav.contacts")}
+          </button>
+        </motion.div>
       </div>
-    </div>
+      <motion.div className="hero-cat">
+        <CatSvg />
+      </motion.div>
+    </section>
   );
 }
 

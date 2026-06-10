@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 function CatSvg() {
   return (
     <motion.div
-      className="image cat-svg-container"
+      className="cat-svg-container"
       initial="hidden"
       animate="visible"
       variants={{
@@ -97,18 +97,6 @@ function CatSvg() {
           <path
             transform="translate(92.3579,4.11772)"
             d="m 110.074,10.347 c 3.543,0 4.374,4.288 7.066,4.288"
-            style={{
-              fill: "none",
-              stroke: "currentColor",
-              strokeWidth: "1.5px",
-              strokeLinecap: "round",
-              strokeLinejoin: "round",
-              strokeMiterlimit: 1.5,
-            }}
-          />
-          <path
-            transform="translate(92.3579,4.11772)"
-            d="m 112.568,9.074 c 0,0 -1.015,-2.334 -1.891,-2.334 -0.876,0 -2.14,2.429 -2.14,2.429"
             style={{
               fill: "none",
               stroke: "currentColor",

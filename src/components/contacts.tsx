@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { useTranslate } from "../context/I18nContext";
 
@@ -70,7 +69,7 @@ type ContactCardProps = Readonly<{
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.08 },
   },
 };
 
@@ -80,15 +79,14 @@ const itemVariants = {
 };
 
 function ContactCard({ contact, t }: ContactCardProps) {
-  const displayName = "nameKey" in contact && contact.nameKey ? t(contact.nameKey) : contact.name;
+  const displayName =
+    "nameKey" in contact && contact.nameKey ? t(contact.nameKey) : contact.name;
   return (
-    <motion.div
-      className="contact-card-wrapper"
-      variants={itemVariants}
-    >
-      <motion.a href={contact.link} target="_blank" className="contact-link">
-        | {displayName}
-      </motion.a>
+    <motion.div className="contact-card-wrapper" variants={itemVariants}>
+      <a href={contact.link} target="_blank" className="contact-link" rel="noreferrer">
+        <span className="contact-link-icon">◆</span>
+        {displayName}
+      </a>
     </motion.div>
   );
 }
@@ -96,40 +94,31 @@ function ContactCard({ contact, t }: ContactCardProps) {
 function MyContacts() {
   const { t } = useTranslate();
   return (
-    <div
-      id="my-contacts"
-      className="content contacts-page-wrapper"
-    >
-      <div className="content-block contacts-block">
-        <motion.h2
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-        >
-          {t("contacts.title")}
-        </motion.h2>
-        <div className="spacer-h-100"></div>
-        <motion.div
-          className="contacts-tiling contacts-tiling-inner"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.div className="contacts-list contacts-list-half">
-            {contacts.map((contact) => (
-              <ContactCard key={contact.id} contact={contact} t={t} />
-            ))}
-          </motion.div>
-          <motion.div className="contacts-list contacts-list-half">
-            {resources.map((resource) => (
-              <ContactCard key={resource.id} contact={resource} t={t} />
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
+    <section id="my-contacts" className="section">
+      <motion.h2
+        className="section-title"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
+      >
+        {t("contacts.title")}
+      </motion.h2>
+      <motion.div
+        className="contacts-grid"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {contacts.map((contact) => (
+          <ContactCard key={contact.id} contact={contact} t={t} />
+        ))}
+        {resources.map((resource) => (
+          <ContactCard key={resource.id} contact={resource} t={t} />
+        ))}
+      </motion.div>
+    </section>
   );
 }
 

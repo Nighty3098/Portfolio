@@ -50,13 +50,14 @@ function Reviews() {
   };
 
   return (
-    <div id="reviews" className="reviews-page-wrapper">
-      <div className="content-block reviews-block">
+    <div className="reviews-wrapper">
+      <section id="reviews" className="section">
         <motion.h2
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          className="section-title"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
           {t("reviews.title")}
         </motion.h2>
@@ -69,7 +70,7 @@ function Reviews() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
               className="reviews-slide"
             >
               <ReviewCard
@@ -88,7 +89,7 @@ function Reviews() {
             />
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }
