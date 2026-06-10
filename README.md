@@ -4,24 +4,29 @@ Personal portfolio website for S.Artem (Nighty3098), built with React and TypeSc
 
 ## About the project
 
-Modern, responsive portfolio website showcasing the developer's skills and projects.
+Typographic Brutalism — bold, editorial-style portfolio with oversized typography as the primary visual element.
 
-- **Home page** — greeting, about me, reviews, projects, contacts, footer
+- **Home page** — hero, about, reviews, projects, contacts, footer
+- **Hero with glitch effect** — name rendered in Rubik Glitch font with layered CSS glitch animation
 - **Customer reviews carousel** — auto-sliding review cards with dots navigation
-- **Project cards** — interactive cards with image carousels and detail modals
-- **GitHub stats modal** — fetches and displays aggregated GitHub profile stats (stars, repos, commits, PRs, issues, languages) with localStorage caching
-- **Language switcher** — toggle between English and Russian via i18n context
-- **GSAP split-screen animation** — welcome section with pinned scroll-triggered text reveal
-- **Responsive design** — adapts to desktop, tablet and mobile
+- **Project cards** — interactive cards with image carousels and detail modals in a Bento grid layout
+- **GitHub stats modal** — fetches and displays aggregated GitHub profile stats (stars, repos, commits, PRs, issues) plus a language progress bar
+- **Pentesting page** — `/pentesting` route for offensive security toolkit projects
+- **Responsive design** — adapts to desktop (2-column grid) and mobile (1 column)
+
+## Design
+
+- **Fonts**: Anton (headings), Rubik Glitch (hero), JetBrains Mono (body)
+- **Colors**: Near-black `#0a0a0a` background, off-white text, red accent `#e11d48`
+- **Animations**: Framer Motion for scroll reveals, CSS glitch on hero name, hover overlays on project cards
 
 ## Technologies
 
 - **React 19** — framework
 - **TypeScript** — type safety
 - **Framer Motion 12** — animations
-- **GSAP 3** — scroll-triggered animations (ScrollTrigger)
 - **React Router DOM 7** — routing (HashRouter)
-- **CSS3** — styling
+- **CSS3** — styling with CSS custom properties
 - **Vercel Analytics & Speed Insights** — monitoring
 
 ## Project structure
@@ -31,15 +36,15 @@ src/
 ├── api/
 │   └── github.ts              # GitHub API client with caching
 ├── components/
-│   ├── welcome.tsx             # Welcome section (GSAP split-screen, nav)
+│   ├── welcome.tsx             # Hero section with glitch name & navigation
 │   ├── aboutme.tsx             # About section
-│   ├── projects.tsx            # Main project grid
+│   ├── projects.tsx            # Main project grid (Bento layout)
 │   ├── project_card.tsx        # Project card with carousel & modal
 │   ├── reviews.tsx             # Customer reviews carousel
 │   ├── review_card.tsx         # Single review card
 │   ├── contacts.tsx            # Contact links
 │   ├── footer.tsx              # Copyright footer
-│   ├── github_stats.tsx        # GitHub stats modal
+│   ├── github_stats.tsx        # GitHub stats modal with language progress bar
 │   └── cat.tsx                 # Decorative SVG cat
 ├── context/
 │   └── I18nContext.tsx          # i18n provider (EN/RU)
