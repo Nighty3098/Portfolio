@@ -60,7 +60,7 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
           style={{ margin: "0px", padding: "0px" }}
         >
           <motion.section
-            className="modal-content modal-content-scrollable"
+            className="content-block modal-content modal-content-scrollable"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -92,44 +92,100 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
               ✕
             </motion.button>
             <div className="spacer-h-50"></div>
-            <h2>{t("github_stats.title")}</h2>
+            <h2 style={{ textAlign: "center" }}>{t("github_stats.title")}</h2>
             <div className="modal-stats-container">
-              {loading && <p className="stat-loading">{t("github_stats.loading")}</p>}
+              {loading && (
+                <p className="stat-loading">{t("github_stats.loading")}</p>
+              )}
               {error && <p className="stat-error">{error}</p>}
               {stats && (
                 <div className="stats-grid">
                   <div className="stat-item">
                     <span className="stat-value">{stats.totalStars}</span>
-                    <span className="stat-label">{t("github_stats.stars")}</span>
+                    <span className="stat-label">
+                      {t("github_stats.stars")}
+                    </span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-value">{stats.totalRepos}</span>
-                    <span className="stat-label">{t("github_stats.repos")}</span>
+                    <span className="stat-label">
+                      {t("github_stats.repos")}
+                    </span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-value">
-                      {stats.totalCommits === -1 ? t("github_stats.na") : stats.totalCommits}
+                      {stats.totalCommits === -1
+                        ? t("github_stats.na")
+                        : stats.totalCommits}
                     </span>
-                    <span className="stat-label">{t("github_stats.commits")}</span>
+                    <span className="stat-label">
+                      {t("github_stats.commits")}
+                    </span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-value">{stats.totalPRs}</span>
-                    <span className="stat-label">{t("github_stats.pull_requests")}</span>
+                    <span className="stat-label">
+                      {t("github_stats.pull_requests")}
+                    </span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-value">{stats.totalIssues}</span>
-                    <span className="stat-label">{t("github_stats.issues")}</span>
+                    <span className="stat-label">
+                      {t("github_stats.issues")}
+                    </span>
                   </div>
-                  <div className="stat-item stat-item-languages">
-                    <span className="stat-label">{t("github_stats.languages")}</span>
-                    <div className="stat-languages">
-                      {stats.languages.map((l) => (
-                        <span key={l.name} className="stat-language-tag">
-                          {l.name} ({l.count})
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  {(() => {
+                    const total = stats.languages.reduce(
+                      (s, l) => s + l.count,
+                      0,
+                    );
+                    const colors = [
+                      "var(--accent)",
+                      "var(--red)",
+                      "var(--fg)",
+                      "#73d0ff",
+                    ];
+                    const langColors = stats.languages.map((l, i) => ({
+                      ...l,
+                      pct: (l.count / total) * 100,
+                      color: colors[i % colors.length],
+                    }));
+                    return (
+                      <>
+                        <div className="stat-item" style={{ padding: "0px" }}>
+                          <div className="stat-lang-bar">
+                            {langColors.map((l) => (
+                              <div
+                                key={l.name}
+                                className="stat-lang-segment"
+                                style={{
+                                  width: `${l.pct}%`,
+                                  backgroundColor: l.color,
+                                }}
+                                title={`${l.name}: ${l.pct.toFixed(1)}%`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        <div className="stat-item stat-item-languages">
+                          <span className="stat-label">
+                            {t("github_stats.languages")}
+                          </span>
+                          <div className="stat-languages">
+                            {langColors.map((l) => (
+                              <span
+                                key={l.name}
+                                className="stat-language-tag"
+                                style={{ backgroundColor: l.color }}
+                              >
+                                {l.name} ({l.count})
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
               )}
             </div>

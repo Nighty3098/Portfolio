@@ -276,7 +276,8 @@ body {
   width: calc(100% - var(--spacing-m) - var(--spacing-m));
   position: relative;
   display: inline-block;
-  background: linear-gradient(to right, var(--fg) 0%, var(--fg) 100%);
+  background-color: var(--tr);
+  border-radius: var(--border-radius);
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: 0% 100%;
@@ -503,7 +504,7 @@ body {
   justify-content: flex-start;
   height: 100%;
   width: 100%;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-l);
   padding: 0;
   margin: 0;
 }
@@ -521,6 +522,19 @@ body {
   aspect-ratio: 20/12;
   cursor: zoom-in;
   border-radius: var(--border-radius);
+}
+
+@media (min-width: 768px) {
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-l);
+  }
+
+  .project-card {
+    aspect-ratio: 16/10;
+    border-radius: var(--border-radius-l);
+  }
 }
 
 .carousel-card {
@@ -1024,7 +1038,8 @@ body {
   text-align: center;
 }
 
-.stat-item-languages {
+.stat-item-languages,
+.stat-item-full {
   grid-column: 1 / -1;
 }
 
@@ -1037,10 +1052,50 @@ body {
 }
 
 .stat-language-tag {
-  background-color: var(--bg-2);
   padding: 4px 12px;
   border-radius: var(--border-radius);
   letter-spacing: 1px;
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.stat-lang-bar {
+  display: flex;
+  height: 100%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  width: 100%;
+  background: var(--bg-2);
+}
+
+.stat-lang-segment {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.stat-lang-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.stat-lang-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.stat-lang-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .stat-loading,
@@ -1093,7 +1148,7 @@ body {
   display: none;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
   * {
     font-size: 0.9rem;
   }
