@@ -74,6 +74,7 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
               alignContent: "center",
               alignItems: "center",
               justifyContent: "center",
+              minHeight: "0px",
             }}
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => {
@@ -91,7 +92,6 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
             >
               ✕
             </motion.button>
-            <div className="spacer-h-50"></div>
             <h2 style={{ textAlign: "center" }}>{t("github_stats.title")}</h2>
             <div className="modal-stats-container">
               {loading && (
@@ -189,7 +189,6 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
                 </div>
               )}
             </div>
-            <div className="spacer-h-150"></div>
           </motion.section>
         </motion.dialog>
       )}
