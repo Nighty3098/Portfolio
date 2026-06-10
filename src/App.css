@@ -1,18 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Momo+Signature&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Glitch&family=Share+Tech&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bad+Script&display=swap");
-
-/*
-
-Momo Signature
-Montserrat
-Roboto
-Rubik Glitch
-Share Tech
-JetBrains Mono
-Bad Script
-
-*/
 
 :root {
   --border-radius: 15px;
@@ -35,11 +23,10 @@ Bad Script
 * {
   color: var(--fg);
   font-family: "JetBrains Mono", monospace;
-  font-style: italic;
   outline: none;
   font-display: swap;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   cursor: default;
   font-optical-sizing: auto;
@@ -196,11 +183,10 @@ body {
 
 .welcome-content h1 {
   font-size: 85px;
-  font-family: "Bad Script", sans-serif;
+  font-family: "Anton", monospace;
   padding: 0px;
   margin: 0px;
-  letter-spacing: 20px;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .welcome-content p {
@@ -342,10 +328,11 @@ body {
   text-align: left;
   padding: 0px;
   margin: 0px;
-  font-size: 3.5rem;
-  line-height: 6rem;
-  font-family: "Bad Script", sans-serif;
-  letter-spacing: 4px;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 1.1;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .about-block {
@@ -622,7 +609,7 @@ body {
 }
 
 .heavylove_tiling h1 {
-  font-family: "Momo Signature", sans-serif;
+  font-family: "Rubik Glitch", serif;
   width: 100%;
   text-align: center;
   font-size: 17vw;
