@@ -29,15 +29,6 @@ function AboutMePage() {
       variants={containerVariants}
     >
       <div className="spacer-h-150 mobile"></div>
-      <div className="about-section-container">
-        <motion.h2 variants={itemVariants}>{t("about.title")}</motion.h2>
-        {aboutTexts.map((key, i) => (
-          <motion.p key={i} variants={itemVariants}>
-            {t(key)}
-          </motion.p>
-        ))}
-      </div>
-      <div className="spacer-h-100 mobile"></div>
       <motion.div
         variants={itemVariants}
         style={{
@@ -51,6 +42,15 @@ function AboutMePage() {
       >
         <img src="me.png" alt="me" className="about-avatar" />
       </motion.div>
+      <div className="spacer-h-100 mobile"></div>
+      <div className="about-section-container">
+        <motion.h2 variants={itemVariants}>{t("about.title")}</motion.h2>
+        {aboutTexts.map((key, i) => (
+          <motion.p key={i} variants={itemVariants}>
+            {t(key)}
+          </motion.p>
+        ))}
+      </div>
     </motion.div>
   );
 }
