@@ -10,14 +10,16 @@
     "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION"
   },
   "about": {
-    "title": "About me",
+    "title_prefix": "About",
+    "title_suffix": "me",
     "p1": "Hello! I am Artem.",
     "p2": "I am 19 years old, and I spent 5 of them at the SAIKT Programming Academy, and now I am studying at SibSUTIS University.",
     "p3": "I strive to grow in IT and work on large-scale projects that improve people's lives.",
     "p4": "You can check out my open source projects on GitHub and in my organizations."
   },
   "projects": {
-    "title": "My projects",
+    "title_prefix": "My",
+    "title_suffix": "projects",
     "items": [
       {
         "title": "GhostlyGrabber",
@@ -70,6 +72,8 @@
   },
   "reviews": {
     "title": "Customer Reviews",
+    "title_prefix": "Customer",
+    "title_suffix": "Reviews",
     "items": [
       {
         "name": "eyusmain",
@@ -102,7 +106,8 @@
     ]
   },
   "contacts": {
-    "title": "My contacts",
+    "title_prefix": "My",
+    "title_suffix": "contacts",
     "tg_channel": "Tg Channel"
   },
   "github_stats": {

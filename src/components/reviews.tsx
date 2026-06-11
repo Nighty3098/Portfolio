@@ -58,7 +58,7 @@ function Reviews() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
         >
-          {t("reviews.title")}
+          {t("reviews.title_prefix")} <span className="hw">{t("reviews.title_suffix")}</span>
         </motion.h2>
         <div className="reviews-carousel">
           <AnimatePresence custom={direction}>

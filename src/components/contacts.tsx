@@ -107,7 +107,7 @@ function MyContacts() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
         >
-          {t("contacts.title")}
+          {t("contacts.title_prefix")} <span className="hw">{t("contacts.title_suffix")}</span>
         </motion.h2>
         <div className="spacer-h-100"></div>
         <motion.div

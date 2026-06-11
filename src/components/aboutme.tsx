@@ -44,7 +44,7 @@ function AboutMePage() {
       </motion.div>
       <div className="spacer-h-100 mobile"></div>
       <div className="about-section-container">
-        <motion.h2 variants={itemVariants}>{t("about.title")}</motion.h2>
+        <motion.h2 variants={itemVariants}>{t("about.title_prefix")} <span className="hw">{t("about.title_suffix")}</span></motion.h2>
         {aboutTexts.map((key, i) => (
           <motion.p key={i} variants={itemVariants}>
             {t(key)}
