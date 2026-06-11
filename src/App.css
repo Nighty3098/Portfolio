@@ -1373,17 +1373,10 @@ body {
 /* === UNIFIED SECTION WIDTHS === */
 
 .about-section-wrapper,
-.projects-page-wrapper {
-  width: 90%;
-  max-width: 1200px;
-  box-sizing: border-box;
-  padding: var(--spacing-xl);
-}
-
+.projects-page-wrapper,
 .reviews-block,
 .contacts-block {
-  width: 100%;
-  max-width: 1200px;
+  width: min(90vw, 1200px);
   box-sizing: border-box;
   padding: var(--spacing-xl);
 }
@@ -1395,6 +1388,33 @@ body {
 
   .mobile {
     display: flex;
+  }
+
+  .about-section-wrapper,
+  .projects-page-wrapper,
+  .reviews-page-wrapper,
+  .contacts-page-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .about-section-wrapper,
+  .projects-page-wrapper,
+  .contacts-page-wrapper {
+    padding: var(--spacing-xl);
+  }
+
+  .reviews-page-wrapper {
+    padding: 0;
+  }
+
+  .reviews-block,
+  .contacts-block {
+    width: 100%;
+  }
+
+  .contacts-block {
+    padding: 0;
   }
 
   .about-block {
