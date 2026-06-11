@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import CatSvg from "./cat";
 import { useTranslate } from "../context/I18nContext";
 
 const containerVariants = {
@@ -50,7 +49,7 @@ function AboutMePage() {
           justifyContent: "center",
         }}
       >
-        <CatSvg />
+        <img src="me.png" alt="me" className="about-avatar" />
       </motion.div>
     </motion.div>
   );
