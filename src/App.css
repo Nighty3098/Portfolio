@@ -1425,10 +1425,6 @@ body {
     height: 30px;
   }
 
-  .welcome-content h1 {
-    font-size: 50px;
-  }
-
   .welcome-content p {
     line-height: 1rem;
   }
@@ -1448,9 +1444,8 @@ body {
     flex-direction: column;
   }
 
-  .welcome-content h1 {
-    font-size: 50px;
-    letter-spacing: 10px;
+  .hero-text h1 {
+    font-size: 110px;
   }
 
   .welcome-content p {
