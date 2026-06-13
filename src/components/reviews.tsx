@@ -25,7 +25,8 @@ function Reviews() {
     (newDirection: number) => {
       setPage((prev) => {
         const nextIdx = prev[0] + newDirection;
-        if (nextIdx < 0 || nextIdx >= items.length) return [0, 1];
+        if (nextIdx < 0) return [items.length - 1, -1];
+        if (nextIdx >= items.length) return [0, 1];
         return [nextIdx, newDirection];
       });
     },
@@ -41,16 +42,32 @@ function Reviews() {
     };
   }, [paginate]);
 
-  const goTo = (i: number) => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    setPage((prev) => [i, i > prev[0] ? 1 : -1]);
+  const stopAutoplay = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
+  const startAutoplay = useCallback(() => {
+    stopAutoplay();
     intervalRef.current = setInterval(() => {
       paginate(1);
     }, 4000);
+  }, [paginate, stopAutoplay]);
+
+  const goTo = (i: number) => {
+    setPage((prev) => [i, i > prev[0] ? 1 : -1]);
+    startAutoplay();
   };
 
   return (
-    <div id="reviews" className="reviews-page-wrapper">
+    <div
+      id="reviews"
+      className="reviews-page-wrapper"
+      onMouseEnter={stopAutoplay}
+      onMouseLeave={startAutoplay}
+    >
       <div className="content-block reviews-block">
         <motion.h2
           initial={{ opacity: 0, x: -100 }}
@@ -79,14 +96,30 @@ function Reviews() {
             </motion.div>
           </AnimatePresence>
         </div>
-        <div className="reviews-dots">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              className={`reviews-dot${i === currentIndex ? " active" : ""}`}
-              onClick={() => goTo(i)}
-            />
-          ))}
+        <div className="reviews-controls">
+          <button
+            className="reviews-arrow reviews-arrow-prev"
+            onClick={() => paginate(-1)}
+            aria-label={t("reviews.prev")}
+          >
+            ‹
+          </button>
+          <div className="reviews-dots">
+            {items.map((_, i) => (
+              <button
+                key={i}
+                className={`reviews-dot${i === currentIndex ? " active" : ""}`}
+                onClick={() => goTo(i)}
+              />
+            ))}
+          </div>
+          <button
+            className="reviews-arrow reviews-arrow-next"
+            onClick={() => paginate(1)}
+            aria-label={t("reviews.next")}
+          >
+            ›
+          </button>
         </div>
       </div>
     </div>

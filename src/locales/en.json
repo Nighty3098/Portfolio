@@ -74,6 +74,8 @@
     "title": "Customer Reviews",
     "title_prefix": "Customer",
     "title_suffix": "Reviews",
+    "prev": "Previous review",
+    "next": "Next review",
     "items": [
       {
         "name": "eyusmain",

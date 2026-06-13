@@ -423,10 +423,66 @@ body {
   font-style: italic;
 }
 
+.reviews-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  gap: var(--spacing-l);
+  padding: var(--spacing-m) var(--spacing-l);
+  background-color: var(--bg);
+  border-radius: var(--border-radius);
+  max-width: 1200px;
+  width: auto;
+  box-sizing: border-box;
+}
+
+.reviews-arrow {
+  background: none;
+  color: var(--fg);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 0;
+  transition:
+    background-color 0.3s ease,
+    opacity 0.3s ease;
+  opacity: 0.6;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.reviews-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
+
+.reviews-arrow * {
+  padding: 0px;
+  margin: 0px;
+}
+
 .reviews-dots {
+  height: 100%;
   display: flex;
   gap: 12px;
-  padding: var(--spacing-l) 0;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
 }
 
 .reviews-dot {
@@ -439,6 +495,7 @@ body {
   cursor: pointer;
   transition: opacity 0.3s;
   padding: 0;
+  margin: 0px;
 }
 
 .reviews-dot.active {

@@ -74,6 +74,8 @@
     "title": "Отзывы клиентов",
     "title_prefix": "Отзывы",
     "title_suffix": "клиентов",
+    "prev": "Предыдущий отзыв",
+    "next": "Следующий отзыв",
     "items": [
       {
         "name": "eyusmain",
