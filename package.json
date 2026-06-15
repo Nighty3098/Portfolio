@@ -20,6 +20,7 @@
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.1",
     "react-scripts": "5.0.1",
+    "split-type": "^0.3.4",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

@@ -1378,6 +1378,7 @@ body {
     word-break: break-word;
     -webkit-text-fill-color: var(--fg);
     background: none;
+    visibility: hidden;
 }
 
 .hero-subtitle {
@@ -1393,6 +1394,7 @@ body {
     bottom: var(--spacing-xl);
     left: var(--spacing-xl);
     letter-spacing: 1spx;
+    visibility: hidden;
 }
 
 .hero-whoami {
@@ -1411,6 +1413,7 @@ body {
     top: var(--spacing-xl);
     right: var(--spacing-xl);
     z-index: 10;
+    visibility: hidden;
 }
 
 .hero-split-right {
@@ -1727,6 +1730,22 @@ body {
     .avatar-image {
         max-width: 400px;
     }
+}
+
+.word {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  overflow: hidden;
+  transform-origin: bottom;
+}
+
+.char {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  overflow: hidden;
+  transform-origin: bottom;
 }
 
 @media (min-width: 1700px) {

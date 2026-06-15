@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslate } from "../context/I18nContext";
 import ReviewCard from "./review_card";
+import { useSectionReveal } from "../hooks/useSectionReveal";
 
 const slideVariants = {
   enter: { opacity: 0 },
@@ -10,10 +11,13 @@ const slideVariants = {
 };
 
 function Reviews() {
-  const { t, tt } = useTranslate();
+  const { t, tt, locale } = useTranslate();
+  const ref = useRef<HTMLDivElement>(null);
   const items = tt("reviews.items") as Array<{ name: string; text: string }>;
   const [[currentIndex], setPage] = useState([0, 0]);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useSectionReveal(ref, [locale]);
 
   const paginate = useCallback(
     (newDirection: number) => {
@@ -58,19 +62,15 @@ function Reviews() {
   return (
     <div
       id="reviews"
+      ref={ref}
       className="reviews-page-wrapper"
       onMouseEnter={stopAutoplay}
       onMouseLeave={startAutoplay}
     >
       <div className="content-block reviews-block">
-        <motion.h2
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-        >
+        <h2 data-reveal="letters">
           {t("reviews.title_prefix")} {t("reviews.title_suffix")}
-        </motion.h2>
+        </h2>
         <div className="reviews-carousel">
           <AnimatePresence>
             <motion.div

@@ -1,55 +1,41 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
 import { useTranslate } from "../context/I18nContext";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
+import { useSectionReveal } from "../hooks/useSectionReveal";
 
 function AboutMePage() {
-  const { t } = useTranslate();
+  const { t, locale } = useTranslate();
+  const ref = useRef<HTMLDivElement>(null);
   const aboutTexts = ["about.p1", "about.p2", "about.p3", "about.p4"];
 
+  useSectionReveal(ref, [locale]);
+
   return (
-    <motion.div
+    <div
       id="about-me"
+      ref={ref}
       className="content-block about-block content about-section-wrapper"
-      style={{}}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={containerVariants}
     >
       <div className="spacer-h-100 mobile"></div>
-      <motion.div className="image-container" variants={itemVariants}>
+      <div className="image-container">
         <img src="me.png" alt="me" className="about-avatar" />
-        <motion.a
-          variants={itemVariants}
+        <a
           className="button"
           href="https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing"
         >
           {t("about.resume")}
-        </motion.a>
-      </motion.div>
+        </a>
+      </div>
       <div className="about-section-container">
-        <motion.h2 variants={itemVariants}>
+        <h2 data-reveal="letters">
           {t("about.title_prefix")} {t("about.title_suffix")}
-        </motion.h2>
+        </h2>
         {aboutTexts.map((key, i) => (
-          <motion.p key={i} variants={itemVariants}>
+          <p key={i}>
             {t(key)}
-          </motion.p>
+          </p>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 

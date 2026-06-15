@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslate } from "../context/I18nContext";
+import { useSectionReveal } from "../hooks/useSectionReveal";
 
 type Contact = {
   readonly id: number;
@@ -68,18 +69,17 @@ function ContactCard({ contact, t }: ContactCardProps) {
 }
 
 function MyContacts() {
-  const { t } = useTranslate();
+  const { t, locale } = useTranslate();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useSectionReveal(ref, [locale]);
+
   return (
-    <div id="my-contacts" className="content contacts-page-wrapper">
+    <div id="my-contacts" ref={ref} className="content contacts-page-wrapper">
       <div className="content-block contacts-block">
-        <motion.h2
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-        >
+        <h2 data-reveal="letters">
           {t("contacts.title_prefix")} {t("contacts.title_suffix")}
-        </motion.h2>
+        </h2>
         <div className="spacer-h-100"></div>
         <motion.div
           className="contacts-tiling contacts-tiling-inner"

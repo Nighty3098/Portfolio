@@ -1,9 +1,12 @@
-import { motion } from "framer-motion";
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import GitHubStats from "./github_stats";
 import { useState } from "react";
 import { useTranslate } from "../context/I18nContext";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface NavigationProps {
   onGitHubStatsClick?: () => void;
@@ -25,34 +28,25 @@ const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
   ];
 
   return (
-    <motion.nav
-      className="hero-nav"
-      initial={{ opacity: 0, y: -30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
+    <nav className="hero-nav">
       <div className="hero-nav-links">
         {navItems.map((item) => (
-          <motion.button
+          <button
             key={item.key}
             onClick={item.action}
             className="hero-nav-btn"
-            whileHover={{ letterSpacing: "8px", color: "var(--accent)" }}
-            transition={{ duration: 0.3 }}
           >
             {t(item.key)}
-          </motion.button>
+          </button>
         ))}
       </div>
-      <motion.button
+      <button
         onClick={() => setLocale(locale === "en" ? "ru" : "en")}
         className="hero-nav-btn hero-lang-btn"
-        whileHover={{ letterSpacing: "4px", color: "var(--accent)" }}
-        transition={{ duration: 0.3 }}
       >
         {locale === "en" ? "EN" : "RU"}
-      </motion.button>
-    </motion.nav>
+      </button>
+    </nav>
   );
 };
 
@@ -60,41 +54,97 @@ function WelcomePage() {
   const { t, locale } = useTranslate();
   const [githubStatsOpen, setGitHubStatsOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
-  const nameRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const whoamiRef = useRef<HTMLParagraphElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const container = heroRef.current;
+    if (!container) return;
 
-      tl.fromTo(
-        nameRef.current,
-        { y: 120, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2 },
-      )
-        .fromTo(
-          subtitleRef.current,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8 },
-          "-=0.6",
-        )
-        .fromTo(
-          whoamiRef.current,
-          { x: 20, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.8 },
-          "-=0.6",
-        )
-        .fromTo(
-          scrollRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.6 },
-          "-=0.2",
-        );
-    }, heroRef);
+    const whoamiEl = container.querySelector<HTMLElement>(".hero-whoami");
+    const nameEl = container.querySelector<HTMLElement>(".hero-name");
+    const subtitleEl = container.querySelector<HTMLElement>(".hero-subtitle");
 
-    return () => ctx.revert();
+    const splits: SplitType[] = [];
+
+    const initTargets = (
+      el: HTMLElement | null,
+      type: "chars" | "words",
+    ) => {
+      if (!el) return null;
+      const split = new SplitType(el, { types: type });
+      splits.push(split);
+      const targets = type === "chars" ? split.chars : split.words;
+      if (!targets || targets.length === 0) return null;
+      return targets;
+    };
+
+    const whoamiTargets = initTargets(whoamiEl, "words");
+    const nameTargets = initTargets(nameEl, "chars");
+    const subtitleTargets = initTargets(subtitleEl, "words");
+
+    const tl = gsap.timeline();
+
+    // Reveal containers and set initial hidden state for all targets at time 0
+    tl.set([whoamiEl, nameEl, subtitleEl], { visibility: "visible" }, 0);
+    if (whoamiTargets) tl.set(whoamiTargets, { x: "2em", opacity: 0 }, 0);
+    if (nameTargets) tl.set(nameTargets, { yPercent: 110, opacity: 0 }, 0);
+    if (subtitleTargets) tl.set(subtitleTargets, { yPercent: 100, opacity: 0 }, 0);
+
+    // Animate in
+    if (whoamiTargets) {
+      tl.to(whoamiTargets, {
+        x: 0,
+        opacity: 0.55,
+        duration: 0.7,
+        ease: "power3.out",
+        stagger: { amount: 0.3 },
+      }, 0);
+    }
+    if (nameTargets) {
+      tl.to(nameTargets, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: "power4.out",
+        stagger: { amount: 0.15 },
+      }, 0.2);
+    }
+    if (subtitleTargets) {
+      tl.to(subtitleTargets, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: "power3.out",
+        stagger: { amount: 0.3 },
+      }, 0.45);
+    }
+
+    // Photo parallax on scroll
+    const photo = container.querySelector<HTMLElement>(".hero-photo");
+    let parallaxST: ScrollTrigger | null = null;
+    if (photo) {
+      gsap.set(photo, { scale: 1.5 });
+      const anim = gsap.to(photo, {
+        yPercent: -25,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+      parallaxST = anim.scrollTrigger as ScrollTrigger;
+    }
+
+    return () => {
+      tl.kill();
+      if (parallaxST) parallaxST.kill();
+      splits.forEach((s) => {
+        try {
+          s.revert();
+        } catch {}
+      });
+    };
   }, [locale]);
 
   return (
@@ -107,14 +157,14 @@ function WelcomePage() {
 
       <div className="hero-split">
         <div className="hero-split-left">
-          <p ref={whoamiRef} className="hero-whoami">
+          <p className="hero-whoami">
             {t("welcome.whoami")}
           </p>
           <div className="hero-text-block">
-            <h1 ref={nameRef} className="hero-name">
+            <h1 className="hero-name">
               {t("welcome.name")}
             </h1>
-            <p ref={subtitleRef} className="hero-subtitle">
+            <p className="hero-subtitle">
               {t("welcome.city")}
             </p>
           </div>
