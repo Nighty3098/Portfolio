@@ -38,30 +38,6 @@ type Resource = {
   readonly link: string;
 };
 
-const resources: Resource[] = [
-  {
-    id: 0,
-    name: "KWork",
-    link: "https://kwork.ru/user/nighty_3098",
-  },
-  {
-    id: 1,
-    name: "GitHub",
-    link: "https://github.com/Nighty3098",
-  },
-  {
-    id: 2,
-    name: "DevTo",
-    link: "https://dev.to/nighty3098",
-  },
-  {
-    id: 3,
-    name: "Tg Channel",
-    nameKey: "contacts.tg_channel",
-    link: "https://t.me/W2N3098",
-  },
-];
-
 type ContactCardProps = Readonly<{
   contact: Contact | Resource;
   t: (key: string, params?: Record<string, string | number>) => string;
