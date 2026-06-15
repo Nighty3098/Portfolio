@@ -17,19 +17,6 @@ const projectsData = {
       link: "https://he4vyl0v3.vercel.app/",
     },
     {
-      id: 2,
-      images: [
-        "/images/crimson_1.png",
-        "/images/crimson_2.png",
-        "/images/crimson_3.png",
-        "/images/crimson_4.png",
-        "/images/crimson_5.png",
-        "/images/crimson_6.png",
-      ],
-      technologies: ["Python", "C"],
-      link: "https://he4vyl0v3.vercel.app/",
-    },
-    {
       id: 3,
       images: ["/images/the_owl.png"],
       technologies: ["React", "TypeScript"],
@@ -70,6 +57,17 @@ const projectsData = {
       technologies: ["C"],
       link: "https://github.com/He4vyL0v3/LogInsight",
     },
+    {
+      id: 9,
+      images: [
+        "/images/ProxySniffer.png",
+        "/images/proxy_1.png",
+        "/images/proxy_2.png",
+        "/images/proxy_3.png",
+      ],
+      technologies: ["Python"],
+      link: "https://github.com/Nighty3098/ProxySniffer",
+    },
   ],
 };
 
@@ -93,7 +91,8 @@ function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <span className="hw">{t("projects.title_prefix")}</span> {t("projects.title_suffix")}
+        <span className="hw">{t("projects.title_prefix")}</span>{" "}
+        {t("projects.title_suffix")}
       </motion.h2>
       <div className="spacer-h-100"></div>
       <div className="projects-grid">

@@ -27,11 +27,6 @@
         "description": "OSINT is a tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication"
       },
       {
-        "title": "Crimson",
-        "info": "Crimson is a remote access tool written in C++ with the ability to build for windows and linux",
-        "description": "Crimson is a remote access tool with the ability to create payloads for windows and linux"
-      },
-      {
         "title": "The OWL",
         "info": "OWL - task and project management app designed specifically for developers",
         "description": "OWL is a powerful and intuitive desktop application for managing projects, boards, columns, and tasks, designed specifically for developers. It features a seamless interface, advanced statistics, keyboard shortcuts, and deep integration with the OWL_BACKEND REST API."
@@ -60,6 +55,11 @@
         "title": "LogInsight",
         "info": "Program for analyzing log files and detecting anomalies in program operation",
         "description": "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli."
+      },
+      {
+        "title": "ProxySniffer",
+        "info": "A simple program for obtaining and testing working proxy sheets [ HTTP - HTTPS - SOCKS4 - SOCKS5 - VLESS - TROJAN ]",
+        "description": "Features:\nLoad proxy lists from multiple sources\nAsynchronous multi-threaded testing\nSupported protocols: HTTP, HTTPS, SOCKS4, SOCKS5, VLESS, VMESS, Trojan, Hysteria2, ShadowSocks, MTProto\nAutomatic detection of CPU core count\nOutput working proxies sorted by speed.\nSave results to a file"
       }
     ]
   },
