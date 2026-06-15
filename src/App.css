@@ -35,6 +35,7 @@
     --text-review-name: 1rem;
     --text-stat-value: 2rem;
     --text-stat-label: 1rem;
+    --max-w: 1200px;
 }
 
 * {
@@ -237,70 +238,123 @@ body {
     gap: 0px;
 }
 
-.contacts-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    box-sizing: border-box;
+/* === CONTACTS === */
+
+.contacts-page-wrapper {
+    min-height: 100vh;
     padding: var(--spacing-xl);
-}
-
-.contacts-list {
+    width: min(
+        calc(90vw - var(--spacing-xl) - var(--spacing-xl)),
+        calc(var(--max-w) - var(--spacing-xl) - var(--spacing-xl))
+    );
+    margin: 0px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    align-content: center;
-    justify-content: flex-start;
-    text-align: left;
-    gap: 0.1rem;
-    padding: 0px;
-    margin: 0px;
-    height: 100%;
-    width: 100%;
-}
-
-.contact-link {
-    text-decoration: none;
-    line-height: 1rem;
-    letter-spacing: 6px;
-    padding: var(--spacing-m);
-    margin: 0px;
-    width: calc(100% - var(--spacing-m) - var(--spacing-m));
-    position: relative;
-    display: inline-block;
-    background-color: var(--bg-2);
-    border-radius: var(--border-radius);
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    background-size: 0% 100%;
-    transition: box-shadow 0.4s ease-in-out;
-    color: inherit;
-}
-
-.contacts-tiling {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
-    align-content: center;
-    padding: 0px;
-    margin: 0px;
-    width: 100%;
+    justify-content: center;
+    gap: var(--spacing-xxl);
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: var(--spacing-l);
+    width: 100%;
+}
+
+.contact-item {
+    width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-m);
+    padding: var(--spacing-xl);
+    background: var(--bg-2);
+    border-radius: var(--border-radius-l);
+    text-decoration: none;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+    pointer-events: none;
+}
+
+.contact-item:hover {
+    background: color-mix(in srgb, var(--bg-2) 90%, var(--accent));
+}
+
+.contact-item:hover::before {
+    border-color: var(--accent);
+}
+
+.contact-item-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--fg);
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.contact-item:hover .contact-item-icon {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+.contact-item-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.contact-item-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.contact-item-name {
+    font-size: var(--text-block-title);
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--fg);
+    transition: color 0.3s ease;
+}
+
+.contact-item:hover .contact-item-name {
+    color: var(--accent);
+}
+
+.contact-item-handle {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    opacity: 0.4;
+    color: var(--fg);
+    transition: opacity 0.3s ease;
+}
+
+.contact-item:hover .contact-item-handle {
+    opacity: 0.7;
 }
 
 .content {
     padding: var(--spacing-xl);
-    width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
+    max-width: var(--max-w);
 }
 
 .content-block {
-    width: 100%;
-    max-width: 2000px;
+    width: min(90vw, var(--max-w));
     height: auto;
     padding: 0px;
     margin: 0px;
@@ -423,7 +477,7 @@ body {
     padding: var(--spacing-s) var(--spacing-l);
     background-color: var(--bg);
     border-radius: var(--border-radius);
-    max-width: 1200px;
+    max-width: var(--max-w);
     width: auto;
     box-sizing: border-box;
 }
@@ -556,9 +610,32 @@ body {
     color: inherit;
     overflow: hidden;
     gap: var(--spacing-l);
-    aspect-ratio: 20/12;
+    padding: 2px;
     cursor: zoom-in;
     border-radius: var(--border-radius);
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+    pointer-events: none;
+}
+
+.project-card:hover {
+    background: color-mix(in srgb, var(--bg-2) 90%, var(--accent));
+}
+
+.project-card:hover::before {
+    border-color: var(--accent);
 }
 
 @media (min-width: 768px) {
@@ -566,11 +643,6 @@ body {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-l);
-    }
-
-    .project-card {
-        aspect-ratio: 16/10;
-        border-radius: var(--border-radius-l);
     }
 }
 
@@ -949,31 +1021,6 @@ body {
     text-align: center;
 }
 
-.contacts-page-wrapper {
-    height: 100vh;
-    padding: var(--spacing-xl);
-    width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
-    margin: 0px;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-}
-
-.contacts-tiling-inner {
-    width: 100%;
-    display: flex;
-    gap: var(--spacing-m);
-}
-
-.contacts-list-half {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-s);
-}
-
 .projects-page-wrapper {
     height: auto;
     padding: var(--spacing-xl);
@@ -1069,7 +1116,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-l);
     width: 100%;
-    max-width: 1200px;
+    max-width: var(--max-w);
 }
 
 .stat-item {
@@ -1520,7 +1567,7 @@ body {
 .projects-page-wrapper,
 .reviews-block,
 .contacts-block {
-    width: min(90vw, 1200px);
+    width: min(90vw, var(--max-w));
     box-sizing: border-box;
     padding: var(--spacing-xl);
 }
@@ -1686,11 +1733,7 @@ body {
     }
 }
 
-@media (max-width: 1200px) {
-    .contacts-tiling {
-        flex-direction: row;
-    }
-
+@media (max-width: var(--max-w)) {
     .content-block {
         flex-direction: column;
         justify-content: flex-start;
