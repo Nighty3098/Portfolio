@@ -28,7 +28,7 @@
     --text-section-title-accent: 1.2em;
     --text-block-title: 0.9rem;
     --text-welcome-title: 85px;
-    --text-heavy-title: 17vw;
+    --text-heavy-title: 7vw;
     --text-close: 1rem;
     --text-modal-close: 30px;
     --text-arrow: 1.5rem;
@@ -1762,4 +1762,48 @@ body {
     .about-block p {
         font-size: var(--text-close);
     }
+}
+
+.marquee {
+    overflow: hidden;
+    width: 100%;
+    padding: var(--spacing-l) 0;
+    user-select: none;
+}
+
+.marquee-track {
+    display: flex;
+    width: fit-content;
+    will-change: transform;
+}
+
+.marquee-item {
+    font-size: var(--text-heavy-title);
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--fg);
+    opacity: 0.06;
+    line-height: 1;
+    padding: 0 var(--spacing-m);
+    flex-shrink: 0;
+}
+
+/* === LENIS === */
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
 }

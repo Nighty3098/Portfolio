@@ -6,6 +6,8 @@ import MyContacts from "./components/contacts";
 import Projects from "./components/projects";
 import Footer from "./components/footer";
 import Dock from "./components/dock";
+import LenisProvider from "./components/lenisProvider";
+import Marquee from "./components/marquee";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useTranslate } from "./context/I18nContext";
 
@@ -24,22 +26,25 @@ function HtmlUpdater() {
 function App() {
   return (
     <HashRouter>
-      <HtmlUpdater />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="App">
-              <WelcomePage />
-              <AboutMePage />
-              <Projects />
-              <MyContacts />
-              <Dock />
-              <Footer />
-            </div>
-          }
-        />
-      </Routes>
+      <LenisProvider>
+        <HtmlUpdater />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="App">
+                <WelcomePage />
+                <Marquee text="software engineer // FREELANCER // " />
+                <AboutMePage />
+                <Projects />
+                <MyContacts />
+                <Dock />
+                <Footer />
+              </div>
+            }
+          />
+        </Routes>
+      </LenisProvider>
     </HashRouter>
   );
 }
