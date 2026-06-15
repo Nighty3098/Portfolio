@@ -1,8 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 :root {
@@ -656,21 +653,6 @@ body {
     letter-spacing: 2px;
 }
 
-.heavylove_tiling {
-    height: 100vh;
-    min-height: 100vh;
-    width: 100%;
-}
-
-.heavylove_tiling h1 {
-    font-family: "Rubik Glitch", serif;
-    width: 100%;
-    text-align: center;
-    font-size: var(--text-heavy-title);
-    padding: 0px;
-    margin: 0px;
-}
-
 .modal {
     position: fixed;
     top: 0px;
@@ -964,6 +946,7 @@ body {
     width: 100%;
     padding: 0px;
     margin: 0px;
+    text-align: center;
 }
 
 .contacts-page-wrapper {
@@ -985,7 +968,7 @@ body {
 }
 
 .contacts-list-half {
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-s);
@@ -1398,7 +1381,6 @@ body {
 }
 
 .hero-subtitle {
-    font-family: "Inter", sans-serif;
     font-size: var(--text-hero-subtitle);
     font-weight: bolder;
     color: var(--fg);
@@ -1414,7 +1396,6 @@ body {
 }
 
 .hero-whoami {
-    font-family: "Inter", sans-serif;
     font-size: var(--text-hero-subtitle);
     font-weight: 500;
     color: var(--fg);
@@ -1477,7 +1458,6 @@ body {
 }
 
 .hero-scroll-text {
-    font-family: "Inter", sans-serif;
     font-size: var(--text-hero-scroll);
     letter-spacing: 4px;
     color: var(--fg);
