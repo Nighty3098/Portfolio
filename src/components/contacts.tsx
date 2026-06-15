@@ -80,14 +80,12 @@ const itemVariants = {
 };
 
 function ContactCard({ contact, t }: ContactCardProps) {
-  const displayName = "nameKey" in contact && contact.nameKey ? t(contact.nameKey) : contact.name;
+  const displayName =
+    "nameKey" in contact && contact.nameKey ? t(contact.nameKey) : contact.name;
   return (
-    <motion.div
-      className="contact-card-wrapper"
-      variants={itemVariants}
-    >
+    <motion.div className="contact-card-wrapper" variants={itemVariants}>
       <motion.a href={contact.link} target="_blank" className="contact-link">
-        | {displayName}
+        {displayName}
       </motion.a>
     </motion.div>
   );
@@ -96,10 +94,7 @@ function ContactCard({ contact, t }: ContactCardProps) {
 function MyContacts() {
   const { t } = useTranslate();
   return (
-    <div
-      id="my-contacts"
-      className="content contacts-page-wrapper"
-    >
+    <div id="my-contacts" className="content contacts-page-wrapper">
       <div className="content-block contacts-block">
         <motion.h2
           initial={{ opacity: 0, x: -100 }}
@@ -107,7 +102,7 @@ function MyContacts() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
         >
-          {t("contacts.title_prefix")} <span className="hw">{t("contacts.title_suffix")}</span>
+          {t("contacts.title_prefix")} {t("contacts.title_suffix")}
         </motion.h2>
         <div className="spacer-h-100"></div>
         <motion.div

@@ -4,21 +4,15 @@ import { useTranslate } from "../context/I18nContext";
 import ReviewCard from "./review_card";
 
 const slideVariants = {
-  enter: (d: number) => ({
-    x: d > 0 ? "100%" : "-100%",
-    opacity: 0,
-  }),
-  center: { x: 0, opacity: 1 },
-  exit: (d: number) => ({
-    x: d > 0 ? "-100%" : "100%",
-    opacity: 0,
-  }),
+  enter: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 
 function Reviews() {
   const { t, tt } = useTranslate();
   const items = tt("reviews.items") as Array<{ name: string; text: string }>;
-  const [[currentIndex, direction], setPage] = useState([0, 0]);
+  const [[currentIndex], setPage] = useState([0, 0]);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const paginate = useCallback(
@@ -75,18 +69,17 @@ function Reviews() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
         >
-          {t("reviews.title_prefix")} <span className="hw">{t("reviews.title_suffix")}</span>
+          {t("reviews.title_prefix")} {t("reviews.title_suffix")}
         </motion.h2>
         <div className="reviews-carousel">
-          <AnimatePresence custom={direction}>
+          <AnimatePresence>
             <motion.div
               key={currentIndex}
-              custom={direction}
               variants={slideVariants}
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
               className="reviews-slide"
             >
               <ReviewCard

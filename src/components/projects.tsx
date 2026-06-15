@@ -91,8 +91,7 @@ function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <span className="hw">{t("projects.title_prefix")}</span>{" "}
-        {t("projects.title_suffix")}
+        {t("projects.title_prefix")} {t("projects.title_suffix")}
       </motion.h2>
       <div className="spacer-h-100"></div>
       <div className="projects-grid">

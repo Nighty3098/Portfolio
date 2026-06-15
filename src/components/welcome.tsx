@@ -62,7 +62,7 @@ function WelcomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const avatarBgRef = useRef<HTMLImageElement>(null);
+  const whoamiRef = useRef<HTMLParagraphElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -71,40 +71,27 @@ function WelcomePage() {
 
       tl.fromTo(
         nameRef.current,
-        { y: 120, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.4 },
+        { y: 120, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2 },
       )
         .fromTo(
           subtitleRef.current,
-          { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1 },
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 },
           "-=0.6",
         )
         .fromTo(
-          avatarBgRef.current,
-          { opacity: 0, scale: 0.85 },
-          { opacity: 1, scale: 1, duration: 1.5 },
-          "-=0.8",
+          whoamiRef.current,
+          { x: 20, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.8 },
+          "-=0.6",
         )
         .fromTo(
           scrollRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 0.6, y: 0, duration: 0.8 },
+          { opacity: 0 },
+          { opacity: 1, duration: 0.6 },
           "-=0.2",
         );
-
-      gsap.fromTo(
-        avatarBgRef.current,
-        { scale: 1 },
-        {
-          scale: 1.06,
-          duration: 5,
-          yoyo: true,
-          repeat: -1,
-          ease: "sine.inOut",
-          delay: 2,
-        },
-      );
     }, heroRef);
 
     return () => ctx.revert();
@@ -112,36 +99,29 @@ function WelcomePage() {
 
   return (
     <div className="hero" ref={heroRef}>
-      <div className="hero-bg" />
-      <div className="hero-avatar-bg-wrapper">
-        <img
-          ref={avatarBgRef}
-          src="me.png"
-          className="hero-avatar-bg"
-          alt=""
-          aria-hidden="true"
-        />
-      </div>
       <Navigation onGitHubStatsClick={() => setGitHubStatsOpen(true)} />
       <GitHubStats
         show={githubStatsOpen}
         onClose={() => setGitHubStatsOpen(false)}
       />
 
-      <div className="hero-main">
-        <div className="hero-text">
-          <h1 ref={nameRef} className="hero-name">
-            {t("welcome.name")}
-          </h1>
-          <p ref={subtitleRef} className="hero-subtitle">
+      <div className="hero-split">
+        <div className="hero-split-left">
+          <p ref={whoamiRef} className="hero-whoami">
             {t("welcome.whoami")}
           </p>
+          <div className="hero-text-block">
+            <h1 ref={nameRef} className="hero-name">
+              {t("welcome.name")}
+            </h1>
+            <p ref={subtitleRef} className="hero-subtitle">
+              {t("welcome.city")}
+            </p>
+          </div>
         </div>
-      </div>
-
-      <div ref={scrollRef} className="hero-scroll">
-        <div className="hero-scroll-line" />
-        <span className="hero-scroll-text">SCROLL</span>
+        <div className="hero-split-right">
+          <img src="me_2.jpg" alt={t("welcome.name")} className="hero-photo" />
+        </div>
       </div>
     </div>
   );

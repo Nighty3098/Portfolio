@@ -6,8 +6,9 @@
   },
   "welcome": {
     "name": "nighty",
-    "whoami": "РАЗРАБОТЧИК | ФРИЛАНСЕР",
-    "tagline": "У ВАС ЕСТЬ ПРОБЛЕМА - НАС ЕСТЬ РЕШЕНИЕ"
+    "whoami": "РАЗРАБОТЧИК\nФРИЛАНСЕР",
+    "tagline": "У ВАС ЕСТЬ ПРОБЛЕМА - НАС ЕСТЬ РЕШЕНИЕ",
+    "city": "Новосибирск"
   },
   "about": {
     "title_prefix": "Обо",
@@ -114,15 +115,15 @@
     "tg_channel": "Tg Канал"
   },
   "github_stats": {
-    "title": "GitHub Статистика",
+    "title": "GitHub",
     "loading": "Загрузка...",
-    "stars": "Всего звезд",
-    "repos": "Репозитории",
-    "commits": "Коммиты",
-    "pull_requests": "Pull Requests",
+    "stars": "Stars",
+    "repos": "Repos",
+    "commits": "Commits",
+    "pull_requests": "PR's",
     "issues": "Issues",
-    "languages": "Языки",
-    "na": "Н/Д",
+    "languages": "Languages",
+    "na": "N/A",
     "close": "Закрыть"
   },
   "pentesting": {

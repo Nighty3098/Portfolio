@@ -6,8 +6,9 @@
   },
   "welcome": {
     "name": "nighty",
-    "whoami": "BACKEND DEVELOPER | FREELANCER",
-    "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION"
+    "whoami": "DEVELOPER\nFREELANCER",
+    "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION",
+    "city": "Novosibirsk"
   },
   "about": {
     "title_prefix": "About",
@@ -114,12 +115,12 @@
     "tg_channel": "Tg Channel"
   },
   "github_stats": {
-    "title": "GitHub Stats",
+    "title": "GitHub",
     "loading": "Loading...",
-    "stars": "Total Stars",
+    "stars": "Stars",
     "repos": "Repositories",
     "commits": "Commits",
-    "pull_requests": "Pull Requests",
+    "pull_requests": "PR's",
     "issues": "Issues",
     "languages": "Languages",
     "na": "N/A",

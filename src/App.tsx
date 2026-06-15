@@ -4,8 +4,8 @@ import WelcomePage from "./components/welcome";
 import AboutMePage from "./components/aboutme";
 import MyContacts from "./components/contacts";
 import Projects from "./components/projects";
-import Reviews from "./components/reviews";
 import Footer from "./components/footer";
+import Dock from "./components/dock";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useTranslate } from "./context/I18nContext";
 
@@ -32,9 +32,9 @@ function App() {
             <div className="App">
               <WelcomePage />
               <AboutMePage />
-              <Reviews />
               <Projects />
               <MyContacts />
+              <Dock />
               <Footer />
             </div>
           }
