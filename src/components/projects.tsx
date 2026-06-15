@@ -103,6 +103,7 @@ function Projects() {
             info={items[i].info}
             images={project.images}
             link={project.link}
+            technologies={project.technologies}
             id={project.id}
           />
         ))}

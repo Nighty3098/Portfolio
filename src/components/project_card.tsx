@@ -13,6 +13,7 @@ interface ProjectCardProps {
   info: string;
   images: string[];
   link: string;
+  technologies: string[];
   id: number;
 }
 
@@ -53,24 +54,33 @@ const Carousel: React.FC<CarouselProps> = ({
     transitioningRef.current = false;
   }, []);
 
-  const goToNext = useCallback(() => {
-    if (transitioningRef.current) return;
-    const idx = currentIndexRef.current;
-    transitioningRef.current = true;
-    setFadeOut(images[idx]);
-    setCurrentIndex((idx + 1) % images.length);
-  }, [images]);
+  const goToNext = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (transitioningRef.current) return;
+      const idx = currentIndexRef.current;
+      transitioningRef.current = true;
+      setFadeOut(images[idx]);
+      setCurrentIndex((idx + 1) % images.length);
+    },
+    [images],
+  );
 
-  const goToPrev = useCallback(() => {
-    if (transitioningRef.current) return;
-    const idx = currentIndexRef.current;
-    transitioningRef.current = true;
-    setFadeOut(images[idx]);
-    setCurrentIndex((idx - 1 + images.length) % images.length);
-  }, [images]);
+  const goToPrev = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (transitioningRef.current) return;
+      const idx = currentIndexRef.current;
+      transitioningRef.current = true;
+      setFadeOut(images[idx]);
+      setCurrentIndex((idx - 1 + images.length) % images.length);
+    },
+    [images],
+  );
 
   const goToIndex = useCallback(
-    (index: number) => {
+    (index: number, e?: React.MouseEvent) => {
+      e?.stopPropagation();
       if (transitioningRef.current) return;
       const idx = currentIndexRef.current;
       transitioningRef.current = true;
@@ -162,7 +172,7 @@ const Carousel: React.FC<CarouselProps> = ({
                 <button
                   key={index}
                   className={`carousel-indicator ${index === currentIndex ? "active" : ""}`}
-                  onClick={() => goToIndex(index)}
+                  onClick={(e) => goToIndex(index, e)}
                   aria-label={t("project_card.go_to_image", { n: index + 1 })}
                 />
               ))}
@@ -262,12 +272,17 @@ const Modal: React.FC<ModalProps> = ({
   );
 };
 
+const handleOpenLink = (url: string) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
 const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
   info,
   images,
   link,
+  technologies,
   id,
 }) => {
   const { t } = useTranslate();
@@ -278,36 +293,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <motion.div
         key={id}
         className="project-card project-card-grab"
-        onClick={() => setModalOpen(true)}
+        onClick={() => handleOpenLink(link)}
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.div
-          className="project-image-wrapper"
-          initial="rest"
-          animate="rest"
-          whileHover="hover"
-          variants={{
-            rest: { y: 0 },
-            hover: { y: 0, transition: { duration: 0.3 } },
-          }}
-        >
-          <motion.div className="project-header">
-            <Carousel images={images} title={title} isModal={false} t={t} />
-            <motion.h3 className="project-title">{title}</motion.h3>
-          </motion.div>
-          <motion.div
-            className="project-description-overlay"
-            variants={{
-              rest: { opacity: 0 },
-              hover: { opacity: 1, transition: { duration: 0.3 } },
-            }}
-          >
-            {info}
-          </motion.div>
-        </motion.div>
+        <div className="project-image-wrapper">
+          <Carousel images={images} title={title} isModal={false} t={t} />
+          <h3 className="project-title">{title}</h3>
+        </div>
+        <div className="project-info">
+          <p className="project-info-text">{info}</p>
+        </div>
       </motion.div>
 
       <Modal
