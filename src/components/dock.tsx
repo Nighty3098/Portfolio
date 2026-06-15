@@ -38,7 +38,7 @@ const items = [
 ];
 
 function Dock() {
-  const { t, locale, setLocale } = useTranslate();
+  const { t } = useTranslate();
   const [githubStatsOpen, setGitHubStatsOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -70,21 +70,7 @@ function Dock() {
             <span className="dock-tooltip">{t(item.labelKey)}</span>
           </motion.button>
         ))}
-        <div className="dock-separator" />
-        <motion.button
-          className="dock-item"
-          onClick={() => setLocale(locale === "en" ? "ru" : "en")}
-          whileHover={{ scale: 1.3, y: -4 }}
-          whileTap={{ scale: 0.92 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <path d="M2 12h20" />
-            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-          </svg>
-          <span className="dock-tooltip">{locale === "en" ? "EN" : "RU"}</span>
-        </motion.button>
+
       </motion.div>
       <GitHubStats
         show={githubStatsOpen}

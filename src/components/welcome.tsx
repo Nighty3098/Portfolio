@@ -13,7 +13,7 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
-  const { t, locale, setLocale } = useTranslate();
+  const { t } = useTranslate();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -40,12 +40,6 @@ const Navigation: React.FC<NavigationProps> = ({ onGitHubStatsClick }) => {
           </button>
         ))}
       </div>
-      <button
-        onClick={() => setLocale(locale === "en" ? "ru" : "en")}
-        className="hero-nav-btn hero-lang-btn"
-      >
-        {locale === "en" ? "EN" : "RU"}
-      </button>
     </nav>
   );
 };
@@ -78,7 +72,12 @@ function WelcomePage() {
     };
 
     const whoamiTargets = initTargets(whoamiEl, "words");
-    const nameTargets = initTargets(nameEl, "chars");
+    let nameTargets: Element[] | null = null;
+    if (nameEl) {
+      const split = new SplitType(nameEl, { types: "chars,lines" });
+      splits.push(split);
+      nameTargets = split.chars || null;
+    }
     const subtitleTargets = initTargets(subtitleEl, "words");
 
     const tl = gsap.timeline();

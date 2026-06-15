@@ -300,7 +300,7 @@ body {
 
 .content-block {
     width: 100%;
-    max-width: 1400px;
+    max-width: 2000px;
     height: auto;
     padding: 0px;
     margin: 0px;
@@ -1257,10 +1257,6 @@ body {
     opacity: 1;
 }
 
-.hero-lang-btn {
-    letter-spacing: 3px;
-}
-
 .dock {
     display: none;
     position: fixed;
@@ -1306,13 +1302,6 @@ body {
     width: 22px;
     height: 22px;
     display: block;
-}
-
-.dock-separator {
-    width: 1px;
-    height: 22px;
-    background: var(--fg);
-    margin: 0 6px;
 }
 
 .dock-tooltip {
@@ -1379,6 +1368,14 @@ body {
     -webkit-text-fill-color: var(--fg);
     background: none;
     visibility: hidden;
+}
+
+.hero-name .line {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    display: block;
+    overflow: hidden;
 }
 
 .hero-subtitle {
@@ -1733,19 +1730,19 @@ body {
 }
 
 .word {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  overflow: hidden;
-  transform-origin: bottom;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    overflow: hidden;
+    transform-origin: bottom;
 }
 
 .char {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  overflow: hidden;
-  transform-origin: bottom;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    overflow: hidden;
+    transform-origin: bottom;
 }
 
 @media (min-width: 1700px) {
