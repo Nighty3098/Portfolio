@@ -28,23 +28,22 @@ function AboutMePage() {
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <div className="spacer-h-150 mobile"></div>
-      <motion.div
-        variants={itemVariants}
-        style={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <img src="me.png" alt="me" className="about-avatar" />
-      </motion.div>
       <div className="spacer-h-100 mobile"></div>
+      <motion.div className="image-container" variants={itemVariants}>
+        <img src="me.png" alt="me" className="about-avatar" />
+        <motion.a
+          variants={itemVariants}
+          className="button"
+          href="https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing"
+        >
+          {t("about.resume")}
+        </motion.a>
+      </motion.div>
       <div className="about-section-container">
-        <motion.h2 variants={itemVariants}>{t("about.title_prefix")} <span className="hw">{t("about.title_suffix")}</span></motion.h2>
+        <motion.h2 variants={itemVariants}>
+          {t("about.title_prefix")}{" "}
+          <span className="hw">{t("about.title_suffix")}</span>
+        </motion.h2>
         {aboutTexts.map((key, i) => (
           <motion.p key={i} variants={itemVariants}>
             {t(key)}
