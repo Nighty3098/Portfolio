@@ -8,6 +8,10 @@ interface GitHubStatsProps {
   onClose: () => void;
 }
 
+const handleOpenLink = (url: string) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
 const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
   const { t } = useTranslate();
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -188,6 +192,18 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
                   })()}
                 </div>
               )}
+              <button
+                className="button"
+                style={{
+                  width: "100%",
+                  backgroundColor: "var(--bg)",
+                  borderRadius: "var(--border-radius)",
+                  textAlign: "center",
+                }}
+                onClick={() => handleOpenLink("https://github.com/Nighty3098")}
+              >
+                Open GitHub
+              </button>
             </div>
           </motion.section>
         </motion.dialog>

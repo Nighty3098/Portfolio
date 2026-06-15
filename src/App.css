@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Truculenta:opsz,wght@12..72,100..900&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 :root {
   --border-radius: 15px;
   --border-radius-l: 25px;
@@ -40,7 +42,7 @@
 
 * {
   color: var(--fg);
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Space Grok", monospace;
   outline: none;
   font-display: swap;
   font-size: var(--text-base);
@@ -178,7 +180,6 @@ body {
 
 .welcome-content h1 {
   font-size: var(--text-welcome-title);
-  font-family: "Bebas Neue", monospace;
   padding: 0px;
   margin: 0px;
   font-weight: 400;
@@ -244,7 +245,7 @@ body {
   min-height: 100vh;
   padding: var(--spacing-xl);
   width: min(
-    calc(90vw - var(--spacing-xl) - var(--spacing-xl)),
+    calc(96vw - var(--spacing-xl) - var(--spacing-xl)),
     calc(var(--max-w) - var(--spacing-xl) - var(--spacing-xl))
   );
   margin: 0px;
@@ -354,7 +355,7 @@ body {
 }
 
 .content-block {
-  width: min(90vw, var(--max-w));
+  width: min(96vw, var(--max-w));
   height: auto;
   padding: 0px;
   margin: 0px;
@@ -382,18 +383,6 @@ body {
   font-size: var(--text-section-title);
   line-height: 1.1;
   font-family: "Bebas Neue", sans-serif;
-  text-transform: uppercase;
-}
-
-.content-block h2 .hw {
-  width: 100%;
-  text-align: left;
-  padding: 0px;
-  margin: 0px;
-  font-size: var(--text-section-title-accent);
-  line-height: 1.1;
-  font-family: "Shantell Sans", cursive;
-  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
@@ -681,8 +670,6 @@ body {
   white-space: nowrap;
 }
 
-
-
 .project-info {
   padding: var(--spacing-m);
   display: flex;
@@ -698,8 +685,6 @@ body {
   text-wrap: pretty;
   color: var(--fg);
 }
-
-
 
 .modal {
   position: fixed;
@@ -1271,7 +1256,6 @@ body {
   letter-spacing: 5px;
   cursor: pointer;
   font-weight: 600;
-  font-family: "JetBrains Mono", monospace;
   font-size: var(--text-hero-nav);
   padding: 0;
 }
@@ -1380,7 +1364,7 @@ body {
 .hero-name {
   font-family: "Bebas Neue", sans-serif;
   font-size: var(--text-hero-name);
-  font-weight: 400;
+  font-weight: bolder;
   color: var(--fg);
   line-height: 0.85;
   text-transform: uppercase;
@@ -1543,7 +1527,7 @@ body {
 .projects-page-wrapper,
 .reviews-block,
 .contacts-block {
-  width: min(90vw, var(--max-w));
+  width: min(96vw, var(--max-w));
   box-sizing: border-box;
   padding: var(--spacing-xl);
 }
@@ -1645,14 +1629,6 @@ body {
 
   .welcome-content p {
     line-height: 1.5rem;
-  }
-
-  .content-block h2 .hw,
-  h2 .hw {
-    font-family: "Shantell Sans", cursive;
-    font-weight: 700;
-    font-size: var(--text-section-title-accent);
-    letter-spacing: 1px;
   }
 
   :root {
