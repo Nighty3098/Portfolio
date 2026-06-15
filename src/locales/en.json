@@ -15,7 +15,8 @@
     "p1": "Hello! I am Artem.",
     "p2": "I am 19 years old, and I spent 5 of them at the SAIKT Programming Academy, and now I am studying at SibSUTIS University.",
     "p3": "I strive to grow in IT and work on large-scale projects that improve people's lives.",
-    "p4": "You can check out my open source projects on GitHub and in my organizations."
+    "p4": "You can check out my open source projects on GitHub and in my organizations.",
+    "resume": "Resume"
   },
   "projects": {
     "title_prefix": "My",
@@ -59,7 +60,7 @@
       {
         "title": "ProxySniffer",
         "info": "A simple program for obtaining and testing working proxy sheets [ HTTP - HTTPS - SOCKS4 - SOCKS5 - VLESS - TROJAN ]",
-        "description": "Features:\nLoad proxy lists from multiple sources\nAsynchronous multi-threaded testing\nSupported protocols: HTTP, HTTPS, SOCKS4, SOCKS5, VLESS, VMESS, Trojan, Hysteria2, ShadowSocks, MTProto\nAutomatic detection of CPU core count\nOutput working proxies sorted by speed.\nSave results to a file"
+        "description": "Features:\n- Load proxy lists from multiple sources\n- Asynchronous multi-threaded testing\n- Supported protocols: HTTP, HTTPS, SOCKS4, SOCKS5, VLESS, VMESS, Trojan, Hysteria2, ShadowSocks, MTProto\n- Automatic detection of CPU core count\n- Output working proxies sorted by speed.\n- Save results to a file"
       }
     ]
   },
