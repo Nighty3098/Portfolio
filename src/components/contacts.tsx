@@ -117,11 +117,6 @@ function MyContacts() {
               <ContactCard key={contact.id} contact={contact} t={t} />
             ))}
           </motion.div>
-          <motion.div className="contacts-list contacts-list-half">
-            {resources.map((resource) => (
-              <ContactCard key={resource.id} contact={resource} t={t} />
-            ))}
-          </motion.div>
         </motion.div>
       </div>
     </div>
