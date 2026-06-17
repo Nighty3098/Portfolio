@@ -515,6 +515,16 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .project-info {
@@ -1422,6 +1432,7 @@ body {
   font-size: 1.05rem;
   color: var(--fg);
   text-wrap: pretty;
+  text-align: justify;
 }
 
 .about-text-col p .word,

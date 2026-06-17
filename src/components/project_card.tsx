@@ -1,6 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslate } from "../context/I18nContext";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectCardProps {
   title: string;
@@ -31,28 +34,19 @@ interface CarouselProps {
 
 const Carousel: React.FC<CarouselProps> = ({ images, title, t }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [fadeOut, setFadeOut] = useState<string | null>(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const currentIndexRef = useRef(currentIndex);
   const transitioningRef = useRef(false);
-
-  currentIndexRef.current = currentIndex;
-
-  const completeTransition = useCallback(() => {
-    setFadeOut(null);
-    transitioningRef.current = false;
-  }, []);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   const goToNext = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
       if (transitioningRef.current) return;
       transitioningRef.current = true;
-      setFadeOut(images[currentIndexRef.current]);
-      setCurrentIndex((currentIndexRef.current + 1) % images.length);
+      setCurrentIndex((prev) => (prev + 1) % images.length);
     },
-    [images],
+    [images.length],
   );
 
   const goToPrev = useCallback(
@@ -60,37 +54,30 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, t }) => {
       e.stopPropagation();
       if (transitioningRef.current) return;
       transitioningRef.current = true;
-      setFadeOut(images[currentIndexRef.current]);
-      setCurrentIndex(
-        (currentIndexRef.current - 1 + images.length) % images.length,
-      );
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     },
-    [images],
+    [images.length],
   );
 
-  const startAutoPlay = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
+  useEffect(() => {
+    const img = imageRef.current?.querySelector("img");
+    if (!img) return;
+    if (transitioningRef.current) {
+      gsap.fromTo(img, { opacity: 0 }, { opacity: 1, duration: 0.4, onComplete: () => { transitioningRef.current = false; } });
+    } else {
+      gsap.set(img, { opacity: 1 });
+    }
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (images.length <= 1 || !isAutoPlaying) return;
     intervalRef.current = setInterval(() => {
       if (transitioningRef.current) return;
       transitioningRef.current = true;
-      setFadeOut(images[currentIndexRef.current]);
-      setCurrentIndex((currentIndexRef.current + 1) % images.length);
+      setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 3000);
-  }, [images]);
-
-  const stopAutoPlay = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (images.length > 1 && isAutoPlaying) {
-      startAutoPlay();
-    }
-    return () => stopAutoPlay();
-  }, [images.length, isAutoPlaying, startAutoPlay, stopAutoPlay]);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [isAutoPlaying, images.length]);
 
   if (images.length === 0) return null;
 
@@ -103,26 +90,14 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, t }) => {
       }}
     >
       <div className="carousel-wrapper">
-        <div className="carousel-image-container">
+        <div className="carousel-image-container" ref={imageRef}>
           <img
+            key={currentIndex}
             src={images[currentIndex]}
             alt={`${title} - ${currentIndex + 1}`}
             className="carousel-image carousel-image-modal"
-            style={{ position: "absolute", inset: 0 }}
+            style={{ position: "absolute", inset: 0, opacity: 0 }}
           />
-          {fadeOut && (
-            <motion.img
-              key={fadeOut}
-              src={fadeOut}
-              alt=""
-              className="carousel-image carousel-image-modal"
-              style={{ position: "absolute", inset: 0 }}
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              onAnimationComplete={completeTransition}
-            />
-          )}
         </div>
         {images.length > 1 && (
           <>
@@ -157,64 +132,75 @@ const Modal: React.FC<ModalProps> = ({
   t,
 }) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    dialog.showModal();
+    gsap.set(dialog, { opacity: 0 });
+    gsap.to(dialog, { opacity: 1, duration: 0.3 });
+
     const handleEscKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     };
-    if (show) {
-      dialogRef.current?.showModal();
-      document.addEventListener("keydown", handleEscKey);
-      document.body.style.overflow = "hidden";
-    } else {
-      dialogRef.current?.close();
-    }
+
+    document.addEventListener("keydown", handleEscKey);
+    document.body.style.overflow = "hidden";
+
     return () => {
       document.removeEventListener("keydown", handleEscKey);
       document.body.style.overflow = "unset";
     };
-  }, [show, onClose]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show]);
+
+  const handleClose = () => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    gsap.to(dialog, {
+      opacity: 0,
+      duration: 0.2,
+      onComplete: () => {
+        onCloseRef.current();
+      },
+    });
+  };
+
+  if (!show) return null;
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.dialog
-          ref={dialogRef}
-          className="modal"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
+    <dialog
+      ref={dialogRef}
+      className="modal"
+      onClick={handleClose}
+    >
+      <section
+        className="modal-content modal-content-scrollable"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={handleClose}
+          aria-label={t("project_card.close")}
+          className="modal-close-btn"
         >
-          <motion.section
-            className="modal-content modal-content-scrollable"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={onClose}
-              aria-label={t("project_card.close")}
-              className="modal-close-btn"
-            >
-              ✕
-            </button>
-            <h2>{title}</h2>
-            <Carousel images={images} title={title} t={t} />
-            <p>{description}</p>
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="modal-link"
-            >
-              {t("project_card.open")}
-            </a>
-          </motion.section>
-        </motion.dialog>
-      )}
-    </AnimatePresence>
+          ✕
+        </button>
+        <h2>{title}</h2>
+        <Carousel images={images} title={title} t={t} />
+        <p>{description}</p>
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="modal-link"
+        >
+          {t("project_card.open")}
+        </a>
+      </section>
+    </dialog>
   );
 };
 
@@ -252,43 +238,50 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     if (!hovered) setImgIndex(0);
   }, [hovered]);
 
+  useEffect(() => {
+    if (!cardRef.current) return;
+    const el = cardRef.current;
+    const tween = gsap.fromTo(el,
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          once: true,
+        },
+      },
+    );
+    return () => { tween.kill(); };
+  }, [index]);
+
   return (
     <>
-      <motion.div
+      <div
         key={id}
         ref={cardRef}
         className="project-card"
         onClick={() => setModalOpen(true)}
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{
-          duration: 0.8,
-          ease: [0.25, 0.46, 0.45, 0.94],
-          delay: index * 0.1,
-        }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
         <div className="project-image-wrapper">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={images[imgIndex]}
-              src={images[imgIndex]}
-              alt={title}
-              className="project-image-preview"
-              loading="lazy"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            />
-          </AnimatePresence>
+          <img
+            key={images[imgIndex]}
+            src={images[imgIndex]}
+            alt={title}
+            className="project-image-preview"
+            loading="lazy"
+          />
         </div>
         <div className="project-info">
           <h3 className="project-name">{title}</h3>
         </div>
-      </motion.div>
+      </div>
 
       <Modal
         show={modalOpen}

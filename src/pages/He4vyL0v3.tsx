@@ -44,7 +44,7 @@ function He4vyL0v3() {
       id="projects"
       className="content-block content projects-block projects-page-tiling"
     >
-      <div className="content-block about-block heavylove_tiling projects-page-header">
+      <div className="content-block about-block heavylove-tiling projects-page-header">
         <h1>{t("pentesting.title")}</h1>
       </div>
       <div className="spacer-h-100"></div>

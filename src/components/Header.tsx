@@ -11,7 +11,7 @@ const navItems = [
 ];
 
 function Header() {
-  const { t } = useTranslate();
+  const { t, locale, setLocale } = useTranslate();
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -65,7 +65,7 @@ function Header() {
 
   return (
     <>
-      <header className={`header ${isMenuOpen ? "header--menu-open" : ""}`}>
+      <header className="header">
         <div className="header-inner">
           <span className="header-logo">NIGHTY</span>
           <div className="header-right">
@@ -114,6 +114,12 @@ function Header() {
               }}
             >
               {t("nav.github")}
+            </button>
+            <button
+              className="menu-nav-item menu-lang-btn"
+              onClick={() => setLocale(locale === "en" ? "ru" : "en")}
+            >
+              {locale === "en" ? "EN" : "RU"}
             </button>
           </nav>
         </div>

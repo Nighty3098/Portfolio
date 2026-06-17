@@ -34,9 +34,15 @@ interface I18nContextType {
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
 export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [locale] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>(() => {
+    const saved = typeof window !== "undefined" ? localStorage.getItem("locale") : null;
+    return (saved === "en" || saved === "ru") ? saved : "en";
+  });
 
-  const setLocale = useCallback(() => {}, []);
+  const setLocale = useCallback((l: Locale) => {
+    setLocaleState(l);
+    if (typeof window !== "undefined") localStorage.setItem("locale", l);
+  }, []);
 
   const t = useCallback((key: string, params?: Record<string, string | number>): string => {
     const value = getNestedValue(translations[locale], key);
