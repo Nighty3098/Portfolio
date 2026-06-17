@@ -131,7 +131,7 @@ function MyContacts() {
   }, [locale]);
 
   return (
-    <div id="my-contacts" ref={ref} className="content contacts-page-wrapper">
+    <div id="my-contacts" ref={ref} key={locale} className="content contacts-page-wrapper">
       <h2 className="contacts-title" data-reveal="letters">
         {t("contacts.title_prefix")} {t("contacts.title_suffix")}
       </h2>

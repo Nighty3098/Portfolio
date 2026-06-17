@@ -89,6 +89,7 @@ function Projects() {
     <section
       id="projects"
       ref={ref}
+      key={locale}
       className="content-block content projects-block projects-page-wrapper"
     >
       <h2 data-reveal="letters">

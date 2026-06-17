@@ -10,7 +10,7 @@ function About() {
   useSectionReveal(ref, [locale]);
 
   return (
-    <section id="about-me" ref={ref} className="about-section">
+    <section id="about-me" ref={ref} className="about-section" key={locale}>
       <div className="about-header">
         <h2 data-reveal="letters">
           {t("about.title_prefix")} {t("about.title_suffix")}
