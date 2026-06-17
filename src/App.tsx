@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useEffect } from 'react';
 import './App.css';
 import WelcomePage from "./components/welcome"
@@ -9,6 +10,20 @@ import Footer from "./components/footer"
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import He4vyL0v3 from './pages/He4vyL0v3';
 import { useTranslate } from './context/I18nContext';
+=======
+import { useEffect } from "react";
+import "./App.css";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import MyContacts from "./components/contacts";
+import Projects from "./components/projects";
+import Footer from "./components/footer";
+import Marquee from "./components/marquee";
+import Header from "./components/Header";
+import LenisProvider from "./components/lenisProvider";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import { useTranslate } from "./context/I18nContext";
+>>>>>>> Stashed changes
 
 function HtmlUpdater() {
   const { t } = useTranslate();
@@ -25,6 +40,7 @@ function HtmlUpdater() {
 function App() {
   return (
     <HashRouter>
+<<<<<<< Updated upstream
       <HtmlUpdater />
       <Routes>
         <Route path="/" element={
@@ -39,6 +55,27 @@ function App() {
         } />
         <Route path="/pentesting" element={<He4vyL0v3 />} />
       </Routes>
+=======
+      <LenisProvider>
+        <HtmlUpdater />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="App">
+                <Header />
+                <Hero />
+                <Marquee text="software engineer // FREELANCER // " />
+                <About />
+                <Projects />
+                <MyContacts />
+                <Footer />
+              </div>
+            }
+          />
+        </Routes>
+      </LenisProvider>
+>>>>>>> Stashed changes
     </HashRouter>
   );
 }

@@ -28,9 +28,7 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
 
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
+      if (e.key === "Escape") onClose();
     };
 
     if (show) {
@@ -57,9 +55,9 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          style={{ margin: "0px", padding: "0px" }}
         >
           <motion.section
+<<<<<<< Updated upstream
             className="modal-content modal-content-scrollable"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -75,15 +73,15 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
               alignItems: "center",
               justifyContent: "center",
             }}
+=======
+            className="gh-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+>>>>>>> Stashed changes
             onClick={(e) => e.stopPropagation()}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.stopPropagation();
-              } else if (e.key === "Escape") {
-                onClose();
-              }
-            }}
           >
+<<<<<<< Updated upstream
             <motion.button
               onClick={onClose}
               aria-label={t("github_stats.close")}
@@ -134,6 +132,76 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
               )}
             </div>
             <div className="spacer-h-150"></div>
+=======
+            <button onClick={onClose} aria-label={t("github_stats.close")} className="gh-close">✕</button>
+            <h2 className="gh-title">{t("github_stats.title")}</h2>
+
+            {loading && <p className="gh-status">{t("github_stats.loading")}</p>}
+            {error && <p className="gh-status gh-error">{error}</p>}
+
+            {stats && (
+              <div className="gh-stats">
+                <div className="gh-stat">
+                  <span className="gh-label">{t("github_stats.stars")}</span>
+                  <span className="gh-value">{stats.totalStars}</span>
+                </div>
+                <div className="gh-stat">
+                  <span className="gh-label">{t("github_stats.repos")}</span>
+                  <span className="gh-value">{stats.totalRepos}</span>
+                </div>
+                <div className="gh-stat">
+                  <span className="gh-label">{t("github_stats.commits")}</span>
+                  <span className="gh-value">
+                    {stats.totalCommits === -1 ? t("github_stats.na") : stats.totalCommits}
+                  </span>
+                </div>
+                <div className="gh-stat">
+                  <span className="gh-label">{t("github_stats.pull_requests")}</span>
+                  <span className="gh-value">{stats.totalPRs}</span>
+                </div>
+                <div className="gh-stat">
+                  <span className="gh-label">{t("github_stats.issues")}</span>
+                  <span className="gh-value">{stats.totalIssues}</span>
+                </div>
+                <div className="gh-stat gh-stat-lang">
+                  {(() => {
+                    const total = stats.languages.reduce((s, l) => s + l.count, 0);
+                    const colors = ["var(--accent)", "var(--red)", "var(--fg)", "#73d0ff"];
+                    const langColors = stats.languages.map((l, i) => ({
+                      ...l,
+                      pct: (l.count / total) * 100,
+                      color: colors[i % colors.length],
+                    }));
+                    return (
+                      <>
+                        <div className="gh-lang-bar">
+                          {langColors.map((l) => (
+                            <div
+                              key={l.name}
+                              className="gh-lang-seg"
+                              style={{ width: `${l.pct}%`, backgroundColor: l.color }}
+                              title={`${l.name}: ${l.pct.toFixed(1)}%`}
+                            />
+                          ))}
+                        </div>
+                        <div className="gh-lang-list">
+                          {langColors.map((l) => (
+                            <span key={l.name} className="gh-lang-tag" style={{ backgroundColor: l.color }}>
+                              {l.name} ({l.count})
+                            </span>
+                          ))}
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+            )}
+
+            <a href="https://github.com/Nighty3098" target="_blank" rel="noopener noreferrer" className="gh-link">
+              Open GitHub
+            </a>
+>>>>>>> Stashed changes
           </motion.section>
         </motion.dialog>
       )}

@@ -106,6 +106,7 @@ function Projects() {
             images={project.images}
             link={project.link}
             id={project.id}
+            index={i}
           />
         ))}
       </div>

@@ -1,11 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslate } from "../context/I18nContext";
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
+import gsap from "gsap";
 
 interface ProjectCardProps {
   title: string;
@@ -14,6 +10,7 @@ interface ProjectCardProps {
   images: string[];
   link: string;
   id: number;
+  index: number;
 }
 
 interface ModalProps {
@@ -29,16 +26,10 @@ interface ModalProps {
 interface CarouselProps {
   images: string[];
   title: string;
-  isModal?: boolean;
   t: (key: string, params?: Record<string, string | number>) => string;
 }
 
-const Carousel: React.FC<CarouselProps> = ({
-  images,
-  title,
-  isModal = false,
-  t,
-}) => {
+const Carousel: React.FC<CarouselProps> = ({ images, title, t }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fadeOut, setFadeOut] = useState<string | null>(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -53,6 +44,7 @@ const Carousel: React.FC<CarouselProps> = ({
     transitioningRef.current = false;
   }, []);
 
+<<<<<<< Updated upstream
   const goToNext = useCallback(() => {
     if (transitioningRef.current) return;
     const idx = currentIndexRef.current;
@@ -76,6 +68,26 @@ const Carousel: React.FC<CarouselProps> = ({
       transitioningRef.current = true;
       setFadeOut(images[idx]);
       setCurrentIndex(index);
+=======
+  const goToNext = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (transitioningRef.current) return;
+      transitioningRef.current = true;
+      setFadeOut(images[currentIndexRef.current]);
+      setCurrentIndex((currentIndexRef.current + 1) % images.length);
+    },
+    [images],
+  );
+
+  const goToPrev = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (transitioningRef.current) return;
+      transitioningRef.current = true;
+      setFadeOut(images[currentIndexRef.current]);
+      setCurrentIndex((currentIndexRef.current - 1 + images.length) % images.length);
+>>>>>>> Stashed changes
     },
     [images],
   );
@@ -84,10 +96,9 @@ const Carousel: React.FC<CarouselProps> = ({
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       if (transitioningRef.current) return;
-      const idx = currentIndexRef.current;
       transitioningRef.current = true;
-      setFadeOut(images[idx]);
-      setCurrentIndex((idx + 1) % images.length);
+      setFadeOut(images[currentIndexRef.current]);
+      setCurrentIndex((currentIndexRef.current + 1) % images.length);
     }, 3000);
   }, [images]);
 
@@ -109,20 +120,16 @@ const Carousel: React.FC<CarouselProps> = ({
 
   return (
     <div
-      className={`carousel-container ${isModal ? "carousel-modal" : "carousel-card"}`}
+      className="carousel-container carousel-modal"
       onMouseEnter={() => setIsAutoPlaying(false)}
-      onMouseLeave={() => {
-        if (images.length > 1) {
-          setIsAutoPlaying(true);
-        }
-      }}
+      onMouseLeave={() => { if (images.length > 1) setIsAutoPlaying(true); }}
     >
       <div className="carousel-wrapper">
         <div className="carousel-image-container">
           <img
             src={images[currentIndex]}
             alt={`${title} - ${currentIndex + 1}`}
-            className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
+            className="carousel-image carousel-image-modal"
             style={{ position: "absolute", inset: 0 }}
           />
           {fadeOut && (
@@ -130,7 +137,7 @@ const Carousel: React.FC<CarouselProps> = ({
               key={fadeOut}
               src={fadeOut}
               alt=""
-              className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
+              className="carousel-image carousel-image-modal"
               style={{ position: "absolute", inset: 0 }}
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
@@ -139,9 +146,9 @@ const Carousel: React.FC<CarouselProps> = ({
             />
           )}
         </div>
-
         {images.length > 1 && (
           <>
+<<<<<<< Updated upstream
             <button
               className="carousel-btn carousel-btn-prev"
               onClick={goToPrev}
@@ -167,6 +174,10 @@ const Carousel: React.FC<CarouselProps> = ({
                 />
               ))}
             </div>
+=======
+            <button className="carousel-btn carousel-btn-prev" onClick={goToPrev} aria-label={t("project_card.prev_image")}>‹</button>
+            <button className="carousel-btn carousel-btn-next" onClick={goToNext} aria-label={t("project_card.next_image")}>›</button>
+>>>>>>> Stashed changes
           </>
         )}
       </div>
@@ -174,24 +185,13 @@ const Carousel: React.FC<CarouselProps> = ({
   );
 };
 
-const Modal: React.FC<ModalProps> = ({
-  show,
-  onClose,
-  title,
-  description,
-  images,
-  link,
-  t,
-}) => {
+const Modal: React.FC<ModalProps> = ({ show, onClose, title, description, images, link, t }) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
+      if (e.key === "Escape") onClose();
     };
-
     if (show) {
       dialogRef.current?.showModal();
       document.addEventListener("keydown", handleEscKey);
@@ -199,7 +199,6 @@ const Modal: React.FC<ModalProps> = ({
     } else {
       dialogRef.current?.close();
     }
-
     return () => {
       document.removeEventListener("keydown", handleEscKey);
       document.body.style.overflow = "unset";
@@ -223,38 +222,14 @@ const Modal: React.FC<ModalProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.stopPropagation();
-              } else if (e.key === "Escape") {
-                onClose();
-              }
-            }}
           >
-            <div className="spacer-h-50 mobile"></div>
-            <motion.button
-              onClick={onClose}
-              aria-label={t("project_card.close")}
-              className="close-button modal-close-button"
-            >
-              ✕
-            </motion.button>
-            <div className="modal-header-container">
-              <h2>{title}</h2>
-            </div>
-            <div className="modal-image-container">
-              <Carousel images={images} title={title} isModal={true} t={t} />
-            </div>
+            <button onClick={onClose} aria-label={t("project_card.close")} className="modal-close-btn">✕</button>
+            <h2>{title}</h2>
+            <Carousel images={images} title={title} t={t} />
             <p>{description}</p>
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="modal-action-link"
-            >
+            <a href={link} target="_blank" rel="noopener noreferrer" className="modal-link">
               {t("project_card.open")}
             </a>
-            <div className="spacer-h-150"></div>
           </motion.section>
         </motion.dialog>
       )}
@@ -269,21 +244,60 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   images,
   link,
   id,
+  index,
 }) => {
   const { t } = useTranslate();
   const [modalOpen, setModalOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+    if (cardRef.current) {
+      gsap.to(cardRef.current, {
+        scale: 0.97,
+        duration: 0.6,
+        ease: "spring(0.6, 100, 8)",
+        overwrite: "auto",
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+    if (cardRef.current) {
+      gsap.to(cardRef.current, {
+        scale: 1,
+        duration: 0.6,
+        ease: "spring(0.6, 100, 8)",
+        overwrite: "auto",
+      });
+    }
+  };
 
   return (
     <>
       <motion.div
         key={id}
+<<<<<<< Updated upstream
         className="project-card project-card-grab"
         onClick={() => setModalOpen(true)}
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
+=======
+        ref={cardRef}
+        className="project-card"
+        onClick={() => setModalOpen(true)}
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+>>>>>>> Stashed changes
         viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.1 }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
+<<<<<<< Updated upstream
         <motion.div
           className="project-image-wrapper"
           initial="rest"
@@ -308,6 +322,38 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             {info}
           </motion.div>
         </motion.div>
+=======
+        <div className="project-image-wrapper">
+          <img
+            src={images[0]}
+            alt={title}
+            className="project-image-preview"
+            loading="lazy"
+          />
+          {images.length > 1 && (
+            <motion.img
+              src={images[1]}
+              alt=""
+              className="project-image-hover"
+              loading="lazy"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: hovered ? 1 : 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            />
+          )}
+          <div className="project-overlay">
+            <div className="project-overlay-content">
+              <span className="project-overlay-tech">
+                {technologies.join(" / ")}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="project-info">
+          <h3 className="project-name">{title}</h3>
+          <p className="project-tagline">{info}</p>
+        </div>
+>>>>>>> Stashed changes
       </motion.div>
 
       <Modal

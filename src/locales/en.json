@@ -1,13 +1,21 @@
 {
   "nav": {
     "projects": "PROJECTS",
+    "about": "ABOUT",
     "contacts": "CONTACTS",
     "github": "GITHUB"
   },
   "welcome": {
+<<<<<<< Updated upstream
     "name": "S.Artem",
     "whoami": "BACKEND DEVELOPER | FREELANCER",
     "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION"
+=======
+    "name": "NIGHTY",
+    "whoami": "DEVELOPER | FREELANCER",
+    "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION",
+    "city": "Novosibirsk"
+>>>>>>> Stashed changes
   },
   "about": {
     "title": "About me",

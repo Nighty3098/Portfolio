@@ -1,6 +1,16 @@
+<<<<<<< Updated upstream
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslate } from "../context/I18nContext";
+=======
+import { useRef, useEffect } from "react";
+import { useTranslate } from "../context/I18nContext";
+import { useSectionReveal } from "../hooks/useSectionReveal";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+>>>>>>> Stashed changes
 
 type Contact = {
   readonly id: number;
@@ -62,6 +72,7 @@ const resources: Resource[] = [
   },
 ];
 
+<<<<<<< Updated upstream
 type ContactCardProps = Readonly<{
   contact: Contact | Resource;
   t: (key: string, params?: Record<string, string | number>) => string;
@@ -128,6 +139,59 @@ function MyContacts() {
             ))}
           </motion.div>
         </motion.div>
+=======
+  useEffect(() => {
+    const container = ref.current;
+    if (!container) return;
+
+    const cards = container.querySelectorAll<HTMLElement>(".contacts-item");
+    if (cards.length === 0) return;
+
+    gsap.set(cards, {
+      clipPath: "inset(0 50% 0 50%)",
+      y: 40,
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 80%",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
+    tl.to(cards, {
+      clipPath: "inset(0 0% 0 0%)",
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: { amount: 0.3, from: "start" },
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, [locale]);
+
+  return (
+    <div id="my-contacts" ref={ref} className="content contacts-page-wrapper">
+      <h2 className="contacts-title" data-reveal="letters">
+        {t("contacts.title_prefix")} {t("contacts.title_suffix")}
+      </h2>
+      <div className="contacts-grid">
+        {contacts.map((contact) => (
+          <a
+            key={contact.id}
+            href={contact.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contacts-item"
+          >
+            <span className="contacts-item-name">{contact.name}</span>
+            <span className="contacts-item-handle">{contact.handle}</span>
+          </a>
+        ))}
+>>>>>>> Stashed changes
       </div>
     </div>
   );
