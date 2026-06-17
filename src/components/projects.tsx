@@ -107,6 +107,7 @@ function Projects() {
             link={project.link}
             id={project.id}
             index={i}
+            technologies={project.technologies}
           />
         ))}
       </div>

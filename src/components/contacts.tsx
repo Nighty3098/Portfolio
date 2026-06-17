@@ -1,8 +1,3 @@
-<<<<<<< Updated upstream
-import React from "react";
-import { motion } from "framer-motion";
-import { useTranslate } from "../context/I18nContext";
-=======
 import { useRef, useEffect } from "react";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
@@ -10,136 +5,98 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
->>>>>>> Stashed changes
 
-type Contact = {
-  readonly id: number;
-  readonly name: string;
-  readonly link: string;
-};
-
-const contacts: Contact[] = [
+const contacts = [
   {
     id: 1,
     name: "Telegram",
+    handle: "@Night3098",
     link: "https://t.me/Night3098",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M21.5 2.5L2.5 10.5L10.5 13.5" />
+        <path d="M10.5 13.5L14.5 21.5L21.5 2.5" />
+        <path d="M10.5 13.5L16 8" />
+      </svg>
+    ),
   },
   {
     id: 2,
     name: "GMail",
-    link: "https://mailto:night3098games@gmail.com",
+    handle: "night3098games@gmail.com",
+    link: "mailto:night3098games@gmail.com",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="M2 4l10 8 10-8" />
+      </svg>
+    ),
   },
   {
     id: 3,
     name: "Reddit",
+    handle: "u/DEVELOPER0x31",
     link: "https://www.reddit.com/user/DEVELOPER0x31/",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="9" cy="11" r="1.5" fill="currentColor" stroke="none" />
+        <circle cx="15" cy="11" r="1.5" fill="currentColor" stroke="none" />
+        <path d="M8 15c0 0 1.5 2 4 2s4-2 4-2" />
+      </svg>
+    ),
   },
   {
     id: 4,
     name: "Discord",
+    handle: "#9707",
     link: "https://discord.gg/#9707/",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M8 5C5.5 5 4 6.5 4 9v6c0 2.5 1.5 4 4 4l1-2" />
+        <path d="M16 5c2.5 0 4 1.5 4 4v6c0 2.5-1.5 4-4 4l-1-2" />
+        <circle cx="9" cy="12" r="1" fill="currentColor" stroke="none" />
+        <circle cx="15" cy="12" r="1" fill="currentColor" stroke="none" />
+        <path d="M9 17c1.5 1 4.5 1 6 0" />
+      </svg>
+    ),
   },
 ];
-
-type Resource = {
-  readonly id: number;
-  readonly name: string;
-  readonly nameKey?: string;
-  readonly link: string;
-};
-
-const resources: Resource[] = [
-  {
-    id: 0,
-    name: "KWork",
-    link: "https://kwork.ru/user/nighty_3098",
-  },
-  {
-    id: 1,
-    name: "GitHub",
-    link: "https://github.com/Nighty3098",
-  },
-  {
-    id: 2,
-    name: "DevTo",
-    link: "https://dev.to/nighty3098",
-  },
-  {
-    id: 3,
-    name: "Tg Channel",
-    nameKey: "contacts.tg_channel",
-    link: "https://t.me/W2N3098",
-  },
-];
-
-<<<<<<< Updated upstream
-type ContactCardProps = Readonly<{
-  contact: Contact | Resource;
-  t: (key: string, params?: Record<string, string | number>) => string;
-}>;
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 },
-};
-
-function ContactCard({ contact, t }: ContactCardProps) {
-  const displayName = "nameKey" in contact && contact.nameKey ? t(contact.nameKey) : contact.name;
-  return (
-    <motion.div
-      className="contact-card-wrapper"
-      variants={itemVariants}
-    >
-      <motion.a href={contact.link} target="_blank" className="contact-link">
-        | {displayName}
-      </motion.a>
-    </motion.div>
-  );
-}
 
 function MyContacts() {
-  const { t } = useTranslate();
-  return (
-    <div
-      id="my-contacts"
-      className="content contacts-page-wrapper"
-    >
-      <div className="content-block contacts-block">
-        <motion.h2
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-        >
-          {t("contacts.title")}
-        </motion.h2>
-        <div className="spacer-h-100"></div>
-        <motion.div
-          className="contacts-tiling contacts-tiling-inner"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.div className="contacts-list contacts-list-half">
-            {contacts.map((contact) => (
-              <ContactCard key={contact.id} contact={contact} t={t} />
-            ))}
-          </motion.div>
-          <motion.div className="contacts-list contacts-list-half">
-            {resources.map((resource) => (
-              <ContactCard key={resource.id} contact={resource} t={t} />
-            ))}
-          </motion.div>
-        </motion.div>
-=======
+  const { t, locale } = useTranslate();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useSectionReveal(ref, [locale]);
+
   useEffect(() => {
     const container = ref.current;
     if (!container) return;
@@ -191,7 +148,6 @@ function MyContacts() {
             <span className="contacts-item-handle">{contact.handle}</span>
           </a>
         ))}
->>>>>>> Stashed changes
       </div>
     </div>
   );

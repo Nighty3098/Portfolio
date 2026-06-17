@@ -58,6 +58,8 @@ function He4vyL0v3() {
             images={project.images}
             link={project.link}
             id={project.id}
+            index={i}
+            technologies={[]}
           />
         ))}
       </div>

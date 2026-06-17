@@ -57,82 +57,12 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
           onClick={onClose}
         >
           <motion.section
-<<<<<<< Updated upstream
-            className="modal-content modal-content-scrollable"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              margin: "0px",
-              height: "100%",
-              width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))",
-              padding: "var(--spacing-xl)",
-              display: "flex",
-              flexDirection: "column",
-              alignContent: "center",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-=======
             className="gh-modal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
->>>>>>> Stashed changes
             onClick={(e) => e.stopPropagation()}
           >
-<<<<<<< Updated upstream
-            <motion.button
-              onClick={onClose}
-              aria-label={t("github_stats.close")}
-              className="close-button modal-close-button-alt"
-            >
-              ✕
-            </motion.button>
-            <div className="spacer-h-50"></div>
-            <h2>{t("github_stats.title")}</h2>
-            <div className="modal-stats-container">
-              {loading && <p className="stat-loading">{t("github_stats.loading")}</p>}
-              {error && <p className="stat-error">{error}</p>}
-              {stats && (
-                <div className="stats-grid">
-                  <div className="stat-item">
-                    <span className="stat-value">{stats.totalStars}</span>
-                    <span className="stat-label">{t("github_stats.stars")}</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">{stats.totalRepos}</span>
-                    <span className="stat-label">{t("github_stats.repos")}</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">
-                      {stats.totalCommits === -1 ? t("github_stats.na") : stats.totalCommits}
-                    </span>
-                    <span className="stat-label">{t("github_stats.commits")}</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">{stats.totalPRs}</span>
-                    <span className="stat-label">{t("github_stats.pull_requests")}</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">{stats.totalIssues}</span>
-                    <span className="stat-label">{t("github_stats.issues")}</span>
-                  </div>
-                  <div className="stat-item stat-item-languages">
-                    <span className="stat-label">{t("github_stats.languages")}</span>
-                    <div className="stat-languages">
-                      {stats.languages.map((l) => (
-                        <span key={l.name} className="stat-language-tag">
-                          {l.name} ({l.count})
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="spacer-h-150"></div>
-=======
             <button onClick={onClose} aria-label={t("github_stats.close")} className="gh-close">✕</button>
             <h2 className="gh-title">{t("github_stats.title")}</h2>
 
@@ -201,7 +131,6 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
             <a href="https://github.com/Nighty3098" target="_blank" rel="noopener noreferrer" className="gh-link">
               Open GitHub
             </a>
->>>>>>> Stashed changes
           </motion.section>
         </motion.dialog>
       )}

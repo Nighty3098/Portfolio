@@ -1,25 +1,5 @@
-<<<<<<< Updated upstream
-@import url("https://fonts.googleapis.com/css2?family=Momo+Signature&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Glitch&family=Share+Tech&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bad+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@300..700&family=Space+Grotesk:wght@300..700&display=swap");
 
-/*
-
-Momo Signature
-Montserrat
-Roboto
-Rubik Glitch
-Share Tech
-JetBrains Mono
-Bad Script
-
-*/
-=======
-@import url("https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Truculenta:opsz,wght@12..72,100..900&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap");
->>>>>>> Stashed changes
-
-@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Space+Grotesk:wght@300..700&family=Teko:wght@300..700&display=swap");
 :root {
   --border-radius: 15px;
   --border-radius-l: 25px;
@@ -29,15 +9,6 @@ Bad Script
   --spacing-l: 20px;
   --spacing-xl: 60px;
   --spacing-xxl: 80px;
-<<<<<<< Updated upstream
-  --bg-2: #181c26;
-  --bg: #242936;
-  --tr: rgba(36, 41, 54, 0.7);
-  --fg: #8592a8;
-  --accent: #73d0ff;
-  --red: #f28779;
-  --shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
-=======
   --bg: #111111;
   --bg-2: #12121a;
   --bg-3: #1a1a28;
@@ -62,20 +33,14 @@ Bad Script
   --text-stat-label: 1rem;
   --max-w: 1200px;
   --header-h: 72px;
->>>>>>> Stashed changes
 }
 
 * {
   color: var(--fg);
-  font-family: "JetBrains Mono", monospace;
-  font-style: italic;
   outline: none;
   font-display: swap;
-  font-size: 1rem;
-  font-weight: 600;
-  -webkit-font-smoothing: antialiased;
   cursor: default;
-  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
   border: none;
 }
 
@@ -94,6 +59,10 @@ body {
   align-content: center;
   justify-content: flex-start;
   scroll-behavior: smooth;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: var(--text-base);
+  font-weight: 600;
+  font-optical-sizing: auto;
 }
 
 .App {
@@ -227,72 +196,6 @@ body {
   gap: var(--spacing-xl);
 }
 
-.welcome-content h1 {
-  font-size: 85px;
-  font-family: "Bad Script", sans-serif;
-  padding: 0px;
-  margin: 0px;
-  letter-spacing: 20px;
-  font-weight: 200;
-}
-
-.welcome-content p {
-  width: 100%;
-  line-height: 3rem;
-  letter-spacing: 3px;
-  text-align: left;
-  padding: 0px;
-  margin: 0px;
-  height: auto;
-}
-
-.underline {
-  height: 4px;
-  border-radius: 2px;
-  background-color: var(--fg);
-  width: 100%;
-}
-
-.avatar-image {
-  flex: 1;
-  min-width: 240px;
-  max-width: 300px;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
-  box-shadow: var(--shadow-lg);
-  border: 3px solid var(--fg);
-  transition: border-radius 0.4s ease;
-}
-
-.avatar-image:hover {
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-}
-
-.image {
-  flex: 1;
-  min-width: 240px;
-  max-width: 400px;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  box-shadow: var(--shadow-lg);
-}
-
-.welcome-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  align-content: flex-start;
-  justify-content: flex-end;
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-  gap: 0px;
-}
-
-<<<<<<< Updated upstream
-.contacts-block {
-=======
 /* === CONTACTS === */
 
 .contacts-page-wrapper {
@@ -301,14 +204,11 @@ body {
   width: min(96vw, var(--max-w));
   box-sizing: border-box;
   margin: 0 auto;
->>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
   justify-content: center;
-<<<<<<< Updated upstream
-=======
   gap: var(--spacing-xxl);
 }
 
@@ -327,54 +227,9 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
->>>>>>> Stashed changes
-  width: 100%;
-  height: 100vh;
-}
-
-<<<<<<< Updated upstream
-.contacts-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  align-content: center;
-  justify-content: flex-start;
-  text-align: left;
-  gap: 0.1rem;
-  padding: 0px;
-  margin: 0px;
-  height: 100%;
   width: 100%;
 }
 
-.contact-link {
-  text-decoration: none;
-  line-height: 1rem;
-  letter-spacing: 6px;
-  padding: var(--spacing-m);
-  margin: 0px;
-  width: calc(100% - var(--spacing-m) - var(--spacing-m));
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(to right, var(--fg) 0%, var(--fg) 100%);
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: 0% 100%;
-  transition: all 0.4s ease-in-out;
-  color: inherit;
-}
-
-.contacts-tiling {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  align-content: center;
-  padding: 0px;
-  margin: 0px;
-  width: 100%;
-  gap: var(--spacing-l);
-=======
 .contacts-item {
   text-decoration: none;
   display: flex;
@@ -456,12 +311,12 @@ body {
 
   .contacts-item {
     padding: var(--spacing-m);
+    min-height: 60px;
   }
 
   .contacts-item-name {
     font-size: clamp(1.5rem, 6vw, 2.5rem);
   }
->>>>>>> Stashed changes
 }
 
 .content {
@@ -496,17 +351,10 @@ body {
   text-align: left;
   padding: 0px;
   margin: 0px;
-<<<<<<< Updated upstream
-  font-size: 3.5rem;
-  line-height: 6rem;
-  font-family: "Bad Script", sans-serif;
-  letter-spacing: 4px;
-=======
   font-size: var(--text-section-title);
   line-height: 1.1;
   font-family: "Teko", sans-serif;
   text-transform: uppercase;
->>>>>>> Stashed changes
 }
 
 .about-block {
@@ -600,7 +448,6 @@ body {
 .review-card-text {
   margin: 0;
   line-height: 1.8rem;
-  font-style: italic;
 }
 
 .reviews-dots {
@@ -626,48 +473,9 @@ body {
   background-color: var(--fg);
 }
 
-.reviews-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.review-card {
-  padding: var(--spacing-l);
-  box-sizing: border-box;
-  text-wrap: pretty;
-  background-color: var(--bg);
-  border-radius: var(--border-radius);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-m);
-}
-
-.review-card-name {
-  margin: 0;
-  font-size: 1.1rem;
-  line-height: 2.5rem;
-  letter-spacing: 2px;
-  color: var(--fg);
-}
-
 .review-card-text {
   margin: 0;
   line-height: 1.5rem;
-  font-style: italic;
-}
-
-.contact-link:hover {
-  background-size: 100% 100%;
-  color: var(--bg);
-}
-
-#my-contacts {
-  background-color: var(--bg-2);
 }
 
 .projects-grid {
@@ -675,26 +483,6 @@ body {
   grid-template-columns: 1fr;
   gap: 1.5rem;
   width: 100%;
-<<<<<<< Updated upstream
-  gap: var(--spacing-xl);
-  padding: 0;
-  margin: 0;
-}
-
-.project-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 100%;
-  color: inherit;
-  overflow: hidden;
-  gap: var(--spacing-l);
-  aspect-ratio: 20/12;
-  cursor: zoom-in;
-  border-radius: var(--border-radius);
-=======
 }
 
 @media (min-width: 768px) {
@@ -702,22 +490,15 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
->>>>>>> Stashed changes
 }
 
 .project-card {
   position: relative;
   cursor: pointer;
-  border: 1px solid var(--bg-3);
-  transition: border-color 0.3s ease;
-  padding: var(--spacing-l);
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.project-card:hover {
-  border-color: var(--accent);
+  gap: 0.5rem;
 }
 
 .project-card .project-image-wrapper {
@@ -725,9 +506,7 @@ body {
   overflow: hidden;
   aspect-ratio: 16 / 10;
   background: var(--bg-2);
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 
 .project-image-preview {
   position: absolute;
@@ -735,154 +514,23 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition:
-    filter 0.5s ease,
-    transform 0.5s ease;
-}
-
-<<<<<<< Updated upstream
-.project-description-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--bg-2);
-  color: var(--fg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  text-align: center;
-  border-radius: var(--border-radius);
-  pointer-events: none;
-  align-content: center;
-  text-wrap: pretty;
-  flex-direction: column;
-  gap: var(--spacing-xl);
-  line-height: 2rem;
-}
-
-.project-description-overlay a {
-  text-decoration: none;
-}
-
-.project-title {
-  margin: 0.5rem 0 0 0;
-  text-align: center;
-  user-select: none;
-}
-
-.project-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  justify-content: flex-end;
-  width: auto;
-  height: auto;
-  gap: var(--spacing-m);
-}
-
-.project-header h3 {
-  position: absolute;
-  padding: 0.6rem;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  text-align: center;
-  background-color: var(--bg-2);
-  border-radius: 5px;
-  margin: 0px;
-  margin-bottom: var(--spacing-m);
-  z-index: 100;
-  letter-spacing: 2px;
-}
-
-.heavylove_tiling {
-  height: 100vh;
-  min-height: 100vh;
-  width: 100%;
-}
-
-.heavylove_tiling h1 {
-  font-family: "Momo Signature", sans-serif;
-  width: 100%;
-  text-align: center;
-  font-size: 17vw;
-  padding: 0px;
-  margin: 0px;
-=======
-.project-image-hover {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.project-card:hover .project-image-preview {
-  filter: blur(4px);
-  transform: scale(1.05);
-}
-
-.project-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0);
-  transition: background 0.4s ease;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.project-card:hover .project-overlay {
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.project-overlay-content {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.project-card:hover .project-overlay-content {
-  opacity: 1;
-}
-
-.project-overlay-tech {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #fff;
-  opacity: 0.8;
 }
 
 .project-info {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.1rem;
+  padding: 0 var(--spacing-xs);
 }
 
 .project-name {
   font-family: "Teko", sans-serif;
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--fg);
   margin: 0;
-}
-
-.project-tagline {
-  font-size: 0.85rem;
-  color: var(--fg-2);
-  margin: 0;
-  line-height: 1.5;
->>>>>>> Stashed changes
+  font-weight: 500;
 }
 
 .modal {
@@ -939,11 +587,6 @@ body {
   color: var(--fg);
 }
 
-<<<<<<< Updated upstream
-.modal-content h2,
-.modal-content p {
-  text-align: center;
-=======
 .modal-content h2 {
   font-family: "Teko", sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
@@ -961,7 +604,6 @@ body {
   color: var(--fg-2);
   font-size: 0.9rem;
   margin: 0;
->>>>>>> Stashed changes
 }
 
 .modal-link {
@@ -980,23 +622,9 @@ body {
     color 0.2s;
 }
 
-<<<<<<< Updated upstream
-.modal-content button {
-  background-color: transparent;
-  color: var(--fg);
-  height: 40px;
-  aspect-ratio: 1/1;
-  border: none;
-}
-
-.close-button {
-  font-size: large;
-  color: var(--red);
-=======
 .modal-link:hover {
   background: var(--accent);
   color: var(--bg);
->>>>>>> Stashed changes
 }
 
 .carousel-container {
@@ -1152,76 +780,6 @@ body {
   height: auto;
 }
 
-.about-section-container {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  gap: var(--spacing-l);
-  padding: 0px;
-  margin: 0px;
-  width: 100%;
-}
-
-.about-section-wrapper {
-  height: auto;
-  min-height: 100vh;
-  padding: var(--spacing-xl);
-  width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
-}
-
-.spacer-h-100 {
-  height: 100px;
-}
-
-.spacer-h-150 {
-  height: 150px;
-  min-height: 150px;
-  width: 100%;
-  background-color: transparent;
-}
-
-.spacer-h-50 {
-  height: 50px;
-  min-height: 50px;
-  width: 100%;
-  background-color: transparent;
-}
-
-.contact-card-wrapper {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-
-.contacts-page-wrapper {
-  height: 100vh;
-  padding: var(--spacing-xl);
-  width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
-  margin: 0px;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--bg-2);
-}
-
-.contacts-tiling-inner {
-  width: 100%;
-  display: flex;
-  gap: var(--spacing-m);
-}
-
-.contacts-list-half {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-s);
-}
-
 .projects-page-wrapper {
   height: auto;
   padding: var(--spacing-xl);
@@ -1259,72 +817,19 @@ body {
   overflow-y: auto;
 }
 
-<<<<<<< Updated upstream
-.modal-close-button {
-  color: var(--red);
-  font-size: 30px;
-  height: 40px;
-  width: 100%;
-  text-align: right;
-}
-
-.modal-close-button-alt {
-  color: var(--red);
-  font-size: 30px;
-  height: 40px;
-  width: 100%;
-  text-align: right;
-}
-
-.modal-header-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
-
-.modal-header-container h2 {
-  width: 100%;
-  text-align: center;
-}
-
-.modal-image-container {
-  width: 100%;
-  max-width: 800px;
-}
-
-.modal-action-link {
-  background-color: var(--bg);
-  padding: var(--spacing-m);
-  border-radius: 5px;
-  width: 200px;
-  text-align: center;
-}
-
-.modal-stats-container {
-  width: 100%;
-=======
 /* === GITHUB STATS MODAL === */
 
 .gh-modal {
->>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-l);
-<<<<<<< Updated upstream
-  width: 100%;
-  max-width: 700px;
-=======
   width: min(92vw, var(--max-w));
   max-height: 90vh;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
   box-sizing: border-box;
->>>>>>> Stashed changes
 }
 
 .gh-close {
@@ -1342,13 +847,7 @@ body {
   padding: 0;
 }
 
-<<<<<<< Updated upstream
-.stat-value {
-  font-size: 2rem;
-  font-weight: bold;
-=======
 .gh-close:hover {
->>>>>>> Stashed changes
   color: var(--fg);
 }
 
@@ -1363,17 +862,12 @@ body {
   line-height: 1;
 }
 
-<<<<<<< Updated upstream
-.stat-item-languages {
-  grid-column: 1 / -1;
-=======
 .gh-status {
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.75rem;
   letter-spacing: 3px;
   color: var(--fg-2);
   margin: 0;
->>>>>>> Stashed changes
 }
 
 .gh-error {
@@ -1382,23 +876,6 @@ body {
 
 .gh-stats {
   display: flex;
-<<<<<<< Updated upstream
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-  justify-content: center;
-  margin-top: var(--spacing-xs);
-}
-
-.stat-language-tag {
-  background-color: var(--bg-2);
-  padding: 4px 12px;
-  border-radius: var(--border-radius);
-  letter-spacing: 1px;
-}
-
-.stat-loading,
-.stat-error {
-=======
   flex-direction: column;
   gap: 1px;
   width: 100%;
@@ -1471,7 +948,6 @@ body {
 .gh-link {
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.7rem;
->>>>>>> Stashed changes
   letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
@@ -1526,11 +1002,6 @@ body {
   display: none;
 }
 
-<<<<<<< Updated upstream
-@media (max-width: 1000px) {
-  * {
-    font-size: 0.9rem;
-=======
 /* === HEADER === */
 
 .header {
@@ -1662,6 +1133,12 @@ body {
   letter-spacing: 2px;
   text-decoration: none;
   display: inline-block;
+  border: none;
+  font-style: initial;
+}
+
+.menu-nav-item:visited {
+  color: var(--fg);
 }
 
 .menu-nav-item:hover {
@@ -1815,11 +1292,39 @@ body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.3);
   font-family: "Space Grotesk", sans-serif;
   text-transform: uppercase;
+}
+
+/* === MARQUEE === */
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  padding: var(--spacing-l) 0;
+  user-select: none;
+}
+
+.marquee-track {
+  display: flex;
+  width: fit-content;
+  will-change: transform;
+}
+
+.marquee-item {
+  font-family: "Teko", sans-serif;
+  font-size: var(--text-heavy-title);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--fg);
+  opacity: 0.06;
+  line-height: 1;
+  padding: 0 var(--spacing-m);
+  flex-shrink: 0;
 }
 
 /* === ABOUT === */
@@ -1847,7 +1352,6 @@ body {
 
 .about-header h2 .char {
   display: inline-block;
-  overflow: hidden;
   will-change: transform;
 }
 
@@ -1870,7 +1374,6 @@ body {
   width: 100%;
   aspect-ratio: 3/4;
   overflow: hidden;
-  border: 2px solid var(--fg);
   background: var(--bg-2);
 }
 
@@ -1922,7 +1425,6 @@ body {
 .about-text-col p .word,
 .about-text-col p .char {
   display: inline-block;
-  overflow: hidden;
   will-change: transform;
 }
 
@@ -1946,37 +1448,22 @@ body {
 }
 /* === UNIFIED SECTION WIDTHS === */
 
-.about-section-wrapper,
-.projects-page-wrapper,
-.reviews-block,
-.contacts-block {
+.content {
   width: min(96vw, var(--max-w));
   box-sizing: border-box;
   padding: var(--spacing-xl);
 }
 
 @media (max-width: 767px) {
-  * {
+  body {
     font-size: var(--text-base);
->>>>>>> Stashed changes
   }
 
   .mobile {
     display: flex;
   }
 
-<<<<<<< Updated upstream
-  .cat-svg-container,
-  .cat-svg-image {
-    height: 200px;
-    width: 200px;
-  }
-
-  .welcome-content h1 {
-    font-size: 50px;
-=======
   .about-section,
-  .about-section-wrapper,
   .projects-page-wrapper,
   .reviews-page-wrapper,
   .contacts-page-wrapper {
@@ -1985,22 +1472,12 @@ body {
   }
 
   .about-section,
-  .about-section-wrapper,
   .projects-page-wrapper,
   .contacts-page-wrapper {
     padding: var(--spacing-xl);
   }
 
   .reviews-page-wrapper {
-    padding: 0;
-  }
-
-  .reviews-block,
-  .contacts-block {
-    width: 100%;
-  }
-
-  .contacts-block {
     padding: 0;
   }
 
@@ -2011,57 +1488,24 @@ body {
 
   .spacer-h-100 {
     height: 30px;
->>>>>>> Stashed changes
   }
 
   .about-grid {
     grid-template-columns: 1fr;
   }
 
-<<<<<<< Updated upstream
-  .avatar-image {
-    width: 250px;
-    max-width: 250px;
-  }
-
-  .navigation {
-    align-items: center;
-    padding-bottom: 0px;
-    width: 100%;
-  }
-
-  .welcome-tiling {
-    flex-direction: column;
-  }
-
-  .welcome-content h1 {
-    font-size: 50px;
-    letter-spacing: 10px;
-  }
-
-  .welcome-content p {
-    line-height: 1.5rem;
-=======
   .about-image-col {
     max-width: 240px;
     margin: 0 auto;
->>>>>>> Stashed changes
   }
 
   :root {
     --spacing-xl: 40px;
-<<<<<<< Updated upstream
-=======
     --spacing-xxl: 40px;
     --text-base: 0.9rem;
     --text-hero-name: clamp(3.5rem, 20vw, 10rem);
     --text-hero-subtitle: 0.8rem;
     --text-section-title: 3rem;
->>>>>>> Stashed changes
-  }
-
-  .project-description-overlay {
-    justify-content: flex-start;
   }
 
   .modal-content {
@@ -2072,107 +1516,5 @@ body {
   .modal-content h2,
   .modal-content p {
     text-align: left;
-  }
-<<<<<<< Updated upstream
-
-  .navigation {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    align-content: center;
-    text-align: right;
-    justify-content: flex-start;
-    width: 100%;
-  }
-
-  .underline {
-    display: none;
-  }
-
-  .heavylove_tiling {
-    display: flex;
-    width: 100vw;
-  }
-
-  .projects-grid {
-    flex-direction: column;
-    padding: var(--spacing-m);
-    gap: var(--spacing-m);
-  }
-  .project-card {
-    width: 100%;
-    max-width: none;
-    box-shadow: none;
-    background-color: var(--bg-2);
-  }
-  .project-image-wrapper {
-    border-radius: 0;
-  }
-  .project-header h3 {
-    margin-bottom: 2px;
-  }
-=======
->>>>>>> Stashed changes
-}
-
-@media (max-width: 1200px) {
-  .contacts-tiling {
-    flex-direction: row;
-  }
-
-  .content-block {
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: var(--spacing-xl);
-  }
-
-  .content-block h2 {
-    line-height: 4rem;
-    font-size: 2.5rem;
-    font-weight: bolder;
-  }
-
-  .contact-link {
-    line-height: 1.5rem;
-    letter-spacing: 2px;
-  }
-
-  .work-block h3 {
-    line-height: 1.5rem;
-  }
-
-  .content-block .avatar-image {
-    width: 150px;
-    min-width: 40px;
-    max-width: 150px;
-  }
-
-  .about-block {
-    justify-content: center;
-  }
-}
-
-@media (min-width: 1000px) {
-  .avatar-image {
-    max-width: 400px;
-  }
-}
-
-@media (min-width: 1700px) {
-  .avatar-image {
-    max-width: 400px;
-  }
-
-  .welcome-content h1 {
-    font-size: 150px;
-  }
-
-  .welcome-content p {
-    font-size: 2rem;
-    line-height: 2rem;
-  }
-
-  .about-block p {
-    font-size: large;
   }
 }
