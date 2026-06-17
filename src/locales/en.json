@@ -1,32 +1,38 @@
 {
   "nav": {
     "projects": "PROJECTS",
+    "about": "ABOUT",
     "contacts": "CONTACTS",
     "github": "GITHUB"
   },
   "welcome": {
-    "name": "ARTEM",
+    "name": "NIGHTY",
     "whoami": "DEVELOPER | FREELANCER",
     "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION",
     "city": "Novosibirsk"
   },
   "about": {
+    "title": "About me",
     "title_prefix": "About",
     "title_suffix": "me",
+    "resume": "RESUME",
     "p1": "Hello! I am Artem.",
     "p2": "I am 19 years old, and I spent 5 of them at the SAIKT Programming Academy, and now I am studying at SibSUTIS University.",
     "p3": "I strive to grow in IT and work on large-scale projects that improve people's lives.",
-    "p4": "You can check out my open source projects on GitHub and in my organizations.",
-    "resume": "Resume"
+    "p4": "You can check out my open source projects on GitHub and in my organizations."
   },
   "projects": {
-    "title_prefix": "My",
-    "title_suffix": "projects",
+    "title": "My projects",
     "items": [
       {
-        "title": "GhostlyGrabber",
+        "title": "Ghostly Grabber",
         "info": "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
         "description": "OSINT is a tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication"
+      },
+      {
+        "title": "Crimson",
+        "info": "Crimson is a remote access tool written in C++ with the ability to build for windows and linux",
+        "description": "Crimson is a remote access tool with the ability to create payloads for windows and linux"
       },
       {
         "title": "The OWL",
@@ -44,24 +50,19 @@
         "description": "IPSA is a Telegram bot designed to provide users with stock market insights, including price predictions, news parsing, and fundamental analysis. Built using the Pyrogram library, the bot integrates with a deep learning model for stock price forecasting, a news parser for real-time market updates, and a database for user and stock management. The bot supports user authentication, stock tracking, and admin controls, with a token-based system for accessing premium features. The project leverages TensorFlow for stock price predictions, yfinance for financial data, and BeautifulSoup for web scraping. It includes asynchronous news parsing, real-time notifications, and report generation in Excel format."
       },
       {
-        "title": "IPSA AI MODEL",
+        "title": "IPSA MODEL",
         "info": "Neural network model for IPSA",
         "description": "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score."
       },
       {
-        "title": "PrettyProfile",
+        "title": "Pretty Profile",
         "info": "Generate a pretty art style profile card from your GitHub data!",
         "description": "Pretty Banner is a Next.js-based service for generating beautiful, customizable SVG banners with GitHub profile statistics. It is designed for use in GitHub READMEs, personal websites, and dashboards, providing visually appealing, themeable, and informative profile cards."
       },
       {
-        "title": "LogInsight",
+        "title": "Log Insight",
         "info": "Program for analyzing log files and detecting anomalies in program operation",
         "description": "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli."
-      },
-      {
-        "title": "ProxySniffer",
-        "info": "A simple program for obtaining and testing working proxy sheets [ HTTP - HTTPS - SOCKS4 - SOCKS5 - VLESS - TROJAN ]",
-        "description": "Features:\n- Load proxy lists from multiple sources\n- Asynchronous multi-threaded testing\n- Supported protocols: HTTP, HTTPS, SOCKS4, SOCKS5, VLESS, VMESS, Trojan, Hysteria2, ShadowSocks, MTProto\n- Automatic detection of CPU core count\n- Output working proxies sorted by speed.\n- Save results to a file"
       }
     ]
   },
@@ -74,10 +75,6 @@
   },
   "reviews": {
     "title": "Customer Reviews",
-    "title_prefix": "Customer",
-    "title_suffix": "Reviews",
-    "prev": "Previous review",
-    "next": "Next review",
     "items": [
       {
         "name": "eyusmain",
@@ -110,17 +107,18 @@
     ]
   },
   "contacts": {
+    "title": "My contacts",
     "title_prefix": "My",
     "title_suffix": "contacts",
     "tg_channel": "Tg Channel"
   },
   "github_stats": {
-    "title": "GitHub",
+    "title": "GitHub Stats",
     "loading": "Loading...",
-    "stars": "Stars",
+    "stars": "Total Stars",
     "repos": "Repositories",
     "commits": "Commits",
-    "pull_requests": "PR's",
+    "pull_requests": "Pull Requests",
     "issues": "Issues",
     "languages": "Languages",
     "na": "N/A",

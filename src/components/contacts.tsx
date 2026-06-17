@@ -1,6 +1,10 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const contacts = [
   {
@@ -93,13 +97,44 @@ function MyContacts() {
 
   useSectionReveal(ref, [locale]);
 
+  useEffect(() => {
+    const container = ref.current;
+    if (!container) return;
+
+    const cards = container.querySelectorAll<HTMLElement>(".contacts-item");
+    if (cards.length === 0) return;
+
+    gsap.set(cards, {
+      clipPath: "inset(0 50% 0 50%)",
+      y: 40,
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 80%",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
+    tl.to(cards, {
+      clipPath: "inset(0 0% 0 0%)",
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: { amount: 0.3, from: "start" },
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, [locale]);
+
   return (
-    <div id="my-contacts" ref={ref} className="content contacts-page-wrapper">
-      <div className="content-block contacts-block">
-        <h2 data-reveal="letters">
-          {t("contacts.title_prefix")} {t("contacts.title_suffix")}
-        </h2>
-      </div>
+    <div id="my-contacts" ref={ref} key={locale} className="content contacts-page-wrapper">
+      <h2 className="contacts-title" data-reveal="letters">
+        {t("contacts.title_prefix")} {t("contacts.title_suffix")}
+      </h2>
       <div className="contacts-grid">
         {contacts.map((contact) => (
           <a
@@ -107,13 +142,10 @@ function MyContacts() {
             href={contact.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-item"
+            className="contacts-item"
           >
-            <div className="contact-item-icon">{contact.icon}</div>
-            <div className="contact-item-info">
-              <span className="contact-item-name">{contact.name}</span>
-              <span className="contact-item-handle">{contact.handle}</span>
-            </div>
+            <span className="contacts-item-name">{contact.name}</span>
+            <span className="contacts-item-handle">{contact.handle}</span>
           </a>
         ))}
       </div>

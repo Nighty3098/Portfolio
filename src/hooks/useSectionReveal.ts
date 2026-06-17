@@ -48,6 +48,12 @@ function initElement(el: HTMLElement): ScrollAnimation | null {
     case 'letters-random':
       Object.assign(vars, { duration: 0.01, ease: 'power1.out', stagger: { amount: 0.4, from: 'random' } });
       break;
+    case 'words-pop':
+      Object.assign(vars, { scale: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.3 } });
+      break;
+    case 'words-fade':
+      Object.assign(vars, { y: 12, duration: 0.7, ease: 'power2.out', stagger: { amount: 0.35 } });
+      break;
   }
 
   const tl = gsap.timeline({
@@ -70,7 +76,6 @@ function cleanupElement(el: HTMLElement) {
   if (!anim) return;
   if (anim.tl.scrollTrigger) anim.tl.scrollTrigger.kill();
   anim.tl.kill();
-  try { anim.split.revert(); } catch {}
   active.delete(el);
 }
 

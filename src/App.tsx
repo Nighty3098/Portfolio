@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import "./App.css";
-import WelcomePage from "./components/welcome";
-import AboutMePage from "./components/aboutme";
+import Hero from "./components/Hero";
+import About from "./components/About";
 import MyContacts from "./components/contacts";
 import Projects from "./components/projects";
 import Footer from "./components/footer";
-import Dock from "./components/dock";
-import LenisProvider from "./components/lenisProvider";
+import Header from "./components/Header";
 import Marquee from "./components/marquee";
+import He4vyL0v3 from "./pages/He4vyL0v3";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useTranslate } from "./context/I18nContext";
 
@@ -26,25 +26,24 @@ function HtmlUpdater() {
 function App() {
   return (
     <HashRouter>
-      <LenisProvider>
-        <HtmlUpdater />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="App">
-                <WelcomePage />
-                <Marquee text="software engineer // FREELANCER // " />
-                <AboutMePage />
+      <HtmlUpdater />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="App">
+              <Header />
+              <Hero />
+              <Marquee text="software engineer // FREELANCER // " />
+              <About />
                 <Projects />
                 <MyContacts />
-                <Dock />
                 <Footer />
               </div>
             }
           />
+          <Route path="/pentesting" element={<He4vyL0v3 />} />
         </Routes>
-      </LenisProvider>
     </HashRouter>
   );
 }

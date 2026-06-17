@@ -33,17 +33,15 @@ interface I18nContextType {
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-const LOCALE_STORAGE_KEY = "portfolio_locale";
-
 export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [locale, setLocaleState] = useState<Locale>(() => {
-    const saved = localStorage.getItem(LOCALE_STORAGE_KEY);
-    return saved === "en" || saved === "ru" ? saved : "en";
+    const saved = typeof window !== "undefined" ? localStorage.getItem("locale") : null;
+    return (saved === "en" || saved === "ru") ? saved : "en";
   });
 
-  const setLocale = useCallback((newLocale: Locale) => {
-    setLocaleState(newLocale);
-    localStorage.setItem(LOCALE_STORAGE_KEY, newLocale);
+  const setLocale = useCallback((l: Locale) => {
+    setLocaleState(l);
+    if (typeof window !== "undefined") localStorage.setItem("locale", l);
   }, []);
 
   const t = useCallback((key: string, params?: Record<string, string | number>): string => {

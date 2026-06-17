@@ -1,5 +1,5 @@
-import { useRef } from "react";
 import ProjectCard from "./project_card";
+import { useRef } from "react";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 
@@ -15,6 +15,19 @@ const projectsData = {
         "/images/gh_5.png",
       ],
       technologies: ["Python", "C++", "QT"],
+      link: "https://he4vyl0v3.vercel.app/",
+    },
+    {
+      id: 2,
+      images: [
+        "/images/crimson_1.png",
+        "/images/crimson_2.png",
+        "/images/crimson_3.png",
+        "/images/crimson_4.png",
+        "/images/crimson_5.png",
+        "/images/crimson_6.png",
+      ],
+      technologies: ["Python", "C"],
       link: "https://he4vyl0v3.vercel.app/",
     },
     {
@@ -58,23 +71,12 @@ const projectsData = {
       technologies: ["C"],
       link: "https://github.com/He4vyL0v3/LogInsight",
     },
-    {
-      id: 9,
-      images: [
-        "/images/ProxySniffer.png",
-        "/images/proxy_1.png",
-        "/images/proxy_2.png",
-        "/images/proxy_3.png",
-      ],
-      technologies: ["Python"],
-      link: "https://github.com/Nighty3098/ProxySniffer",
-    },
   ],
 };
 
 function Projects() {
   const { t, tt, locale } = useTranslate();
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const items = tt("projects.items") as Array<{
     title: string;
     info: string;
@@ -87,13 +89,12 @@ function Projects() {
     <section
       id="projects"
       ref={ref}
+      key={locale}
       className="content-block content projects-block projects-page-wrapper"
     >
-      <div className="spacer-h-100"></div>
       <h2 data-reveal="letters">
-        {t("projects.title_prefix")} {t("projects.title_suffix")}
+        {t("projects.title")}
       </h2>
-      <div className="spacer-h-100"></div>
       <div className="projects-grid">
         {projectsData.projects.map((project, i) => (
           <ProjectCard
@@ -103,12 +104,12 @@ function Projects() {
             info={items[i].info}
             images={project.images}
             link={project.link}
-            technologies={project.technologies}
             id={project.id}
+            index={i}
+            technologies={project.technologies}
           />
         ))}
       </div>
-      <div className="spacer-h-100"></div>
     </section>
   );
 }
