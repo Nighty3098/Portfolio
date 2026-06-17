@@ -1,6 +1,7 @@
 import ProjectCard from "./project_card";
-import { motion } from "framer-motion";
+import { useRef } from "react";
 import { useTranslate } from "../context/I18nContext";
+import { useSectionReveal } from "../hooks/useSectionReveal";
 
 const projectsData = {
   projects: [
@@ -74,28 +75,25 @@ const projectsData = {
 };
 
 function Projects() {
-  const { t, tt } = useTranslate();
+  const { t, tt, locale } = useTranslate();
+  const ref = useRef<HTMLDivElement>(null);
   const items = tt("projects.items") as Array<{
     title: string;
     info: string;
     description: string;
   }>;
 
+  useSectionReveal(ref, [locale]);
+
   return (
     <section
       id="projects"
+      ref={ref}
       className="content-block content projects-block projects-page-wrapper"
     >
-      <div className="spacer-h-100"></div>
-      <motion.h2
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
+      <h2 data-reveal="letters">
         {t("projects.title")}
-      </motion.h2>
-      <div className="spacer-h-100"></div>
+      </h2>
       <div className="projects-grid">
         {projectsData.projects.map((project, i) => (
           <ProjectCard
@@ -111,7 +109,6 @@ function Projects() {
           />
         ))}
       </div>
-      <div className="spacer-h-100"></div>
     </section>
   );
 }

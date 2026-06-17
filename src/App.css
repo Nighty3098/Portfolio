@@ -505,6 +505,7 @@ body {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16 / 10;
+  border-radius: var(--border-radius);
   background: var(--bg-2);
 }
 
@@ -598,33 +599,32 @@ body {
 
 .modal-content p {
   width: 100%;
-  text-align: left;
+  text-align: center;
   white-space: pre-line;
+  text-align: justify;
   line-height: 1.8;
   color: var(--fg-2);
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 0;
 }
 
 .modal-link {
-  display: inline-block;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Teko", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--accent);
-  padding: 0.6rem 1.5rem;
-  border: 1px solid var(--accent);
-  border-radius: 4px;
-  transition:
-    background 0.2s,
-    color 0.2s;
+  color: var(--fg);
+  padding: 0.4rem 1.2rem;
+  border: 1px solid var(--bg-3);
+  transition: border-color 0.3s ease;
 }
 
 .modal-link:hover {
-  background: var(--accent);
-  color: var(--bg);
+  border-color: var(--accent);
 }
 
 .carousel-container {
@@ -789,6 +789,7 @@ body {
   align-content: center;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-xxl);
 }
 
 .projects-page-tiling {
@@ -1372,8 +1373,9 @@ body {
 .about-image-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 1/1;
   overflow: hidden;
+  border-radius: 40% 60% 30% 70%/50% 40% 60% 50%;
   background: var(--bg-2);
 }
 

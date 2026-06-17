@@ -25,7 +25,7 @@
     "title": "My projects",
     "items": [
       {
-        "title": "GhostlyGrabber",
+        "title": "Ghostly Grabber",
         "info": "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
         "description": "OSINT is a tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication"
       },
@@ -50,17 +50,17 @@
         "description": "IPSA is a Telegram bot designed to provide users with stock market insights, including price predictions, news parsing, and fundamental analysis. Built using the Pyrogram library, the bot integrates with a deep learning model for stock price forecasting, a news parser for real-time market updates, and a database for user and stock management. The bot supports user authentication, stock tracking, and admin controls, with a token-based system for accessing premium features. The project leverages TensorFlow for stock price predictions, yfinance for financial data, and BeautifulSoup for web scraping. It includes asynchronous news parsing, real-time notifications, and report generation in Excel format."
       },
       {
-        "title": "IPSA AI MODEL",
+        "title": "IPSA MODEL",
         "info": "Neural network model for IPSA",
         "description": "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score."
       },
       {
-        "title": "PrettyProfile",
+        "title": "Pretty Profile",
         "info": "Generate a pretty art style profile card from your GitHub data!",
         "description": "Pretty Banner is a Next.js-based service for generating beautiful, customizable SVG banners with GitHub profile statistics. It is designed for use in GitHub READMEs, personal websites, and dashboards, providing visually appealing, themeable, and informative profile cards."
       },
       {
-        "title": "LogInsight",
+        "title": "Log Insight",
         "info": "Program for analyzing log files and detecting anomalies in program operation",
         "description": "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli."
       }

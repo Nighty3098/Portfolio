@@ -61,7 +61,9 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, t }) => {
       if (transitioningRef.current) return;
       transitioningRef.current = true;
       setFadeOut(images[currentIndexRef.current]);
-      setCurrentIndex((currentIndexRef.current - 1 + images.length) % images.length);
+      setCurrentIndex(
+        (currentIndexRef.current - 1 + images.length) % images.length,
+      );
     },
     [images],
   );
@@ -96,7 +98,9 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, t }) => {
     <div
       className="carousel-container carousel-modal"
       onMouseEnter={() => setIsAutoPlaying(false)}
-      onMouseLeave={() => { if (images.length > 1) setIsAutoPlaying(true); }}
+      onMouseLeave={() => {
+        if (images.length > 1) setIsAutoPlaying(true);
+      }}
     >
       <div className="carousel-wrapper">
         <div className="carousel-image-container">
@@ -122,8 +126,20 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, t }) => {
         </div>
         {images.length > 1 && (
           <>
-            <button className="carousel-btn carousel-btn-prev" onClick={goToPrev} aria-label={t("project_card.prev_image")}>‹</button>
-            <button className="carousel-btn carousel-btn-next" onClick={goToNext} aria-label={t("project_card.next_image")}>›</button>
+            <button
+              className="carousel-btn carousel-btn-prev"
+              onClick={goToPrev}
+              aria-label={t("project_card.prev_image")}
+            >
+              ‹
+            </button>
+            <button
+              className="carousel-btn carousel-btn-next"
+              onClick={goToNext}
+              aria-label={t("project_card.next_image")}
+            >
+              ›
+            </button>
           </>
         )}
       </div>
@@ -131,7 +147,15 @@ const Carousel: React.FC<CarouselProps> = ({ images, title, t }) => {
   );
 };
 
-const Modal: React.FC<ModalProps> = ({ show, onClose, title, description, images, link, t }) => {
+const Modal: React.FC<ModalProps> = ({
+  show,
+  onClose,
+  title,
+  description,
+  images,
+  link,
+  t,
+}) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -169,11 +193,22 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, title, description, images
             exit={{ opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button onClick={onClose} aria-label={t("project_card.close")} className="modal-close-btn">✕</button>
+            <button
+              onClick={onClose}
+              aria-label={t("project_card.close")}
+              className="modal-close-btn"
+            >
+              ✕
+            </button>
             <h2>{title}</h2>
             <Carousel images={images} title={title} t={t} />
             <p>{description}</p>
-            <a href={link} target="_blank" rel="noopener noreferrer" className="modal-link">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-link"
+            >
               {t("project_card.open")}
             </a>
           </motion.section>
@@ -203,7 +238,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     if (hovered && images.length > 1) {
       intervalRef.current = setInterval(() => {
         setImgIndex((prev) => (prev + 1) % images.length);
-      }, 1500);
+      }, 800);
     }
     return () => {
       if (intervalRef.current) {
@@ -227,7 +262,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.1 }}
+        transition={{
+          duration: 0.8,
+          ease: [0.25, 0.46, 0.45, 0.94],
+          delay: index * 0.1,
+        }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
