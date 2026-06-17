@@ -278,6 +278,7 @@ body {
     background 0.3s ease;
   position: relative;
   overflow: hidden;
+  will-change: transform;
 }
 
 .contact-item::before {
@@ -605,6 +606,7 @@ body {
     transform 0.3s ease,
     background 0.3s ease;
   overflow: hidden;
+  will-change: transform;
 }
 
 .project-card::before {
@@ -1279,6 +1281,7 @@ body {
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: var(--shadow);
+  will-change: transform;
 }
 
 @media (min-width: 768px) {
@@ -1382,7 +1385,19 @@ body {
   font-size: inherit;
   font-weight: inherit;
   display: block;
+  text-align: center;
   overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+  height: auto;
+  will-change: transform;
+}
+
+.hero-name .line .char {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0px;
+  margin: 0px;
 }
 
 .hero-subtitle {
@@ -1739,14 +1754,17 @@ body {
   font-weight: inherit;
   overflow: hidden;
   transform-origin: bottom;
+  will-change: transform;
 }
 
 .char {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
+  display: inline-block;
   overflow: hidden;
   transform-origin: bottom;
+  will-change: transform;
 }
 
 @media (min-width: 1700px) {

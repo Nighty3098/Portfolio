@@ -169,7 +169,7 @@ function WelcomePage() {
           </div>
         </div>
         <div className="hero-split-right">
-          <img src="me_2.jpg" alt={t("welcome.name")} className="hero-photo" />
+          <img src="me_2.jpg" alt={t("welcome.name")} className="hero-photo" loading="eager" width="1536" height="2048" />
         </div>
       </div>
     </div>

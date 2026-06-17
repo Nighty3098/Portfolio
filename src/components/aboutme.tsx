@@ -17,7 +17,7 @@ function AboutMePage() {
     >
       <div className="spacer-h-100 mobile"></div>
       <div className="image-container">
-        <img src="me.png" alt="me" className="about-avatar" />
+        <img src="me.png" alt="me" className="about-avatar" loading="lazy" />
         <a
           className="button"
           href="https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing"

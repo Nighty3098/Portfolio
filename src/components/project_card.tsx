@@ -134,6 +134,7 @@ const Carousel: React.FC<CarouselProps> = ({
             alt={`${title} - ${currentIndex + 1}`}
             className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
             style={{ position: "absolute", inset: 0 }}
+            loading="lazy"
           />
           {fadeOut && (
             <motion.img
@@ -142,6 +143,7 @@ const Carousel: React.FC<CarouselProps> = ({
               alt=""
               className={`carousel-image ${isModal ? "carousel-image-modal" : ""}`}
               style={{ position: "absolute", inset: 0 }}
+              loading="lazy"
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}

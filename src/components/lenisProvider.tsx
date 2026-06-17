@@ -16,7 +16,7 @@ function LenisProvider({ children }: LenisProviderProps) {
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(33);
     const ticker = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(ticker);
 

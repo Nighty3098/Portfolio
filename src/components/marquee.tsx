@@ -8,6 +8,7 @@ interface MarqueeProps {
 
 function Marquee({ text, speed = 300 }: MarqueeProps) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const itemWidthRef = useRef(0);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -16,7 +17,8 @@ function Marquee({ text, speed = 300 }: MarqueeProps) {
     const item = track.querySelector<HTMLElement>(".marquee-item");
     if (!item) return;
 
-    const itemWidth = item.offsetWidth;
+    itemWidthRef.current = item.offsetWidth;
+    const itemWidth = itemWidthRef.current;
 
     gsap.to(track, {
       x: -itemWidth,
