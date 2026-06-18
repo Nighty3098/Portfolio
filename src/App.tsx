@@ -10,6 +10,7 @@ import Marquee from "./components/marquee";
 import He4vyL0v3 from "./pages/He4vyL0v3";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useTranslate } from "./context/I18nContext";
+import { preloadImages, allProjectImages } from "./utils/preloadImages";
 
 function HtmlUpdater() {
   const { t } = useTranslate();
@@ -24,6 +25,10 @@ function HtmlUpdater() {
 }
 
 function App() {
+  useEffect(() => {
+    preloadImages(allProjectImages);
+  }, []);
+
   return (
     <HashRouter>
       <HtmlUpdater />

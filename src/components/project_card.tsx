@@ -275,7 +275,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             src={images[imgIndex]}
             alt={title}
             className="project-image-preview"
-            loading="lazy"
           />
         </div>
         <div className="project-info">
