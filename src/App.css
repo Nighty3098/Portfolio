@@ -236,7 +236,6 @@ body {
   align-items: center;
   justify-content: center;
   padding: var(--spacing-l);
-  border: 1px solid var(--bg-3);
   transition: border-color 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -248,7 +247,7 @@ body {
 }
 
 .contacts-item-name {
-  font-family: "Teko", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1.1;
   letter-spacing: 2px;
