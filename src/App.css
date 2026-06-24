@@ -629,6 +629,7 @@ body {
     text-decoration: none;
     color: var(--fg);
     padding: 0.4rem 1.2rem;
+    background-color: transparent;
     transition:
         background-color 0.7s ease,
         color 0.7s ease;
@@ -832,101 +833,46 @@ body {
 
 /* === GITHUB STATS MODAL === */
 
-.gh-modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-l);
-    width: min(92vw, var(--max-w));
-    max-height: 90vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-    box-sizing: border-box;
-}
-
-.gh-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: none;
-    border: none;
-    color: var(--fg-2);
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: color 0.2s;
-    z-index: 10;
-    line-height: 1;
-    padding: 0;
-}
-
-.gh-close:hover {
-    color: var(--fg);
-}
-
-.gh-title {
-    font-family: "Oswald", sans-serif;
-    font-size: var(--text-section-title);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 0;
-    color: var(--fg);
-    text-align: center;
-    line-height: 1;
-}
-
-.gh-status {
-    font-family: "Exo 2", sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--fg-2);
-    margin: 0;
-}
-
-.gh-error {
-    color: var(--red);
-}
-
-.gh-stats {
+.gh-stats-grid {
     display: flex;
     flex-direction: column;
     gap: 1px;
     width: 100%;
-    background: var(--bg-3);
-    box-sizing: border-box;
+    border-radius: var(--border-radius);
 }
 
-.gh-stat {
+.gh-stat-cell {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-l);
-    padding: var(--spacing-l) var(--spacing-xl);
-    background: var(--bg);
+    gap: var(--spacing-m);
+    padding: var(--spacing-m) var(--spacing-l);
     min-width: 0;
 }
 
-.gh-label {
+.gh-stat-value {
     font-family: "Oswald", sans-serif;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
     letter-spacing: 1px;
-    color: var(--fg);
-    line-height: 1;
-}
-
-.gh-value {
-    font-family: "Oswald", sans-serif;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    letter-spacing: 1px;
-    color: var(--fg);
-    line-height: 1;
+    color: var(--accent);
+    line-height: 1.1;
     flex-shrink: 0;
 }
 
-.gh-stat-lang {
+.gh-stat-label {
+    font-family: "Exo 2", sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--fg-2);
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.gh-stat-cell-lang {
     flex-direction: column;
+    align-items: stretch;
     gap: var(--spacing-m);
+    padding: var(--spacing-l) var(--spacing-xl);
 }
 
 .gh-lang-bar {
@@ -934,7 +880,8 @@ body {
     height: 6px;
     width: 100%;
     overflow: hidden;
-    background: var(--bg-2);
+    background: var(--bg-3);
+    border-radius: 3px;
 }
 
 .gh-lang-seg {
@@ -942,39 +889,60 @@ body {
     transition: width 0.4s ease;
 }
 
-.gh-lang-list {
+.gh-lang-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-s) var(--spacing-l);
     justify-content: center;
+    width: 100%;
 }
 
 .gh-lang-tag {
-    padding: 2px 8px;
-    font-family: "Exo 2", sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 1px;
-    color: var(--bg);
-    font-weight: 500;
-}
-
-.gh-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
     font-family: "Exo 2", sans-serif;
     font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--accent);
-    padding: 0.6rem 1.5rem;
-    border: 1px solid var(--accent);
-    transition:
-        background 0.2s,
-        color 0.2s;
+    letter-spacing: 0.5px;
+    color: var(--fg);
+    font-weight: 400;
 }
 
-.gh-link:hover {
-    background: var(--accent);
-    color: var(--bg);
+.gh-lang-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.gh-lang-count {
+    color: var(--fg-2);
+    font-size: 0.6rem;
+    margin-left: 1px;
+}
+
+.gh-profile-link {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.stat-loading {
+    font-family: "Exo 2", sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--fg-2);
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+}
+
+.stat-error {
+    font-family: "Exo 2", sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--red);
+    text-align: center;
+    padding: var(--spacing-l) 0;
 }
 
 .copyright {
@@ -983,12 +951,6 @@ body {
     letter-spacing: 2px;
     line-height: 2;
     padding: var(--spacing-l) 0;
-}
-
-@media (max-width: 600px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 .cat-svg-container {

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { getAggregatedStats, type AggregatedStats } from "../api/github";
 import { useTranslate } from "../context/I18nContext";
@@ -18,6 +18,8 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
   const [stats, setStats] = useState<AggregatedStats | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
     if (show && !stats && !loading) {
@@ -31,184 +33,136 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
   }, [show, stats, loading]);
 
   useEffect(() => {
-    const handleEscKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
     if (show) {
-      dialogRef.current?.showModal();
-      document.addEventListener("keydown", handleEscKey);
+      dialog.showModal();
+      gsap.set(dialog, { opacity: 0 });
+      gsap.to(dialog, { opacity: 1, duration: 0.3 });
       document.body.style.overflow = "hidden";
-    } else {
-      dialogRef.current?.close();
     }
+
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+
+    document.addEventListener("keydown", handleEscKey);
 
     return () => {
       document.removeEventListener("keydown", handleEscKey);
       document.body.style.overflow = "unset";
     };
-  }, [show, onClose]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show]);
+
+  const handleClose = () => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    gsap.to(dialog, {
+      opacity: 0,
+      duration: 0.2,
+      onComplete: () => {
+        onCloseRef.current();
+      },
+    });
+  };
+
+  if (!show) return null;
+
+  const total = stats?.languages.reduce((s, l) => s + l.count, 0) ?? 0;
+  const colors = ["var(--accent)", "var(--red)", "var(--fg)", "#73d0ff"];
+  const langColors = (stats?.languages ?? []).map((l, i) => ({
+    ...l,
+    pct: (l.count / total) * 100,
+    color: colors[i % colors.length],
+  }));
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.dialog
-          ref={dialogRef}
-          className="modal"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-          style={{ margin: "0px", padding: "0px" }}
+    <dialog ref={dialogRef} className="modal" onClick={handleClose}>
+      <section className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          onClick={handleClose}
+          aria-label={t("github_stats.close")}
+          className="modal-close-btn"
         >
-          <motion.section
-            className="content-block modal-content modal-content-scrollable"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              margin: "0px",
-              height: "100%",
-              width: "calc(100% - var(--spacing-xl) - var(--spacing-xl))",
-              padding: "var(--spacing-xl)",
-              display: "flex",
-              flexDirection: "column",
-              alignContent: "center",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: "0px",
-            }}
-            onClick={(e) => e.stopPropagation()}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.stopPropagation();
-              } else if (e.key === "Escape") {
-                onClose();
-              }
-            }}
-          >
-            <motion.button
-              onClick={onClose}
-              aria-label={t("github_stats.close")}
-              className="close-button modal-close-button-alt"
-            >
-              ✕
-            </motion.button>
-            <h2 style={{ textAlign: "center" }}>{t("github_stats.title")}</h2>
-            <div className="modal-stats-container">
-              {loading && (
-                <p className="stat-loading">{t("github_stats.loading")}</p>
-              )}
-              {error && <p className="stat-error">{error}</p>}
-              {stats && (
-                <div className="stats-grid">
-                  <div className="stat-item">
-                    <span className="stat-value">{stats.totalStars}</span>
-                    <span className="stat-label">
-                      {t("github_stats.stars")}
-                    </span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">{stats.totalRepos}</span>
-                    <span className="stat-label">
-                      {t("github_stats.repos")}
-                    </span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">
-                      {stats.totalCommits === -1
-                        ? t("github_stats.na")
-                        : stats.totalCommits}
-                    </span>
-                    <span className="stat-label">
-                      {t("github_stats.commits")}
-                    </span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">{stats.totalPRs}</span>
-                    <span className="stat-label">
-                      {t("github_stats.pull_requests")}
-                    </span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">{stats.totalIssues}</span>
-                    <span className="stat-label">
-                      {t("github_stats.issues")}
-                    </span>
-                  </div>
-                  {(() => {
-                    const total = stats.languages.reduce(
-                      (s, l) => s + l.count,
-                      0,
-                    );
-                    const colors = [
-                      "var(--accent)",
-                      "var(--red)",
-                      "var(--fg)",
-                      "#73d0ff",
-                    ];
-                    const langColors = stats.languages.map((l, i) => ({
-                      ...l,
-                      pct: (l.count / total) * 100,
-                      color: colors[i % colors.length],
-                    }));
-                    return (
-                      <>
-                        <div className="stat-item" style={{ padding: "0px" }}>
-                          <div className="stat-lang-bar">
-                            {langColors.map((l) => (
-                              <div
-                                key={l.name}
-                                className="stat-lang-segment"
-                                style={{
-                                  width: `${l.pct}%`,
-                                  backgroundColor: l.color,
-                                }}
-                                title={`${l.name}: ${l.pct.toFixed(1)}%`}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                        <div className="stat-item stat-item-languages">
-                          <span className="stat-label">
-                            {t("github_stats.languages")}
-                          </span>
-                          <div className="stat-languages">
-                            {langColors.map((l) => (
-                              <span
-                                key={l.name}
-                                className="stat-language-tag"
-                                style={{ backgroundColor: l.color }}
-                              >
-                                {l.name} ({l.count})
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </>
-                    );
-                  })()}
-                </div>
-              )}
-              <button
-                className="button"
-                style={{
-                  width: "100%",
-                  backgroundColor: "var(--bg)",
-                  borderRadius: "var(--border-radius)",
-                  textAlign: "center",
-                }}
-                onClick={() => handleOpenLink("https://github.com/Nighty3098")}
-              >
-                Open GitHub
-              </button>
+          ✕
+        </button>
+
+        <h2>{t("github_stats.title")}</h2>
+
+        {loading && <p className="stat-loading">{t("github_stats.loading")}</p>}
+        {error && <p className="stat-error">{error}</p>}
+
+        {stats && (
+          <div className="gh-stats-grid">
+            <div className="gh-stat-cell">
+              <span className="gh-stat-value">{stats.totalStars}</span>
+              <span className="gh-stat-label">{t("github_stats.stars")}</span>
             </div>
-          </motion.section>
-        </motion.dialog>
-      )}
-    </AnimatePresence>
+            <div className="gh-stat-cell">
+              <span className="gh-stat-value">{stats.totalRepos}</span>
+              <span className="gh-stat-label">{t("github_stats.repos")}</span>
+            </div>
+            <div className="gh-stat-cell">
+              <span className="gh-stat-value">
+                {stats.totalCommits === -1
+                  ? t("github_stats.na")
+                  : stats.totalCommits}
+              </span>
+              <span className="gh-stat-label">{t("github_stats.commits")}</span>
+            </div>
+            <div className="gh-stat-cell">
+              <span className="gh-stat-value">{stats.totalPRs}</span>
+              <span className="gh-stat-label">
+                {t("github_stats.pull_requests")}
+              </span>
+            </div>
+            <div className="gh-stat-cell">
+              <span className="gh-stat-value">{stats.totalIssues}</span>
+              <span className="gh-stat-label">{t("github_stats.issues")}</span>
+            </div>
+
+            {langColors.length > 0 && (
+              <div className="gh-stat-cell gh-stat-cell-lang">
+                <div className="gh-lang-bar">
+                  {langColors.map((l) => (
+                    <div
+                      key={l.name}
+                      className="gh-lang-seg"
+                      style={{
+                        width: `${l.pct}%`,
+                        backgroundColor: l.color,
+                      }}
+                      title={`${l.name}: ${l.pct.toFixed(1)}%`}
+                    />
+                  ))}
+                </div>
+                <div className="gh-lang-tags">
+                  {langColors.map((l) => (
+                    <span key={l.name} className="gh-lang-tag">
+                      <span
+                        className="gh-lang-dot"
+                        style={{ backgroundColor: l.color }}
+                      />
+                      {l.name}
+                      <span className="gh-lang-count">{l.count}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        <button
+          className="modal-link"
+          onClick={() => handleOpenLink("https://github.com/Nighty3098")}
+        >
+          Open GitHub
+        </button>
+      </section>
+    </dialog>
   );
 };
 
