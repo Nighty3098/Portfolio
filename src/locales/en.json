@@ -63,6 +63,11 @@
         "title": "Log Insight",
         "info": "Program for analyzing log files and detecting anomalies in program operation",
         "description": "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli."
+      },
+      {
+        "title": "Tech Support Bot",
+        "info": "Tech support telegram bot",
+        "description": "A Telegram bot for user support, bug reporting, idea collection, and development order requests. The bot supports multiple languages and can work both in polling mode (locally) and via webhook (e.g., on Vercel).\n\nFeatures\n - Accepts user requests (bug reports, feature suggestions, development orders)\n - Supports attachments: text, photos, videos, documents\n - Multilingual interface (Russian, English, Japanese, Spanish)\n - Notifies a dedicated support chat about new tickets\n - Ticket (new, in progress, completed, review) \n - Users can change the interface language"
       }
     ]
   },

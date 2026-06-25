@@ -71,6 +71,15 @@ const projectsData = {
       technologies: ["C"],
       link: "https://github.com/He4vyL0v3/LogInsight",
     },
+    {
+      id: 8,
+      images: [
+        "/images/tech_support_bot.png",
+        "/images/tech_support_bot_2.png",
+      ],
+      technologies: ["TypeScript"],
+      link: "https://github.com/Nighty3098/TechSupportBot",
+    },
   ],
 };
 
@@ -92,9 +101,7 @@ function Projects() {
       key={locale}
       className="content-block content projects-block projects-page-wrapper"
     >
-      <h2 data-reveal="letters">
-        {t("projects.title")}
-      </h2>
+      <h2 data-reveal="letters">{t("projects.title")}</h2>
       <div className="projects-grid">
         {projectsData.projects.map((project, i) => (
           <ProjectCard
