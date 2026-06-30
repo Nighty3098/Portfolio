@@ -32,8 +32,20 @@
     --text-review-name: 1rem;
     --text-stat-value: 2rem;
     --text-stat-label: 1rem;
-    --max-w: 1500px;
+    --max-w: 1200px;
     --header-h: 72px;
+}
+
+[data-theme="light"] {
+    --bg: #f5f5f7;
+    --bg-2: #e8e8f0;
+    --bg-3: #d6d6e0;
+    --fg: #1a1a2e;
+    --fg-2: #6b6b80;
+    --accent: #c8963e;
+    --accent-2: #b07830;
+    --red: #c06050;
+    --shadow: 0px 15px 30px rgba(0, 0, 0, 0.06);
 }
 
 * {
@@ -1171,7 +1183,7 @@ body {
     font-family: "Teko", sans-serif;
     font-size: clamp(6rem, 30vw, 30rem);
     font-weight: 700;
-    color: #fff;
+    color: var(--fg);
     line-height: 0.9;
     text-transform: uppercase;
     margin: 0;
@@ -1236,7 +1248,8 @@ body {
     visibility: hidden;
     font-size: 0.65rem;
     letter-spacing: 3px;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--fg-2);
+    opacity: 0.6;
     font-family: "Exo 2", sans-serif;
 }
 
@@ -1268,7 +1281,8 @@ body {
     z-index: 2;
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--fg-2);
+    opacity: 0.6;
     font-family: "Exo 2", sans-serif;
     text-transform: uppercase;
 }

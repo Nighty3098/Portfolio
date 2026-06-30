@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslate } from "../context/I18nContext";
+import { useTheme } from "../context/ThemeContext";
 import GitHubStats from "./github_stats";
 import gsap from "gsap";
 
@@ -12,6 +13,7 @@ const navItems = [
 
 function Header() {
   const { t, locale, setLocale } = useTranslate();
+  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -120,6 +122,12 @@ function Header() {
               onClick={() => setLocale(locale === "en" ? "ru" : "en")}
             >
               {locale === "en" ? "EN" : "RU"}
+            </button>
+            <button
+              className="menu-nav-item menu-theme-btn"
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? "LIGHT" : "DARK"}
             </button>
           </nav>
         </div>
