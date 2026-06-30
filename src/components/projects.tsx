@@ -1,4 +1,4 @@
-import ProjectCard from "./project_card";
+import BentoGrid from "./BentoGrid";
 import { useRef } from "react";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
@@ -72,7 +72,7 @@ const projectsData = {
       link: "https://github.com/He4vyL0v3/LogInsight",
     },
     {
-      id: 8,
+      id: 9,
       images: [
         "/images/tech_support_bot.png",
         "/images/tech_support_bot_2.png",
@@ -94,6 +94,14 @@ function Projects() {
 
   useSectionReveal(ref, [locale]);
 
+  const all = projectsData.projects.map((p, i) => ({
+    ...p,
+    title: items[i]?.title ?? "",
+    info: items[i]?.info ?? "",
+    description: items[i]?.description ?? "",
+    index: i,
+  }));
+
   return (
     <section
       id="projects"
@@ -102,21 +110,7 @@ function Projects() {
       className="content-block content projects-block projects-page-wrapper"
     >
       <h2 data-reveal="letters">{t("projects.title")}</h2>
-      <div className="projects-grid">
-        {projectsData.projects.map((project, i) => (
-          <ProjectCard
-            key={project.id}
-            title={items[i].title}
-            description={items[i].description}
-            info={items[i].info}
-            images={project.images}
-            link={project.link}
-            id={project.id}
-            index={i}
-            technologies={project.technologies}
-          />
-        ))}
-      </div>
+      <BentoGrid projects={all} />
     </section>
   );
 }
