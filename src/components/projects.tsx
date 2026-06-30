@@ -80,6 +80,26 @@ const projectsData = {
       technologies: ["TypeScript"],
       link: "https://github.com/Nighty3098/TechSupportBot",
     },
+    {
+      id: 10,
+      images: ["/images/skyfall_website.png"],
+      technologies: ["React", "TypeScript", "GSAP"],
+      link: "https://github.com/Nighty3098/SkyFallWebPage",
+    },
+    {
+      id: 11,
+      images: [
+        "/images/skyfall_tg.png",
+        "/images/skyfall_dorks.png",
+        "/images/skyfall_github.png",
+        "/images/skyfall_graph.png",
+        "/images/skyfall_mail.png",
+        "/images/skyfall_username.png",
+        "/images/skyfall_website.png",
+      ],
+      technologies: ["Python", "PySide6", "OSINT", "React"],
+      link: "https://github.com/Nighty3098/SkyFall",
+    },
   ],
 };
 

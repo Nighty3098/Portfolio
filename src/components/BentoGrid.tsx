@@ -30,6 +30,8 @@ const cellStyles = [
   "bento-cell-wide",
   "",
   "",
+  "",
+  "bento-cell-wide",
 ];
 
 function BentoGrid({ projects }: BentoGridProps) {

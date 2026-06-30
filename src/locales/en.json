@@ -68,6 +68,16 @@
         "title": "Tech Support Bot",
         "info": "Tech support telegram bot",
         "description": "A Telegram bot for user support, bug reporting, idea collection, and development order requests. The bot supports multiple languages and can work both in polling mode (locally) and via webhook (e.g., on Vercel).\n\nFeatures\n - Accepts user requests (bug reports, feature suggestions, development orders)\n - Supports attachments: text, photos, videos, documents\n - Multilingual interface (Russian, English, Japanese, Spanish)\n - Notifies a dedicated support chat about new tickets\n - Ticket (new, in progress, completed, review) \n - Users can change the interface language"
+      },
+      {
+        "title": "SkyFall Website",
+        "info": "Brand presentation website for SkyFall, an open-source OSINT platform built with PySide6",
+        "description": "SkyFall Website is a brand presentation site built with Vite + React 18 + TypeScript. It showcases the SkyFall OSINT platform, an open-source intelligence tool developed in PySide6. The site features smooth animations powered by GSAP, seamless scrolling with Lenis, and a clean, modern design using the Outfit font family."
+      },
+      {
+        "title": "SkyFall",
+        "info": "Open-source OSINT platform built with PySide6 — information gathering, Telegram OSINT, file analysis, and more",
+        "description": "SkyFall is a comprehensive open-source OSINT (Open Source Intelligence) platform with a PySide6 graphical interface. It performs deep analysis of web resources and IP addresses — DNS, SSL/TLS, WHOIS, open ports (nmap 1–65535), WAF detection, malware reputation checks, and subdomain discovery. The platform includes a powerful dorking engine with 7974 exploits from Exploit-DB GHDB, Telegram OSINT with multi-account and proxy support, file analysis with metadata extraction, EXIF stripping, MAC/BSSID geolocation with interactive maps, email and username search across 3800+ sites, GitHub OSINT with secret scanning (270+ patterns), phone number OSINT, and blockchain transaction search across 10 networks. Features an interactive graph editor with draggable nodes, connection ports, and export formats including GraphML, GEXF, JSON, CSV, PNG, HTML, and Obsidian Markdown."
       }
     ]
   },
