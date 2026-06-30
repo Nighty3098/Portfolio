@@ -84,7 +84,7 @@ const projectsData = {
       id: 10,
       images: ["/images/skyfall_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
-      link: "https://github.com/Nighty3098/SkyFallWebPage",
+      link: "https://SkyFallOsint.vercel.app",
     },
     {
       id: 11,
