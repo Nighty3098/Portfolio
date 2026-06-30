@@ -1313,11 +1313,11 @@ body {
     gap: var(--spacing-xxl);
     min-height: 100vh;
     justify-content: center;
-    position: relative;
 }
 
 .about-header {
     position: relative;
+    padding-bottom: var(--spacing-l);
 }
 
 .about-header h2 {
@@ -1336,9 +1336,9 @@ body {
 
 .about-grid {
     display: grid;
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 380px 1fr;
     gap: var(--spacing-xxl);
-    align-items: start;
+    align-items: center;
 }
 
 .about-image-col {
@@ -1357,8 +1357,8 @@ body {
     border-radius: 40% 60% 30% 70%/50% 40% 60% 50%;
     background: var(--bg-2);
     transition: border-radius 1s cubic-bezier(0.32, 0.72, 0, 1);
-    outline: 1px solid rgba(255, 209, 119, 0.15);
-    outline-offset: 8px;
+    outline: 1.5px solid rgba(255, 209, 119, 0.12);
+    outline-offset: 10px;
 }
 
 .about-image-frame:hover {
@@ -1376,48 +1376,45 @@ body {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-s);
-    padding: 12px 24px;
+    padding: 10px 22px;
     background: transparent;
-    border: 1px solid rgba(255, 209, 119, 0.3);
+    border: 1px solid rgba(255, 209, 119, 0.25);
     border-radius: 100px;
     color: var(--accent);
     text-decoration: none;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 4px;
     text-transform: uppercase;
     transition:
         background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease;
+        border-color 0.3s ease;
     cursor: pointer;
 }
 
 .about-resume-btn:hover {
-    background: rgba(255, 209, 119, 0.1);
-    border-color: var(--accent);
-    color: var(--accent);
+    background: rgba(255, 209, 119, 0.08);
+    border-color: rgba(255, 209, 119, 0.5);
 }
 
 .about-text-col {
     display: flex;
     flex-direction: column;
-    gap: 1.4rem;
-    max-width: 68ch;
+    gap: 1.2rem;
 }
 
 .about-text-col p {
     margin: 0;
-    line-height: 1.85;
-    font-size: 1rem;
-    color: var(--fg-2);
+    line-height: 1.75;
+    font-size: 1.05rem;
+    color: var(--fg);
     text-wrap: pretty;
     text-align: left;
+    opacity: 0.75;
 }
 
 .about-text-col p:first-child {
-    font-size: 1.2rem;
-    color: var(--fg);
-    font-weight: 400;
+    font-size: 1.25rem;
+    opacity: 1;
 }
 
 .about-text-col p .word,
@@ -1560,13 +1557,10 @@ body {
         gap: 0.75rem;
     }
 
-    .bento-cell-xl,
-    .bento-cell-wide,
-    .bento-cell-tall,
-    .bento-cell-square {
-        grid-column: span 1;
-        grid-row: span 1;
-        aspect-ratio: 16 / 10;
+    .bento-grid .bento-cell {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        aspect-ratio: 19 / 10;
         min-height: unset;
     }
 
