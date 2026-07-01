@@ -100,6 +100,12 @@ const projectsData = {
       technologies: ["Python", "PySide6", "OSINT", "React"],
       link: "https://github.com/Nighty3098/SkyFall",
     },
+    {
+      id: 12,
+      images: ["/images/cv_bot.png", "/images/cv_bot_2.png"],
+      technologies: ["TypeScript", "Telegraf", "Express", "Vercel"],
+      link: "https://t.me/cv_creator_example_bot",
+    },
   ],
 };
 

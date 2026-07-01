@@ -16,6 +16,7 @@
     "title_prefix": "About",
     "title_suffix": "me",
     "resume": "RESUME",
+    "contact_me": "Contact me",
     "p1": "Hello! I am Artem.",
     "p2": "I am 19 years old, and I spent 5 of them at the SAIKT Programming Academy, and now I am studying at SibSUTIS University.",
     "p3": "I strive to grow in IT and work on large-scale projects that improve people's lives.",
@@ -78,6 +79,11 @@
         "title": "SkyFall",
         "info": "Open-source OSINT platform built with PySide6 — information gathering, Telegram OSINT, file analysis, and more",
         "description": "SkyFall is a comprehensive open-source OSINT (Open Source Intelligence) platform with a PySide6 graphical interface. It performs deep analysis of web resources and IP addresses — DNS, SSL/TLS, WHOIS, open ports (nmap 1–65535), WAF detection, malware reputation checks, and subdomain discovery. The platform includes a powerful dorking engine with 7974 exploits from Exploit-DB GHDB, Telegram OSINT with multi-account and proxy support, file analysis with metadata extraction, EXIF stripping, MAC/BSSID geolocation with interactive maps, email and username search across 3800+ sites, GitHub OSINT with secret scanning (270+ patterns), phone number OSINT, and blockchain transaction search across 10 networks. Features an interactive graph editor with draggable nodes, connection ports, and export formats including GraphML, GEXF, JSON, CSV, PNG, HTML, and Obsidian Markdown."
+      },
+      {
+        "title": "CV Creator Bot",
+        "info": "Telegram bot for creating, reviewing and delivering resumes with a multi-tier wizard and admin panel",
+        "description": "CV Creator Bot is a Telegram bot built with TypeScript and Telegraf for resume creation, review, and delivery. It features a multi-tier wizard (Junior, Pro, Lead), video review scenarios, payment collection via card and SBP with receipt verification, an admin panel for anonymous file delivery, email support via Nodemailer, and interview scheduling with automated reminders. The bot runs in polling mode locally and webhook mode on Vercel, with a Calendly integration for scheduling."
       }
     ]
   },

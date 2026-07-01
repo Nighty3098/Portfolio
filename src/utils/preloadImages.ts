@@ -6,6 +6,7 @@ export const allProjectImages: string[] = [
   "/images/PrettyProfile_1.png", "/images/PrettyProfile_2.png",
   "/images/LogInsight_1.png", "/images/LogInsight_2.png", "/images/LogInsight_3.png", "/images/LogInsight_4.png",
   "/images/Crimson.png", "/images/grabber.png", "/images/IStealU.png", "/images/Thunder.png", "/images/ProxySniffer.png",
+  "/images/cv_bot.png", "/images/cv_bot_2.png",
   "me_2.jpg", "me.png",
 ];
 
