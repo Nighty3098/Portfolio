@@ -32,7 +32,7 @@
     --text-review-name: 1rem;
     --text-stat-value: 2rem;
     --text-stat-label: 1rem;
-    --max-w: 1200px;
+    --max-w: 1600px;
     --header-h: 72px;
 }
 
@@ -40,12 +40,29 @@
     --bg: #f5f5f7;
     --bg-2: #e8e8f0;
     --bg-3: #d6d6e0;
-    --fg: #1a1a2e;
-    --fg-2: #6b6b80;
+    --fg: #1a1a1a;
+    --fg-2: #6b6b6b;
     --accent: #c8963e;
     --accent-2: #b07830;
     --red: #c06050;
     --shadow: 0px 15px 30px rgba(0, 0, 0, 0.06);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 * {
@@ -1410,6 +1427,35 @@ body {
     border-color: rgba(255, 209, 119, 0.5);
 }
 
+.about-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-s);
+    padding: 12px 28px;
+    background: var(--fg);
+    border: none;
+    border-radius: 100px;
+    color: var(--bg);
+    font-family: "Oswald", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.about-contact-btn:hover {
+    opacity: 0.75;
+    transform: translateY(-2px);
+}
+
+.about-contact-btn:active {
+    transform: translateY(0);
+}
+
 .about-text-col {
     display: flex;
     flex-direction: column;
@@ -1614,7 +1660,101 @@ body {
         padding: 0;
     }
 
-    .spacer-h-150 {
+    .dock {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--bg-2);
+        border: 1px solid var(--bg-3);
+        border-radius: 50px;
+        z-index: 100;
+        animation: dock-enter 0.8s ease-out 1.5s both;
+    }
+
+    @keyframes dock-enter {
+        from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+
+    .dock-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--fg-2);
+        cursor: pointer;
+        transition:
+            transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+            color 0.2s ease;
+    }
+
+    .dock-item:hover {
+        transform: scale(1.3) translateY(-4px);
+        color: var(--accent);
+    }
+
+    .dock-item:active {
+        transform: scale(0.92);
+    }
+
+    .dock-tooltip {
+        position: absolute;
+        bottom: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        padding: 4px 10px;
+        background: var(--bg-3);
+        color: var(--fg);
+        font-size: 12px;
+        border-radius: 6px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transition:
+            opacity 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .dock-item:hover .dock-tooltip {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .scroll-progress-track {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 1200;
+  pointer-events: none;
+}
+
+.scroll-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.spacer-h-150 {
         height: 40px;
         min-height: 40px;
     }

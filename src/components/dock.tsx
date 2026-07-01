@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
 import GitHubStats from "./github_stats";
 import { useTranslate } from "../context/I18nContext";
@@ -48,30 +47,22 @@ function Dock() {
 
   return (
     <>
-      <motion.div
-        className="dock"
-        initial={{ opacity: 0, y: 40, x: "-50%" }}
-        animate={{ opacity: 1, y: 0, x: "-50%" }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 1.5 }}
-      >
+      <div className="dock">
         {items.map((item) => (
-          <motion.button
+          <button
             key={item.labelKey}
             className="dock-item"
             onClick={() => {
               if (item.sectionId) scrollToSection(item.sectionId);
               else setGitHubStatsOpen(true);
             }}
-            whileHover={{ scale: 1.3, y: -4 }}
-            whileTap={{ scale: 0.92 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             {item.icon}
             <span className="dock-tooltip">{t(item.labelKey)}</span>
-          </motion.button>
+          </button>
         ))}
 
-      </motion.div>
+      </div>
       <GitHubStats
         show={githubStatsOpen}
         onClose={() => setGitHubStatsOpen(false)}
