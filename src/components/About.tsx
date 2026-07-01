@@ -9,6 +9,11 @@ function About() {
 
   useSectionReveal(ref, [locale]);
 
+  const scrollToContacts = () => {
+    const el = document.getElementById("my-contacts");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id="about-me" ref={ref} className="about-section" key={locale}>
       <div className="about-header">
@@ -29,6 +34,9 @@ function About() {
               {t(key)}
             </p>
           ))}
+          <button className="about-contact-btn" onClick={scrollToContacts}>
+            {t("about.contact_me")}
+          </button>
         </div>
       </div>
     </section>
