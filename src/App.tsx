@@ -8,6 +8,7 @@ import Footer from "./components/footer";
 import Header from "./components/Header";
 import Marquee from "./components/marquee";
 import He4vyL0v3 from "./pages/He4vyL0v3";
+import ScrollProgress from "./components/ScrollProgress";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useTranslate } from "./context/I18nContext";
 import { preloadImages, allProjectImages } from "./utils/preloadImages";
@@ -37,6 +38,7 @@ function App() {
           path="/"
           element={
             <div className="App">
+              <ScrollProgress />
               <Header />
               <Hero />
               <Marquee text="software engineer // FREELANCER // " />

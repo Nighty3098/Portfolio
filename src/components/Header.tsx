@@ -83,7 +83,7 @@ function Header() {
         </div>
       </header>
 
-      <div ref={menuRef} className="menu-overlay" style={{ display: "none" }}>
+      <div ref={menuRef} className="menu-overlay" data-lenis-prevent style={{ display: "none" }}>
         <div ref={overlayRef} className="menu-overlay-bg" />
         <div ref={menuContentRef} className="menu-overlay-content" style={{ visibility: "hidden" }}>
           <nav ref={menuItemsRef} className="menu-nav">
