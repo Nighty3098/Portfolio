@@ -24,6 +24,8 @@
   },
   "projects": {
     "title": "My projects",
+    "all": "ALL PROJECTS",
+    "all_title": "All Projects",
     "items": [
       {
         "title": "Ghostly Grabber",

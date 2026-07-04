@@ -1791,3 +1791,38 @@ body {
         text-align: left;
     }
 }
+
+.all-projects-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1.2rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--fg-2);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease;
+  box-sizing: border-box;
+}
+
+.all-projects-btn:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.all-projects-page {
+  min-height: 100vh;
+  padding-top: calc(var(--header-h) + var(--spacing-xl));
+  box-sizing: border-box;
+}

@@ -1,12 +1,22 @@
 import BentoGrid from "./BentoGrid";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 
-const projectsData = {
+interface ProjectData {
+  id: number;
+  images: string[];
+  technologies: string[];
+  link: string;
+  showOnHome: boolean;
+}
+
+const projectsData: { projects: ProjectData[] } = {
   projects: [
     {
       id: 1,
+      showOnHome: true,
       images: [
         "/images/gh_1.png",
         "/images/gh_2.png",
@@ -19,6 +29,7 @@ const projectsData = {
     },
     {
       id: 2,
+      showOnHome: true,
       images: [
         "/images/crimson_1.png",
         "/images/crimson_2.png",
@@ -32,36 +43,42 @@ const projectsData = {
     },
     {
       id: 3,
+      showOnHome: true,
       images: ["/images/the_owl.png"],
       technologies: ["React", "TypeScript"],
       link: "https://owl-gamma.vercel.app/",
     },
     {
       id: 4,
+      showOnHome: true,
       images: ["/images/owl_rest_api.png"],
       technologies: ["Python", "Flask", "PostgreSQL"],
       link: "https://owl-gamma.vercel.app/",
     },
     {
       id: 5,
+      showOnHome: true,
       images: ["/images/IPSA.png"],
       technologies: ["Python", "Tensorflow", "Keras", "Pyrogram"],
       link: "https://github.com/Nighty3098/InvestingAssistant/",
     },
     {
       id: 6,
+      showOnHome: true,
       images: ["/images/ipsa_model_1.png", "/images/ipsa_model_2.png"],
       technologies: ["Python", "Tensorflow", "Keras"],
       link: "https://github.com/Nighty3098/IPSA_MODEL/",
     },
     {
       id: 7,
+      showOnHome: true,
       images: ["/images/PrettyProfile_1.png", "/images/PrettyProfile_2.png"],
       technologies: ["NodeJS", "Vercel"],
       link: "https://pretty-profile.vercel.app/",
     },
     {
       id: 8,
+      showOnHome: false,
       images: [
         "/images/LogInsight_1.png",
         "/images/LogInsight_2.png",
@@ -73,6 +90,7 @@ const projectsData = {
     },
     {
       id: 9,
+      showOnHome: false,
       images: [
         "/images/tech_support_bot.png",
         "/images/tech_support_bot_2.png",
@@ -82,12 +100,14 @@ const projectsData = {
     },
     {
       id: 10,
+      showOnHome: true,
       images: ["/images/skyfall_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
       link: "https://SkyFallOsint.vercel.app",
     },
     {
       id: 11,
+      showOnHome: true,
       images: [
         "/images/skyfall_tg.png",
         "/images/skyfall_dorks.png",
@@ -102,12 +122,15 @@ const projectsData = {
     },
     {
       id: 12,
+      showOnHome: false,
       images: ["/images/cv_bot.png", "/images/cv_bot_2.png"],
       technologies: ["TypeScript", "Telegraf", "Express", "Vercel"],
       link: "https://t.me/cv_creator_example_bot",
     },
   ],
 };
+
+const homeProjects = projectsData.projects.filter((p) => p.showOnHome);
 
 function Projects() {
   const { t, tt, locale } = useTranslate();
@@ -120,11 +143,11 @@ function Projects() {
 
   useSectionReveal(ref, [locale]);
 
-  const all = projectsData.projects.map((p, i) => ({
+  const all = homeProjects.map((p, i) => ({
     ...p,
-    title: items[i]?.title ?? "",
-    info: items[i]?.info ?? "",
-    description: items[i]?.description ?? "",
+    title: items[p.id - 1]?.title ?? "",
+    info: items[p.id - 1]?.info ?? "",
+    description: items[p.id - 1]?.description ?? "",
     index: i,
   }));
 
@@ -137,8 +160,12 @@ function Projects() {
     >
       <h2 data-reveal="letters">{t("projects.title")}</h2>
       <BentoGrid projects={all} />
+      <Link to="/all-projects" className="all-projects-btn">
+        {t("projects.all")}
+      </Link>
     </section>
   );
 }
 
 export default Projects;
+export { projectsData };

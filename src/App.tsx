@@ -8,6 +8,7 @@ import Footer from "./components/footer";
 import Header from "./components/Header";
 import Marquee from "./components/marquee";
 import He4vyL0v3 from "./pages/He4vyL0v3";
+import AllProjects from "./pages/AllProjects";
 import ScrollProgress from "./components/ScrollProgress";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useTranslate } from "./context/I18nContext";
@@ -50,6 +51,7 @@ function App() {
             }
           />
           <Route path="/pentesting" element={<He4vyL0v3 />} />
+          <Route path="/all-projects" element={<AllProjects />} />
         </Routes>
     </HashRouter>
   );
