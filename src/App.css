@@ -1033,6 +1033,8 @@ body {
     letter-spacing: 4px;
     color: #fff;
     user-select: none;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .header-right {

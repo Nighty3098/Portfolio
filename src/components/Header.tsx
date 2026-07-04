@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useTheme } from "../context/ThemeContext";
 import GitHubStats from "./github_stats";
@@ -69,7 +70,7 @@ function Header() {
     <>
       <header className="header">
         <div className="header-inner">
-          <span className="header-logo">NIGHTY</span>
+          <Link to="/" className="header-logo">NIGHTY</Link>
           <div className="header-right">
             <button
               className={`header-menu-btn ${isMenuOpen ? "is-active" : ""}`}
