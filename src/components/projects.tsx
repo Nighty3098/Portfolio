@@ -15,6 +15,21 @@ interface ProjectData {
 const projectsData: { projects: ProjectData[] } = {
   projects: [
     {
+      id: 11,
+      showOnHome: true,
+      images: [
+        "/images/skyfall_tg.png",
+        "/images/skyfall_dorks.png",
+        "/images/skyfall_github.png",
+        "/images/skyfall_graph.png",
+        "/images/skyfall_mail.png",
+        "/images/skyfall_username.png",
+        "/images/skyfall_website.png",
+      ],
+      technologies: ["Python", "PySide6", "OSINT", "React"],
+      link: "https://github.com/Nighty3098/SkyFall",
+    },
+    {
       id: 1,
       showOnHome: true,
       images: [
@@ -28,23 +43,19 @@ const projectsData: { projects: ProjectData[] } = {
       link: "https://he4vyl0v3.vercel.app/",
     },
     {
-      id: 2,
-      showOnHome: true,
-      images: [
-        "/images/crimson_1.png",
-        "/images/crimson_2.png",
-        "/images/crimson_3.png",
-        "/images/crimson_4.png",
-        "/images/crimson_5.png",
-        "/images/crimson_6.png",
-      ],
-      technologies: ["Python", "C"],
-      link: "https://he4vyl0v3.vercel.app/",
-    },
-    {
       id: 3,
       showOnHome: true,
-      images: ["/images/the_owl.png"],
+      images: [
+        "/images/owl/1.png",
+        "/images/owl/2.png",
+        "/images/owl/3.png",
+        "/images/owl/4.png",
+        "/images/owl/5.png",
+        "/images/owl/6.png",
+        "/images/owl/7.png",
+        "/images/owl/8.png",
+        "/images/owl/9.png",
+      ],
       technologies: ["React", "TypeScript"],
       link: "https://owl-gamma.vercel.app/",
     },
@@ -70,11 +81,32 @@ const projectsData: { projects: ProjectData[] } = {
       link: "https://github.com/Nighty3098/IPSA_MODEL/",
     },
     {
+      id: 10,
+      showOnHome: true,
+      images: ["/images/skyfall_website.png"],
+      technologies: ["React", "TypeScript", "GSAP"],
+      link: "https://SkyFallOsint.vercel.app",
+    },
+    {
       id: 7,
       showOnHome: true,
       images: ["/images/PrettyProfile_1.png", "/images/PrettyProfile_2.png"],
       technologies: ["NodeJS", "Vercel"],
       link: "https://pretty-profile.vercel.app/",
+    },
+    {
+      id: 2,
+      showOnHome: true,
+      images: [
+        "/images/crimson_1.png",
+        "/images/crimson_2.png",
+        "/images/crimson_3.png",
+        "/images/crimson_4.png",
+        "/images/crimson_5.png",
+        "/images/crimson_6.png",
+      ],
+      technologies: ["Python", "C"],
+      link: "https://he4vyl0v3.vercel.app/",
     },
     {
       id: 8,
@@ -97,28 +129,6 @@ const projectsData: { projects: ProjectData[] } = {
       ],
       technologies: ["TypeScript"],
       link: "https://github.com/Nighty3098/TechSupportBot",
-    },
-    {
-      id: 10,
-      showOnHome: true,
-      images: ["/images/skyfall_website.png"],
-      technologies: ["React", "TypeScript", "GSAP"],
-      link: "https://SkyFallOsint.vercel.app",
-    },
-    {
-      id: 11,
-      showOnHome: true,
-      images: [
-        "/images/skyfall_tg.png",
-        "/images/skyfall_dorks.png",
-        "/images/skyfall_github.png",
-        "/images/skyfall_graph.png",
-        "/images/skyfall_mail.png",
-        "/images/skyfall_username.png",
-        "/images/skyfall_website.png",
-      ],
-      technologies: ["Python", "PySide6", "OSINT", "React"],
-      link: "https://github.com/Nighty3098/SkyFall",
     },
     {
       id: 12,

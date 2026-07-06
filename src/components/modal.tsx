@@ -13,47 +13,69 @@ const Carousel: React.FC<CarouselProps> = ({ images, title }) => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const transitioningRef = useRef(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
-  const goToNext = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      if (transitioningRef.current) return;
+  const goTo = useCallback(
+    (newIndex: number) => {
+      if (transitioningRef.current || !imgRef.current) return;
       transitioningRef.current = true;
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    },
-    [images.length],
-  );
 
-  const goToPrev = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      if (transitioningRef.current) return;
-      transitioningRef.current = true;
-      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+      const img = imgRef.current;
+      gsap.to(img, {
+        opacity: 0,
+        duration: 0.15,
+        ease: "power2.in",
+        onComplete: () => {
+          setCurrentIndex(newIndex);
+        },
+      });
     },
-    [images.length],
+    [],
   );
 
   useEffect(() => {
-    const img = imageRef.current?.querySelector("img");
+    const img = imgRef.current;
     if (!img) return;
     if (transitioningRef.current) {
-      gsap.fromTo(img, { opacity: 0 }, { opacity: 1, duration: 0.4, onComplete: () => { transitioningRef.current = false; } });
+      gsap.to(img, {
+        opacity: 1,
+        duration: 0.35,
+        ease: "power2.out",
+        onComplete: () => {
+          transitioningRef.current = false;
+        },
+      });
     } else {
       gsap.set(img, { opacity: 1 });
     }
   }, [currentIndex]);
 
+  const goToNext = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      goTo((currentIndex + 1) % images.length);
+    },
+    [currentIndex, images.length, goTo],
+  );
+
+  const goToPrev = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      goTo((currentIndex - 1 + images.length) % images.length);
+    },
+    [currentIndex, images.length, goTo],
+  );
+
   useEffect(() => {
     if (images.length <= 1 || !isAutoPlaying) return;
     intervalRef.current = setInterval(() => {
       if (transitioningRef.current) return;
-      transitioningRef.current = true;
-      setCurrentIndex((prev) => (prev + 1) % images.length);
+      goTo((currentIndex + 1) % images.length);
     }, 3000);
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, [isAutoPlaying, images.length]);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isAutoPlaying, images.length, currentIndex, goTo]);
 
   if (images.length === 0) return null;
 
@@ -66,13 +88,21 @@ const Carousel: React.FC<CarouselProps> = ({ images, title }) => {
       }}
     >
       <div className="carousel-wrapper">
-        <div className="carousel-image-container" ref={imageRef}>
+        <div
+          className="carousel-image-container"
+          style={{ position: "relative", background: "var(--bg)" }}
+        >
           <img
-            key={currentIndex}
+            ref={imgRef}
             src={images[currentIndex]}
             alt={`${title} - ${currentIndex + 1}`}
             className="carousel-image carousel-image-modal"
-            style={{ position: "absolute", inset: 0, opacity: 0 }}
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "auto",
+              display: "block",
+            }}
           />
         </div>
         {images.length > 1 && (
@@ -81,16 +111,12 @@ const Carousel: React.FC<CarouselProps> = ({ images, title }) => {
               className="carousel-btn carousel-btn-prev"
               onClick={goToPrev}
               aria-label={t("project_card.prev_image")}
-            >
-              ‹
-            </button>
+            />
             <button
               className="carousel-btn carousel-btn-next"
               onClick={goToNext}
               aria-label={t("project_card.next_image")}
-            >
-              ›
-            </button>
+            />
           </>
         )}
       </div>

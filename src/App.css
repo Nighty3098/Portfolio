@@ -709,8 +709,8 @@ body {
 
 .carousel-container.carousel-modal .carousel-image-container {
   position: relative;
-  aspect-ratio: 16/10;
   width: 100%;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: var(--border-radius);
 }
@@ -718,7 +718,7 @@ body {
 .carousel-container.carousel-modal .carousel-image.carousel-image-modal {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: var(--border-radius);
 }
 
@@ -726,8 +726,8 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: var(--fg);
+  background-color: #fff;
+  mix-blend-mode: difference;
   border: none;
   border-radius: 50%;
   width: 36px;
@@ -747,7 +747,6 @@ body {
 }
 
 .carousel-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8);
   opacity: 1;
 }
 
@@ -1202,13 +1201,12 @@ body {
 
 .hero-title {
   font-family: "Sofia Sans Extra Condensed", sans-serif;
-  font-size: clamp(6rem, 40vw, 100vw);
+  font-size: clamp(6rem, 35vw, 100vw);
   font-weight: lighter;
   color: var(--fg);
   line-height: 0.9;
   text-transform: uppercase;
   margin: 0;
-  letter-spacing: -3px;
   text-wrap: none;
   text-align: center;
   visibility: hidden;
@@ -1436,15 +1434,15 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.7rem 2.4rem;
-  font-family: "Oswald", sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 4px;
+  padding: 0.5rem 1.5rem;
+  font-family: "Exo 2", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--fg);
   background: transparent;
-  border: 1px solid var(--fg-2);
+  border: 1px solid var(--fg);
   border-radius: var(--border-radius);
   cursor: pointer;
   align-self: flex-start;
@@ -1528,7 +1526,7 @@ body {
   grid-auto-flow: dense;
   gap: 1rem;
   width: 100%;
-  margin: var(--spacing-xxl) 0;
+  margin: var(--spacing-xxl) 0 0;
 }
 
 .bento-cell {
@@ -1610,7 +1608,8 @@ body {
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0px;
-  color: var(--fg);
+  color: #fff;
+  mix-blend-mode: difference;
   margin: 0 0 2px 0;
 }
 
@@ -1625,7 +1624,7 @@ body {
   .bento-grid .bento-cell {
     grid-column: span 1 !important;
     grid-row: span 1 !important;
-    aspect-ratio: 19 / 10;
+    aspect-ratio: 19 / 12;
     min-height: unset;
   }
 
@@ -1802,15 +1801,15 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 1.2rem;
+  padding: 0.7rem 1.2rem;
   font-family: "Oswald", sans-serif;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   letter-spacing: 4px;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--fg);
   background: transparent;
-  border: 1px solid var(--fg-2);
+  border: 1px solid var(--fg);
   border-radius: var(--border-radius);
   cursor: pointer;
   transition:

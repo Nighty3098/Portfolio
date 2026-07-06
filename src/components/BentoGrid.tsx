@@ -23,8 +23,8 @@ interface BentoGridProps {
 const cellStyles = [
   "bento-cell-wide",
   "",
-  "",
   "bento-cell-wide",
+  "",
   "",
   "",
   "bento-cell-wide",
