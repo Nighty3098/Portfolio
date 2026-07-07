@@ -718,6 +718,11 @@ body {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
 .carousel-container.carousel-modal .carousel-image.carousel-image-modal {
