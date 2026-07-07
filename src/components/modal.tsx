@@ -124,13 +124,6 @@ const Carousel: React.FC<CarouselProps> = ({ images, title }) => {
   );
 };
 
-interface OriginRect {
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-}
-
 interface ModalProps {
   show: boolean;
   onClose: () => void;
@@ -138,7 +131,6 @@ interface ModalProps {
   description: string;
   images: string[];
   link: string;
-  originRect?: OriginRect | null;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -148,69 +140,19 @@ const Modal: React.FC<ModalProps> = ({
   description,
   images,
   link,
-  originRect,
 }) => {
   const { t } = useTranslate();
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const ghostRef = useRef<HTMLDivElement>(null);
+  const dialogRef = React.useRef<HTMLDialogElement>(null);
   const onCloseRef = useRef(onClose);
-  const openTween = useRef<gsap.core.Tween | null>(null);
-  const closeTween = useRef<gsap.core.Tween | null>(null);
   onCloseRef.current = onClose;
 
   useEffect(() => {
     const dialog = dialogRef.current;
-    const content = contentRef.current;
-    const ghost = ghostRef.current;
-    if (!dialog || !content) return;
+    if (!dialog) return;
 
     dialog.showModal();
-
-    if (originRect && ghost && images[0]) {
-      gsap.set(content, { opacity: 0, display: "none" });
-      gsap.set(ghost, {
-        opacity: 1,
-        display: "block",
-        top: originRect.top,
-        left: originRect.left,
-        width: originRect.width,
-        height: originRect.height,
-        margin: 0,
-        position: "fixed",
-        overflow: "hidden",
-        zIndex: 1,
-        borderRadius: 20,
-      });
-      gsap.set(dialog, { background: "transparent" });
-
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-
-      openTween.current = gsap.to(ghost, {
-        top: 0,
-        left: 0,
-        width: vw,
-        height: vh,
-        duration: 0.5,
-        ease: "power3.out",
-        onComplete: () => {
-          gsap.to(ghost, {
-            opacity: 0,
-            duration: 0.2,
-            onComplete: () => {
-              gsap.set(ghost, { display: "none" });
-              gsap.set(dialog, { background: "" });
-              gsap.set(content, { display: "" });
-              gsap.to(content, { opacity: 1, duration: 0.25 });
-            },
-          });
-        },
-      });
-    } else {
-      gsap.set(dialog, { opacity: 0 });
-      gsap.to(dialog, { opacity: 1, duration: 0.3 });
-    }
+    gsap.set(dialog, { opacity: 0 });
+    gsap.to(dialog, { opacity: 1, duration: 0.3 });
 
     const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose();
@@ -228,58 +170,14 @@ const Modal: React.FC<ModalProps> = ({
 
   const handleClose = () => {
     const dialog = dialogRef.current;
-    const content = contentRef.current;
-    const ghost = ghostRef.current;
     if (!dialog) return;
-
-    openTween.current?.kill();
-    closeTween.current?.kill();
-
-    if (originRect && ghost && images[0]) {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-
-      gsap.to(content, {
-        opacity: 0,
-        duration: 0.15,
-        onComplete: () => {
-          gsap.set(content, { display: "none" });
-          gsap.set(dialog, { background: "transparent" });
-
-          gsap.set(ghost, {
-            display: "block",
-            opacity: 1,
-            top: 0,
-            left: 0,
-            width: vw,
-            height: vh,
-            position: "fixed",
-            overflow: "hidden",
-            zIndex: 1,
-          });
-
-          closeTween.current = gsap.to(ghost, {
-            top: originRect.top,
-            left: originRect.left,
-            width: originRect.width,
-            height: originRect.height,
-            duration: 0.4,
-            ease: "power3.in",
-            onComplete: () => {
-              onCloseRef.current();
-            },
-          });
-        },
-      });
-    } else {
-      gsap.to(dialog, {
-        opacity: 0,
-        duration: 0.2,
-        onComplete: () => {
-          onCloseRef.current();
-        },
-      });
-    }
+    gsap.to(dialog, {
+      opacity: 0,
+      duration: 0.2,
+      onComplete: () => {
+        onCloseRef.current();
+      },
+    });
   };
 
   if (!show) return null;
@@ -290,24 +188,7 @@ const Modal: React.FC<ModalProps> = ({
       className="modal"
       onClick={handleClose}
     >
-      <div
-        ref={ghostRef}
-        className="modal-ghost"
-        style={{ display: "none" }}
-      >
-        <img
-          src={images[0]}
-          alt=""
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-          }}
-        />
-      </div>
       <section
-        ref={contentRef}
         className="modal-content modal-content-scrollable"
         onClick={(e) => e.stopPropagation()}
       >

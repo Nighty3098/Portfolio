@@ -597,20 +597,6 @@ body {
   display: none;
 }
 
-.modal-ghost {
-  position: fixed;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.modal-ghost img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 .modal-content {
   background: var(--bg);
   display: flex;
