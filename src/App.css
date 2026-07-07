@@ -1205,7 +1205,7 @@ body {
 
 .hero-title {
   font-family: "Sofia Sans Extra Condensed", sans-serif;
-  font-size: clamp(6rem, 35vw, 100vw);
+  font-size: clamp(6rem, 30vw, 50vw);
   font-weight: lighter;
   color: var(--fg);
   line-height: 0.9;
@@ -1251,13 +1251,14 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: brightness(1.4);
 }
 
 .hero-visual-zoom {
   width: 100%;
   height: 100%;
-  transform: scale(2);
-  transform-origin: center 30%;
+  transform: scale(2.8);
+  transform-origin: 47% 40%;
 }
 
 .hero-scroll {
@@ -1307,8 +1308,16 @@ body {
   letter-spacing: 3px;
   color: var(--fg-2);
   opacity: 0.6;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
   font-family: "Exo 2", sans-serif;
   text-transform: uppercase;
+  gap: var(--spacing-s);
 }
 
 /* === MARQUEE === */

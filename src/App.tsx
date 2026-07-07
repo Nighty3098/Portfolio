@@ -6,7 +6,6 @@ import MyContacts from "./components/contacts";
 import Projects from "./components/projects";
 import Footer from "./components/footer";
 import Header from "./components/Header";
-import Marquee from "./components/marquee";
 import He4vyL0v3 from "./pages/He4vyL0v3";
 import AllProjects from "./pages/AllProjects";
 import ScrollProgress from "./components/ScrollProgress";
@@ -42,17 +41,16 @@ function App() {
               <ScrollProgress />
               <Header />
               <Hero />
-              <Marquee text="software engineer // FREELANCER // " />
               <About />
-                <Projects />
-                <MyContacts />
-                <Footer />
-              </div>
-            }
-          />
-          <Route path="/pentesting" element={<He4vyL0v3 />} />
-          <Route path="/all-projects" element={<AllProjects />} />
-        </Routes>
+              <Projects />
+              <MyContacts />
+              <Footer />
+            </div>
+          }
+        />
+        <Route path="/pentesting" element={<He4vyL0v3 />} />
+        <Route path="/all-projects" element={<AllProjects />} />
+      </Routes>
     </HashRouter>
   );
 }
