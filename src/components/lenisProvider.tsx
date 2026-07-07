@@ -16,9 +16,9 @@ function LenisProvider({ children }: LenisProviderProps) {
     if (prefersReducedMotion()) return;
 
     const lenis = new Lenis({
-      lerp: 0.045,
+      lerp: 0.09,
       smoothWheel: true,
-      wheelMultiplier: 0.8,
+      wheelMultiplier: 1.2,
       syncTouch: true,
       touchMultiplier: 0.8,
       orientation: "vertical",

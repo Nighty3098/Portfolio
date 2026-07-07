@@ -177,7 +177,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   font-size: clamp(2.5rem, 10vw, 60vw);
-  font-family: "Momo Signature", monospace;
+  font-family: "Sofia Sans Extra Condensed", sans-serif;
   color: var(--fg);
   letter-spacing: clamp(5px, 2vw, 15px);
   white-space: nowrap;
