@@ -37,6 +37,17 @@ const cellStyles = [
 function BentoGrid({ projects }: BentoGridProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [modalProject, setModalProject] = useState<ProjectItem | null>(null);
+  const [originRect, setOriginRect] = useState<{ top: number; left: number; width: number; height: number } | null>(null);
+
+  const handleCardClick = (p: ProjectItem, e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.innerWidth > 767) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setOriginRect(rect);
+    } else {
+      setOriginRect(null);
+    }
+    setModalProject(p);
+  };
 
   useEffect(() => {
     if (!ref.current) return;
@@ -72,7 +83,7 @@ function BentoGrid({ projects }: BentoGridProps) {
           <div
             key={p.id}
             className={`bento-cell ${cellStyles[i]}`.trim()}
-            onClick={() => setModalProject(p)}
+            onClick={(e) => handleCardClick(p, e)}
           >
             <div className="bento-cell-bg">
               <img src={p.images[0]} alt={p.title} />
@@ -88,11 +99,12 @@ function BentoGrid({ projects }: BentoGridProps) {
       {modalProject && (
         <Modal
           show={!!modalProject}
-          onClose={() => setModalProject(null)}
+          onClose={() => { setModalProject(null); setOriginRect(null); }}
           title={modalProject.title}
           description={modalProject.description}
           images={modalProject.images}
           link={modalProject.link}
+          originRect={originRect}
         />
       )}
     </>
