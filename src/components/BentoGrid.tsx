@@ -76,7 +76,7 @@ function BentoGrid({ projects }: BentoGridProps) {
           >
             <div className="bento-cell-bg">
               <img src={p.images[0]} alt={p.title} />
-              <div className="bento-cell-overlay" />
+
             </div>
             <div className="bento-cell-content">
               <h3 className="bento-cell-title">{p.title}</h3>
