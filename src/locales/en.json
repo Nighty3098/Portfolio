@@ -6,7 +6,7 @@
     "github": "GITHUB"
   },
   "welcome": {
-    "name": "NIGHTY",
+    "name": "ARTEM",
     "whoami": "DEVELOPER | FREELANCER",
     "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION",
     "city": "Novosibirsk"
@@ -20,7 +20,8 @@
     "p1": "Hello! I am Artem.",
     "p2": "I am 19 years old, and I spent 5 of them at the SAIKT Programming Academy, and now I am studying at SibSUTIS University in Novosibirsk, Russia.",
     "p3": "Stack: Python / C++ / TypeScript / React / QT / Docker / PostgreSQL.",
-    "p4": "I strive to grow in IT and work on large-scale projects that improve people's lives."
+    "p4": "I strive to grow in IT and work on large-scale projects that improve people's lives.",
+    "p5": "I am also interested in cybersecurity and OSINT - developing tools for both offensive security and intelligence gathering."
   },
   "projects": {
     "title": "My projects",
@@ -30,7 +31,7 @@
       {
         "title": "Ghostly Grabber",
         "info": "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
-        "description": "OSINT is a tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication"
+        "description": "OSINT - tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication"
       },
       {
         "title": "Crimson",

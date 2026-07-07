@@ -3,6 +3,8 @@ import { useTranslate } from "../context/I18nContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,21 +58,35 @@ function Hero() {
 
     const handleMouseMove = (e: MouseEvent) => {
       const heroRect = container.getBoundingClientRect();
-      const isHeroVisible = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+      const isHeroVisible =
+        heroRect.bottom > 0 && heroRect.top < window.innerHeight;
       if (!isHeroVisible) {
         if (isVisible) {
           isVisible = false;
-          gsap.to(visualEl, { scale: 0.85, opacity: 0, duration: 0.3, ease: "power2.out", overwrite: "auto" });
+          gsap.to(visualEl, {
+            scale: 0.85,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
         }
         return;
       }
 
       const menuOverlay = document.querySelector(".menu-overlay");
-      const isMenuOpen = menuOverlay && getComputedStyle(menuOverlay).display !== "none";
+      const isMenuOpen =
+        menuOverlay && getComputedStyle(menuOverlay).display !== "none";
       if (isMenuOpen) {
         if (isVisible) {
           isVisible = false;
-          gsap.to(visualEl, { scale: 0.85, opacity: 0, duration: 0.3, ease: "power2.out", overwrite: "auto" });
+          gsap.to(visualEl, {
+            scale: 0.85,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
         }
         return;
       }
@@ -161,6 +177,7 @@ function Hero() {
         <span className="hero-scroll-bracket">]</span>
       </div>
       <div className="hero-info">
+        <FontAwesomeIcon icon={faLocationDot} />
         <span>{t("welcome.city")}</span>
       </div>
     </section>

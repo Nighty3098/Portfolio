@@ -5,7 +5,7 @@ import { useSectionReveal } from "../hooks/useSectionReveal";
 function About() {
   const { t, locale } = useTranslate();
   const ref = useRef<HTMLDivElement>(null);
-  const texts = ["about.p1", "about.p2", "about.p3", "about.p4"];
+  const texts = ["about.p1", "about.p2", "about.p3", "about.p4", "about.p5"];
 
   useSectionReveal(ref, [locale]);
 
