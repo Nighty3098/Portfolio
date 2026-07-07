@@ -9,21 +9,9 @@ import Header from "./components/Header";
 import He4vyL0v3 from "./pages/He4vyL0v3";
 import AllProjects from "./pages/AllProjects";
 import ScrollProgress from "./components/ScrollProgress";
+import SEO from "./components/SEO";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { useTranslate } from "./context/I18nContext";
 import { preloadImages, allProjectImages } from "./utils/preloadImages";
-
-function HtmlUpdater() {
-  const { t } = useTranslate();
-
-  useEffect(() => {
-    document.title = t("html.title");
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", t("html.description"));
-  }, [t]);
-
-  return null;
-}
 
 function App() {
   useEffect(() => {
@@ -32,20 +20,22 @@ function App() {
 
   return (
     <HashRouter>
-      <HtmlUpdater />
       <Routes>
         <Route
           path="/"
           element={
-            <div className="App">
-              <ScrollProgress />
-              <Header />
-              <Hero />
-              <About />
-              <Projects />
-              <MyContacts />
-              <Footer />
-            </div>
+            <>
+              <SEO />
+              <div className="App">
+                <ScrollProgress />
+                <Header />
+                <Hero />
+                <About />
+                <Projects />
+                <MyContacts />
+                <Footer />
+              </div>
+            </>
           }
         />
         <Route path="/pentesting" element={<He4vyL0v3 />} />

@@ -3,6 +3,7 @@ import BentoGrid from "../components/BentoGrid";
 import Header from "../components/Header";
 import Footer from "../components/footer";
 import ScrollProgress from "../components/ScrollProgress";
+import SEO from "../components/SEO";
 import { projectsData } from "../components/projects";
 import { useTranslate } from "../context/I18nContext";
 import { useTheme } from "../context/ThemeContext";
@@ -32,9 +33,11 @@ function AllProjects() {
   }));
 
   return (
-    <div className="App" key={`${locale}-${theme}`}>
-      <ScrollProgress />
-      <Header />
+    <>
+      <SEO title={t("projects.all_title")} description={t("html.description")} path="/all-projects" />
+      <div className="App" key={`${locale}-${theme}`}>
+        <ScrollProgress />
+        <Header />
       <section
         ref={ref}
         className="content-block content projects-block projects-page-wrapper all-projects-page"
@@ -42,8 +45,9 @@ function AllProjects() {
         <h2>{t("projects.all_title")}</h2>
         <BentoGrid projects={all} />
       </section>
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }
 

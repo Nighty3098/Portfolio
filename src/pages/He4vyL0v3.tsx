@@ -1,4 +1,5 @@
 import ProjectCard from "./../components/project_card";
+import SEO from "../components/SEO";
 import { useTranslate } from "../context/I18nContext";
 
 const projectsData = {
@@ -40,13 +41,15 @@ function He4vyL0v3() {
   }>;
 
   return (
-    <section
-      id="projects"
-      className="content-block content projects-block projects-page-tiling"
-    >
-      <div className="content-block about-block heavylove-tiling projects-page-header">
-        <h1>{t("pentesting.title")}</h1>
-      </div>
+    <>
+      <SEO title={t("pentesting.title")} description={t("html.description")} path="/pentesting" />
+      <section
+        id="projects"
+        className="content-block content projects-block projects-page-tiling"
+      >
+        <div className="content-block about-block heavylove-tiling projects-page-header">
+          <h1>{t("pentesting.title")}</h1>
+        </div>
       <div className="spacer-h-100"></div>
       <div className="projects-grid">
         {projectsData.projects.map((project, i) => (
@@ -64,7 +67,8 @@ function He4vyL0v3() {
         ))}
       </div>
       <div className="spacer-h-100"></div>
-    </section>
+      </section>
+    </>
   );
 }
 
