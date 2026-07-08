@@ -37,6 +37,7 @@ function He4vyL0v3() {
   const items = tt("pentesting.items") as Array<{
     title: string;
     info: string;
+    brief: string;
     description: string;
   }>;
 
@@ -57,6 +58,7 @@ function He4vyL0v3() {
             key={project.id}
             title={items[i].title}
             description={items[i].description}
+            brief={items[i].brief}
             info={items[i].info}
             images={project.images}
             link={project.link}

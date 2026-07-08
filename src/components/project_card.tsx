@@ -9,6 +9,7 @@ interface ProjectCardProps {
   title: string;
   description: string;
   info: string;
+  brief: string;
   images: string[];
   link: string;
   id: number;
@@ -19,6 +20,7 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
+  brief,
   images,
   link,
   id,
@@ -87,6 +89,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             alt={title}
             className="project-image-preview"
           />
+          <div className="project-card-overlay">
+            <p className="project-card-brief">{brief}</p>
+          </div>
         </div>
         <div className="project-info">
           <h3 className="project-name">{title}</h3>

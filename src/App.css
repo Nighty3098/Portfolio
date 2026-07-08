@@ -538,6 +538,35 @@ body {
   background: var(--bg-2);
 }
 
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-m);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.project-card:hover .project-card-overlay {
+  opacity: 1;
+}
+
+.project-card .project-card-brief {
+  max-width: 100%;
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  line-height: 1.5;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .project-image-preview {
   position: absolute;
   inset: 0;
@@ -1452,10 +1481,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1.5rem;
-  font-family: "Exo 2", sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 0.4rem 1.2rem;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--fg);
@@ -1464,17 +1493,15 @@ body {
   border-radius: var(--border-radius);
   cursor: pointer;
   align-self: flex-start;
-  transition:
-    background-color 0.4s ease,
-    color 0.4s ease,
-    border-color 0.4s ease;
+  opacity: 0.7;
+  transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
 .about-contact-btn:hover {
-  background-color: var(--fg);
+  opacity: 1;
+  background: var(--fg);
   color: var(--bg);
-  border-color: var(--fg);
 }
 
 .about-text-col {
@@ -1502,6 +1529,33 @@ body {
 .about-text-col p .char {
   display: inline-block;
   will-change: transform;
+}
+
+.about-category-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+
+.about-cat-link {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.4rem 1.2rem;
+  border: 1px solid var(--fg);
+  border-radius: var(--border-radius);
+  color: var(--fg);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.about-cat-link:hover {
+  opacity: 1;
+  background: var(--fg);
+  color: var(--bg);
 }
 
 @media (max-width: 767px) {
@@ -1594,6 +1648,35 @@ body {
   border-radius: var(--border-radius-l);
 }
 
+.bento-cell-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-l);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.bento-cell:hover .bento-cell-overlay {
+  opacity: 1;
+}
+
+.bento-cell .bento-cell-brief {
+  max-width: 100%;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  line-height: 1.5;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .bento-cell-bg img {
   position: absolute;
   inset: 0;
@@ -1622,6 +1705,38 @@ body {
   margin: 0;
   color: var(--fg);
   opacity: 0.85;
+}
+
+.category-filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-btn {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--fg);
+  border-radius: var(--border-radius);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.category-btn:hover {
+  opacity: 1;
+}
+
+.category-btn.active {
+  opacity: 1;
+  background: var(--fg);
+  color: var(--bg);
 }
 
 /* === MOBILE OVERRIDES === */

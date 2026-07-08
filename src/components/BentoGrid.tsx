@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 interface ProjectItem {
   title: string;
   info: string;
+  brief: string;
   description: string;
   images: string[];
   link: string;
@@ -18,6 +19,7 @@ interface ProjectItem {
 
 interface BentoGridProps {
   projects: ProjectItem[];
+  uniform?: boolean;
 }
 
 const cellStyles = [
@@ -32,9 +34,13 @@ const cellStyles = [
   "",
   "",
   "bento-cell-wide",
+  "bento-cell-wide",
+  "",
+  "",
+  "",
 ];
 
-function BentoGrid({ projects }: BentoGridProps) {
+function BentoGrid({ projects, uniform }: BentoGridProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [modalProject, setModalProject] = useState<ProjectItem | null>(null);
 
@@ -71,12 +77,14 @@ function BentoGrid({ projects }: BentoGridProps) {
         {projects.map((p, i) => (
           <div
             key={p.id}
-            className={`bento-cell ${cellStyles[i]}`.trim()}
+            className={`bento-cell ${uniform ? "" : cellStyles[i]}`.trim()}
             onClick={() => setModalProject(p)}
           >
             <div className="bento-cell-bg">
               <img src={p.images[0]} alt={p.title} />
-
+              <div className="bento-cell-overlay">
+                <p className="bento-cell-brief">{p.brief}</p>
+              </div>
             </div>
             <div className="bento-cell-content">
               <h3 className="bento-cell-title">{p.title}</h3>

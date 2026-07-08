@@ -46,49 +46,6 @@ const contacts = [
       </svg>
     ),
   },
-  {
-    id: 3,
-    name: "Reddit",
-    handle: "u/DEVELOPER0x31",
-    link: "https://www.reddit.com/user/DEVELOPER0x31/",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="9" cy="11" r="1.5" fill="currentColor" stroke="none" />
-        <circle cx="15" cy="11" r="1.5" fill="currentColor" stroke="none" />
-        <path d="M8 15c0 0 1.5 2 4 2s4-2 4-2" />
-      </svg>
-    ),
-  },
-  {
-    id: 4,
-    name: "Discord",
-    handle: "#9707",
-    link: "https://discord.gg/#9707/",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M8 5C5.5 5 4 6.5 4 9v6c0 2.5 1.5 4 4 4l1-2" />
-        <path d="M16 5c2.5 0 4 1.5 4 4v6c0 2.5-1.5 4-4 4l-1-2" />
-        <circle cx="9" cy="12" r="1" fill="currentColor" stroke="none" />
-        <circle cx="15" cy="12" r="1" fill="currentColor" stroke="none" />
-        <path d="M9 17c1.5 1 4.5 1 6 0" />
-      </svg>
-    ),
-  },
 ];
 
 function MyContacts() {
@@ -131,7 +88,12 @@ function MyContacts() {
   }, [locale]);
 
   return (
-    <div id="my-contacts" ref={ref} key={locale} className="content contacts-page-wrapper">
+    <div
+      id="my-contacts"
+      ref={ref}
+      key={locale}
+      className="content contacts-page-wrapper"
+    >
       <h2 className="contacts-title" data-reveal="letters">
         {t("contacts.title_prefix")} {t("contacts.title_suffix")}
       </h2>

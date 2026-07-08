@@ -1,11 +1,12 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 
 function About() {
   const { t, locale } = useTranslate();
   const ref = useRef<HTMLDivElement>(null);
-  const texts = ["about.p1", "about.p2", "about.p3", "about.p4", "about.p5"];
+  const texts = ["about.p1", "about.p2", "about.p3", "about.p5"];
 
   useSectionReveal(ref, [locale]);
 
@@ -34,6 +35,14 @@ function About() {
               {t(key)}
             </p>
           ))}
+          <div className="about-category-links">
+            <Link to="/all-projects?category=osint" className="about-cat-link">
+              {t("about.osint_link")}
+            </Link>
+            <Link to="/all-projects?category=pentest" className="about-cat-link">
+              {t("about.pentest_link")}
+            </Link>
+          </div>
           <button className="about-contact-btn" onClick={scrollToContacts}>
             {t("about.contact_me")}
           </button>
