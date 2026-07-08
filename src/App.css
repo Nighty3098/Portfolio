@@ -1960,4 +1960,5 @@ body {
   min-height: 100vh;
   padding-top: calc(var(--header-h) + var(--spacing-xl));
   box-sizing: border-box;
+  justify-content: flex-start;
 }

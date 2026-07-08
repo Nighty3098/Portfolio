@@ -33,7 +33,8 @@
       "all": "All",
       "dev": "DEV",
       "osint": "OSINT",
-      "pentest": "PENTESTING"
+      "pentest": "PENTESTING",
+      "bots": "BOTS"
     },
     "items": [
       {

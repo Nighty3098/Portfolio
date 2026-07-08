@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 
-type ProjectCategory = "dev" | "osint" | "pentest";
+type ProjectCategory = "dev" | "osint" | "pentest" | "bots";
 
 interface ProjectData {
   id: number;
@@ -76,7 +76,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 5,
       showOnHome: true,
-      category: "dev",
+      category: "bots",
       images: ["/images/IPSA.png"],
       technologies: ["Python", "Tensorflow", "Keras", "Pyrogram"],
       link: "https://github.com/Nighty3098/InvestingAssistant/",
@@ -136,7 +136,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 9,
       showOnHome: false,
-      category: "dev",
+      category: "bots",
       images: [
         "/images/tech_support_bot.png",
         "/images/tech_support_bot_2.png",
@@ -147,7 +147,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 12,
       showOnHome: false,
-      category: "dev",
+      category: "bots",
       images: ["/images/cv_bot.png", "/images/cv_bot_2.png"],
       technologies: ["TypeScript", "Telegraf", "Express", "Vercel"],
       link: "https://t.me/cv_creator_example_bot",

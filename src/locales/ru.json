@@ -33,7 +33,8 @@
       "all": "Все",
       "dev": "DEV",
       "osint": "OSINT",
-      "pentest": "PENTESTING"
+      "pentest": "PENTESTING",
+      "bots": "БОТЫ"
     },
     "items": [
       {
