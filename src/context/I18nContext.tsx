@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import en from "../locales/en.json";
 import ru from "../locales/ru.json";
+import { detectLocation } from "../api/location";
 
 type Locale = "en" | "ru";
 type Translations = Record<string, unknown>;
@@ -38,6 +39,21 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const saved = typeof window !== "undefined" ? localStorage.getItem("locale") : null;
     return (saved === "en" || saved === "ru") ? saved : "en";
   });
+
+  useEffect(() => {
+    const saved = typeof window !== "undefined" ? localStorage.getItem("locale") : null;
+    if (saved === "en" || saved === "ru") return;
+
+    detectLocation()
+      .then((data) => {
+        const detected: Locale = data.country === "RU" ? "ru" : "en";
+        setLocaleState(detected);
+        localStorage.setItem("locale", detected);
+      })
+      .catch(() => {
+        setLocaleState("en");
+      });
+  }, []);
 
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l);
