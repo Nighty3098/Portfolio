@@ -53,7 +53,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 3,
       showOnHome: true,
-      category: "sites",
+      category: "dev",
       images: [
         "/images/owl/1.png",
         "/images/owl/2.png",
@@ -108,7 +108,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 7,
       showOnHome: true,
-      category: "dev",
+      category: "sites",
       images: ["/images/PrettyProfile_1.png", "/images/PrettyProfile_2.png"],
       technologies: ["NodeJS", "Vercel"],
       demo: "https://pretty-profile.vercel.app/",
