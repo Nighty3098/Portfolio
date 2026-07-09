@@ -199,7 +199,7 @@ const projectsData: { projects: ProjectData[] } = {
     },
     {
       id: 16,
-      showOnHome: true,
+      showOnHome: false,
       category: "sites",
       images: ["/images/owl_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
