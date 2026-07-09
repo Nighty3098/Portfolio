@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 
-type ProjectCategory = "dev" | "osint" | "pentest" | "bots";
+type ProjectCategory = "dev" | "osint" | "pentest" | "bots" | "sites";
 
 interface ProjectData {
   id: number;
@@ -53,7 +53,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 3,
       showOnHome: true,
-      category: "dev",
+      category: "sites",
       images: [
         "/images/owl/1.png",
         "/images/owl/2.png",
@@ -200,7 +200,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 16,
       showOnHome: true,
-      category: "dev",
+      category: "sites",
       images: ["/images/owl_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
       source: "https://github.com/Nighty3098/owl_website",

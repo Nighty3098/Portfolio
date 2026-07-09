@@ -34,7 +34,8 @@
       "dev": "DEV",
       "osint": "OSINT",
       "pentest": "PENTESTING",
-      "bots": "БОТЫ"
+      "bots": "БОТЫ",
+      "sites": "САЙТЫ"
     },
     "items": [
       {
