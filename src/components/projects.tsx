@@ -197,6 +197,15 @@ const projectsData: { projects: ProjectData[] } = {
       source: "https://github.com/Nighty3098/IStealU",
       demo: "",
     },
+    {
+      id: 16,
+      showOnHome: true,
+      category: "dev",
+      images: ["/images/owl_website.png"],
+      technologies: ["React", "TypeScript", "GSAP"],
+      source: "https://github.com/Nighty3098/owl_website",
+      demo: "https://owl-tech.vercel.app/",
+    },
   ],
 };
 

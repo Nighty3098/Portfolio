@@ -126,6 +126,12 @@
         "info": "Keylogger with sending logs via Telegram API",
         "brief": "A Windows keylogger that intercepts keystrokes and sends logs via the Telegram API",
         "description": "IStealU is a spyware program for Windows designed to intercept and log user keystrokes, as well as send logs to Telegram via the Telegram API"
+      },
+      {
+        "title": "OWL Website",
+        "info": "Brand website for The OWL — a project and task management app for developers",
+        "brief": "A brand presentation website for The OWL project management app with smooth GSAP animations",
+        "description": "OWL Website is a brand presentation site for The OWL — a project and task management desktop application designed for developers. Built with React, TypeScript, and GSAP, it showcases the app's features with smooth animations and a clean, modern design."
       }
     ]
   },
