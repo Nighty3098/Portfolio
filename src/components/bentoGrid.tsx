@@ -11,10 +11,11 @@ interface ProjectItem {
   brief: string;
   description: string;
   images: string[];
-  link: string;
   id: number;
   index: number;
   technologies: string[];
+  source: string;
+  demo: string;
 }
 
 interface BentoGridProps {
@@ -100,7 +101,8 @@ function BentoGrid({ projects, uniform }: BentoGridProps) {
           title={modalProject.title}
           description={modalProject.description}
           images={modalProject.images}
-          link={modalProject.link}
+          source={modalProject.source}
+          demo={modalProject.demo}
         />
       )}
     </>

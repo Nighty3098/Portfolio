@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import BentoGrid from "../components/BentoGrid";
-import Header from "../components/Header";
+import BentoGrid from "../components/bentoGrid";
+import Header from "../components/header";
 import Footer from "../components/footer";
-import ScrollProgress from "../components/ScrollProgress";
+import ScrollProgress from "../components/scrollProgress";
 import SEO from "../components/SEO";
 import { projectsData } from "../components/projects";
 import { useTranslate } from "../context/I18nContext";
@@ -20,7 +20,9 @@ function AllProjects() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialCategory = searchParams.get("category") || "all";
   const [activeCategory, setActiveCategory] = useState<Category>(
-    categories.includes(initialCategory as Category) ? (initialCategory as Category) : "all"
+    categories.includes(initialCategory as Category)
+      ? (initialCategory as Category)
+      : "all",
   );
 
   useEffect(() => {
@@ -49,31 +51,35 @@ function AllProjects() {
 
   return (
     <>
-      <SEO title={t("projects.all_title")} description={t("html.description")} path="/all-projects" />
+      <SEO
+        title={t("projects.all_title")}
+        description={t("html.description")}
+        path="/all-projects"
+      />
       <div className="App" key={`${locale}-${theme}`}>
         <ScrollProgress />
         <Header />
-      <section
-        ref={ref}
-        className="content-block content projects-block projects-page-wrapper all-projects-page"
-      >
-        <h2>{t("projects.all_title")}</h2>
-        <div className="category-filters">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`category-btn ${activeCategory === cat ? "active" : ""}`}
-              onClick={() => {
-                setActiveCategory(cat);
-                setSearchParams(cat === "all" ? {} : { category: cat });
-              }}
-            >
-              {catLabels[cat]}
-            </button>
-          ))}
-        </div>
-        <BentoGrid projects={all} uniform={activeCategory !== "all"} />
-      </section>
+        <section
+          ref={ref}
+          className="content-block content projects-block projects-page-wrapper all-projects-page"
+        >
+          <h2>{t("projects.all_title")}</h2>
+          <div className="category-filters">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`category-btn ${activeCategory === cat ? "active" : ""}`}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setSearchParams(cat === "all" ? {} : { category: cat });
+                }}
+              >
+                {catLabels[cat]}
+              </button>
+            ))}
+          </div>
+          <BentoGrid projects={all} uniform={activeCategory !== "all"} />
+        </section>
         <Footer />
       </div>
     </>
@@ -81,3 +87,4 @@ function AllProjects() {
 }
 
 export default AllProjects;
+

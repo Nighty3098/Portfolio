@@ -15,23 +15,20 @@ const Carousel: React.FC<CarouselProps> = ({ images, title }) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
-  const goTo = useCallback(
-    (newIndex: number) => {
-      if (transitioningRef.current || !imgRef.current) return;
-      transitioningRef.current = true;
+  const goTo = useCallback((newIndex: number) => {
+    if (transitioningRef.current || !imgRef.current) return;
+    transitioningRef.current = true;
 
-      const img = imgRef.current;
-      gsap.to(img, {
-        opacity: 0,
-        duration: 0.15,
-        ease: "power2.in",
-        onComplete: () => {
-          setCurrentIndex(newIndex);
-        },
-      });
-    },
-    [],
-  );
+    const img = imgRef.current;
+    gsap.to(img, {
+      opacity: 0,
+      duration: 0.15,
+      ease: "power2.in",
+      onComplete: () => {
+        setCurrentIndex(newIndex);
+      },
+    });
+  }, []);
 
   useEffect(() => {
     const img = imgRef.current;
@@ -130,7 +127,8 @@ interface ModalProps {
   title: string;
   description: string;
   images: string[];
-  link: string;
+  demo: string;
+  source: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -139,7 +137,8 @@ const Modal: React.FC<ModalProps> = ({
   title,
   description,
   images,
-  link,
+  demo,
+  source,
 }) => {
   const { t } = useTranslate();
   const dialogRef = React.useRef<HTMLDialogElement>(null);
@@ -183,11 +182,7 @@ const Modal: React.FC<ModalProps> = ({
   if (!show) return null;
 
   return (
-    <dialog
-      ref={dialogRef}
-      className="modal"
-      onClick={handleClose}
-    >
+    <dialog ref={dialogRef} className="modal" onClick={handleClose}>
       <section
         className="modal-content modal-content-scrollable"
         onClick={(e) => e.stopPropagation()}
@@ -202,14 +197,38 @@ const Modal: React.FC<ModalProps> = ({
         <h2>{title}</h2>
         <Carousel images={images} title={title} />
         <p>{description}</p>
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="modal-link"
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "var(--spacing-m)",
+          }}
         >
-          {t("project_card.open")}
-        </a>
+          {source && source.trim() !== "" && (
+            <a
+              href={source}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-link"
+            >
+              {t("project_card.source")}
+            </a>
+          )}
+
+          {demo && demo.trim() !== "" && (
+            <a
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-link"
+            >
+              {t("project_card.demo")}
+            </a>
+          )}
+        </div>
       </section>
     </dialog>
   );

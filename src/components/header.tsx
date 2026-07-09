@@ -2,14 +2,18 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useTheme } from "../context/ThemeContext";
-import GitHubStats from "./github_stats";
+import GitHubStats from "./githubStats";
 import gsap from "gsap";
 
 const navItems = [
   { key: "nav.projects", sectionId: "projects" },
   { key: "nav.about", sectionId: "about-me" },
   { key: "nav.contacts", sectionId: "my-contacts" },
-  { key: "about.resume", href: "https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing", external: true },
+  {
+    key: "about.resume",
+    href: "https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing",
+    external: true,
+  },
 ];
 
 function Header() {
@@ -29,7 +33,8 @@ function Header() {
   };
 
   useEffect(() => {
-    if (!menuRef.current || !overlayRef.current || !menuItemsRef.current) return;
+    if (!menuRef.current || !overlayRef.current || !menuItemsRef.current)
+      return;
 
     const items = Array.from(menuItemsRef.current.children);
 
@@ -41,12 +46,16 @@ function Header() {
       tl.fromTo(
         overlayRef.current,
         { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" },
-        { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 0.6, ease: "power3.inOut" }
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          duration: 0.6,
+          ease: "power3.inOut",
+        },
       );
       tl.to(
         items,
         { x: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: "power3.out" },
-        "-=0.3"
+        "-=0.3",
       );
     } else {
       const tl = gsap.timeline();
@@ -59,8 +68,12 @@ function Header() {
       });
       tl.to(
         overlayRef.current,
-        { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", duration: 0.4, ease: "power3.inOut" },
-        "-=0.1"
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+          duration: 0.4,
+          ease: "power3.inOut",
+        },
+        "-=0.1",
       );
       tl.set(menuRef.current, { display: "none" });
     }
@@ -70,7 +83,9 @@ function Header() {
     <>
       <header className="header">
         <div className="header-inner">
-          <Link to="/" className="header-logo">NIGHTY</Link>
+          <Link to="/" className="header-logo">
+            NIGHTY
+          </Link>
           <div className="header-right">
             <button
               className={`header-menu-btn ${isMenuOpen ? "is-active" : ""}`}
@@ -84,9 +99,18 @@ function Header() {
         </div>
       </header>
 
-      <div ref={menuRef} className="menu-overlay" data-lenis-prevent style={{ display: "none" }}>
+      <div
+        ref={menuRef}
+        className="menu-overlay"
+        data-lenis-prevent
+        style={{ display: "none" }}
+      >
         <div ref={overlayRef} className="menu-overlay-bg" />
-        <div ref={menuContentRef} className="menu-overlay-content" style={{ visibility: "hidden" }}>
+        <div
+          ref={menuContentRef}
+          className="menu-overlay-content"
+          style={{ visibility: "hidden" }}
+        >
           <nav ref={menuItemsRef} className="menu-nav">
             {navItems.map((item) =>
               item.external ? (
@@ -107,7 +131,7 @@ function Header() {
                 >
                   {t(item.key)}
                 </button>
-              )
+              ),
             )}
             <button
               className="menu-nav-item"

@@ -130,6 +130,8 @@
     ]
   },
   "project_card": {
+    "demo": "Demo",
+    "source": "Source",
     "open": "Open",
     "prev_image": "Previous image",
     "next_image": "Next image",

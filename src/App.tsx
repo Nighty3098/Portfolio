@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 import "./App.css";
-import Hero from "./components/Hero";
-import About from "./components/About";
+import Hero from "./components/hero";
+import About from "./components/about";
 import MyContacts from "./components/contacts";
 import Projects from "./components/projects";
 import Footer from "./components/footer";
-import Header from "./components/Header";
-import He4vyL0v3 from "./pages/He4vyL0v3";
+import Header from "./components/header";
 import AllProjects from "./pages/AllProjects";
-import ScrollProgress from "./components/ScrollProgress";
+import ScrollProgress from "./components/scrollProgress";
 import SEO from "./components/SEO";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { preloadImages, allProjectImages } from "./utils/preloadImages";
@@ -38,7 +37,6 @@ function App() {
             </>
           }
         />
-        <Route path="/pentesting" element={<He4vyL0v3 />} />
         <Route path="/all-projects" element={<AllProjects />} />
       </Routes>
     </HashRouter>

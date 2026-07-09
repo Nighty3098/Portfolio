@@ -11,7 +11,8 @@ interface ProjectCardProps {
   info: string;
   brief: string;
   images: string[];
-  link: string;
+  source: string;
+  demo: string;
   id: number;
   index: number;
   technologies: string[];
@@ -22,7 +23,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   brief,
   images,
-  link,
+  source,
+  demo,
   id,
   index,
   technologies,
@@ -54,7 +56,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   useEffect(() => {
     if (!cardRef.current) return;
     const el = cardRef.current;
-    const tween = gsap.fromTo(el,
+    const tween = gsap.fromTo(
+      el,
       { opacity: 0, y: 60 },
       {
         opacity: 1,
@@ -69,7 +72,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         },
       },
     );
-    return () => { tween.kill(); };
+    return () => {
+      tween.kill();
+    };
   }, [index]);
 
   return (
@@ -104,7 +109,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         title={title}
         description={description}
         images={images}
-        link={link}
+        source={source}
+        demo={demo}
       />
     </>
   );

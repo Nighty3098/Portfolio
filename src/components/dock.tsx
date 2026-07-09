@@ -1,5 +1,5 @@
 import { useState } from "react";
-import GitHubStats from "./github_stats";
+import GitHubStats from "./githubStats";
 import { useTranslate } from "../context/I18nContext";
 
 const items = [
@@ -7,7 +7,14 @@ const items = [
     labelKey: "nav.projects" as const,
     sectionId: "projects",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <rect x="3" y="3" width="7" height="7" rx="1" />
         <rect x="14" y="3" width="7" height="7" rx="1" />
         <rect x="3" y="14" width="7" height="7" rx="1" />
@@ -19,7 +26,14 @@ const items = [
     labelKey: "nav.contacts" as const,
     sectionId: "my-contacts",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <rect x="2" y="4" width="20" height="16" rx="2" />
         <path d="M2 4l10 8 10-8" />
       </svg>
@@ -61,7 +75,6 @@ function Dock() {
             <span className="dock-tooltip">{t(item.labelKey)}</span>
           </button>
         ))}
-
       </div>
       <GitHubStats
         show={githubStatsOpen}

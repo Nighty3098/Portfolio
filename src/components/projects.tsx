@@ -1,4 +1,4 @@
-import BentoGrid from "./BentoGrid";
+import BentoGrid from "./bentoGrid";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
@@ -10,7 +10,8 @@ interface ProjectData {
   id: number;
   images: string[];
   technologies: string[];
-  link: string;
+  demo: string;
+  source: string;
   showOnHome: boolean;
   category: ProjectCategory;
 }
@@ -31,7 +32,8 @@ const projectsData: { projects: ProjectData[] } = {
         "/images/skyfall_website.png",
       ],
       technologies: ["Python", "PySide6", "OSINT", "React"],
-      link: "https://github.com/Nighty3098/SkyFall",
+      demo: "https://skyfallosint.vercel.app/",
+      source: "",
     },
     {
       id: 1,
@@ -45,7 +47,8 @@ const projectsData: { projects: ProjectData[] } = {
         "/images/gh_5.png",
       ],
       technologies: ["Python", "C++", "QT"],
-      link: "https://he4vyl0v3.vercel.app/",
+      source: "https://github.com/Nighty3098/GhostlyGrabber/",
+      demo: "",
     },
     {
       id: 3,
@@ -63,7 +66,8 @@ const projectsData: { projects: ProjectData[] } = {
         "/images/owl/9.png",
       ],
       technologies: ["React", "TypeScript"],
-      link: "https://owl-gamma.vercel.app/",
+      demo: "https://owl-gamma.vercel.app/",
+      source: "",
     },
     {
       id: 4,
@@ -71,7 +75,8 @@ const projectsData: { projects: ProjectData[] } = {
       category: "dev",
       images: ["/images/owl_rest_api.png"],
       technologies: ["Python", "Flask", "PostgreSQL"],
-      link: "https://owl-gamma.vercel.app/",
+      demo: "https://owl-gamma.vercel.app/",
+      source: "",
     },
     {
       id: 5,
@@ -79,7 +84,8 @@ const projectsData: { projects: ProjectData[] } = {
       category: "bots",
       images: ["/images/IPSA.png"],
       technologies: ["Python", "Tensorflow", "Keras", "Pyrogram"],
-      link: "https://github.com/Nighty3098/InvestingAssistant/",
+      source: "https://github.com/Nighty3098/InvestingAssistant/",
+      demo: "",
     },
     {
       id: 6,
@@ -87,7 +93,8 @@ const projectsData: { projects: ProjectData[] } = {
       category: "dev",
       images: ["/images/ipsa_model_1.png", "/images/ipsa_model_2.png"],
       technologies: ["Python", "Tensorflow", "Keras"],
-      link: "https://github.com/Nighty3098/IPSA_MODEL/",
+      source: "https://github.com/Nighty3098/IPSA_MODEL/",
+      demo: "",
     },
     {
       id: 10,
@@ -95,7 +102,8 @@ const projectsData: { projects: ProjectData[] } = {
       category: "dev",
       images: ["/images/skyfall_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
-      link: "https://SkyFallOsint.vercel.app",
+      demo: "https://SkyFallOsint.vercel.app",
+      source: "https://github.com/Nighty3098/SkyFallWebPage",
     },
     {
       id: 7,
@@ -103,7 +111,8 @@ const projectsData: { projects: ProjectData[] } = {
       category: "dev",
       images: ["/images/PrettyProfile_1.png", "/images/PrettyProfile_2.png"],
       technologies: ["NodeJS", "Vercel"],
-      link: "https://pretty-profile.vercel.app/",
+      demo: "https://pretty-profile.vercel.app/",
+      source: "https://github.com/Nighty3098/PrettyProfile",
     },
     {
       id: 2,
@@ -118,7 +127,8 @@ const projectsData: { projects: ProjectData[] } = {
         "/images/crimson_6.png",
       ],
       technologies: ["Python", "C"],
-      link: "https://he4vyl0v3.vercel.app/",
+      demo: "",
+      source: "https://github.com/Nighty3098/Crimson",
     },
     {
       id: 8,
@@ -131,7 +141,8 @@ const projectsData: { projects: ProjectData[] } = {
         "/images/LogInsight_4.png",
       ],
       technologies: ["C"],
-      link: "https://github.com/He4vyL0v3/LogInsight",
+      source: "https://github.com/He4vyL0v3/LogInsight",
+      demo: "",
     },
     {
       id: 9,
@@ -142,7 +153,8 @@ const projectsData: { projects: ProjectData[] } = {
         "/images/tech_support_bot_2.png",
       ],
       technologies: ["TypeScript"],
-      link: "https://github.com/Nighty3098/TechSupportBot",
+      source: "https://github.com/Nighty3098/TechSupportBot",
+      demo: "https://t.me/He4vyL0v3_bot",
     },
     {
       id: 12,
@@ -150,15 +162,22 @@ const projectsData: { projects: ProjectData[] } = {
       category: "bots",
       images: ["/images/cv_bot.png", "/images/cv_bot_2.png"],
       technologies: ["TypeScript", "Telegraf", "Express", "Vercel"],
-      link: "https://t.me/cv_creator_example_bot",
+      source: "https://t.me/cv_creator_example_bot",
+      demo: "https://t.me/cv_creator_example_bot",
     },
     {
       id: 13,
       showOnHome: false,
       category: "pentest",
-      images: ["/images/ProxySniffer.png", "/images/proxy_1.png", "/images/proxy_2.png", "/images/proxy_3.png"],
+      images: [
+        "/images/ProxySniffer.png",
+        "/images/proxy_1.png",
+        "/images/proxy_2.png",
+        "/images/proxy_3.png",
+      ],
       technologies: ["Python"],
-      link: "https://github.com/Nighty3098/ProxySniffer",
+      source: "https://github.com/Nighty3098/ProxySniffer",
+      demo: "",
     },
     {
       id: 14,
@@ -166,7 +185,8 @@ const projectsData: { projects: ProjectData[] } = {
       category: "pentest",
       images: ["/images/Thunder.png"],
       technologies: ["Python"],
-      link: "https://github.com/Nighty3098/Thunder",
+      source: "https://github.com/Nighty3098/Thunder",
+      demo: "",
     },
     {
       id: 15,
@@ -174,7 +194,8 @@ const projectsData: { projects: ProjectData[] } = {
       category: "pentest",
       images: ["/images/IStealU.png"],
       technologies: ["C++"],
-      link: "https://github.com/Nighty3098/IStealU",
+      source: "https://github.com/Nighty3098/IStealU",
+      demo: "",
     },
   ],
 };
