@@ -6,7 +6,7 @@ import { useSectionReveal } from "../hooks/useSectionReveal";
 function About() {
   const { t, locale } = useTranslate();
   const ref = useRef<HTMLDivElement>(null);
-  const texts = ["about.p1", "about.p2", "about.p3", "about.p5"];
+  const texts = ["about.p1", "about.p2", "about.p3", "about.p4", "about.p5"];
 
   useSectionReveal(ref, [locale]);
 
@@ -26,20 +26,26 @@ function About() {
       <div className="about-grid">
         <div className="about-image-col">
           <div className="about-image-frame">
-            <img src="me.png" alt="me" className="about-avatar" loading="lazy" />
+            <img
+              src="me.png"
+              alt="me"
+              className="about-avatar"
+              loading="lazy"
+            />
           </div>
         </div>
         <div className="about-text-col">
           {texts.map((key, i) => (
-            <p key={i}>
-              {t(key)}
-            </p>
+            <p key={i}>{t(key)}</p>
           ))}
           <div className="about-category-links">
             <Link to="/all-projects?category=osint" className="about-cat-link">
               {t("about.osint_link")}
             </Link>
-            <Link to="/all-projects?category=pentest" className="about-cat-link">
+            <Link
+              to="/all-projects?category=pentest"
+              className="about-cat-link"
+            >
               {t("about.pentest_link")}
             </Link>
           </div>
