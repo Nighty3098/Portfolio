@@ -11,6 +11,7 @@ import ScrollProgress from "./components/scrollProgress";
 import SEO from "./components/SEO";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { preloadImages, allProjectImages } from "./utils/preloadImages";
+import Marquee from "./components/marquee";
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
                 <ScrollProgress />
                 <Header />
                 <Hero />
+                <Marquee text="BACKEND DEVELOPER / FREELANCER / " />
                 <About />
                 <Projects />
                 <MyContacts />
