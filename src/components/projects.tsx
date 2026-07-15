@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 
-type ProjectCategory = "dev" | "osint" | "pentest" | "bots" | "sites";
+type ProjectCategory = "other" | "ml" | "osint" | "pentest" | "bots" | "sites";
 
 interface ProjectData {
   id: number;
@@ -53,7 +53,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 3,
       showOnHome: true,
-      category: "dev",
+      category: "other",
       images: [
         "/images/owl/1.png",
         "/images/owl/2.png",
@@ -72,7 +72,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 4,
       showOnHome: true,
-      category: "dev",
+      category: "other",
       images: ["/images/owl_rest_api.png"],
       technologies: ["Python", "Flask", "PostgreSQL"],
       demo: "https://owl-gamma.vercel.app/",
@@ -90,7 +90,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 6,
       showOnHome: true,
-      category: "dev",
+      category: "ml",
       images: ["/images/ipsa_model_1.png", "/images/ipsa_model_2.png"],
       technologies: ["Python", "Tensorflow", "Keras"],
       source: "https://github.com/Nighty3098/IPSA_MODEL/",
@@ -99,7 +99,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 10,
       showOnHome: true,
-      category: "dev",
+      category: "sites",
       images: ["/images/skyfall_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
       demo: "https://SkyFallOsint.vercel.app",
@@ -133,7 +133,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 8,
       showOnHome: false,
-      category: "dev",
+      category: "other",
       images: [
         "/images/LogInsight_1.png",
         "/images/LogInsight_2.png",

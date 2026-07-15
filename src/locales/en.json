@@ -31,11 +31,12 @@
     "all_title": "All Projects",
     "categories": {
       "all": "All",
-      "dev": "DEV",
+      "other": "OTHER",
       "osint": "OSINT",
       "pentest": "PENTESTING",
       "bots": "BOTS",
-      "sites": "SITES"
+      "sites": "SITES",
+      "ml": "Machine learning"
     },
     "items": [
       {
@@ -71,7 +72,7 @@
       {
         "title": "IPSA MODEL",
         "info": "Neural network model for IPSA",
-        "brief": "A deep learning model combining CNN, GRU, and attention mechanisms to predict stock prices",
+        "brief": "A model for predicting stock prices based on historical data",
         "description": "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score."
       },
       {
@@ -89,7 +90,7 @@
       {
         "title": "Tech Support Bot",
         "info": "Tech support telegram bot",
-        "brief": "A multilingual Telegram bot for user support, bug reporting, and feature requests",
+        "brief": "A multilingual Telegram bot for user support and feedback collection for my projects",
         "description": "A Telegram bot for user support, bug reporting, idea collection, and development order requests. The bot supports multiple languages and can work both in polling mode (locally) and via webhook (e.g., on Vercel).\n\nFeatures\n - Accepts user requests (bug reports, feature suggestions, development orders)\n - Supports attachments: text, photos, videos, documents\n - Multilingual interface (Russian, English, Japanese, Spanish)\n - Notifies a dedicated support chat about new tickets\n - Ticket (new, in progress, completed, review) \n - Users can change the interface language"
       },
       {
@@ -101,14 +102,14 @@
       {
         "title": "SkyFall",
         "info": "Open-source OSINT platform built with PySide6 — information gathering, Telegram OSINT, file analysis, and more",
-        "brief": "A comprehensive open-source OSINT platform with a PySide6 graphical interface for deep web analysis",
-        "description": "SkyFall is a comprehensive open-source OSINT (Open Source Intelligence) platform with a PySide6 graphical interface. It performs deep analysis of web resources and IP addresses — DNS, SSL/TLS, WHOIS, open ports (nmap 1–65535), WAF detection, malware reputation checks, and subdomain discovery. The platform includes a powerful dorking engine with 7974 exploits from Exploit-DB GHDB, Telegram OSINT with multi-account and proxy support, file analysis with metadata extraction, EXIF stripping, MAC/BSSID geolocation with interactive maps, email and username search across 3800+ sites, GitHub OSINT with secret scanning (270+ patterns), phone number OSINT, and blockchain transaction search across 10 networks. Features an interactive graph editor with draggable nodes, connection ports, and export formats including GraphML, GEXF, JSON, CSV, PNG, HTML, and Obsidian Markdown."
+        "brief": "Open-source OSINT platform on PySide6 — information gathering, Telegram OSINT, file analysis, face search, and more",
+        "description": "SkyFall is a comprehensive open-source OSINT (Open Source Intelligence) platform with a PySide6 graphical interface. It performs deep analysis of web resources and IP addresses — DNS, SSL/TLS, WHOIS, open ports (nmap 1–65535), WAF detection, malware reputation checks, and subdomain discovery. The platform includes a powerful dorking engine with 7974 exploits from Exploit-DB GHDB, Telegram OSINT with multi-account and proxy support, file analysis with metadata extraction, EXIF stripping, MAC/BSSID geolocation with interactive maps, email and username search across 3800+ sites, face search, GitHub OSINT with secret scanning (270+ patterns), phone number OSINT, and blockchain transaction search across 10 networks. Features an interactive graph editor with draggable nodes, connection ports, and export formats including GraphML, GEXF, JSON, CSV, PNG, HTML, and Obsidian Markdown."
       },
       {
         "title": "CV Creator Bot",
-        "info": "Telegram bot for creating, reviewing and delivering resumes with a multi-tier wizard and admin panel",
+        "info": "My client's Telegram bot that helps quickly interact with people and increase sales of their services",
         "brief": "A Telegram bot for creating, reviewing, and delivering resumes with a multi-tier wizard",
-        "description": "CV Creator Bot is a Telegram bot built with TypeScript and Telegraf for resume creation, review, and delivery. It features a multi-tier wizard (Junior, Pro, Lead), video review scenarios, payment collection via card and SBP with receipt verification, an admin panel for anonymous file delivery, email support via Nodemailer, and interview scheduling with automated reminders. The bot runs in polling mode locally and webhook mode on Vercel, with a Calendly integration for scheduling."
+        "description": "CV Creator Bot is a Telegram bot built with TypeScript and Telegraf for resume creation, review, and delivery. It features video review scenarios, payment collection via card and SBP with receipt verification, an admin panel for anonymous file delivery, email support via Nodemailer, and interview scheduling with automated reminders. The bot runs in polling mode locally and webhook mode on Vercel, with a Calendly integration for scheduling."
       },
       {
         "title": "ProxySniffer",
@@ -131,7 +132,7 @@
       {
         "title": "OWL Website",
         "info": "Brand website for The OWL — a project and task management app for developers",
-        "brief": "A brand presentation website for The OWL project management app with smooth GSAP animations",
+        "brief": "A presentation website for The OWL project management app",
         "description": "OWL Website is a brand presentation site for The OWL — a project and task management desktop application designed for developers. Built with React, TypeScript, and GSAP, it showcases the app's features with smooth animations and a clean, modern design."
       }
     ]

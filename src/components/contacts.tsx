@@ -12,39 +12,18 @@ const contacts = [
     name: "Telegram",
     handle: "@Night3098",
     link: "https://t.me/Night3098",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M21.5 2.5L2.5 10.5L10.5 13.5" />
-        <path d="M10.5 13.5L14.5 21.5L21.5 2.5" />
-        <path d="M10.5 13.5L16 8" />
-      </svg>
-    ),
   },
   {
     id: 2,
     name: "GMail",
     handle: "night3098games@gmail.com",
     link: "mailto:night3098games@gmail.com",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="M2 4l10 8 10-8" />
-      </svg>
-    ),
+  },
+  {
+    id: 3,
+    name: "KWork",
+    handle: "@nighty_3098",
+    link: "https://kwork.ru/user/nighty_3098",
   },
 ];
 

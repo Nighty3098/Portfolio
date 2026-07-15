@@ -10,7 +10,15 @@ import { useTranslate } from "../context/I18nContext";
 import { useTheme } from "../context/ThemeContext";
 import { preloadImages, allProjectImages } from "../utils/preloadImages";
 
-const categories = ["all", "dev", "osint", "pentest", "bots", "sites"] as const;
+const categories = [
+  "all",
+  "other",
+  "ml",
+  "osint",
+  "pentest",
+  "bots",
+  "sites",
+] as const;
 type Category = (typeof categories)[number];
 
 function AllProjects() {
@@ -87,4 +95,3 @@ function AllProjects() {
 }
 
 export default AllProjects;
-
