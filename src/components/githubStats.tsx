@@ -97,6 +97,10 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
         {stats && (
           <div className="gh-stats-grid">
             <div className="gh-stat-cell">
+              <span className="gh-stat-value">{stats.totalFollowers}</span>
+              <span className="gh-stat-label">{t("github_stats.followers")}</span>
+            </div>
+            <div className="gh-stat-cell">
               <span className="gh-stat-value">{stats.totalStars}</span>
               <span className="gh-stat-label">{t("github_stats.stars")}</span>
             </div>

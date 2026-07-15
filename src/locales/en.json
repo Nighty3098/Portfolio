@@ -189,6 +189,7 @@
     "title": "GitHub Stats",
     "loading": "Loading...",
     "stars": "Total Stars",
+    "followers": "Followers",
     "repos": "Repositories",
     "commits": "Commits",
     "pull_requests": "Pull Requests",

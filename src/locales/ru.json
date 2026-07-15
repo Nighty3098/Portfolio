@@ -189,6 +189,7 @@
     "title": "GitHub Статистика",
     "loading": "Загрузка...",
     "stars": "Всего звёзд",
+    "followers": "Подписчики",
     "repos": "Репозитории",
     "commits": "Коммиты",
     "pull_requests": "Pull Requests",

@@ -83,6 +83,7 @@ export interface GitHubSearchResult {
 }
 
 export interface AggregatedStats {
+  totalFollowers: number;
   totalStars: number;
   totalRepos: number;
   totalCommits: number;
@@ -132,6 +133,7 @@ export async function getAggregatedStats(username: string): Promise<AggregatedSt
     .sort((a, b) => b.count - a.count);
 
   return {
+    totalFollowers: user.followers,
     totalStars,
     totalRepos,
     totalCommits,
