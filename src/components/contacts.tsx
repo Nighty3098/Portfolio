@@ -25,6 +25,12 @@ const contacts = [
     handle: "@nighty_3098",
     link: "https://kwork.ru/user/nighty_3098",
   },
+  {
+    id: 4,
+    name: "Reddit",
+    handle: "DEVELOPER0x31",
+    link: "https://www.reddit.com/user/DEVELOPER0x31/",
+  },
 ];
 
 function MyContacts() {
