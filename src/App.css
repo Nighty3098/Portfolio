@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko:wght@300..700&family=Space+Grotesk:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap');
 
 :root {
     --border-radius: 15px;
@@ -38,7 +39,7 @@
 }
 
 [data-theme="light"] {
-    --bg: #f5f5f7;
+    --bg: #ffd177;
     --bg-2: #e8e8f0;
     --bg-3: #d6d6e0;
     --fg: #1a1a1a;
@@ -125,76 +126,6 @@ body {
     gap: var(--spacing-xl);
 }
 
-.split-screen-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    pointer-events: none;
-}
-
-.split-top,
-.split-bottom {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: var(--bg);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.split-bottom .welcome-text-container {
-    position: absolute;
-    bottom: 20px;
-    text-align: center;
-}
-
-.split-top {
-    top: 0;
-}
-
-.split-top::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--bg);
-    pointer-events: none;
-}
-
-.split-bottom {
-    bottom: 0;
-}
-
-.split-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(2.5rem, 10vw, 60vw);
-    font-family: "Sofia Sans Extra Condensed", sans-serif;
-    color: var(--fg);
-    letter-spacing: clamp(5px, 2vw, 15px);
-    white-space: nowrap;
-    user-select: none;
-    line-height: 1;
-}
-
-.split-text-top {
-    bottom: 0;
-    transform: translateX(-50%) translateY(50%);
-}
-
-.split-text-bottom {
-    top: 0;
-    transform: translateX(-50%) translateY(-50%);
-}
-
 .navigation {
     display: flex;
     flex-direction: row;
@@ -244,7 +175,7 @@ body {
 }
 
 .contacts-title {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: var(--text-section-title);
     line-height: 1;
     margin: 0;
@@ -382,7 +313,7 @@ body {
     margin: 0px;
     font-size: var(--text-section-title);
     line-height: 1.1;
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     text-transform: uppercase;
 }
 
@@ -593,7 +524,7 @@ body {
 }
 
 .project-name {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -660,7 +591,7 @@ body {
 }
 
 .modal-content h2 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: clamp(2rem, 5vw, 3rem);
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -922,7 +853,7 @@ body {
 }
 
 .gh-stat-value {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: clamp(1.6rem, 5vw, 2.8rem);
     letter-spacing: 1px;
     color: var(--accent);
@@ -1070,7 +1001,7 @@ body {
 }
 
 .header-logo {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: 1.5rem;
     letter-spacing: 4px;
     color: var(--fg);
@@ -1170,7 +1101,7 @@ body {
 .menu-nav-item {
     background: none;
     color: var(--fg);
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: clamp(3rem, 8vw, 6rem);
     line-height: 1.1;
     text-align: left;
@@ -1241,8 +1172,8 @@ body {
 }
 
 .hero-title {
-    font-family: "Sofia Sans Extra Condensed", sans-serif;
-    font-size: clamp(6rem, 30vw, 50vw);
+    font-family: "Antonio", sans-serif;
+    font-size: clamp(6rem, 32vw, 50vw);
     font-weight: lighter;
     color: var(--fg);
     line-height: 0.9;
@@ -1298,23 +1229,6 @@ body {
     transform-origin: 47% 40%;
 }
 
-.hero-scroll {
-    position: absolute;
-    bottom: var(--spacing-xl);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 0.4em;
-    visibility: hidden;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    color: var(--fg-2);
-    opacity: 0.6;
-    font-family: "Exo 2", sans-serif;
-}
-
 .hero-scroll-bracket {
     opacity: 0.3;
 }
@@ -1341,11 +1255,24 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    width: min(92vw, var(--max-w));
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    font-family: "Exo 2", sans-serif;
+    text-transform: uppercase;
+    gap: var(--spacing-s);
+}
+
+.hero-info * {
     font-size: 0.75rem;
+    font-weight: bold;
     letter-spacing: 3px;
-    color: var(--fg-2);
-    opacity: 0.6;
-    width: 100%;
+    color: var(--fg);
+    width: auto;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -1373,7 +1300,7 @@ body {
 }
 
 .marquee-item {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: var(--text-heavy-title);
     font-weight: 700;
     text-transform: uppercase;
@@ -1405,7 +1332,7 @@ body {
 }
 
 .about-header h2 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: var(--text-section-title);
     line-height: 1;
     margin: 0;
@@ -1485,7 +1412,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0.4rem 1.2rem;
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: clamp(0.85rem, 1.2vw, 1rem);
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1542,7 +1469,7 @@ body {
 }
 
 .about-cat-link {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: clamp(0.85rem, 1.2vw, 1rem);
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1700,7 +1627,7 @@ body {
 }
 
 .bento-cell-title {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     line-height: 1.2;
     text-transform: uppercase;
@@ -1718,7 +1645,7 @@ body {
 }
 
 .category-btn {
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: clamp(0.85rem, 1.2vw, 1rem);
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1744,7 +1671,12 @@ body {
 
 /* === MOBILE OVERRIDES === */
 
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
+    .hero-info {
+        flex-direction: column;
+        justify-content: center;
+    }
+
     .bento-grid {
         grid-template-columns: 1fr;
         gap: 0.75rem;
@@ -1771,7 +1703,7 @@ body {
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
     body {
         font-size: var(--text-base);
     }
@@ -1941,7 +1873,7 @@ body {
     justify-content: center;
     width: 100%;
     padding: 0.7rem 1.2rem;
-    font-family: "Oswald", sans-serif;
+    font-family: "Antonio", sans-serif;
     font-size: 0.9rem;
     letter-spacing: 4px;
     text-transform: uppercase;

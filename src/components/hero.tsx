@@ -1,10 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useTranslate } from "../context/I18nContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +14,12 @@ function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const container = heroRef.current;
@@ -184,8 +190,14 @@ function Hero() {
         <span className="hero-scroll-bracket">]</span>
       </div>
       <div className="hero-info">
+        <p>
         <FontAwesomeIcon icon={faLocationDot} />
-        <span>{t("welcome.city")}</span>
+          <span>{t("welcome.city")}</span>
+        </p>
+        <p>
+        <FontAwesomeIcon icon={faClock} />
+          <span>{time.toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", { timeZone: "Etc/GMT-7", hour: "2-digit", minute: "2-digit" })}</span>
+        </p>
       </div>
     </section>
   );
