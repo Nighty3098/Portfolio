@@ -12,6 +12,7 @@ import SEO from "./components/SEO";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { preloadImages, allProjectImages } from "./utils/preloadImages";
 import Marquee from "./components/marquee";
+import NoiseOverlay from "./components/noiseOverlay";
 
 function App() {
   useEffect(() => {
@@ -30,16 +31,25 @@ function App() {
                 <ScrollProgress />
                 <Header />
                 <Hero />
-                <Marquee text="BACKEND DEVELOPER - FREELANCER - "/>
+                <Marquee text="BACKEND DEVELOPER - FREELANCER - " />
                 <About />
                 <Projects />
                 <MyContacts />
                 <Footer />
+                <NoiseOverlay />
               </div>
             </>
           }
         />
-        <Route path="/all-projects" element={<AllProjects />} />
+        <Route
+          path="/all-projects"
+          element={
+            <>
+              <AllProjects />
+              <NoiseOverlay />
+            </>
+          }
+        />
       </Routes>
     </HashRouter>
   );
