@@ -13,6 +13,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { preloadImages, allProjectImages } from "./utils/preloadImages";
 import Marquee from "./components/marquee";
 import NoiseOverlay from "./components/noiseOverlay";
+import Anime from "./components/anime";
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
               <div className="App">
                 <ScrollProgress />
                 <Header />
+                <Anime />
                 <Hero />
                 <Marquee text="BACKEND DEVELOPER - FREELANCER - " />
                 <About />
