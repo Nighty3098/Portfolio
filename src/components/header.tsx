@@ -33,6 +33,15 @@ function Header() {
   };
 
   useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
     if (!menuRef.current || !overlayRef.current || !menuItemsRef.current)
       return;
 
