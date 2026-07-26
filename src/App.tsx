@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./App.css";
 import Hero from "./components/hero";
 import About from "./components/about";
@@ -10,49 +9,47 @@ import AllProjects from "./pages/AllProjects";
 import ScrollProgress from "./components/scrollProgress";
 import SEO from "./components/SEO";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { preloadImages, allProjectImages } from "./utils/preloadImages";
 import Marquee from "./components/marquee";
 import NoiseOverlay from "./components/noiseOverlay";
 import Anime from "./components/anime";
+import LenisProvider from "./components/lenisProvider";
 
 function App() {
-  useEffect(() => {
-    preloadImages(allProjectImages);
-  }, []);
-
   return (
     <HashRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <SEO />
-              <div className="App">
-                <ScrollProgress />
-                <Header />
-                <Anime />
-                <Hero />
-                <Marquee text="BACKEND DEVELOPER - FREELANCER - " />
-                <About />
-                <Projects />
-                <MyContacts />
-                <Footer />
+      <LenisProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <SEO />
+                <div className="App">
+                  <ScrollProgress />
+                  <Header />
+                  <Anime />
+                  <Hero />
+                  <Marquee text="BACKEND DEVELOPER - FREELANCER - " />
+                  <About />
+                  <Projects />
+                  <MyContacts />
+                  <Footer />
+                  <NoiseOverlay />
+                </div>
+              </>
+            }
+          />
+          <Route
+            path="/all-projects"
+            element={
+              <>
+                <AllProjects />
                 <NoiseOverlay />
-              </div>
-            </>
-          }
-        />
-        <Route
-          path="/all-projects"
-          element={
-            <>
-              <AllProjects />
-              <NoiseOverlay />
-            </>
-          }
-        />
-      </Routes>
+              </>
+            }
+          />
+        </Routes>
+      </LenisProvider>
     </HashRouter>
   );
 }
