@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import BentoGrid from "../components/bentoGrid";
 import Header from "../components/header";
@@ -8,7 +8,6 @@ import SEO from "../components/SEO";
 import { projectsData } from "../components/projects";
 import { useTranslate } from "../context/I18nContext";
 import { useTheme } from "../context/ThemeContext";
-import { preloadImages, allProjectImages } from "../utils/preloadImages";
 
 const categories = [
   "all",
@@ -32,10 +31,6 @@ function AllProjects() {
       ? (initialCategory as Category)
       : "all",
   );
-
-  useEffect(() => {
-    preloadImages(allProjectImages);
-  }, []);
 
   const catLabels = tt("projects.categories") as Record<string, string>;
 
