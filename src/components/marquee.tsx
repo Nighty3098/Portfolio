@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 interface MarqueeProps {
   text: string;
@@ -8,10 +9,11 @@ interface MarqueeProps {
 
 function Marquee({ text, speed = 300 }: MarqueeProps) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || reduce) return;
 
     const item = track.querySelector<HTMLElement>(".marquee-item");
     if (!item) return;
@@ -29,7 +31,7 @@ function Marquee({ text, speed = 300 }: MarqueeProps) {
       gsap.killTweensOf(track);
       gsap.set(track, { x: 0 });
     };
-  }, [text, speed]);
+  }, [text, speed, reduce]);
 
   return (
     <div className="marquee">

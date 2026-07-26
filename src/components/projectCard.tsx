@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useState, useRef, useEffect } from "react";
 import { Modal } from "./modal";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const [hovered, setHovered] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     if (hovered && images.length > 1) {
@@ -54,7 +56,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   }, [hovered]);
 
   useEffect(() => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || reduce) return;
     const el = cardRef.current;
     const tween = gsap.fromTo(
       el,
@@ -75,7 +77,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     return () => {
       tween.kill();
     };
-  }, [index]);
+  }, [index, reduce]);
 
   return (
     <>
@@ -93,6 +95,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             src={images[imgIndex]}
             alt={title}
             className="project-image-preview"
+            loading="lazy"
+            decoding="async"
           />
           <div className="project-card-overlay">
             <p className="project-card-brief">{brief}</p>

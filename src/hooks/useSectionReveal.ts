@@ -5,6 +5,10 @@ import SplitType from 'split-type';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 interface ScrollAnimation {
   el: HTMLElement;
   split: SplitType;
@@ -85,7 +89,7 @@ export function useSectionReveal(
 ) {
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || prefersReducedMotion()) return;
 
     const elements = container.querySelectorAll<HTMLElement>('[data-reveal]');
 

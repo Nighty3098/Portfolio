@@ -1,15 +1,17 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Anime() {
   const ref = useRef<HTMLImageElement>(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || reduce) return;
 
     gsap.set(el, { yPercent: 100, opacity: 1 });
 
@@ -29,7 +31,7 @@ function Anime() {
       tl.scrollTrigger?.kill();
       tl.kill();
     };
-  }, []);
+  }, [reduce]);
 
   return <img ref={ref} className="anime" alt="anime" src="/02.png" />;
 }

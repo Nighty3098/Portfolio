@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -36,12 +37,13 @@ const contacts = [
 function MyContacts() {
   const { t, locale } = useTranslate();
   const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
 
   useSectionReveal(ref, [locale]);
 
   useEffect(() => {
     const container = ref.current;
-    if (!container) return;
+    if (!container || reduce) return;
 
     const cards = container.querySelectorAll<HTMLElement>(".contacts-item");
     if (cards.length === 0) return;
@@ -70,7 +72,7 @@ function MyContacts() {
     return () => {
       tl.kill();
     };
-  }, [locale]);
+  }, [locale, reduce]);
 
   return (
     <div

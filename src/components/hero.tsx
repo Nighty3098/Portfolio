@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { useTranslate } from "../context/I18nContext";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
@@ -15,6 +16,7 @@ function Hero() {
   const visualRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [time, setTime] = useState(new Date());
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
@@ -29,6 +31,12 @@ function Hero() {
     const visualEl = visualRef.current;
     const scrollEl = scrollRef.current;
     if (!titleEl || !visualEl || !scrollEl) return;
+
+    if (reduce) {
+      gsap.set(titleEl, { visibility: "visible" });
+      gsap.set(scrollEl, { visibility: "visible", opacity: 1 });
+      return;
+    }
 
     const split = new SplitType(titleEl, { types: "chars" });
     const chars = split.chars;
@@ -158,7 +166,7 @@ function Hero() {
       ScrollTrigger.getAll().forEach((st) => st.kill());
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [locale]);
+  }, [locale, reduce]);
 
   return (
     <section className="section-hero" ref={heroRef}>

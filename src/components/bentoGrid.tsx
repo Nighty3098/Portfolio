@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Modal } from "./modal";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,9 +45,10 @@ const cellStyles = [
 function BentoGrid({ projects, uniform }: BentoGridProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [modalProject, setModalProject] = useState<ProjectItem | null>(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || reduce) return;
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>(".bento-cell");
       cards.forEach((card, i) => {
@@ -70,7 +72,7 @@ function BentoGrid({ projects, uniform }: BentoGridProps) {
       });
     }, ref);
     return () => ctx.revert();
-  }, []);
+  }, [reduce]);
 
   return (
     <>
@@ -82,7 +84,7 @@ function BentoGrid({ projects, uniform }: BentoGridProps) {
             onClick={() => setModalProject(p)}
           >
             <div className="bento-cell-bg">
-              <img src={p.images[0]} alt={p.title} />
+              <img src={p.images[0]} alt={p.title} loading="lazy" decoding="async" />
               <div className="bento-cell-overlay">
                 <p className="bento-cell-brief">{p.brief}</p>
               </div>
