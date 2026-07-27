@@ -4,7 +4,7 @@ import BentoGrid from "../components/bentoGrid";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ScrollProgress from "../components/scrollProgress";
-import SEO from "../components/SEO";
+import Seo from "../components/SEO";
 import { projectsData } from "../components/projects";
 import { useTranslate } from "../context/I18nContext";
 import { useTheme } from "../context/ThemeContext";
@@ -54,7 +54,7 @@ function AllProjects() {
 
   return (
     <>
-      <SEO
+      <Seo
         title={t("projects.all_title")}
         description={t("html.description")}
         path="/all-projects"

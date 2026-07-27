@@ -9,7 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 interface ProjectCardProps {
   title: string;
   description: string;
-  info: string;
   brief: string;
   images: string[];
   source: string;
@@ -85,7 +84,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         key={id}
         ref={cardRef}
         className="project-card"
+        role="button"
+        tabIndex={0}
         onClick={() => setModalOpen(true)}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalOpen(true); }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >

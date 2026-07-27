@@ -177,7 +177,7 @@ function Hero() {
             {t("welcome.name")
               .split("\n")
               .map((line, i, arr) => (
-                <span key={i}>
+                <span key={line}>
                   {line}
                   {i < arr.length - 1 && <br />}
                 </span>

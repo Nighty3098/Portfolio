@@ -35,8 +35,8 @@ function About() {
           </div>
         </div>
         <div className="about-text-col">
-          {texts.map((key, i) => (
-            <p key={i}>{t(key)}</p>
+          {texts.map((key) => (
+            <p key={key}>{t(key)}</p>
           ))}
           <div className="about-category-links">
             <Link to="/all-projects?category=osint" className="about-cat-link">

@@ -81,7 +81,10 @@ function BentoGrid({ projects, uniform }: BentoGridProps) {
           <div
             key={p.id}
             className={`bento-cell ${uniform ? "" : cellStyles[i]}`.trim()}
+            role="button"
+            tabIndex={0}
             onClick={() => setModalProject(p)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalProject(p); }}
           >
             <div className="bento-cell-bg">
               <img src={p.images[0]} alt={p.title} loading="lazy" decoding="async" />

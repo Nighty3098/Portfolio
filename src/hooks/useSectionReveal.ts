@@ -93,10 +93,8 @@ export function useSectionReveal(
 
     const elements = container.querySelectorAll<HTMLElement>('[data-reveal]');
 
-    const anims: ScrollAnimation[] = [];
     elements.forEach(el => {
-      const anim = initElement(el);
-      if (anim) anims.push(anim);
+      initElement(el);
     });
 
     return () => {

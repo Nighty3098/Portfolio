@@ -7,7 +7,7 @@ interface MarqueeProps {
   speed?: number;
 }
 
-function Marquee({ text, speed = 300 }: MarqueeProps) {
+function Marquee({ text, speed = 300 }: Readonly<MarqueeProps>) {
   const trackRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
 

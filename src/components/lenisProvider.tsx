@@ -11,7 +11,7 @@ const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function LenisProvider({ children }: LenisProviderProps) {
+function LenisProvider({ children }: Readonly<LenisProviderProps>) {
   useEffect(() => {
     if (prefersReducedMotion()) return;
 

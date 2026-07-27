@@ -7,7 +7,7 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 import AllProjects from "./pages/AllProjects";
 import ScrollProgress from "./components/scrollProgress";
-import SEO from "./components/SEO";
+import Seo from "./components/SEO";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Marquee from "./components/marquee";
 import NoiseOverlay from "./components/noiseOverlay";
@@ -23,7 +23,7 @@ function App() {
             path="/"
             element={
               <>
-                <SEO />
+                <Seo />
                 <div className="App">
                   <ScrollProgress />
                   <Header />

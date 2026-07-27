@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect, useMemo } from "react";
 import en from "../locales/en.json";
 import ru from "../locales/ru.json";
 import { detectLocation } from "../api/location";
@@ -34,7 +34,7 @@ interface I18nContextType {
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const I18nProvider: React.FC<{ readonly children: React.ReactNode }> = ({ children }) => {
   const [locale, setLocaleState] = useState<Locale>(() => {
     const saved = typeof window !== "undefined" ? localStorage.getItem("locale") : null;
     return (saved === "en" || saved === "ru") ? saved : "en";
@@ -76,8 +76,10 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
     document.documentElement.lang = locale;
   }, [locale]);
 
+  const value = useMemo(() => ({ locale, setLocale, t, tt }), [locale, setLocale, t, tt]);
+
   return (
-    <I18nContext.Provider value={{ locale, setLocale, t, tt }}>
+    <I18nContext.Provider value={value}>
       {children}
     </I18nContext.Provider>
   );

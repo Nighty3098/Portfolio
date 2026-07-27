@@ -302,8 +302,9 @@ body {
 }
 
 .content {
+  width: min(96vw, var(--max-w));
+  box-sizing: border-box;
   padding: var(--spacing-xl);
-  width: calc(100% - var(--spacing-xl) - var(--spacing-xl));
 }
 
 .content-block {
@@ -428,7 +429,7 @@ body {
 
 .review-card-text {
   margin: 0;
-  line-height: 1.8rem;
+  line-height: 1.5rem;
 }
 
 .reviews-dots {
@@ -452,11 +453,6 @@ body {
 .reviews-dot.active {
   opacity: 1;
   background-color: var(--fg);
-}
-
-.review-card-text {
-  margin: 0;
-  line-height: 1.5rem;
 }
 
 .projects-grid {
@@ -622,7 +618,6 @@ body {
 
 .modal-content p {
   width: 100%;
-  text-align: center;
   white-space: pre-line;
   text-align: justify;
   line-height: 1.8;
@@ -761,7 +756,6 @@ body {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
   gap: 8px;
   z-index: 10;
   align-items: center;
@@ -1567,12 +1561,6 @@ body {
   }
 }
 /* === UNIFIED SECTION WIDTHS === */
-
-.content {
-  width: min(96vw, var(--max-w));
-  box-sizing: border-box;
-  padding: var(--spacing-xl);
-}
 
 /* === BENTO GRID === */
 

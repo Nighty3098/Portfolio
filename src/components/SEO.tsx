@@ -11,7 +11,7 @@ interface SEOProps {
 const SITE_URL = "https://nighty3098.vercel.app";
 const DEFAULT_OG_IMAGE = "/og.png";
 
-function SEO({ title, description, path = "/", ogImage = DEFAULT_OG_IMAGE }: SEOProps) {
+function Seo({ title, description, path = "/", ogImage = DEFAULT_OG_IMAGE }: Readonly<SEOProps>) {
   const { t, locale } = useTranslate();
   const pageTitle = title ?? t("html.title");
   const pageDesc = description ?? t("html.description");
@@ -74,4 +74,4 @@ function SEO({ title, description, path = "/", ogImage = DEFAULT_OG_IMAGE }: SEO
   );
 }
 
-export default SEO;
+export default Seo;
