@@ -33,7 +33,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const [imgIndex, setImgIndex] = useState(0);
   const [hovered, setHovered] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLButtonElement>(null);
   const reduce = useReducedMotion();
 
   useEffect(() => {
@@ -80,16 +80,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <>
-      <div
+      <button
         key={id}
         ref={cardRef}
         className="project-card"
-        role="button"
-        tabIndex={0}
         onClick={() => setModalOpen(true)}
-        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalOpen(true); }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
+        type="button"
       >
         <div className="project-image-wrapper">
           <img
@@ -107,7 +105,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="project-info">
           <h3 className="project-name">{title}</h3>
         </div>
-      </div>
+      </button>
 
       <Modal
         show={modalOpen}

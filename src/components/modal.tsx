@@ -182,11 +182,10 @@ const Modal: React.FC<ModalProps> = ({
   if (!show) return null;
 
   return (
-    <dialog ref={dialogRef} className="modal" onClick={handleClose} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleClose(); }}>
+    <dialog ref={dialogRef} className="modal" onClick={handleClose}>
       <section
         className="modal-content modal-content-scrollable"
         onClick={(e) => e.stopPropagation()}
-        onKeyDown={(e) => { if (e.key === 'Escape') handleClose(); }}
       >
         <button
           onClick={handleClose}

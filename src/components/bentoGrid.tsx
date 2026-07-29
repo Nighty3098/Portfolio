@@ -42,7 +42,7 @@ const cellStyles = [
   "",
 ];
 
-function BentoGrid({ projects, uniform }: BentoGridProps) {
+function BentoGrid({ projects, uniform }: Readonly<BentoGridProps>) {
   const ref = useRef<HTMLDivElement>(null);
   const [modalProject, setModalProject] = useState<ProjectItem | null>(null);
   const reduce = useReducedMotion();
@@ -78,13 +78,11 @@ function BentoGrid({ projects, uniform }: BentoGridProps) {
     <>
       <div ref={ref} className="bento-grid">
         {projects.map((p, i) => (
-          <div
+          <button
             key={p.id}
             className={`bento-cell ${uniform ? "" : cellStyles[i]}`.trim()}
-            role="button"
-            tabIndex={0}
             onClick={() => setModalProject(p)}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalProject(p); }}
+            type="button"
           >
             <div className="bento-cell-bg">
               <img src={p.images[0]} alt={p.title} loading="lazy" decoding="async" />
@@ -95,7 +93,7 @@ function BentoGrid({ projects, uniform }: BentoGridProps) {
             <div className="bento-cell-content">
               <h3 className="bento-cell-title">{p.title}</h3>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 
