@@ -301,12 +301,6 @@ body {
   }
 }
 
-.content {
-  width: min(96vw, var(--max-w));
-  box-sizing: border-box;
-  padding: var(--spacing-xl);
-}
-
 .content-block {
   width: 100%;
   height: auto;
@@ -1561,6 +1555,12 @@ body {
   }
 }
 /* === UNIFIED SECTION WIDTHS === */
+
+.content {
+  width: min(96vw, var(--max-w));
+  box-sizing: border-box;
+  padding: var(--spacing-xl);
+}
 
 /* === BENTO GRID === */
 
