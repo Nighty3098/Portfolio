@@ -19,15 +19,15 @@ const navItems = [
 function Header() {
   const { t, locale, setLocale } = useTranslate();
   const { theme, toggleTheme } = useTheme();
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const menuItemsRef = useRef<HTMLDivElement>(null);
   const menuContentRef = useRef<HTMLDivElement>(null);
-  const [githubStatsOpen, setGitHubStatsOpen] = useState(false);
+  const [githubStatsOpen, setGithubStatsOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
-    setMenuOpen(false);
+    setIsMenuOpen(false);
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
@@ -35,7 +35,7 @@ function Header() {
   useEffect(() => {
     if (!isMenuOpen) return;
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
+      if (e.key === "Escape") setIsMenuOpen(false);
     };
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
@@ -98,7 +98,7 @@ function Header() {
           <div className="header-right">
             <button
               className={`header-menu-btn ${isMenuOpen ? "is-active" : ""}`}
-              onClick={() => setMenuOpen(!isMenuOpen)}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
               <span className="menu-bar" />
@@ -145,8 +145,8 @@ function Header() {
             <button
               className="menu-nav-item"
               onClick={() => {
-                setMenuOpen(false);
-                setGitHubStatsOpen(true);
+                setIsMenuOpen(false);
+                setGithubStatsOpen(true);
               }}
             >
               {t("nav.github")}
@@ -169,7 +169,7 @@ function Header() {
 
       <GitHubStats
         show={githubStatsOpen}
-        onClose={() => setGitHubStatsOpen(false)}
+        onClose={() => setGithubStatsOpen(false)}
       />
     </>
   );

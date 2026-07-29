@@ -79,8 +79,15 @@ const Carousel: React.FC<CarouselProps> = ({ images, title }) => {
   return (
     <div
       className="carousel-container carousel-modal"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={title}
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => {
+        if (images.length > 1) setIsAutoPlaying(true);
+      }}
+      onFocus={() => setIsAutoPlaying(false)}
+      onBlur={() => {
         if (images.length > 1) setIsAutoPlaying(true);
       }}
     >
@@ -182,9 +189,19 @@ const Modal: React.FC<ModalProps> = ({
   if (!show) return null;
 
   return (
-    <dialog ref={dialogRef} className="modal" onClick={handleClose}>
-      <section
+    <dialog
+      ref={dialogRef}
+      className="modal"
+      onClick={handleClose}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") handleClose();
+      }}
+      aria-modal="true"
+    >
+      <div
         className="modal-content modal-content-scrollable"
+        role="document"
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -229,7 +246,7 @@ const Modal: React.FC<ModalProps> = ({
             </a>
           )}
         </div>
-      </section>
+      </div>
     </dialog>
   );
 };

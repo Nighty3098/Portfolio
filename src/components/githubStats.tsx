@@ -79,8 +79,21 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
   }));
 
   return (
-    <dialog ref={dialogRef} className="modal" onClick={handleClose}>
-      <section className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <dialog
+      ref={dialogRef}
+      className="modal"
+      onClick={handleClose}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") handleClose();
+      }}
+      aria-modal="true"
+    >
+      <div
+        className="modal-content"
+        role="document"
+        tabIndex={-1}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={handleClose}
           aria-label={t("github_stats.close")}
@@ -165,7 +178,7 @@ const GitHubStats: React.FC<GitHubStatsProps> = ({ show, onClose }) => {
         >
           Open GitHub
         </button>
-      </section>
+      </div>
     </dialog>
   );
 };

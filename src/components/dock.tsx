@@ -52,7 +52,7 @@ const items = [
 
 function Dock() {
   const { t } = useTranslate();
-  const [githubStatsOpen, setGitHubStatsOpen] = useState(false);
+  const [githubStatsOpen, setGithubStatsOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -68,7 +68,7 @@ function Dock() {
             className="dock-item"
             onClick={() => {
               if (item.sectionId) scrollToSection(item.sectionId);
-              else setGitHubStatsOpen(true);
+              else setGithubStatsOpen(true);
             }}
           >
             {item.icon}
@@ -78,7 +78,7 @@ function Dock() {
       </div>
       <GitHubStats
         show={githubStatsOpen}
-        onClose={() => setGitHubStatsOpen(false)}
+        onClose={() => setGithubStatsOpen(false)}
       />
     </>
   );
