@@ -1423,6 +1423,7 @@ body {
   border-radius: 100px;
   color: var(--accent);
   text-decoration: none;
+  align-self: flex-start;
   font-size: 0.7rem;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -1439,6 +1440,12 @@ body {
 
 .about-resume-btn:active {
   transform: scale(0.98);
+}
+
+.about-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .about-contact-btn {
@@ -1951,4 +1958,44 @@ body {
   padding-top: calc(var(--header-h) + var(--spacing-xl));
   box-sizing: border-box;
   justify-content: flex-start;
+}
+
+.back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.4rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--fg);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  opacity: 0.8;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease,
+    opacity 0.4s ease;
+  box-sizing: border-box;
+}
+
+.back-home-btn:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  opacity: 1;
+}
+
+.back-home-btn:active {
+  transform: scale(0.98);
+}
+
+.back-home-btn + .category-filters {
+  margin-top: calc(-1 * var(--spacing-xl));
 }

@@ -49,9 +49,19 @@ function About() {
               {t("about.pentest_link")}
             </Link>
           </div>
-          <button className="about-contact-btn" onClick={scrollToContacts}>
-            {t("about.contact_me")}
-          </button>
+          <div className="about-buttons">
+            <button className="about-contact-btn" onClick={scrollToContacts}>
+              {t("about.contact_me")}
+            </button>
+            <a
+              className="about-contact-btn"
+              href="https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t("about.resume")}
+            </a>
+          </div>
         </div>
       </div>
     </section>

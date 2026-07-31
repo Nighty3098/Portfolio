@@ -29,6 +29,7 @@
     "title": "My projects",
     "all": "ALL PROJECTS",
     "all_title": "All Projects",
+    "back_home": "Back to home",
     "categories": {
       "all": "All",
       "other": "OTHER",
@@ -36,7 +37,7 @@
       "pentest": "PENTESTING",
       "bots": "BOTS",
       "sites": "SITES",
-      "ml": "Machine learning"
+      "ml": "Machine Learning / AI"
     },
     "items": [
       {
@@ -134,6 +135,12 @@
         "info": "Brand website for The OWL — a project and task management app for developers",
         "brief": "A presentation website for The OWL project management app",
         "description": "OWL Website is a brand presentation site for The OWL — a project and task management desktop application designed for developers. Built with React, TypeScript, and GSAP, it showcases the app's features with smooth animations and a clean, modern design."
+      },
+      {
+        "title": "AI Video Summary Bot",
+        "info": "A Telegram bot that transcribes video/audio and generates structured Markdown summaries via AI",
+        "brief": "A Telegram bot for transcribing video/audio and generating structured summaries via Whisper and Qwen AI",
+        "description": "AI Video Summary Bot is a Python Telegram bot that accepts YouTube links or video/audio files (mp4, webm, mkv, mp3, wav, and more), transcribes them via faster-whisper large-v3 on GPU (CUDA) with timestamps, and generates structured Markdown summaries via Qwen AI with emoji headers, Obsidian callouts, tables, checklists, and code blocks.\n\nFeatures\n - YouTube links and Telegram file uploads support\n - Subtitle extraction (ru/en) and Whisper transcription\n - Smart caching of audio, transcriptions, and subtitles by video ID\n - Whitelist-based access control and an admin panel with statistics, user management, logs, and cache clearing\n - Proxy support (MTProxy for Telegram, SOCKS5 for yt-dlp)"
       }
     ]
   },

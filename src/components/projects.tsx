@@ -13,7 +13,7 @@ interface ProjectData {
   demo: string;
   source: string;
   showOnHome: boolean;
-  category: ProjectCategory;
+  categories: ProjectCategory[];
 }
 
 const projectsData: { projects: ProjectData[] } = {
@@ -21,7 +21,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 11,
       showOnHome: true,
-      category: "osint",
+      categories: ["osint"],
       images: [
         "/images/skyfall_tg.png",
         "/images/skyfall_dorks.png",
@@ -36,9 +36,21 @@ const projectsData: { projects: ProjectData[] } = {
       source: "",
     },
     {
-      id: 1,
+      id: 17,
       showOnHome: true,
-      category: "osint",
+      categories: ["bots", "ml"],
+      images: [
+        "/images/ai_video_summary_bot_1.png",
+        "/images/ai_video_summary_bot_2.png",
+      ],
+      technologies: ["Python", "Whisper", "Qwen AI", "yt-dlp"],
+      source: "https://github.com/Nighty3098/VideoToSummaryAiBot",
+      demo: "",
+    },
+    {
+      id: 1,
+      showOnHome: false,
+      categories: ["osint"],
       images: [
         "/images/gh_1.png",
         "/images/gh_2.png",
@@ -53,7 +65,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 3,
       showOnHome: true,
-      category: "other",
+      categories: ["other"],
       images: [
         "/images/owl/1.png",
         "/images/owl/2.png",
@@ -72,7 +84,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 4,
       showOnHome: true,
-      category: "other",
+      categories: ["other"],
       images: ["/images/owl_rest_api.png"],
       technologies: ["Python", "Flask", "PostgreSQL"],
       demo: "https://owl-gamma.vercel.app/",
@@ -81,7 +93,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 5,
       showOnHome: true,
-      category: "bots",
+      categories: ["bots"],
       images: ["/images/IPSA.png"],
       technologies: ["Python", "Tensorflow", "Keras", "Pyrogram"],
       source: "https://github.com/Nighty3098/InvestingAssistant/",
@@ -90,7 +102,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 6,
       showOnHome: true,
-      category: "ml",
+      categories: ["ml"],
       images: ["/images/ipsa_model_1.png", "/images/ipsa_model_2.png"],
       technologies: ["Python", "Tensorflow", "Keras"],
       source: "https://github.com/Nighty3098/IPSA_MODEL/",
@@ -99,7 +111,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 10,
       showOnHome: true,
-      category: "sites",
+      categories: ["sites"],
       images: ["/images/skyfall_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
       demo: "https://SkyFallOsint.vercel.app",
@@ -108,7 +120,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 7,
       showOnHome: true,
-      category: "sites",
+      categories: ["sites"],
       images: ["/images/PrettyProfile_1.png", "/images/PrettyProfile_2.png"],
       technologies: ["NodeJS", "Vercel"],
       demo: "https://pretty-profile.vercel.app/",
@@ -117,7 +129,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 2,
       showOnHome: true,
-      category: "pentest",
+      categories: ["pentest"],
       images: [
         "/images/crimson_1.png",
         "/images/crimson_2.png",
@@ -133,7 +145,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 8,
       showOnHome: false,
-      category: "other",
+      categories: ["other"],
       images: [
         "/images/LogInsight_1.png",
         "/images/LogInsight_2.png",
@@ -147,7 +159,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 9,
       showOnHome: false,
-      category: "bots",
+      categories: ["bots"],
       images: [
         "/images/tech_support_bot.png",
         "/images/tech_support_bot_2.png",
@@ -159,7 +171,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 12,
       showOnHome: false,
-      category: "bots",
+      categories: ["bots"],
       images: ["/images/cv_bot.png", "/images/cv_bot_2.png"],
       technologies: ["TypeScript", "Telegraf", "Express", "Vercel"],
       source: "https://t.me/cv_creator_example_bot",
@@ -168,7 +180,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 13,
       showOnHome: false,
-      category: "pentest",
+      categories: ["pentest"],
       images: [
         "/images/ProxySniffer.png",
         "/images/proxy_1.png",
@@ -182,7 +194,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 14,
       showOnHome: false,
-      category: "pentest",
+      categories: ["pentest"],
       images: ["/images/Thunder.png"],
       technologies: ["Python"],
       source: "https://github.com/Nighty3098/Thunder",
@@ -191,7 +203,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 15,
       showOnHome: false,
-      category: "pentest",
+      categories: ["pentest"],
       images: ["/images/IStealU.png"],
       technologies: ["C++"],
       source: "https://github.com/Nighty3098/IStealU",
@@ -200,7 +212,7 @@ const projectsData: { projects: ProjectData[] } = {
     {
       id: 16,
       showOnHome: false,
-      category: "sites",
+      categories: ["sites"],
       images: ["/images/owl_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
       source: "https://github.com/Nighty3098/owl_website",

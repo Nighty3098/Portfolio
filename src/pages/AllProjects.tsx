@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import BentoGrid from "../components/bentoGrid";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -42,7 +42,7 @@ function AllProjects() {
   }>;
 
   const all = projectsData.projects
-    .filter((p) => activeCategory === "all" || p.category === activeCategory)
+    .filter((p) => activeCategory === "all" || p.categories.includes(activeCategory))
     .map((p, i) => ({
       ...p,
       title: items[p.id - 1]?.title ?? "",
@@ -67,6 +67,9 @@ function AllProjects() {
           className="content-block content projects-block projects-page-wrapper all-projects-page"
         >
           <h2>{t("projects.all_title")}</h2>
+          <Link to="/" className="back-home-btn">
+            {t("projects.back_home")}
+          </Link>
           <div className="category-filters">
             {categories.map((cat) => (
               <button
