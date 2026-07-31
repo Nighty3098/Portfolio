@@ -162,6 +162,9 @@ function Hero() {
 
     return () => {
       tl.kill();
+      try {
+        split.revert();
+      } catch {}
       cancelAnimationFrame(rafId);
       ScrollTrigger.getAll().forEach((st) => st.kill());
       window.removeEventListener("mousemove", handleMouseMove);

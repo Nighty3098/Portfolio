@@ -80,6 +80,9 @@ function cleanupElement(el: HTMLElement) {
   if (!anim) return;
   if (anim.tl.scrollTrigger) anim.tl.scrollTrigger.kill();
   anim.tl.kill();
+  try {
+    anim.split.revert();
+  } catch {}
   active.delete(el);
 }
 
