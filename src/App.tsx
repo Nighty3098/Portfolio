@@ -9,7 +9,6 @@ import AllProjects from "./pages/AllProjects";
 import ScrollProgress from "./components/scrollProgress";
 import Seo from "./components/SEO";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import Marquee from "./components/marquee";
 import NoiseOverlay from "./components/noiseOverlay";
 import Anime from "./components/anime";
 import LenisProvider from "./components/lenisProvider";
@@ -29,7 +28,6 @@ function App() {
                   <Header />
                   <Anime />
                   <Hero />
-                  <Marquee text="BACKEND DEVELOPER - FREELANCER - " />
                   <About />
                   <Projects />
                   <MyContacts />

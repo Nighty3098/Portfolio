@@ -177,7 +177,7 @@ function Hero() {
       <div className="hero-content">
         <div className="heading-appear">
           <h1 ref={titleRef} className="hero-title">
-            {t("welcome.name")
+            {"software\nengineer"
               .split("\n")
               .map((line, i, arr) => (
                 <span key={line}>
