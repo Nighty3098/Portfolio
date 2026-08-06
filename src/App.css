@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
 
 :root {
   --z-base: 1;
@@ -15,20 +17,20 @@
   --spacing-l: 20px;
   --spacing-xl: 60px;
   --spacing-xxl: 80px;
-  --bg: #0e1012;
-  --fg: #f3f6fa;
-  --bg-2: #12121a;
-  --bg-3: #1a1a28;
-  --fg-2: #a8a3a3;
-  --accent: #ffd177;
-  --accent-2: #ffd177;
+  --bg: #0e0e0e;
+  --fg: #e4e2dc;
+  --bg-2: #1b1b1a;
+  --bg-3: #3b3b39;
+  --fg-2: #969591;
+  --accent: #646361;
+  --accent-2: #646361;
   --red: #fc8181;
   --shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
   --text-base: 1rem;
   --text-hero-name: clamp(4rem, 15vw, 12rem);
   --text-hero-subtitle: 1rem;
   --text-hero-scroll: 0.55rem;
-  --text-section-title: clamp(3rem, 8vw, 8rem);
+  --text-section-title: clamp(5rem, 10vw, 15rem);
   --text-block-title: 0.9rem;
   --text-heavy-title: 7vw;
   --text-close: 1rem;
@@ -37,12 +39,13 @@
   --text-review-name: 1rem;
   --text-stat-value: 2rem;
   --text-stat-label: 1rem;
-  --max-w: 1300px;
-  --header-h: 72px;
+  --max-w: 2000px;
+  --header-h: 80px;
 }
 
 [data-theme="light"] {
   --bg: #ffd177;
+  --bg-4: #ffde9d;
   --bg-2: #e8e8f0;
   --bg-3: #d6d6e0;
   --fg: #1a1a1a;
@@ -138,15 +141,6 @@ body {
   gap: var(--spacing-xl);
 }
 
-.anime {
-  width: max(7.5vw, 100px);
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
-  opacity: 1;
-  z-index: 300;
-}
-
 .navigation {
   display: flex;
   flex-direction: row;
@@ -196,7 +190,7 @@ body {
 }
 
 .contacts-title {
-  font-family: "Oswald", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: var(--text-section-title);
   line-height: 1;
   margin: 0;
@@ -329,7 +323,7 @@ body {
   margin: 0px;
   font-size: var(--text-section-title);
   line-height: 1.1;
-  font-family: "Oswald", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   text-transform: uppercase;
 }
 
@@ -1189,8 +1183,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Sofia Sans Extra Condensed", sans-serif;
-  font-size: clamp(5rem, 18vw, 13rem);
+  font-family: "Tiny5", sans-serif;
+  font-size: clamp(5rem, 25vw, 25rem);
   font-weight: lighter;
   color: var(--fg);
   line-height: 0.9;
@@ -1201,6 +1195,7 @@ body {
   visibility: hidden;
   padding: 0 var(--spacing-xl);
   user-select: none;
+  opacity: 1;
 }
 
 .hero-title .char {
@@ -1208,42 +1203,33 @@ body {
   will-change: transform;
 }
 
-.hero-visual {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-overlay);
-  pointer-events: none;
-  opacity: 0;
-  transform: scale(0.8);
-  will-change: transform;
-  width: 280px;
-  height: 360px;
-}
-
-.hero-visual-frame {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
+.hero-canvas-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   overflow: hidden;
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
-  background: transparent;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.hero-visual-image {
+.hero-canvas {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
-  filter: brightness(1.4);
+  image-rendering: pixelated;
 }
 
-.hero-visual-zoom {
-  width: 100%;
-  height: 100%;
-  transform: scale(2.8);
-  transform-origin: 47% 40%;
+[data-hero-portrait] {
+  z-index: 1;
+}
+
+.hero-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 35vh;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--bg));
 }
 
 .hero-scroll {
@@ -1269,12 +1255,6 @@ body {
 
 .hero-scroll-text {
   letter-spacing: 4px;
-}
-
-@media (max-width: 767px) {
-  .hero-visual {
-    display: none !important;
-  }
 }
 
 @media (min-width: 768px) {
@@ -1366,7 +1346,7 @@ body {
 }
 
 .about-header h2 {
-  font-family: "Oswald", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: var(--text-section-title);
   line-height: 1;
   margin: 0;
@@ -1408,8 +1388,6 @@ body {
   overflow: hidden;
   border-radius: 24px;
   background: var(--bg-2);
-  outline: 1.5px solid rgba(255, 209, 119, 0.12);
-  outline-offset: 10px;
 }
 
 .about-avatar {
@@ -1417,6 +1395,9 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(2.5);
+  transform-origin: 45% 40%;
+  filter: grayscale(100%);
 }
 
 .about-resume-btn {
@@ -1450,6 +1431,7 @@ body {
 
 .about-buttons {
   display: flex;
+  justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
@@ -1509,36 +1491,18 @@ body {
 
 .about-category-links {
   display: flex;
+  justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
+  margin-top: auto;
   padding-top: 0.5rem;
 }
 
-.about-cat-link {
-  font-family: "Oswald", sans-serif;
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 0.4rem 1.2rem;
-  border: 1px solid var(--fg);
-  border-radius: var(--border-radius);
-  color: var(--fg);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  opacity: 0.7;
-}
-
-.about-cat-link:hover {
-  opacity: 1;
-  background: var(--fg);
-  color: var(--bg);
-}
-
-.about-cat-link:active {
-  transform: scale(0.98);
-}
-
 @media (max-width: 1100px) {
+  .hero-title {
+    font-size: clamp(5rem, 6vw, 10rem);
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
   }
@@ -1592,7 +1556,7 @@ body {
   border-radius: var(--border-radius-l);
   overflow: hidden;
   cursor: pointer;
-  min-height: 380px;
+  min-height: 500px;
   aspect-ratio: auto;
   background: var(--bg);
   transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
@@ -1907,7 +1871,6 @@ body {
     --text-base: 0.9rem;
     --text-hero-name: clamp(3.5rem, 20vw, 10rem);
     --text-hero-subtitle: 0.8rem;
-    --text-section-title: 3rem;
   }
 
   .modal-content {

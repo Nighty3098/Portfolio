@@ -10,7 +10,6 @@ import ScrollProgress from "./components/scrollProgress";
 import Seo from "./components/SEO";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import NoiseOverlay from "./components/noiseOverlay";
-import Anime from "./components/anime";
 import LenisProvider from "./components/lenisProvider";
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
                 <div className="App">
                   <ScrollProgress />
                   <Header />
-                  <Anime />
                   <Hero />
                   <About />
                   <Projects />

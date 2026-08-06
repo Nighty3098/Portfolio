@@ -46,7 +46,7 @@ function About() {
         <div className="about-image-col">
           <div className="about-image-frame">
             <img
-              src="me.png"
+              src="me_2.jpg"
               alt="me"
               className="about-avatar"
               loading="lazy"
@@ -57,13 +57,16 @@ function About() {
           {restTexts.map((key) => (
             <p key={key}>{t(key)}</p>
           ))}
-          <div className="about-category-links">
-            <Link to="/all-projects?category=osint" className="about-cat-link">
+          <div className="about-buttons about-category-links">
+            <Link
+              to="/all-projects?category=osint"
+              className="about-contact-btn"
+            >
               {t("about.osint_link")}
             </Link>
             <Link
               to="/all-projects?category=pentest"
-              className="about-cat-link"
+              className="about-contact-btn"
             >
               {t("about.pentest_link")}
             </Link>
