@@ -30,7 +30,6 @@ const K3_Y = 0.06;
 const PHI_1 = 0.9;
 const PHI_2 = -0.7;
 const PHI_3 = 0.5;
-const A = 1;
 
 const J_R = 0.7885;
 const J_OMEGA = 0.15;
@@ -65,16 +64,12 @@ function hashNoise(x: number, y: number): number {
 
 interface HeroCanvasProps {
   scale?: number;
-  portraitSrc?: string;
-  portraitOnly?: boolean;
   className?: string;
   julia?: boolean;
 }
 
 function HeroCanvas({
   scale = 4,
-  portraitSrc,
-  portraitOnly = false,
   className = "",
   julia = false,
 }: HeroCanvasProps) {
@@ -96,11 +91,8 @@ function HeroCanvas({
     let width = 0;
     let height = 0;
     let imageData: ImageData | null = null;
-    let lum: Float32Array | null = null;
-    let alpha: Float32Array | null = null;
     let juliaVal: Float32Array | null = null;
     let rafId = 0;
-    let ready = false;
 
     const baseVar = theme === "light" ? "--bg-4" : "--fg";
     const base = cssVarToRgb(baseVar) ?? FALLBACK_BASE;
@@ -112,53 +104,6 @@ function HeroCanvas({
     ]);
 
     const pointer = { x: -1e4, y: -1e4 };
-
-    const portrait = new Image();
-    if (portraitSrc) {
-      portrait.crossOrigin = "anonymous";
-      portrait.onload = () => {
-        ready = true;
-        buildLum();
-        if (reduce) render(0);
-      };
-      portrait.src = portraitSrc;
-    }
-
-    function buildLum() {
-      if (!ready || !width) return;
-      const off = document.createElement("canvas");
-      off.width = width;
-      off.height = height;
-      const octx = off.getContext("2d");
-      if (!octx) return;
-      const zoom = 1;
-      const x = Math.max(width / portrait.naturalWidth, height / portrait.naturalHeight) * zoom;
-      const e = portrait.naturalWidth * x;
-      const o = portrait.naturalHeight * x;
-      const ox = (width - e) / 2;
-      octx.drawImage(portrait, ox, (height - o) / 2.3, e, o);
-      let data: Uint8ClampedArray;
-      try {
-        data = octx.getImageData(0, 0, width, height).data;
-      } catch {
-        return;
-      }
-      lum = new Float32Array(width * height);
-      alpha = new Float32Array(width * height);
-      for (let i = 0; i < width * height; i++) {
-        const a = data[i * 4 + 3] / 255;
-        alpha[i] = a;
-        lum[i] =
-          ((data[i * 4] * 0.2126 + data[i * 4 + 1] * 0.7152 + data[i * 4 + 2] * 0.0722) / 255) * a;
-      }
-      const sorted = Float32Array.from(lum).sort();
-      const lo = sorted[Math.floor(sorted.length * 0.45)];
-      const hi = sorted[Math.floor(sorted.length * 0.97)];
-      const range = Math.max(0.05, hi - lo);
-      for (let i = 0; i < lum.length; i++) {
-        lum[i] = Math.pow(Math.min(1, Math.max(0, (lum[i] - lo) / range)), 0.85);
-      }
-    }
 
     function computeJulia(t: number) {
       if (!juliaVal || !width) return;
@@ -209,7 +154,6 @@ function HeroCanvas({
       imageData = context.createImageData(width, height);
       const data = imageData.data;
       for (let i = 3; i < data.length; i += 4) data[i] = 255;
-      buildLum();
       if (julia) juliaVal = new Float32Array(width * height);
     }
 
@@ -226,14 +170,6 @@ function HeroCanvas({
         for (let x = 0; x < width; x++) {
           const j = y * width + x;
           const o = j * 4;
-
-          if (portraitOnly) {
-            if (!alpha || alpha[j] <= 0.02) {
-              data[o + 3] = 0;
-              continue;
-            }
-            data[o + 3] = 255;
-          }
 
           let base: number;
           if (julia && juliaVal) {
@@ -257,25 +193,13 @@ function HeroCanvas({
             base = f0 + pi;
           }
 
-          let phi = 0;
-          let mix = 0;
-          const hasPortrait = !!lum && !!alpha && alpha[j] > 0.01;
-          if (hasPortrait) {
-            phi = Math.min(1, Math.max(0, (x / width - 0.5) / 0.32));
-            if (portraitOnly) phi = Math.max(phi, 0.88);
-            mix = phi * (alpha as Float32Array)[j];
-          }
-
           const epsilon = (hashNoise(x, y) - 0.5) * 0.15;
-          const c =
-            epsilon +
-            (1 - A * phi) * base +
-            A * phi * (hasPortrait ? (lum as Float32Array)[j] * (alpha as Float32Array)[j] : 0);
+          const c = epsilon + base;
 
           const dither = BAYER[y & 7][x & 7] / 64 - 0.5;
           const v = c + dither * 0.31;
 
-          if (v > 0.82 && mix > 0.22) {
+          if (v > 0.82) {
             data[o] = tones[3][0];
             data[o + 1] = tones[3][1];
             data[o + 2] = tones[3][2];
@@ -358,7 +282,7 @@ function HeroCanvas({
       window.removeEventListener("pointermove", onPointerMove);
       canvas.removeEventListener("pointerleave", onPointerLeave);
     };
-  }, [scale, portraitSrc, portraitOnly, reduce, theme, julia]);
+  }, [scale, reduce, theme, julia]);
 
   return (
     <canvas

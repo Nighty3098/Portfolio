@@ -1217,10 +1217,6 @@ body {
   image-rendering: pixelated;
 }
 
-[data-hero-portrait] {
-  z-index: 1;
-}
-
 .hero-fade {
   position: absolute;
   left: 0;

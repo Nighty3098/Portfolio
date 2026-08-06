@@ -69,9 +69,6 @@ function Hero() {
       <div data-hero-field className="hero-canvas-layer">
         <HeroCanvas julia scale={6} />
       </div>
-      <div data-hero-portrait className="hero-canvas-layer">
-        <HeroCanvas portraitSrc="me_3.png" portraitOnly />
-      </div>
       <div className="hero-fade" />
       <div className="hero-content">
         <div className="heading-appear">
