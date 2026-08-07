@@ -32,7 +32,7 @@ function About() {
 
         <div className="about-avatar-wrap">
           <div className="about-frame">
-            <img src="me.webp" alt="me" className="about-avatar" loading="lazy" />
+            <img src="me.webp" alt="me" className="about-avatar" loading="lazy" decoding="async" />
           </div>
         </div>
 

@@ -101,6 +101,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, title }) => {
             src={images[currentIndex]}
             alt={`${title} - ${currentIndex + 1}`}
             className="carousel-image carousel-image-modal"
+            decoding="async"
             style={{
               position: "relative",
               width: "100%",
