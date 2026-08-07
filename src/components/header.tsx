@@ -145,6 +145,12 @@ function Header() {
         className="menu-overlay"
         style={{ display: "none" }}
         data-lenis-prevent
+        onClick={(e) => {
+          const target = e.target as HTMLElement;
+          if (target === e.currentTarget || target.classList.contains("menu-overlay-bg")) {
+            setIsMenuOpen(false);
+          }
+        }}
       >
         <div className="menu-overlay-bg" />
         <nav className="menu-overlay-content">
