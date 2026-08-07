@@ -1099,6 +1099,7 @@ img {
   position: absolute;
   top: 15px;
   right: 15px;
+  width: auto;
   background: none;
   border: none;
   color: var(--fg-2);
