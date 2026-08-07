@@ -249,7 +249,7 @@ function Projects() {
     <section id="projects" ref={ref} className="projects-section" key={locale}>
       <div className="section-head">
         <h2 className="section-title">
-          {t("projects.title")}
+          <img src="code.webp" alt="me" className="title-img" loading="lazy" decoding="async" />{t("projects.title")}
         </h2>
       </div>
 

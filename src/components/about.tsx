@@ -17,16 +17,19 @@ function About() {
   };
 
   return (
-    <section id="about-me" ref={ref} className="about-section" key={locale}>
+    <section id="about-me" ref={ref} className="about-section" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
       <div className="section-head">
         <h2 className="section-title">
-          {t("about.title_prefix")} {t("about.title_suffix")}
+          {t("about.title_prefix")}<img src="me.webp" alt="me" className="title-img" loading="lazy" decoding="async" />
+          {t("about.title_suffix")}
         </h2>
       </div>
 
       <div className="about-layout">
         <div className="about-copy">
-          <p data-reveal="words-mask">{t("about.p1")}</p>
+          <p className="about-copy--lead" data-reveal="words-mask">
+            {t("about.p1")}
+          </p>
           <p data-reveal="words-mask">{t("about.p2")}</p>
           <div className="about-buttons">
             <button className="btn" onClick={scrollToContacts}>
@@ -40,12 +43,6 @@ function About() {
             >
               <SwapLabel text={t("about.resume")} />
             </a>
-          </div>
-        </div>
-
-        <div className="about-avatar-wrap">
-          <div className="about-frame">
-            <img src="me.webp" alt="me" className="about-avatar" loading="lazy" decoding="async" />
           </div>
         </div>
 

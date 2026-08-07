@@ -43,10 +43,11 @@ function MyContacts() {
   };
 
   return (
-    <div id="my-contacts" ref={ref} className="contacts" key={locale}>
+    <div id="my-contacts" ref={ref} className="contacts" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
       <div className="section-head">
         <h2 className="section-title">
-          {t("contacts.title_prefix")} {t("contacts.title_suffix")}
+          {t("contacts.title_prefix")}<img src="me_2.webp" alt="me" className="title-img" loading="lazy" decoding="async" />
+{t("contacts.title_suffix")}
         </h2>
       </div>
 
