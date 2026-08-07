@@ -1,10 +1,17 @@
+import { useTranslate } from "../context/I18nContext";
+
 function Footer() {
+  const { t, locale } = useTranslate();
+
   return (
-    <div className="copyright">
-      2021-{new Date().getFullYear()} Semyonov Artem
-      <br />
-      All Rights Reserved
-    </div>
+    <footer className="footer">
+      <div className="footer-inner" key={locale}>
+        <div className="footer-bottom">
+          <span>© 2021-{new Date().getFullYear()} Nighty3098</span>
+          <span>{t("footer.rights")}</span>
+        </div>
+      </div>
+    </footer>
   );
 }
 

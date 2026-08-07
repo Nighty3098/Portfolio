@@ -1,8 +1,9 @@
-import BentoGrid from "./bentoGrid";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
+import ProjectCard from "./projectCard";
+import SwapLabel from "./swapLabel";
 
 type ProjectCategory = "other" | "ml" | "osint" | "pentest" | "bots" | "sites";
 
@@ -128,7 +129,7 @@ const projectsData: { projects: ProjectData[] } = {
     },
     {
       id: 2,
-      showOnHome: true,
+      showOnHome: false,
       categories: ["pentest"],
       images: [
         "/images/crimson_1.png",
@@ -216,7 +217,7 @@ const projectsData: { projects: ProjectData[] } = {
       images: ["/images/owl_website.png"],
       technologies: ["React", "TypeScript", "GSAP"],
       source: "https://github.com/Nighty3098/owl_website",
-      demo: "https://owl-tech.vercel.app/",
+      demo: "https://owl-web.vercel.app/",
     },
   ],
 };
@@ -225,7 +226,7 @@ const homeProjects = projectsData.projects.filter((p) => p.showOnHome);
 
 function Projects() {
   const { t, tt, locale } = useTranslate();
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const items = tt("projects.items") as Array<{
     title: string;
     info: string;
@@ -245,17 +246,36 @@ function Projects() {
   }));
 
   return (
-    <section
-      id="projects"
-      ref={ref}
-      key={locale}
-      className="content-block content projects-block projects-page-wrapper"
-    >
-      <h2 data-reveal="letters">{t("projects.title")}</h2>
-      <BentoGrid projects={all} />
-      <Link to="/all-projects" className="all-projects-btn">
-        {t("projects.all")}
-      </Link>
+    <section id="projects" ref={ref} className="projects-section" key={locale}>
+      <div className="section-head">
+        <h2 className="section-title">
+          {t("projects.title")}
+        </h2>
+      </div>
+
+      <div className="projects-list">
+        {all.map((p) => (
+          <ProjectCard
+            key={p.id}
+            title={p.title}
+            brief={p.brief}
+            description={p.description}
+            images={p.images}
+            source={p.source}
+            demo={p.demo}
+            id={p.id}
+            index={p.index}
+            technologies={p.technologies}
+            variant="row"
+          />
+        ))}
+      </div>
+
+      <div className="projects-more">
+        <Link to="/all-projects" className="btn btn-line">
+          <SwapLabel text={t("projects.all")} />
+        </Link>
+      </div>
     </section>
   );
 }

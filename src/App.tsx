@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./App.css";
 import Hero from "./components/hero";
 import About from "./components/about";
@@ -8,9 +9,25 @@ import Header from "./components/header";
 import AllProjects from "./pages/AllProjects";
 import ScrollProgress from "./components/scrollProgress";
 import Seo from "./components/SEO";
-import { HashRouter, Routes, Route } from "react-router-dom";
-import NoiseOverlay from "./components/noiseOverlay";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import LenisProvider from "./components/lenisProvider";
+
+function GotoSection() {
+  const { search } = useLocation();
+
+  useEffect(() => {
+    if (!search) return;
+    const params = new URLSearchParams(search);
+    const section = params.get("goto");
+    if (!section) return;
+    requestAnimationFrame(() => {
+      const el = document.getElementById(section);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    });
+  }, [search]);
+
+  return null;
+}
 
 function App() {
   return (
@@ -21,6 +38,7 @@ function App() {
             path="/"
             element={
               <>
+                <GotoSection />
                 <Seo />
                 <div className="App">
                   <ScrollProgress />
@@ -30,7 +48,6 @@ function App() {
                   <Projects />
                   <MyContacts />
                   <Footer />
-                  <NoiseOverlay />
                 </div>
               </>
             }
@@ -40,7 +57,6 @@ function App() {
             element={
               <>
                 <AllProjects />
-                <NoiseOverlay />
               </>
             }
           />

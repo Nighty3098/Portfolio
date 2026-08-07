@@ -1,103 +1,75 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { useTranslate } from "../context/I18nContext";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import gsap from "gsap";
-import SplitType from "split-type";
-import HeroCanvas from "./heroCanvas";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function Hero() {
   const { t, locale } = useTranslate();
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [time, setTime] = useState(new Date());
+  const heroRef = useRef<HTMLElement>(null);
+  const mediaRef = useRef<HTMLImageElement>(null);
   const reduce = useReducedMotion();
 
   useEffect(() => {
-    const interval = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(interval);
-  }, []);
+    const hero = heroRef.current;
+    const media = mediaRef.current;
+    if (!hero) return;
 
-  useEffect(() => {
-    const titleEl = titleRef.current;
-    const scrollEl = scrollRef.current;
-    if (!titleEl || !scrollEl) return;
+    const card = hero.querySelector<HTMLElement>(".hero-card");
+    const lines = Array.from(
+      hero.querySelectorAll<HTMLElement>(".hero-line-inner"),
+    );
 
     if (reduce) {
-      gsap.set(titleEl, { visibility: "visible" });
-      gsap.set(scrollEl, { visibility: "visible", opacity: 1 });
+      gsap.set([card, media, ...lines], { clearProps: "all" });
       return;
     }
 
-    const split = new SplitType(titleEl, { types: "chars" });
-    const chars = split.chars;
-
     const tl = gsap.timeline();
 
-    tl.set(titleEl, { visibility: "visible" });
-    tl.set(scrollEl, { visibility: "visible" });
-
-    if (chars) {
-      tl.from(
-        chars,
-        {
-          yPercent: 150,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power4.out",
-          stagger: 0.027,
-        },
-        0.2,
-      );
+    if (card) {
+      gsap.set(card, { scale: 0, transformOrigin: "50% 100%" });
+      tl.to(card, { scale: 1, duration: 1.4, ease: "power4.inOut" }, 0);
     }
 
-    tl.to(scrollEl, { opacity: 1, duration: 0.6 }, 0.2);
+    if (media) {
+      gsap.set(media, { scale: 2.2 });
+      tl.to(media, { scale: 1, duration: 2.8, ease: "power2.out" }, 0);
+    }
+
+    tl.fromTo(
+      lines,
+      { yPercent: 120, rotateZ: 16, filter: "blur(12px)" },
+      {
+        yPercent: 0,
+        rotateZ: 0,
+        filter: "blur(0px)",
+        duration: 1.2,
+        ease: "power4.out",
+        stagger: 0.16,
+      },
+      0.35,
+    );
 
     return () => {
       tl.kill();
-      try {
-        split.revert();
-      } catch {}
+      gsap.set([card, media, ...lines], { clearProps: "all" });
     };
   }, [locale, reduce]);
 
   return (
-    <section className="section-hero" ref={heroRef}>
-      <div className="hero-bg" />
-      <div data-hero-field className="hero-canvas-layer">
-        <HeroCanvas julia scale={6} />
-      </div>
-      <div className="hero-fade" />
-      <div className="hero-content">
-        <div className="heading-appear">
-          <h1 ref={titleRef} className="hero-title">
-            {"software\nengineer"
-              .split("\n")
-              .map((line, i, arr) => (
-                <span key={line}>
-                  {line}
-                  {i < arr.length - 1 && <br />}
-                </span>
-              ))}
-          </h1>
+    <section ref={heroRef} className="hero" aria-label="Software Engineer">
+      <div className="hero-card">
+        <div className="hero-media">
+          <img ref={mediaRef} src="/bg_1.webp" alt="" fetchPriority="high" />
         </div>
-      </div>
-      <div ref={scrollRef} className="hero-scroll">
-        <span className="hero-scroll-bracket">[</span>
-        <span className="hero-scroll-text">Scroll</span>
-        <span className="hero-scroll-bracket">]</span>
-      </div>
-      <div className="hero-info">
-        <p>
-        <FontAwesomeIcon icon={faLocationDot} />
-          <span>{t("welcome.city")}</span>
-        </p>
-        <p>
-        <FontAwesomeIcon icon={faClock} />
-          <span>{time.toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", { timeZone: "Etc/GMT-7", hour: "2-digit", minute: "2-digit" })}</span>
-        </p>
+        <div className="hero-scrim" />
+        <h1 className="hero-caption">
+          {[t("welcome.hero_line_1"), t("welcome.hero_line_2")].map((line) => (
+            <span key={line} className="hero-line">
+              <span className="hero-line-inner">{line}</span>
+            </span>
+          ))}
+        </h1>
       </div>
     </section>
   );

@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useTheme } from "../context/ThemeContext";
 import GitHubStats from "./githubStats";
 import gsap from "gsap";
 
-const navItems = [
-  { key: "nav.projects", sectionId: "projects" },
-  { key: "nav.about", sectionId: "about-me" },
-  { key: "nav.contacts", sectionId: "my-contacts" },
+const navLinks = [
+  { key: "nav.projects", section: "projects" },
+  { key: "nav.about", section: "about-me" },
+  { key: "nav.contacts", section: "my-contacts" },
   {
     key: "about.resume",
     href: "https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing",
@@ -19,18 +19,26 @@ const navItems = [
 function Header() {
   const { t, locale, setLocale } = useTranslate();
   const { theme, toggleTheme } = useTheme();
+  const { pathname } = useLocation();
+  const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const menuItemsRef = useRef<HTMLDivElement>(null);
-  const menuContentRef = useRef<HTMLDivElement>(null);
   const [githubStatsOpen, setGithubStatsOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const isHome = pathname === "/";
 
-  const scrollToSection = (id: string) => {
+  const goSection = (id: string) => {
     setIsMenuOpen(false);
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -42,103 +50,124 @@ function Header() {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    if (!menuRef.current || !overlayRef.current || !menuItemsRef.current)
-      return;
+    const menu = menuRef.current;
+    if (!menu) return;
 
-    const items = Array.from(menuItemsRef.current.children);
+    const items = menu.querySelectorAll<HTMLElement>(".menu-nav-item");
+    const bg = menu.querySelector<HTMLElement>(".menu-overlay-bg");
 
     if (isMenuOpen) {
       const tl = gsap.timeline();
-      tl.set(menuRef.current, { display: "flex" });
-      tl.set(menuContentRef.current, { autoAlpha: 1 });
-      tl.set(items, { x: -60, opacity: 0 });
+      tl.set(menu, { display: "flex" });
       tl.fromTo(
-        overlayRef.current,
-        { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" },
-        {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-          duration: 0.6,
-          ease: "power3.inOut",
-        },
+        bg,
+        { clipPath: "inset(0% 0% 100% 0%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power3.inOut" },
       );
-      tl.to(
+      tl.fromTo(
         items,
-        { x: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: "power3.out" },
-        "-=0.3",
+        { yPercent: 120, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: "power3.out" },
+        "-=0.2",
       );
     } else {
       const tl = gsap.timeline();
-      tl.to(items, {
-        x: -30,
-        opacity: 0,
-        duration: 0.15,
-        stagger: 0.02,
-        ease: "power2.in",
-      });
+      tl.to(items, { yPercent: 40, opacity: 0, duration: 0.2, ease: "power2.in" });
       tl.to(
-        overlayRef.current,
-        {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-          duration: 0.4,
-          ease: "power3.inOut",
-        },
-        "-=0.1",
+        bg,
+        { clipPath: "inset(0% 0% 100% 0%)", duration: 0.4, ease: "power3.inOut" },
+        "-=0.05",
       );
-      tl.set(menuRef.current, { display: "none" });
+      tl.set(menu, { display: "none" });
     }
   }, [isMenuOpen]);
 
   return (
     <>
-      <header className="header">
+      <header ref={headerRef} className={`header ${scrolled ? "scrolled" : ""}`}>
         <div className="header-inner">
-          <Link to="/" className="header-logo">
-            NIGHTY
-          </Link>
-          <div className="header-right">
+          <nav className="header-nav">
+            {navLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.key}
+                  className="nav-link"
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t(link.key)}
+                </a>
+              ) : (
+                <button
+                  key={link.key}
+                  className="nav-link"
+                  onClick={() =>
+                    isHome ? goSection(link.section!) : window.location.assign(`#/?goto=${link.section}`)
+                  }
+                >
+                  {t(link.key)}
+                </button>
+              ),
+            )}
+          </nav>
+
+          <div className="header-actions">
             <button
-              className={`header-menu-btn ${isMenuOpen ? "is-active" : ""}`}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
+              className="ctrl-btn active"
+              onClick={() => setLocale(locale === "en" ? "ru" : "en")}
+              aria-label="Switch language"
             >
-              <span className="menu-bar" />
-              <span className="menu-bar" />
+              {locale === "en" ? "EN" : "RU"}
+            </button>
+            <button
+              className="ctrl-btn"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? "DARK" : "LIGHT"}
             </button>
           </div>
+
+          <button
+            className={`header-menu-btn ${isMenuOpen ? "is-active" : ""}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className="menu-bar" />
+            <span className="menu-bar" />
+          </button>
         </div>
       </header>
 
       <div
         ref={menuRef}
         className="menu-overlay"
-        data-lenis-prevent
         style={{ display: "none" }}
+        data-lenis-prevent
       >
-        <div ref={overlayRef} className="menu-overlay-bg" />
-        <div
-          ref={menuContentRef}
-          className="menu-overlay-content"
-          style={{ visibility: "hidden" }}
-        >
-          <nav ref={menuItemsRef} className="menu-nav">
-            {navItems.map((item) =>
-              item.external ? (
+        <div className="menu-overlay-bg" />
+        <nav className="menu-overlay-content">
+          <div className="menu-nav">
+            {navLinks.map((link) =>
+              link.external ? (
                 <a
-                  key={item.key}
+                  key={link.key}
                   className="menu-nav-item"
-                  href={item.href}
+                  href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  {t(item.key)}
+                  {t(link.key)}
                 </a>
               ) : (
                 <button
-                  key={item.key}
+                  key={link.key}
                   className="menu-nav-item"
-                  onClick={() => scrollToSection(item.sectionId!)}
+                  onClick={() => goSection(link.section!)}
                 >
-                  {t(item.key)}
+                  {t(link.key)}
                 </button>
               ),
             )}
@@ -151,20 +180,19 @@ function Header() {
             >
               {t("nav.github")}
             </button>
-            <button
-              className="menu-nav-item menu-lang-btn"
-              onClick={() => setLocale(locale === "en" ? "ru" : "en")}
-            >
-              {locale === "en" ? "EN" : "RU"}
-            </button>
-            <button
-              className="menu-nav-item menu-theme-btn"
-              onClick={toggleTheme}
-            >
-              {theme === "dark" ? "LIGHT" : "DARK"}
-            </button>
-          </nav>
-        </div>
+            <div className="menu-actions">
+              <button
+                className="menu-nav-item menu-lang-btn active"
+                onClick={() => setLocale(locale === "en" ? "ru" : "en")}
+              >
+                {locale === "en" ? "EN" : "RU"}
+              </button>
+              <button className="menu-nav-item menu-theme-btn" onClick={toggleTheme}>
+                {theme === "dark" ? "DARK" : "LIGHT"}
+              </button>
+            </div>
+          </div>
+        </nav>
       </div>
 
       <GitHubStats

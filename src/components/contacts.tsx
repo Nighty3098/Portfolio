@@ -1,100 +1,78 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
-import { useReducedMotion } from "../hooks/useReducedMotion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SwapLabel from "./swapLabel";
 
-gsap.registerPlugin(ScrollTrigger);
+const EMAIL = "night3098games@gmail.com";
 
-const contacts = [
-  {
-    id: 1,
-    name: "Telegram",
-    handle: "@Night3098",
-    link: "https://t.me/Night3098",
-  },
-  {
-    id: 2,
-    name: "GMail",
-    handle: "night3098games@gmail.com",
-    link: "mailto:night3098games@gmail.com",
-  },
-  {
-    id: 3,
-    name: "KWork",
-    handle: "@nighty_3098",
-    link: "https://kwork.ru/user/nighty_3098",
-  },
-  {
-    id: 4,
-    name: "Reddit",
-    handle: "DEVELOPER0x31",
-    link: "https://www.reddit.com/user/DEVELOPER0x31/",
-  },
+const socials = [
+  { name: "Telegram", link: "https://t.me/Night3098" },
+  { name: "KWork", link: "https://kwork.ru/user/nighty_3098" },
+  { name: "Reddit", link: "https://www.reddit.com/user/DEVELOPER0x31/" },
+  { name: "Github", link: "https://github.com/Nighty3098" },
 ];
 
 function MyContacts() {
   const { t, locale } = useTranslate();
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const [copied, setCopied] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useSectionReveal(ref, [locale]);
 
   useEffect(() => {
-    const container = ref.current;
-    if (!container || reduce) return;
-
-    const cards = container.querySelectorAll<HTMLElement>(".contacts-item");
-    if (cards.length === 0) return;
-
-    gsap.set(cards, {
-      clipPath: "inset(0 50% 0 50%)",
-      y: 40,
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top 80%",
-        toggleActions: "play reverse play reverse",
-      },
-    });
-
-    tl.to(cards, {
-      clipPath: "inset(0 0% 0 0%)",
-      y: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      stagger: { amount: 0.3, from: "start" },
-    });
-
     return () => {
-      tl.kill();
+      if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [locale, reduce]);
+  }, []);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {
+      const el = document.createElement("textarea");
+      el.value = EMAIL;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+    }
+    setCopied(true);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setCopied(false), 2200);
+  };
 
   return (
-    <div
-      id="my-contacts"
-      ref={ref}
-      key={locale}
-      className="content contacts-page-wrapper"
-    >
-      <h2 className="contacts-title" data-reveal="letters">
-        {t("contacts.title_prefix")} {t("contacts.title_suffix")}
-      </h2>
-      <div className="contacts-grid">
-        {contacts.map((contact) => (
+    <div id="my-contacts" ref={ref} className="contacts" key={locale}>
+      <div className="section-head">
+        <h2 className="section-title">
+          {t("contacts.title_prefix")} {t("contacts.title_suffix")}
+        </h2>
+      </div>
+
+      <div className="contacts-email-wrap">
+        <button
+          className="contacts-email-link"
+          onClick={copyEmail}
+          data-cursor-hover="copy"
+        >
+          <span className="contacts-email">{EMAIL}</span>
+        </button>
+        <div className={`contacts-copy-hint ${copied ? "copied" : ""}`}>
+          <SwapLabel text={copied ? t("contacts.copied") : t("contacts.copy")} />
+        </div>
+      </div>
+
+      <div className="contacts-socials">
+        {socials.map((s) => (
           <a
-            key={contact.id}
-            href={contact.link}
+            key={s.name}
+            className="contacts-social"
+            href={s.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="contacts-item"
           >
-            <span className="contacts-item-name">{contact.name}</span>
-            <span className="contacts-item-handle">{contact.handle}</span>
+            {s.name}
           </a>
         ))}
       </div>

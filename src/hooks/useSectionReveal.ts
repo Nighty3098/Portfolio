@@ -58,6 +58,30 @@ function initElement(el: HTMLElement): ScrollAnimation | null {
     case 'words-fade':
       Object.assign(vars, { y: 12, duration: 0.7, ease: 'power2.out', stagger: { amount: 0.35 } });
       break;
+    case 'words-mask':
+      targets.forEach((word) => {
+        const mask = document.createElement('span');
+        mask.className = 'word-mask';
+        if (word.parentNode) word.parentNode.insertBefore(mask, word);
+        mask.appendChild(word);
+      });
+      vars.yPercent = 120;
+      vars.duration = 0.9;
+      vars.ease = 'power4.out';
+      vars.stagger = { amount: 0.4 };
+      break;
+    case 'clip':
+      targets.forEach((w) => {
+        const html = w as HTMLElement;
+        html.style.display = 'inline-block';
+        html.style.padding = '0.12em 0.06em';
+        html.style.margin = '-0.12em -0.06em';
+      });
+      vars.clipPath = 'inset(0% 0% 0% 0%)';
+      vars.duration = 1;
+      vars.ease = 'power4.out';
+      vars.stagger = { amount: 0.7 };
+      break;
   }
 
   const tl = gsap.timeline({
@@ -68,7 +92,11 @@ function initElement(el: HTMLElement): ScrollAnimation | null {
     },
   });
 
-  tl.from(targets, { opacity: 0, ...vars });
+  if (type === 'clip') {
+    tl.fromTo(targets, { clipPath: 'inset(0% 100% 0% 0%)' }, vars);
+  } else {
+    tl.from(targets, { opacity: 0, ...vars });
+  }
 
   const anim: ScrollAnimation = { el, split, tl, type };
   active.set(el, anim);

@@ -9,7 +9,10 @@
     "name": "ARTEM",
     "whoami": "DEVELOPER | FREELANCER",
     "tagline": "YOU HAVE A PROBLEM - WE HAVE A SOLUTION",
-    "city": "Novosibirsk"
+    "city": "Novosibirsk",
+    "hero_line_1": "SOFTWARE",
+    "hero_line_2": "ENGINEER",
+    "scroll": "scroll"
   },
   "about": {
     "title": "About me",
@@ -190,7 +193,10 @@
     "title": "My contacts",
     "title_prefix": "My",
     "title_suffix": "contacts",
-    "tg_channel": "Tg Channel"
+    "tg_channel": "Tg Channel",
+    "copy": "click to copy",
+    "copied": "copied",
+    "say_hello": "Say hello"
   },
   "github_stats": {
     "title": "GitHub Stats",
@@ -239,5 +245,11 @@
     "title": "Nighty3098",
     "description": "Nighty3098's portfolio",
     "noscript": "You need to enable JavaScript to run this app."
+  },
+  "footer": {
+    "tagline": "Semyonov Artem — developer, freelancer & security researcher.",
+    "menu": "Menu",
+    "socials": "Socials",
+    "rights": "All rights reserved"
   }
 }

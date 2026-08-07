@@ -2,11 +2,12 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
+import SwapLabel from "./swapLabel";
 
 function About() {
   const { t, locale } = useTranslate();
-  const ref = useRef<HTMLDivElement>(null);
-  const restTexts = ["about.p2", "about.p5", "about.p3"];
+  const ref = useRef<HTMLElement>(null);
+  const restTexts = ["about.p5", "about.p3"];
 
   useSectionReveal(ref, [locale]);
 
@@ -17,61 +18,53 @@ function About() {
 
   return (
     <section id="about-me" ref={ref} className="about-section" key={locale}>
-      <div className="about-header">
-        <h2 data-reveal="letters">
+      <div className="section-head">
+        <h2 className="section-title">
           {t("about.title_prefix")} {t("about.title_suffix")}
         </h2>
       </div>
 
-      <div className="about-grid">
-        <div className="about-text-col about-intro-col">
-          <div className="about-text-col">
-            <p>{t("about.p1")}</p>
-            <p>{t("about.p4")}</p>
-          </div>
-          <div className="about-buttons">
-            <button className="about-contact-btn" onClick={scrollToContacts}>
-              {t("about.contact_me")}
-            </button>
-            <a
-              className="about-contact-btn"
-              href="https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t("about.resume")}
-            </a>
+      <div className="about-layout">
+        <div className="about-copy about-copy--left">
+          <p data-reveal="words-mask">{t("about.p1")}</p>
+          <p data-reveal="words-mask">{t("about.p2")}</p>
+        </div>
+
+        <div className="about-avatar-wrap">
+          <div className="about-frame">
+            <img src="me.webp" alt="me" className="about-avatar" loading="lazy" />
           </div>
         </div>
-        <div className="about-image-col">
-          <div className="about-image-frame">
-            <img
-              src="me_2.jpg"
-              alt="me"
-              className="about-avatar"
-              loading="lazy"
-            />
-          </div>
-        </div>
-        <div className="about-text-col">
+
+        <div className="about-copy about-copy--right">
           {restTexts.map((key) => (
-            <p key={key}>{t(key)}</p>
+            <p key={key} data-reveal="words-mask">
+              {t(key)}
+            </p>
           ))}
-          <div className="about-buttons about-category-links">
-            <Link
-              to="/all-projects?category=osint"
-              className="about-contact-btn"
-            >
-              {t("about.osint_link")}
-            </Link>
-            <Link
-              to="/all-projects?category=pentest"
-              className="about-contact-btn"
-            >
-              {t("about.pentest_link")}
-            </Link>
-          </div>
         </div>
+      </div>
+
+      <div className="about-buttons">
+        <Link to="/all-projects?category=osint" className="btn">
+          <SwapLabel text={t("about.osint_link")} />
+        </Link>
+        <Link to="/all-projects?category=pentest" className="btn">
+          <SwapLabel text={t("about.pentest_link")} />
+        </Link>
+      </div>
+      <div className="about-buttons">
+        <button className="btn" onClick={scrollToContacts}>
+          <SwapLabel text={t("about.contact_me")} />
+        </button>
+        <a
+          className="btn"
+          href="https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SwapLabel text={t("about.resume")} />
+        </a>
       </div>
     </section>
   );

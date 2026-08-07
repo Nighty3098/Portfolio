@@ -197,6 +197,7 @@ const Modal: React.FC<ModalProps> = ({
         if (e.key === "Escape") handleClose();
       }}
       aria-modal="true"
+      data-lenis-prevent
     >
       <div
         className="modal-content modal-content-scrollable"
@@ -221,7 +222,7 @@ const Modal: React.FC<ModalProps> = ({
             alignContent: "center",
             alignItems: "center",
             justifyContent: "center",
-            gap: "var(--spacing-m)",
+            gap: "var(--sp-m)",
           }}
         >
           {source && source.trim() !== "" && (

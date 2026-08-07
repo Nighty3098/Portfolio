@@ -9,7 +9,10 @@
     "name": "АРТЕМ",
     "whoami": "РАЗРАБОТЧИК | ФРИЛАНСЕР",
     "tagline": "У ВАС ЕСТЬ ПРОБЛЕМА\nА У НАС - РЕШЕНИЕ",
-    "city": "Новосибирск"
+    "city": "Новосибирск",
+    "hero_line_1": "SOFTWARE",
+    "hero_line_2": "ENGINEER",
+    "scroll": "scroll"
   },
   "about": {
     "title": "Обо мне",
@@ -190,7 +193,10 @@
     "title": "Мои контакты",
     "title_prefix": "Мои",
     "title_suffix": "контакты",
-    "tg_channel": "TG Канал"
+    "tg_channel": "TG Канал",
+    "copy": "кликни, чтобы скопировать",
+    "copied": "скопировано",
+    "say_hello": "Написать"
   },
   "github_stats": {
     "title": "GitHub Статистика",
@@ -239,5 +245,11 @@
     "title": "Nighty3098",
     "description": "Портфолио Nighty3098",
     "noscript": "Вам необходимо включить JavaScript для работы этого приложения."
+  },
+  "footer": {
+    "tagline": "Семёнов Артём — разработчик, фрилансер и исследователь безопасности.",
+    "menu": "Меню",
+    "socials": "Соцсети",
+    "rights": "Все права защищены"
   }
 }

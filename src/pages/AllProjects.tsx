@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import BentoGrid from "../components/bentoGrid";
+import { useSearchParams } from "react-router-dom";
+import ProjectCard from "../components/projectCard";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ScrollProgress from "../components/scrollProgress";
@@ -8,6 +8,7 @@ import Seo from "../components/SEO";
 import { projectsData } from "../components/projects";
 import { useTranslate } from "../context/I18nContext";
 import { useTheme } from "../context/ThemeContext";
+import { useSectionReveal } from "../hooks/useSectionReveal";
 
 const categories = [
   "all",
@@ -23,7 +24,7 @@ type Category = (typeof categories)[number];
 function AllProjects() {
   const { t, tt, locale } = useTranslate();
   const { theme } = useTheme();
-  const ref = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLDivElement>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const initialCategory = searchParams.get("category") || "all";
   const [activeCategory, setActiveCategory] = useState<Category>(
@@ -31,6 +32,8 @@ function AllProjects() {
       ? (initialCategory as Category)
       : "all",
   );
+
+  useSectionReveal(headRef, [locale, activeCategory]);
 
   const catLabels = tt("projects.categories") as Record<string, string>;
 
@@ -59,33 +62,54 @@ function AllProjects() {
         description={t("html.description")}
         path="/all-projects"
       />
-      <div className="App" key={`${locale}-${theme}`}>
+      <div className="App all-page" key={`${locale}-${theme}`}>
         <ScrollProgress />
         <Header />
-        <section
-          ref={ref}
-          className="content-block content projects-block projects-page-wrapper all-projects-page"
-        >
-          <h2>{t("projects.all_title")}</h2>
-          <Link to="/" className="back-home-btn">
-            {t("projects.back_home")}
-          </Link>
-          <div className="category-filters">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                className={`category-btn ${activeCategory === cat ? "active" : ""}`}
-                onClick={() => {
-                  setActiveCategory(cat);
-                  setSearchParams(cat === "all" ? {} : { category: cat });
-                }}
-              >
-                {catLabels[cat]}
-              </button>
-            ))}
+
+        <div ref={headRef} className="page-head">
+          <div>
+            <h1 className="section-title">
+              {t("projects.all_title")}
+            </h1>
+            <a href="#/" className="back-home">
+              {t("projects.back_home")}
+            </a>
           </div>
-          <BentoGrid projects={all} uniform={activeCategory !== "all"} />
-        </section>
+        </div>
+
+        <div className="category-filters">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`category-btn ${activeCategory === cat ? "active" : ""}`}
+              onClick={() => {
+                setActiveCategory(cat);
+                setSearchParams(cat === "all" ? {} : { category: cat });
+              }}
+            >
+              {catLabels[cat]}
+            </button>
+          ))}
+        </div>
+
+        <div className="projects-grid">
+          {all.map((p) => (
+            <ProjectCard
+              key={p.id}
+              title={p.title}
+              brief={p.brief}
+              description={p.description}
+              images={p.images}
+              source={p.source}
+              demo={p.demo}
+              id={p.id}
+              index={p.index}
+              technologies={p.technologies}
+              variant="card"
+            />
+          ))}
+        </div>
+
         <Footer />
       </div>
     </>
