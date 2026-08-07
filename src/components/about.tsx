@@ -25,9 +25,22 @@ function About() {
       </div>
 
       <div className="about-layout">
-        <div className="about-copy about-copy--left">
+        <div className="about-copy">
           <p data-reveal="words-mask">{t("about.p1")}</p>
           <p data-reveal="words-mask">{t("about.p2")}</p>
+          <div className="about-buttons">
+            <button className="btn" onClick={scrollToContacts}>
+              <SwapLabel text={t("about.contact_me")} />
+            </button>
+            <a
+              className="btn"
+              href="https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SwapLabel text={t("about.resume")} />
+            </a>
+          </div>
         </div>
 
         <div className="about-avatar-wrap">
@@ -36,35 +49,21 @@ function About() {
           </div>
         </div>
 
-        <div className="about-copy about-copy--right">
+        <div className="about-copy">
           {restTexts.map((key) => (
             <p key={key} data-reveal="words-mask">
               {t(key)}
             </p>
           ))}
+          <div className="about-buttons">
+            <Link to="/all-projects?category=osint" className="btn">
+              <SwapLabel text={t("about.osint_link")} />
+            </Link>
+            <Link to="/all-projects?category=pentest" className="btn">
+              <SwapLabel text={t("about.pentest_link")} />
+            </Link>
+          </div>
         </div>
-      </div>
-
-      <div className="about-buttons">
-        <Link to="/all-projects?category=osint" className="btn">
-          <SwapLabel text={t("about.osint_link")} />
-        </Link>
-        <Link to="/all-projects?category=pentest" className="btn">
-          <SwapLabel text={t("about.pentest_link")} />
-        </Link>
-      </div>
-      <div className="about-buttons">
-        <button className="btn" onClick={scrollToContacts}>
-          <SwapLabel text={t("about.contact_me")} />
-        </button>
-        <a
-          className="btn"
-          href="https://docs.google.com/document/d/1F56DLD5cfGlKVzTzlpU5TD-zoJlGTi2LhfMb9mejHe8/edit?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <SwapLabel text={t("about.resume")} />
-        </a>
       </div>
     </section>
   );

@@ -59,7 +59,10 @@ function MyContacts() {
           <span className="contacts-email">{EMAIL}</span>
         </button>
         <div className={`contacts-copy-hint ${copied ? "copied" : ""}`}>
-          <SwapLabel text={copied ? t("contacts.copied") : t("contacts.copy")} />
+          <SwapLabel
+            key={copied ? "copied" : "copy"}
+            text={copied ? t("contacts.copied") : t("contacts.copy")}
+          />
         </div>
       </div>
 
