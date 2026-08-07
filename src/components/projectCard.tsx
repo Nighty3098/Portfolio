@@ -17,6 +17,7 @@ interface ProjectCardProps {
   index: number;
   technologies: string[];
   variant?: "row" | "card";
+  inSlider?: boolean;
 }
 
 function ProjectCard({
@@ -29,6 +30,7 @@ function ProjectCard({
   id,
   index,
   variant = "row",
+  inSlider = false,
 }: Readonly<ProjectCardProps>) {
   const [modalOpen, setModalOpen] = useState(false);
   const cardRef = useRef<HTMLButtonElement>(null);
@@ -38,7 +40,7 @@ function ProjectCard({
     const el = cardRef.current;
     if (!el) return;
 
-    if (reduce) {
+    if (reduce || inSlider) {
       gsap.set(el, { opacity: 1, x: 0, y: 0, scale: 1, rotateZ: 0 });
       return;
     }
@@ -88,7 +90,7 @@ function ProjectCard({
       }
     }, el);
     return () => ctx.revert();
-  }, [index, reduce, variant]);
+  }, [index, reduce, variant, inSlider]);
 
   if (variant === "row") {
     return (

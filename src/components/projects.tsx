@@ -1,9 +1,14 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 import ProjectCard from "./projectCard";
 import SwapLabel from "./swapLabel";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type ProjectCategory = "other" | "ml" | "osint" | "pentest" | "bots" | "sites";
 
@@ -227,6 +232,9 @@ const homeProjects = projectsData.projects.filter((p) => p.showOnHome);
 function Projects() {
   const { t, tt, locale } = useTranslate();
   const ref = useRef<HTMLElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
   const items = tt("projects.items") as Array<{
     title: string;
     info: string;
@@ -235,6 +243,42 @@ function Projects() {
   }>;
 
   useSectionReveal(ref, [locale]);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const track = trackRef.current;
+    if (!wrap || !track || reduce) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const section = ref.current;
+      if (!section) return;
+
+      wrap.classList.add("is-hscroll");
+
+      const scrollAmount = () =>
+        Math.max(0, track.scrollWidth - wrap.clientWidth);
+
+      gsap.to(track, {
+        x: () => -scrollAmount(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => "+=" + scrollAmount(),
+          pin: section,
+          pinSpacing: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      return () => wrap.classList.remove("is-hscroll");
+    });
+
+    return () => mm.revert();
+  }, [reduce, locale]);
 
   const all = homeProjects.map((p, i) => ({
     ...p,
@@ -246,29 +290,32 @@ function Projects() {
   }));
 
   return (
-    <section id="projects" ref={ref} className="projects-section" key={locale}>
+    <section id="projects" ref={ref} className="projects-section" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
       <div className="section-head">
         <h2 className="section-title">
           <img src="code.webp" alt="me" className="title-img" loading="lazy" decoding="async" />{t("projects.title")}
         </h2>
       </div>
 
-      <div className="projects-list">
-        {all.map((p) => (
-          <ProjectCard
-            key={p.id}
-            title={p.title}
-            brief={p.brief}
-            description={p.description}
-            images={p.images}
-            source={p.source}
-            demo={p.demo}
-            id={p.id}
-            index={p.index}
-            technologies={p.technologies}
-            variant="row"
-          />
-        ))}
+      <div className="projects-track-wrap" ref={wrapRef}>
+        <div className="projects-track" ref={trackRef}>
+          {all.map((p) => (
+            <ProjectCard
+              key={p.id}
+              title={p.title}
+              brief={p.brief}
+              description={p.description}
+              images={p.images}
+              source={p.source}
+              demo={p.demo}
+              id={p.id}
+              index={p.index}
+              technologies={p.technologies}
+              variant="row"
+              inSlider
+            />
+          ))}
+        </div>
       </div>
 
       <div className="projects-more">
