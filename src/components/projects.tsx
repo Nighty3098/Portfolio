@@ -232,6 +232,7 @@ const homeProjects = projectsData.projects.filter((p) => p.showOnHome);
 function Projects() {
   const { t, tt, locale } = useTranslate();
   const ref = useRef<HTMLElement>(null);
+  const pinWrapRef = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -247,7 +248,8 @@ function Projects() {
   useEffect(() => {
     const wrap = wrapRef.current;
     const track = trackRef.current;
-    if (!wrap || !track || reduce) return;
+    const pinWrap = pinWrapRef.current;
+    if (!wrap || !track || !pinWrap || reduce) return;
 
     const mm = gsap.matchMedia();
 
@@ -256,25 +258,43 @@ function Projects() {
       if (!section) return;
 
       wrap.classList.add("is-hscroll");
+      pinWrap.classList.add("is-hscroll");
 
       const scrollAmount = () =>
         Math.max(0, track.scrollWidth - wrap.clientWidth);
+
+      let lastHeight = "";
+      const setHeight = () => {
+        const height = `${section.offsetHeight + scrollAmount()}px`;
+        if (height !== lastHeight) {
+          lastHeight = height;
+          pinWrap.style.height = height;
+        }
+      };
+      setHeight();
+
+      const ro = new ResizeObserver(setHeight);
+      ro.observe(section);
+      ro.observe(wrap);
 
       gsap.to(track, {
         x: () => -scrollAmount(),
         ease: "none",
         scrollTrigger: {
-          trigger: section,
+          trigger: pinWrap,
           start: "top top",
           end: () => "+=" + scrollAmount(),
-          pin: section,
-          pinSpacing: true,
           scrub: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      return () => wrap.classList.remove("is-hscroll");
+      return () => {
+        wrap.classList.remove("is-hscroll");
+        pinWrap.classList.remove("is-hscroll");
+        pinWrap.style.height = "";
+        ro.disconnect();
+      };
     });
 
     return () => mm.revert();
@@ -290,7 +310,8 @@ function Projects() {
   }));
 
   return (
-    <section id="projects" ref={ref} className="projects-section" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
+    <div className="projects-pin" ref={pinWrapRef}>
+      <section id="projects" ref={ref} className="projects-section" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
       <div className="section-head">
         <h2 className="section-title">
           <img src="code.webp" alt="me" className="title-img" loading="lazy" decoding="async" />{t("projects.title")}
@@ -323,7 +344,8 @@ function Projects() {
           <SwapLabel text={t("projects.all")} />
         </Link>
       </div>
-    </section>
+      </section>
+    </div>
   );
 }
 

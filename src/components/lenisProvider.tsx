@@ -32,10 +32,15 @@ function LenisProvider({ children }: Readonly<LenisProviderProps>) {
     const ticker = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(ticker);
 
-    const observer = new ResizeObserver(() => ScrollTrigger.refresh());
+    let refreshId: number | undefined;
+    const observer = new ResizeObserver(() => {
+      clearTimeout(refreshId);
+      refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 100);
+    });
     observer.observe(document.body);
 
     return () => {
+      clearTimeout(refreshId);
       lenis.off("scroll", ScrollTrigger.update);
       gsap.ticker.remove(ticker);
       lenis.destroy();

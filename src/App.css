@@ -640,6 +640,15 @@ img {
 
 /* ========= PROJECTS (home, full-width rows) ========= */
 
+.projects-pin {
+  width: 100%;
+}
+
+.projects-pin.is-hscroll .projects-section {
+  position: sticky;
+  top: 0;
+}
+
 .projects-section {
   width: 100%;
   max-width: var(--max-w);
