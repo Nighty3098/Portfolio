@@ -11,9 +11,13 @@ const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const isTouchDevice = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(pointer: coarse)").matches;
+
 function LenisProvider({ children }: Readonly<LenisProviderProps>) {
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    if (prefersReducedMotion() || isTouchDevice()) return;
 
     const lenis = new Lenis({
       lerp: 0.09,
