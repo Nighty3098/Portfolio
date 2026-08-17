@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
@@ -8,6 +9,7 @@ function About() {
   const { t, locale } = useTranslate();
   const ref = useRef<HTMLElement>(null);
   const restTexts = ["about.p5", "about.p3"];
+  const [tilt] = useState(() => (Math.random() < 0.5 ? "-8deg" : "8deg"));
 
   useSectionReveal(ref, [locale]);
 
@@ -20,7 +22,14 @@ function About() {
     <section id="about-me" ref={ref} className="about-section" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
       <div className="section-head">
         <h2 className="section-title">
-          {t("about.title_prefix")}<img src="me.webp" alt="me" className="title-img" loading="lazy" decoding="async" />
+          {t("about.title_prefix")}<img
+            src="me.webp"
+            alt="me"
+            className="title-img"
+            style={{ ["--tilt" as string]: tilt } as CSSProperties}
+            loading="lazy"
+            decoding="async"
+          />
           {t("about.title_suffix")}
         </h2>
       </div>

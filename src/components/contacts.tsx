@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 import SwapLabel from "./swapLabel";
@@ -17,6 +18,7 @@ function MyContacts() {
   const ref = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [tilt] = useState(() => (Math.random() < 0.5 ? "-8deg" : "8deg"));
 
   useSectionReveal(ref, [locale]);
 
@@ -46,7 +48,14 @@ function MyContacts() {
     <div id="my-contacts" ref={ref} className="contacts" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
       <div className="section-head">
         <h2 className="section-title">
-          {t("contacts.title_prefix")}<img src="me_2.webp" alt="me" className="title-img" loading="lazy" decoding="async" />
+          {t("contacts.title_prefix")}<img
+            src="me_2.webp"
+            alt="me"
+            className="title-img"
+            style={{ ["--tilt" as string]: tilt } as CSSProperties}
+            loading="lazy"
+            decoding="async"
+          />
 {t("contacts.title_suffix")}
         </h2>
       </div>
