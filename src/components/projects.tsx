@@ -116,7 +116,7 @@ const projectsData: { projects: ProjectData[] } = {
     },
     {
       id: 10,
-      showOnHome: true,
+      showOnHome: false,
       categories: ["sites"],
       images: ["/images/skyfall_website.webp"],
       technologies: ["React", "TypeScript", "GSAP"],
@@ -311,39 +311,59 @@ function Projects() {
 
   return (
     <div className="projects-pin" ref={pinWrapRef}>
-      <section id="projects" ref={ref} className="projects-section" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
-      <div className="section-head">
-        <h2 className="section-title">
-          <img src="code.webp" alt="me" className="title-img" loading="lazy" decoding="async" />{t("projects.title")}
-        </h2>
-      </div>
-
-      <div className="projects-track-wrap" ref={wrapRef}>
-        <div className="projects-track" ref={trackRef}>
-          {all.map((p) => (
-            <ProjectCard
-              key={p.id}
-              title={p.title}
-              brief={p.brief}
-              description={p.description}
-              images={p.images}
-              source={p.source}
-              demo={p.demo}
-              id={p.id}
-              index={p.index}
-              technologies={p.technologies}
-              variant="row"
-              inSlider
+      <section
+        id="projects"
+        ref={ref}
+        className="projects-section"
+        key={locale}
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "center",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div className="section-head">
+          <h2 className="section-title">
+            <img
+              src="code.webp"
+              alt="me"
+              className="title-img"
+              loading="lazy"
+              decoding="async"
             />
-          ))}
+            {t("projects.title")}
+          </h2>
         </div>
-      </div>
 
-      <div className="projects-more">
-        <Link to="/all-projects" className="btn btn-line">
-          <SwapLabel text={t("projects.all")} />
-        </Link>
-      </div>
+        <div className="projects-track-wrap" ref={wrapRef}>
+          <div className="projects-track" ref={trackRef}>
+            {all.map((p) => (
+              <ProjectCard
+                key={p.id}
+                title={p.title}
+                brief={p.brief}
+                description={p.description}
+                images={p.images}
+                source={p.source}
+                demo={p.demo}
+                id={p.id}
+                index={p.index}
+                technologies={p.technologies}
+                variant="row"
+                inSlider
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="projects-more">
+          <Link to="/all-projects" className="btn btn-line">
+            <SwapLabel text={t("projects.all")} />
+          </Link>
+        </div>
       </section>
     </div>
   );

@@ -222,7 +222,9 @@ img {
   left: 0;
   right: 0;
   z-index: var(--z-header);
-  transition: background-color 0.35s ease, border-color 0.35s ease;
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .header.scrolled {
@@ -384,7 +386,10 @@ img {
   color: var(--fg);
   padding: 0;
   cursor: pointer;
-  transition: color 0.25s ease, opacity 0.25s ease, transform 0.35s ease;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.35s ease;
 }
 
 .menu-nav-item:hover {
@@ -675,7 +680,7 @@ img {
 }
 
 .projects-track-wrap.is-hscroll .project-row {
-  width: clamp(300px, 60vw, 640px);
+  width: clamp(300px, 80vw, 1000px);
   flex: 0 0 auto;
 }
 
@@ -710,7 +715,9 @@ img {
   height: 100%;
   object-fit: cover;
   transform: scale(1.02);
-  transition: transform 0.9s cubic-bezier(0.32, 0.72, 0, 1), filter 0.5s ease;
+  transition:
+    transform 0.9s cubic-bezier(0.32, 0.72, 0, 1),
+    filter 0.5s ease;
   will-change: transform;
 }
 
@@ -763,7 +770,9 @@ img {
   padding: var(--sp-l);
   opacity: 0;
   transform: translateY(18px);
-  transition: transform 0.45s ease, opacity 0.4s ease;
+  transition:
+    transform 0.45s ease,
+    opacity 0.4s ease;
 }
 
 .project-row:hover .project-row-cap {
@@ -798,7 +807,11 @@ img {
   border-radius: 50%;
   color: var(--fg);
   transform: rotate(-45deg);
-  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s ease;
 }
 
 .project-row:hover .project-row-arrow {
@@ -889,7 +902,9 @@ img {
   height: 100%;
   object-fit: cover;
   transform: scale(1.02);
-  transition: transform 0.8s cubic-bezier(0.32, 0.72, 0, 1), filter 0.5s ease;
+  transition:
+    transform 0.8s cubic-bezier(0.32, 0.72, 0, 1),
+    filter 0.5s ease;
 }
 
 .project-card:hover .project-card-media img {
@@ -927,6 +942,26 @@ img {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg);
+}
+
+@media (min-width: 861px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    width: 90%;
+    justify-self: center;
+  }
+
+  .project-card-title {
+    font-size: 1.3rem;
+    padding: var(--sp-l);
+  }
+
+  .project-card-brief {
+    font-size: 18px;
+  }
 }
 
 .category-filters {
