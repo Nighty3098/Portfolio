@@ -11,6 +11,7 @@ import ScrollProgress from "./components/scrollProgress";
 import Seo from "./components/SEO";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import LenisProvider from "./components/lenisProvider";
+import NoiseOverlay from "./components/noiseOverlay";
 
 function GotoSection() {
   const { search } = useLocation();
@@ -33,6 +34,7 @@ function App() {
   return (
     <HashRouter>
       <LenisProvider>
+        <NoiseOverlay />
         <Routes>
           <Route
             path="/"
