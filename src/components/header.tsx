@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
-import { useTheme } from "../context/ThemeContext";
 import GitHubStats from "./githubStats";
+import ThemeToggle from "./themeToggle";
 import gsap from "gsap";
 
 const navLinks = [
@@ -18,7 +18,6 @@ const navLinks = [
 
 function Header() {
   const { t, locale, setLocale } = useTranslate();
-  const { theme, toggleTheme } = useTheme();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -120,13 +119,7 @@ function Header() {
             >
               {locale === "en" ? "EN" : "RU"}
             </button>
-            <button
-              className="ctrl-btn"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? "DARK" : "LIGHT"}
-            </button>
+            <ThemeToggle />
           </div>
 
           <button
@@ -186,17 +179,6 @@ function Header() {
             >
               {t("nav.github")}
             </button>
-            <div className="menu-actions">
-              <button
-                className="menu-nav-item menu-lang-btn active"
-                onClick={() => setLocale(locale === "en" ? "ru" : "en")}
-              >
-                {locale === "en" ? "EN" : "RU"}
-              </button>
-              <button className="menu-nav-item menu-theme-btn" onClick={toggleTheme}>
-                {theme === "dark" ? "DARK" : "LIGHT"}
-              </button>
-            </div>
           </div>
         </nav>
       </div>

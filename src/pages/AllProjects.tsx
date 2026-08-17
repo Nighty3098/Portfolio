@@ -7,7 +7,6 @@ import ScrollProgress from "../components/scrollProgress";
 import Seo from "../components/SEO";
 import { projectsData } from "../components/projects";
 import { useTranslate } from "../context/I18nContext";
-import { useTheme } from "../context/ThemeContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 
 const categories = [
@@ -23,7 +22,6 @@ type Category = (typeof categories)[number];
 
 function AllProjects() {
   const { t, tt, locale } = useTranslate();
-  const { theme } = useTheme();
   const headRef = useRef<HTMLDivElement>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const initialCategory = searchParams.get("category") || "all";
@@ -62,7 +60,7 @@ function AllProjects() {
         description={t("html.description")}
         path="/all-projects"
       />
-      <div className="App all-page" key={`${locale}-${theme}`}>
+      <div className="App all-page" key={locale}>
         <ScrollProgress />
         <Header />
 
