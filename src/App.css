@@ -536,6 +536,7 @@ img {
   align-items: center;
   align-content: center;
   justify-content: center;
+  text-align: center;
   gap: var(--sp-l);
   font-family: var(--font-hand);
   font-size: clamp(3.6rem, 8vw, 9rem);
@@ -838,6 +839,12 @@ img {
 .all-page {
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .page-head {
@@ -846,8 +853,10 @@ img {
   margin: 0 auto;
   padding: calc(var(--header-h) + var(--sp-xxl)) var(--hero-pad) var(--sp-xl);
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
   gap: var(--sp-l);
 }
 
@@ -930,6 +939,21 @@ img {
 }
 
 .project-card:hover .project-card-overlay {
+  opacity: 1;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover::after {
   opacity: 1;
 }
 
