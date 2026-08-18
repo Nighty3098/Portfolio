@@ -43,7 +43,9 @@ function AllProjects() {
   }>;
 
   const all = projectsData.projects
-    .filter((p) => activeCategory === "all" || p.categories.includes(activeCategory))
+    .filter(
+      (p) => activeCategory === "all" || p.categories.includes(activeCategory),
+    )
     .map((p, i) => ({
       ...p,
       title: items[p.id - 1]?.title ?? "",
@@ -66,9 +68,7 @@ function AllProjects() {
 
         <div ref={headRef} className="page-head">
           <div>
-            <h1 className="section-title">
-              {t("projects.all_title")}
-            </h1>
+            <h1 className="section-title">{t("projects.all_title")}</h1>
             <a href="#/" className="back-home">
               {t("projects.back_home")}
             </a>
