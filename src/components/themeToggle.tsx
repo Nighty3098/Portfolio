@@ -5,8 +5,7 @@ interface ThemeToggleProps {
 }
 
 function ThemeToggle({ className }: Readonly<ThemeToggleProps>) {
-  const { theme, toggleTheme } = useTheme();
-  const light = theme === "light";
+  const { toggleTheme } = useTheme();
 
   return (
     <button
