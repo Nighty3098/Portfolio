@@ -861,26 +861,15 @@ img {
 }
 
 .back-home {
-  display: inline-flex;
-  align-items: center;
+  margin-top: var(--sp-xl);
+  margin-inline: auto;
+  width: fit-content;
   gap: 0.6em;
-  margin-top: var(--sp-m);
-  font-family: var(--font-head);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fg-2);
-  transition: color 0.25s ease;
 }
 
 .back-home::before {
   content: "←";
   transition: transform 0.3s ease;
-}
-
-.back-home:hover {
-  color: var(--fg);
 }
 
 .back-home:hover::before {

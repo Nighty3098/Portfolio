@@ -32,6 +32,8 @@ function LenisProvider({ children }: Readonly<LenisProviderProps>) {
 
     lenis.on("scroll", ScrollTrigger.update);
 
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+
     gsap.ticker.lagSmoothing(0);
     const ticker = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(ticker);
@@ -45,6 +47,7 @@ function LenisProvider({ children }: Readonly<LenisProviderProps>) {
 
     return () => {
       clearTimeout(refreshId);
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
       lenis.off("scroll", ScrollTrigger.update);
       gsap.ticker.remove(ticker);
       lenis.destroy();

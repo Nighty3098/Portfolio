@@ -12,6 +12,7 @@ import Seo from "./components/SEO";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import LenisProvider from "./components/lenisProvider";
 import NoiseOverlay from "./components/noiseOverlay";
+import type Lenis from "lenis";
 
 function GotoSection() {
   const { search } = useLocation();
@@ -30,6 +31,18 @@ function GotoSection() {
   return null;
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const lenis = (window as unknown as { __lenis?: Lenis }).__lenis;
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <HashRouter>
@@ -40,6 +53,7 @@ function App() {
             path="/"
             element={
               <>
+                <ScrollToTop />
                 <GotoSection />
                 <Seo />
                 <div className="App">
@@ -58,6 +72,7 @@ function App() {
             path="/all-projects"
             element={
               <>
+                <ScrollToTop />
                 <AllProjects />
               </>
             }

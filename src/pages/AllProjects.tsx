@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import ProjectCard from "../components/projectCard";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -69,9 +69,9 @@ function AllProjects() {
         <div ref={headRef} className="page-head">
           <div>
             <h1 className="section-title">{t("projects.all_title")}</h1>
-            <a href="#/" className="back-home">
+            <Link to="/" className="btn back-home">
               {t("projects.back_home")}
-            </a>
+            </Link>
           </div>
         </div>
 
