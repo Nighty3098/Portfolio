@@ -46,13 +46,13 @@
 }
 
 [data-theme="light"] {
-  --bg: #efece4;
-  --bg-2: #e5e1d6;
-  --bg-3: #d6d1c5;
-  --fg: #17140e;
-  --fg-2: #6d685e;
+  --bg: #fbf1c7;
+  --bg-2: #ebdbb2;
+  --bg-3: #f2e5bc;
+  --fg: #282828;
+  --fg-2: #3c3836;
   --line: rgba(23, 20, 14, 0.18);
-  --red: #c8372c;
+  --red: #9d0006;
   --hero-title: var(--bg);
 }
 
