@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
-import GitHubStats from "./githubStats";
 import ThemeToggle from "./themeToggle";
 import gsap from "gsap";
 
@@ -21,7 +20,6 @@ function Header() {
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [githubStatsOpen, setGithubStatsOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const isHome = pathname === "/";
@@ -170,23 +168,9 @@ function Header() {
                 </button>
               ),
             )}
-            <button
-              className="menu-nav-item"
-              onClick={() => {
-                setIsMenuOpen(false);
-                setGithubStatsOpen(true);
-              }}
-            >
-              {t("nav.github")}
-            </button>
           </div>
         </nav>
       </div>
-
-      <GitHubStats
-        show={githubStatsOpen}
-        onClose={() => setGithubStatsOpen(false)}
-      />
     </>
   );
 }

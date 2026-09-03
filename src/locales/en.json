@@ -26,7 +26,8 @@
     "p4": "I build services that help solve my clients problems.",
     "p5": "I am also interested in cybersecurity and OSINT - developing tools for both offensive security and intelligence gathering.",
     "osint_link": "OSINT projects",
-    "pentest_link": "PENTESTING projects"
+    "pentest_link": "PENTESTING projects",
+    "tab_about": "About"
   },
   "projects": {
     "title": "My projects",
