@@ -25,6 +25,15 @@ interface ProjectData {
 const projectsData: { projects: ProjectData[] } = {
   projects: [
     {
+      id: 18,
+      showOnHome: true,
+      categories: ["sites"],
+      images: ["/images/NyaMath_1.webp", "/images/NyaMath_2.webp"],
+      technologies: ["React", "TypeScript"],
+      demo: "https://nyamath.vercel.app/",
+      source: "",
+    },
+    {
       id: 3,
       showOnHome: true,
       categories: ["other"],
@@ -228,7 +237,25 @@ const projectsData: { projects: ProjectData[] } = {
   ],
 };
 
-const homeProjects = projectsData.projects.filter((p) => p.showOnHome);
+interface ProjectTranslation {
+  title: string;
+  info: string;
+  brief: string;
+  description: string;
+}
+
+const getLocalizedProjects = (items: ProjectTranslation[]) =>
+  projectsData.projects.map((project, projectIndex) => {
+    const translation = items[projectIndex];
+
+    return {
+      ...project,
+      title: translation?.title ?? "",
+      info: translation?.info ?? "",
+      brief: translation?.brief ?? "",
+      description: translation?.description ?? "",
+    };
+  });
 
 function Projects() {
   const { t, tt, locale } = useTranslate();
@@ -237,12 +264,7 @@ function Projects() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
-  const items = tt("projects.items") as Array<{
-    title: string;
-    info: string;
-    brief: string;
-    description: string;
-  }>;
+  const items = tt("projects.items") as ProjectTranslation[];
 
   useSectionReveal(ref, [locale]);
 
@@ -301,14 +323,9 @@ function Projects() {
     return () => mm.revert();
   }, [reduce, locale]);
 
-  const all = homeProjects.map((p, i) => ({
-    ...p,
-    title: items[p.id - 1]?.title ?? "",
-    info: items[p.id - 1]?.info ?? "",
-    brief: items[p.id - 1]?.brief ?? "",
-    description: items[p.id - 1]?.description ?? "",
-    index: i,
-  }));
+  const all = getLocalizedProjects(items)
+    .filter((project) => project.showOnHome)
+    .map((project, index) => ({ ...project, index }));
 
   return (
     <div className="projects-pin" ref={pinWrapRef}>
@@ -371,4 +388,4 @@ function Projects() {
 }
 
 export default Projects;
-export { projectsData };
+export { getLocalizedProjects, projectsData };

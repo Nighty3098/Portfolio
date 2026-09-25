@@ -5,7 +5,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import ScrollProgress from "../components/scrollProgress";
 import Seo from "../components/SEO";
-import { projectsData } from "../components/projects";
+import { getLocalizedProjects } from "../components/projects";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
 
@@ -42,18 +42,13 @@ function AllProjects() {
     description: string;
   }>;
 
-  const all = projectsData.projects
+  const all = getLocalizedProjects(items)
     .filter(
-      (p) => activeCategory === "all" || p.categories.includes(activeCategory),
+      (project) =>
+        activeCategory === "all" ||
+        project.categories.includes(activeCategory),
     )
-    .map((p, i) => ({
-      ...p,
-      title: items[p.id - 1]?.title ?? "",
-      info: items[p.id - 1]?.info ?? "",
-      brief: items[p.id - 1]?.brief ?? "",
-      description: items[p.id - 1]?.description ?? "",
-      index: i,
-    }));
+    .map((project, index) => ({ ...project, index }));
 
   return (
     <>

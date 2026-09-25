@@ -45,28 +45,16 @@
     },
     "items": [
       {
-        "title": "Ghostly Grabber",
-        "info": "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
-        "brief": "An OSINT tool for automated data collection and analysis from Telegram channels and chats",
-        "description": "OSINT - tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication"
-      },
-      {
-        "title": "Crimson",
-        "info": "Crimson is a remote access tool written in C++ with the ability to build for windows and linux",
-        "brief": "A remote access tool written in C++ for creating payloads on Windows and Linux",
-        "description": "Crimson is a remote access tool with the ability to create payloads for windows and linux"
+        "title": "NyaMath",
+        "info": "A browser-based engineering worksheet for writing formulas, visualizing calculations, running simulations, and sharing technical documents",
+        "brief": "A browser-based engineering worksheet for live calculations, plots, simulations, and programs",
+        "description": "NyaMath is an engineering worksheet in the browser. It provides paper-style formula editing, automatic recalculation, units, matrices, complex numbers, 2D/3D visualization, program blocks, and ODE/FDTD simulations on an infinite canvas. Built with React, TypeScript, Vite, mathjs, KaTeX, and Three.js, it also supports local files, serverless sharing, SMath/Calcpad import, and MCP integration for AI-agent control."
       },
       {
         "title": "The OWL",
         "info": "OWL - task and project management app designed specifically for developers",
         "brief": "A desktop app for managing projects, boards, columns, and tasks designed specifically for developers",
         "description": "OWL is a powerful and intuitive desktop application for managing projects, boards, columns, and tasks, designed specifically for developers. It features a seamless interface, advanced statistics, keyboard shortcuts, and deep integration with the OWL_BACKEND REST API."
-      },
-      {
-        "title": "OWL Rest API",
-        "info": "A microservice-based RESTful API for OWL APP",
-        "brief": "A microservice-based RESTful API for project, board, and task management",
-        "description": "OWL API is a microservice-based RESTful API for project, board, and task management, featuring user authentication, subscription management, and admin monitoring. All services are built with Flask, use PostgreSQL, and are orchestrated via Docker Compose."
       },
       {
         "title": "IPSA",
@@ -81,10 +69,46 @@
         "description": "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score."
       },
       {
+        "title": "SkyFall",
+        "info": "Open-source OSINT platform built with PySide6 — information gathering, Telegram OSINT, file analysis, and more",
+        "brief": "Open-source OSINT platform on PySide6 — information gathering, Telegram OSINT, file analysis, face search, and more",
+        "description": "SkyFall is a comprehensive OSINT (Open Source Intelligence) platform with a PySide6 graphical interface. It performs deep analysis of web resources and IP addresses — DNS, SSL/TLS, WHOIS, open ports (nmap 1–65535), WAF detection, malware reputation checks, and subdomain discovery. The platform includes a powerful dorking engine with 7974 exploits from Exploit-DB GHDB, Telegram OSINT with multi-account and proxy support, file analysis with metadata extraction, EXIF stripping, MAC/BSSID geolocation with interactive maps, email and username search across 3800+ sites, face search, GitHub OSINT with secret scanning (270+ patterns), phone number OSINT, and blockchain transaction search across 10 networks. Features an interactive graph editor with draggable nodes, connection ports, and export formats including GraphML, GEXF, JSON, CSV, PNG, HTML, and Obsidian Markdown."
+      },
+      {
+        "title": "AI Video Summary Bot",
+        "info": "A Telegram bot that transcribes video/audio and generates structured Markdown summaries via AI",
+        "brief": "A Telegram bot for transcribing video/audio and generating structured summaries via Whisper and Qwen AI",
+        "description": "AI Video Summary Bot is a Python Telegram bot that accepts YouTube links or video/audio files (mp4, webm, mkv, mp3, wav, and more), transcribes them via faster-whisper large-v3 on GPU (CUDA) with timestamps, and generates structured Markdown summaries via Qwen AI with emoji headers, Obsidian callouts, tables, checklists, and code blocks.\n\nFeatures\n - YouTube links and Telegram file uploads support\n - Subtitle extraction (ru/en) and Whisper transcription\n - Smart caching of audio, transcriptions, and subtitles by video ID\n - Whitelist-based access control and an admin panel with statistics, user management, logs, and cache clearing\n - Proxy support (MTProxy for Telegram, SOCKS5 for yt-dlp)"
+      },
+      {
+        "title": "Ghostly Grabber",
+        "info": "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
+        "brief": "An OSINT tool for automated data collection and analysis from Telegram channels and chats",
+        "description": "OSINT - tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication"
+      },
+      {
+        "title": "OWL Rest API",
+        "info": "A microservice-based RESTful API for OWL APP",
+        "brief": "A microservice-based RESTful API for project, board, and task management",
+        "description": "OWL API is a microservice-based RESTful API for project, board, and task management, featuring user authentication, subscription management, and admin monitoring. All services are built with Flask, use PostgreSQL, and are orchestrated via Docker Compose."
+      },
+      {
+        "title": "SkyFall Website",
+        "info": "Brand presentation website for SkyFall, an open-source OSINT platform built with PySide6",
+        "brief": "A brand presentation website for the SkyFall OSINT platform with smooth GSAP animations",
+        "description": "SkyFall Website is a brand presentation site built with Vite + React 18 + TypeScript. It showcases the SkyFall OSINT platform, an open-source intelligence tool developed in PySide6. The site features smooth animations powered by GSAP, seamless scrolling with Lenis, and a clean, modern design using the Outfit font family."
+      },
+      {
         "title": "Pretty Profile",
         "info": "Generate a pretty art style profile card from your GitHub data!",
         "brief": "A service for generating beautiful, customizable SVG profile cards from GitHub data",
         "description": "Pretty Banner is a Next.js-based service for generating beautiful, customizable SVG banners with GitHub profile statistics. It is designed for use in GitHub READMEs, personal websites, and dashboards, providing visually appealing, themeable, and informative profile cards."
+      },
+      {
+        "title": "Crimson",
+        "info": "Crimson is a remote access tool written in C++ with the ability to build for windows and linux",
+        "brief": "A remote access tool written in C++ for creating payloads on Windows and Linux",
+        "description": "Crimson is a remote access tool with the ability to create payloads for windows and linux"
       },
       {
         "title": "Log Insight",
@@ -96,19 +120,7 @@
         "title": "Tech Support Bot",
         "info": "Tech support telegram bot",
         "brief": "A multilingual Telegram bot for user support and feedback collection for my projects",
-        "description": "A Telegram bot for user support, bug reporting, idea collection, and development order requests. The bot supports multiple languages and can work both in polling mode (locally) and via webhook (e.g., on Vercel).\n\nFeatures\n - Accepts user requests (bug reports, feature suggestions, development orders)\n - Supports attachments: text, photos, videos, documents\n - Multilingual interface (Russian, English, Japanese, Spanish)\n - Notifies a dedicated support chat about new tickets\n - Ticket (new, in progress, completed, review) \n - Users can change the interface language"
-      },
-      {
-        "title": "SkyFall Website",
-        "info": "Brand presentation website for SkyFall, an open-source OSINT platform built with PySide6",
-        "brief": "A brand presentation website for the SkyFall OSINT platform with smooth GSAP animations",
-        "description": "SkyFall Website is a brand presentation site built with Vite + React 18 + TypeScript. It showcases the SkyFall OSINT platform, an open-source intelligence tool developed in PySide6. The site features smooth animations powered by GSAP, seamless scrolling with Lenis, and a clean, modern design using the Outfit font family."
-      },
-      {
-        "title": "SkyFall",
-        "info": "Open-source OSINT platform built with PySide6 — information gathering, Telegram OSINT, file analysis, and more",
-        "brief": "Open-source OSINT platform on PySide6 — information gathering, Telegram OSINT, file analysis, face search, and more",
-        "description": "SkyFall is a comprehensive open-source OSINT (Open Source Intelligence) platform with a PySide6 graphical interface. It performs deep analysis of web resources and IP addresses — DNS, SSL/TLS, WHOIS, open ports (nmap 1–65535), WAF detection, malware reputation checks, and subdomain discovery. The platform includes a powerful dorking engine with 7974 exploits from Exploit-DB GHDB, Telegram OSINT with multi-account and proxy support, file analysis with metadata extraction, EXIF stripping, MAC/BSSID geolocation with interactive maps, email and username search across 3800+ sites, face search, GitHub OSINT with secret scanning (270+ patterns), phone number OSINT, and blockchain transaction search across 10 networks. Features an interactive graph editor with draggable nodes, connection ports, and export formats including GraphML, GEXF, JSON, CSV, PNG, HTML, and Obsidian Markdown."
+        "description": "A Telegram bot for support, bug reporting, idea collection, and development order requests. The bot supports multiple languages and can work both in polling mode (locally) and via webhook (e.g., on Vercel).\n\nFeatures\n - Accepts user requests (bug reports, feature suggestions, development orders)\n - Supports attachments: text, photos, videos, documents\n - Multilingual interface (Russian, English, Japanese, Spanish)\n - Notifies a dedicated support chat about new tickets\n - Ticket (new, in progress, completed, review) \n - Users can change the interface language"
       },
       {
         "title": "CV Creator Bot",
@@ -139,12 +151,6 @@
         "info": "Brand website for The OWL — a project and task management app for developers",
         "brief": "A presentation website for The OWL project management app",
         "description": "OWL Website is a brand presentation site for The OWL — a project and task management desktop application designed for developers. Built with React, TypeScript, and GSAP, it showcases the app's features with smooth animations and a clean, modern design."
-      },
-      {
-        "title": "AI Video Summary Bot",
-        "info": "A Telegram bot that transcribes video/audio and generates structured Markdown summaries via AI",
-        "brief": "A Telegram bot for transcribing video/audio and generating structured summaries via Whisper and Qwen AI",
-        "description": "AI Video Summary Bot is a Python Telegram bot that accepts YouTube links or video/audio files (mp4, webm, mkv, mp3, wav, and more), transcribes them via faster-whisper large-v3 on GPU (CUDA) with timestamps, and generates structured Markdown summaries via Qwen AI with emoji headers, Obsidian callouts, tables, checklists, and code blocks.\n\nFeatures\n - YouTube links and Telegram file uploads support\n - Subtitle extraction (ru/en) and Whisper transcription\n - Smart caching of audio, transcriptions, and subtitles by video ID\n - Whitelist-based access control and an admin panel with statistics, user management, logs, and cache clearing\n - Proxy support (MTProxy for Telegram, SOCKS5 for yt-dlp)"
       }
     ]
   },
