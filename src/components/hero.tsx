@@ -60,7 +60,13 @@ function Hero() {
     <section ref={heroRef} className="hero" aria-label="Software Engineer">
       <div className="hero-card">
         <div className="hero-media">
-          <img ref={mediaRef} src="/bg_1.webp" alt="" fetchPriority="high" decoding="async" />
+          <img
+            ref={mediaRef}
+            src="/bg_1.webp"
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+          />
         </div>
         <div className="hero-scrim" />
         <h1 className="hero-caption">

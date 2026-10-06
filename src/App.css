@@ -21,7 +21,7 @@
   --sp-xl: 60px;
   --sp-xxl: 120px;
 
-  --bg: #0c0c0c;
+  --bg: #171311;
   --bg-2: #161616;
   --bg-3: #222221;
   --fg: #f1efe9;
@@ -222,15 +222,7 @@ img {
   left: 0;
   right: 0;
   z-index: var(--z-header);
-  transition:
-    background-color 0.35s ease,
-    border-color 0.35s ease;
-}
-
-.header.scrolled {
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(14px);
-  border-bottom-color: var(--line);
+  background-color: var(--bg);
 }
 
 .header-inner {
