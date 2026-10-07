@@ -21,13 +21,14 @@
   --sp-xl: 60px;
   --sp-xxl: 120px;
 
-  --bg: #171311;
-  --bg-2: #161616;
-  --bg-3: #222221;
-  --fg: #f1efe9;
-  --fg-2: #8e8c85;
-  --line: rgba(241, 239, 233, 0.16);
-  --red: #ff6b5e;
+  --bg: #15110e;
+  --bg-2: #1d1815;
+  --bg-3: #27201b;
+  --fg: #f2e2c6;
+  --fg-2: #b0a090;
+  --accent: #c68561;
+  --line: rgba(242, 226, 198, 0.14);
+  --red: #ff7a5e;
 
   --max-w: 1500px;
   --header-h: 80px;
@@ -51,6 +52,7 @@
   --bg-3: #f2e5bc;
   --fg: #282828;
   --fg-2: #3c3836;
+  --accent: #8a4b2a;
   --line: rgba(23, 20, 14, 0.18);
   --red: #9d0006;
   --hero-title: var(--bg);
@@ -675,7 +677,6 @@ img {
   display: flex;
   flex-wrap: nowrap;
   width: max-content;
-  padding-right: calc(var(--hero-pad) * 2);
 }
 
 .projects-track-wrap.is-hscroll .project-row {
@@ -685,7 +686,7 @@ img {
 
 .projects-track-wrap.is-hscroll .project-row-media {
   min-height: 0;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 2.5;
 }
 
 .project-row {
