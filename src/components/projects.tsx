@@ -283,73 +283,30 @@ function Projects() {
       wrap.classList.add("is-hscroll");
       pinWrap.classList.add("is-hscroll");
 
-      const getPositions = () => {
-        const center = wrap.getBoundingClientRect().left + wrap.clientWidth / 2;
-        const cards = track.querySelectorAll<HTMLElement>(".project-row");
-        return Array.from(cards, (card) => {
-          const rect = card.getBoundingClientRect();
-          return center - (rect.left + rect.width / 2);
-        });
-      };
-
-      let positions = getPositions();
-      let progress = 0;
-
-      const travel = () =>
-        positions.length > 1
-          ? Math.abs(positions[positions.length - 1] - positions[0])
-          : 0;
-
-      const applyX = () => {
-        const count = positions.length;
-        if (count === 0) return;
-        if (count === 1) {
-          gsap.set(track, { x: positions[0] });
-          return;
-        }
-
-        const seg = progress * (count - 1);
-        const index = Math.min(Math.floor(seg), count - 2);
-        const local = Math.min(Math.max(seg - index, 0), 1);
-        const move = Math.min(Math.max((local - 0.3) / 0.4, 0), 1);
-        const eased = move * move * (3 - 2 * move);
-
-        gsap.set(track, {
-          x:
-            positions[index] +
-            (positions[index + 1] - positions[index]) * eased,
-        });
-      };
+      const scrollAmount = () =>
+        Math.max(0, track.scrollWidth - wrap.clientWidth);
 
       let lastHeight = "";
       const setHeight = () => {
-        positions = getPositions();
-        const height = `${section.offsetHeight + travel()}px`;
+        const height = `${section.offsetHeight + scrollAmount()}px`;
         if (height !== lastHeight) {
           lastHeight = height;
           pinWrap.style.height = height;
         }
-        applyX();
       };
       setHeight();
 
       const ro = new ResizeObserver(setHeight);
       ro.observe(section);
       ro.observe(wrap);
-      ro.observe(track);
 
-      const state = { p: 0 };
-      gsap.to(state, {
-        p: 1,
+      gsap.to(track, {
+        x: () => -scrollAmount(),
         ease: "none",
-        onUpdate: () => {
-          progress = state.p;
-          applyX();
-        },
         scrollTrigger: {
           trigger: pinWrap,
           start: "top top",
-          end: () => "+=" + (travel() || 1),
+          end: () => "+=" + scrollAmount(),
           scrub: 1,
           invalidateOnRefresh: true,
         },
