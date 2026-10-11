@@ -14,7 +14,7 @@ const RESIZE_OBSERVER_LOOP_ERRORS = [
 window.addEventListener(
   'error',
   (event) => {
-    if (RESIZE_OBSERVER_LOOP_ERRORS.some((m) => event.message.includes(m))) {
+    if (RESIZE_OBSERVER_LOOP_ERRORS.some((m) => event.message?.includes(m))) {
       event.stopImmediatePropagation();
     }
   },
