@@ -17,46 +17,14 @@
     <meta name="theme-color" content="#0e1012" />
     <link rel="preload" as="image" href="%PUBLIC_URL%/bg_1.webp" fetchpriority="high" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   </head>
   <body>
-    <script>
-document.addEventListener('touchstart', function (event) {
-  if (event.touches.length > 1) {
-    event.preventDefault();
-  }
-}, { passive: false });
-
-let lastTouchEnd = 0;
-document.addEventListener('touchend', function (event) {
-  const now = new Date().getTime();
-  if (now - lastTouchEnd <= 300) {
-    event.preventDefault();
-  }
-  lastTouchEnd = now;
-}, false);
-
-
-document.addEventListener('wheel', function (event) {
-  if (event.ctrlKey) {
-    event.preventDefault();
-  }
-}, { passive: false });
-
-document.addEventListener('keydown', function (event) {
-  if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '=' || event.key === '0')) {
-    event.preventDefault();
-  }
-});
-
-
-    </script>
     <noscript id="noscript-text"
       >You need to enable JavaScript to run this app.</noscript
     >
     <div
       id="root"
-      style="width: 100vw; max-width: 100vw; padding: 0px; margin: 0px"
+      style="width: 100%; max-width: 100%; padding: 0px; margin: 0px"
     ></div>
   </body>
 </html>

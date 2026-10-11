@@ -532,11 +532,13 @@ img {
   justify-content: center;
   text-align: center;
   gap: var(--sp-l);
+  max-width: 100%;
   font-family: var(--font-hand);
-  font-size: clamp(3.6rem, 8vw, 9rem);
+  font-size: clamp(2.6rem, 8vw, 9rem);
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
+  overflow-wrap: break-word;
   color: var(--fg);
 }
 
