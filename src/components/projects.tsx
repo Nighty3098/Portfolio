@@ -334,14 +334,6 @@ function Projects() {
         ref={ref}
         className="projects-section"
         key={locale}
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
       >
         <div className="section-head">
           <h2 className="section-title">

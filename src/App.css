@@ -655,6 +655,10 @@ img {
 .projects-pin.is-hscroll .projects-section {
   position: sticky;
   top: 0;
+  height: 100vh;
+  min-height: 0;
+  padding: calc(var(--header-h) + var(--sp-m)) var(--hero-pad) var(--sp-l);
+  justify-content: flex-start;
 }
 
 .projects-section {
@@ -662,11 +666,21 @@ img {
   max-width: var(--max-w);
   padding: var(--sp-xxl) var(--hero-pad);
   margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .projects-track-wrap {
   width: 100%;
   overflow: hidden;
+}
+
+.projects-track-wrap.is-hscroll {
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .projects-track {
@@ -679,17 +693,21 @@ img {
   display: flex;
   flex-wrap: nowrap;
   width: max-content;
+  height: 100%;
   padding-right: calc(var(--hero-pad) * 2);
 }
 
 .projects-track-wrap.is-hscroll .project-row {
-  width: clamp(300px, 80vw, 1000px);
+  height: 100%;
+  width: auto;
+  aspect-ratio: 16 / 10;
   flex: 0 0 auto;
 }
 
 .projects-track-wrap.is-hscroll .project-row-media {
+  height: 100%;
   min-height: 0;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: auto;
 }
 
 .project-row {
@@ -828,6 +846,14 @@ img {
   margin-top: var(--sp-l);
   display: flex;
   justify-content: center;
+}
+
+.projects-pin.is-hscroll .section-head {
+  margin-bottom: var(--sp-m);
+}
+
+.projects-pin.is-hscroll .projects-more {
+  margin-top: var(--sp-m);
 }
 
 /* ========= ALL PROJECTS PAGE / GRID ========= */
