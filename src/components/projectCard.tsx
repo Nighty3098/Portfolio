@@ -92,27 +92,22 @@ function ProjectCard({
     return () => ctx.revert();
   }, [index, reduce, variant, inSlider]);
 
-  if (variant === "row") {
+  if (variant === "card") {
     return (
       <>
         <button
           ref={cardRef}
-          className="project-row"
+          className="project-card"
           onClick={() => setModalOpen(true)}
           style={{ opacity: 0 }}
           type="button"
         >
-          <div className="project-row-media">
+          <div className="project-card-media">
             <img src={images[0]} alt={title} loading="lazy" decoding="async" />
-            <div className="project-row-overlay">
-              <p className="project-row-brief">{brief}</p>
-            </div>
           </div>
-          <div className="project-row-cap">
-            <h3 className="project-row-name">{title}</h3>
-            <span className="project-row-arrow" aria-hidden="true">
-              →
-            </span>
+          <div className="project-card-body">
+            <h3 className="project-card-title">{title}</h3>
+            <p className="project-card-brief">{brief}</p>
           </div>
         </button>
 
@@ -133,18 +128,23 @@ function ProjectCard({
     <>
       <button
         ref={cardRef}
-        className="project-card"
+        className="project-row"
         onClick={() => setModalOpen(true)}
         style={{ opacity: 0 }}
         type="button"
       >
-        <div className="project-card-media">
+        <div className="project-row-media">
           <img src={images[0]} alt={title} loading="lazy" decoding="async" />
-          <div className="project-card-overlay">
-            <p className="project-card-brief">{brief}</p>
+          <div className="project-row-overlay">
+            <p className="project-row-brief">{brief}</p>
           </div>
         </div>
-        <h3 className="project-card-title">{title}</h3>
+        <div className="project-row-cap">
+          <h3 className="project-row-name">{title}</h3>
+          <span className="project-row-arrow" aria-hidden="true">
+            →
+          </span>
+        </div>
       </button>
 
       <Modal

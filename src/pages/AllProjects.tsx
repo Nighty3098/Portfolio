@@ -63,7 +63,16 @@ function AllProjects() {
 
         <div ref={headRef} className="page-head">
           <div>
-            <h1 className="section-title">{t("projects.all_title")}</h1>
+            <h1 className="section-title">
+              <img
+                src="code.webp"
+                alt=""
+                className="title-img"
+                loading="lazy"
+                decoding="async"
+              />
+              {t("projects.all_title")}
+            </h1>
             <Link to="/" className="btn back-home">
               {t("projects.back_home")}
             </Link>
