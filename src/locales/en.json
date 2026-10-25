@@ -45,108 +45,133 @@
     },
     "items": [
       {
+        "id": 19,
+        "title": "DBV vs code",
+        "info": "DBV is a free, open-source database explorer for VS Code and VSCodium. It opens SQLite files as rich visual editors, keeps saved server connections, runs SQL, browses huge tables with server-side pagination, and edits records safely.",
+        "brief": "DBV is a free, open-source database explorer for VS Code and VSCodium. It opens SQLite files as rich visual editors, keeps saved server connections, runs SQL, browses huge tables with server-side pagination, and edits records safely.",
+        "description": "DBV is a free, open-source database explorer for VS Code and VSCodium. It opens SQLite files as rich visual editors, keeps saved server connections, runs SQL, browses huge tables with server-side pagination, and edits records safely."
+      },
+      {
+        "id": 18,
         "title": "NyaMath",
         "info": "A browser-based engineering worksheet for writing formulas, visualizing calculations, running simulations, and sharing technical documents",
         "brief": "A browser-based engineering worksheet for live calculations, plots, simulations, and programs",
         "description": "NyaMath is an engineering worksheet in the browser. It provides paper-style formula editing, automatic recalculation, units, matrices, complex numbers, 2D/3D visualization, program blocks, and ODE/FDTD simulations on an infinite canvas. Built with React, TypeScript, Vite, mathjs, KaTeX, and Three.js, it also supports local files, serverless sharing, SMath/Calcpad import, and MCP integration for AI-agent control."
       },
       {
+        "id": 3,
         "title": "The OWL",
         "info": "OWL - task and project management app designed specifically for developers",
         "brief": "A desktop app for managing projects, boards, columns, and tasks designed specifically for developers",
         "description": "OWL is a powerful and intuitive desktop application for managing projects, boards, columns, and tasks, designed specifically for developers. It features a seamless interface, advanced statistics, keyboard shortcuts, and deep integration with the OWL_BACKEND REST API."
       },
       {
+        "id": 5,
         "title": "IPSA",
         "info": "IPSA is a bot investment assistant with the ability to predict stock prices using its own neural network",
         "brief": "A Telegram bot that provides stock market insights with AI-powered price predictions",
         "description": "IPSA is a Telegram bot designed to provide users with stock market insights, including price predictions, news parsing, and fundamental analysis. Built using the Pyrogram library, the bot integrates with a deep learning model for stock price forecasting, a news parser for real-time market updates, and a database for user and stock management. The bot supports user authentication, stock tracking, and admin controls, with a token-based system for accessing premium features. The project leverages TensorFlow for stock price predictions, yfinance for financial data, and BeautifulSoup for web scraping. It includes asynchronous news parsing, real-time notifications, and report generation in Excel format."
       },
       {
+        "id": 6,
         "title": "IPSA MODEL",
         "info": "Neural network model for IPSA",
         "brief": "A model for predicting stock prices based on historical data",
         "description": "This project implements a deep learning model for predicting stock prices using historical stock market data. The model leverages a combination of Convolutional Neural Networks (CNNs), Bidirectional Gated Recurrent Units (GRUs), and an Attention mechanism to capture temporal patterns and dependencies in stock data. The model is trained on a dataset containing multiple stock tickers and predicts the closing price based on a sequence of historical data. The codebase is written in Python, utilizing TensorFlow for model building, scikit-learn for preprocessing, and pandas for data handling. The model is designed to process multiple stock tickers, scale the data, create sequences for training, and evaluate performance using metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score."
       },
       {
+        "id": 11,
         "title": "SkyFall",
         "info": "Open-source OSINT platform built with PySide6 — information gathering, Telegram OSINT, file analysis, and more",
         "brief": "Open-source OSINT platform on PySide6 — information gathering, Telegram OSINT, file analysis, face search, and more",
         "description": "SkyFall is a comprehensive OSINT (Open Source Intelligence) platform with a PySide6 graphical interface. It performs deep analysis of web resources and IP addresses — DNS, SSL/TLS, WHOIS, open ports (nmap 1–65535), WAF detection, malware reputation checks, and subdomain discovery. The platform includes a powerful dorking engine with 7974 exploits from Exploit-DB GHDB, Telegram OSINT with multi-account and proxy support, file analysis with metadata extraction, EXIF stripping, MAC/BSSID geolocation with interactive maps, email and username search across 3800+ sites, face search, GitHub OSINT with secret scanning (270+ patterns), phone number OSINT, and blockchain transaction search across 10 networks. Features an interactive graph editor with draggable nodes, connection ports, and export formats including GraphML, GEXF, JSON, CSV, PNG, HTML, and Obsidian Markdown."
       },
       {
+        "id": 17,
         "title": "AI Video Summary Bot",
         "info": "A Telegram bot that transcribes video/audio and generates structured Markdown summaries via AI",
         "brief": "A Telegram bot for transcribing video/audio and generating structured summaries via Whisper and Qwen AI",
         "description": "AI Video Summary Bot is a Python Telegram bot that accepts YouTube links or video/audio files (mp4, webm, mkv, mp3, wav, and more), transcribes them via faster-whisper large-v3 on GPU (CUDA) with timestamps, and generates structured Markdown summaries via Qwen AI with emoji headers, Obsidian callouts, tables, checklists, and code blocks.\n\nFeatures\n - YouTube links and Telegram file uploads support\n - Subtitle extraction (ru/en) and Whisper transcription\n - Smart caching of audio, transcriptions, and subtitles by video ID\n - Whitelist-based access control and an admin panel with statistics, user management, logs, and cache clearing\n - Proxy support (MTProxy for Telegram, SOCKS5 for yt-dlp)"
       },
       {
+        "id": 1,
         "title": "Ghostly Grabber",
         "info": "A OSINT tool for automated collection and analysis of data from Telegram channels and chats with complete content archiving",
         "brief": "An OSINT tool for automated data collection and analysis from Telegram channels and chats",
         "description": "OSINT - tool for automated collection and analysis of data from Telegram channels and chats with full archiving of content and building a graph of user communication"
       },
       {
+        "id": 4,
         "title": "OWL Rest API",
         "info": "A microservice-based RESTful API for OWL APP",
         "brief": "A microservice-based RESTful API for project, board, and task management",
         "description": "OWL API is a microservice-based RESTful API for project, board, and task management, featuring user authentication, subscription management, and admin monitoring. All services are built with Flask, use PostgreSQL, and are orchestrated via Docker Compose."
       },
       {
+        "id": 10,
         "title": "SkyFall Website",
         "info": "Brand presentation website for SkyFall, an open-source OSINT platform built with PySide6",
         "brief": "A brand presentation website for the SkyFall OSINT platform with smooth GSAP animations",
         "description": "SkyFall Website is a brand presentation site built with Vite + React 18 + TypeScript. It showcases the SkyFall OSINT platform, an open-source intelligence tool developed in PySide6. The site features smooth animations powered by GSAP, seamless scrolling with Lenis, and a clean, modern design using the Outfit font family."
       },
       {
+        "id": 7,
         "title": "Pretty Profile",
         "info": "Generate a pretty art style profile card from your GitHub data!",
         "brief": "A service for generating beautiful, customizable SVG profile cards from GitHub data",
         "description": "Pretty Banner is a Next.js-based service for generating beautiful, customizable SVG banners with GitHub profile statistics. It is designed for use in GitHub READMEs, personal websites, and dashboards, providing visually appealing, themeable, and informative profile cards."
       },
       {
+        "id": 2,
         "title": "Crimson",
         "info": "Crimson is a remote access tool written in C++ with the ability to build for windows and linux",
         "brief": "A remote access tool written in C++ for creating payloads on Windows and Linux",
         "description": "Crimson is a remote access tool with the ability to create payloads for windows and linux"
       },
       {
+        "id": 8,
         "title": "Log Insight",
         "info": "Program for analyzing log files and detecting anomalies in program operation",
         "brief": "A CLI tool for analyzing log files and detecting anomalies in program operation",
         "description": "LogInsight empowers developers and system administrators to monitor, filter, and analyze logs with ease. Whether you're debugging applications or tracking system performance, LogInsight provides real-time insights with a user-friendly cli."
       },
       {
+        "id": 9,
         "title": "Tech Support Bot",
         "info": "Tech support telegram bot",
         "brief": "A multilingual Telegram bot for user support and feedback collection for my projects",
         "description": "A Telegram bot for support, bug reporting, idea collection, and development order requests. The bot supports multiple languages and can work both in polling mode (locally) and via webhook (e.g., on Vercel).\n\nFeatures\n - Accepts user requests (bug reports, feature suggestions, development orders)\n - Supports attachments: text, photos, videos, documents\n - Multilingual interface (Russian, English, Japanese, Spanish)\n - Notifies a dedicated support chat about new tickets\n - Ticket (new, in progress, completed, review) \n - Users can change the interface language"
       },
       {
+        "id": 12,
         "title": "CV Creator Bot",
         "info": "My client's Telegram bot that helps quickly interact with people and increase sales of their services",
         "brief": "A Telegram bot for creating, reviewing, and delivering resumes with a multi-tier wizard",
         "description": "CV Creator Bot is a Telegram bot built with TypeScript and Telegraf for resume creation, review, and delivery. It features video review scenarios, payment collection via card and SBP with receipt verification, an admin panel for anonymous file delivery, email support via Nodemailer, and interview scheduling with automated reminders. The bot runs in polling mode locally and webhook mode on Vercel, with a Calendly integration for scheduling."
       },
       {
+        "id": 13,
         "title": "ProxySniffer",
         "info": "Proxy parser and checker",
         "brief": "A Python tool for parsing and checking HTTP, HTTPS, SOCKS4 and SOCKS5 proxies",
         "description": "A simple program for obtaining and testing working proxy sheets [HTTP - HTTPS - SOCKS4 - SOCKS5]"
       },
       {
+        "id": 14,
         "title": "Thunder",
         "info": "Simple multi-threaded DoS tool",
         "brief": "A multi-threaded HTTP/HTTPS load testing tool for stress-testing web services",
         "description": "Thunder is a multi-threaded HTTP HTTPS load testing tool designed for stress-testing web services"
       },
       {
+        "id": 15,
         "title": "IStealU",
         "info": "Keylogger with sending logs via Telegram API",
         "brief": "A Windows keylogger that intercepts keystrokes and sends logs via the Telegram API",
         "description": "IStealU is a spyware program for Windows designed to intercept and log user keystrokes, as well as send logs to Telegram via the Telegram API"
       },
       {
+        "id": 16,
         "title": "OWL Website",
         "info": "Brand website for The OWL — a project and task management app for developers",
         "brief": "A presentation website for The OWL project management app",

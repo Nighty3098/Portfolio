@@ -18,33 +18,34 @@ const locales = [
   { name: "ru", items: ru.projects.items },
 ];
 
-const projectTitles = [
-  "NyaMath",
-  "The OWL",
-  "IPSA",
-  "IPSA MODEL",
-  "SkyFall",
-  "AI Video Summary Bot",
-  "Ghostly Grabber",
-  "OWL Rest API",
-  "SkyFall Website",
-  "Pretty Profile",
-  "Crimson",
-  "Log Insight",
-  "Tech Support Bot",
-  "CV Creator Bot",
-  "ProxySniffer",
-  "Thunder",
-  "IStealU",
-  "OWL Website",
-];
-
 test.each(locales)(
-  "$name translations are bound by project index",
+  "$name translations are bound by project id",
   ({ items }) => {
     const projects = getLocalizedProjects(items);
 
     expect(projects).toHaveLength(projectsData.projects.length);
-    expect(projects.map((project) => project.title)).toEqual(projectTitles);
+    expect(projects.map((project) => project.id)).toEqual(
+      projectsData.projects.map((project) => project.id),
+    );
+
+    projects.forEach((project) => {
+      const translation = items.find((item) => item.id === project.id);
+
+      expect(translation).toBeDefined();
+      expect(project.title).toBe(translation?.title);
+      expect(project.brief).toBe(translation?.brief);
+      expect(project.description).toBe(translation?.description);
+    });
+  },
+);
+
+test.each(locales)(
+  "$name translations stay bound to projects when the order changes",
+  ({ items }) => {
+    const projects = getLocalizedProjects(items);
+    const shuffled = [...items].reverse();
+    const shuffledProjects = getLocalizedProjects(shuffled);
+
+    expect(shuffledProjects).toEqual(projects);
   },
 );

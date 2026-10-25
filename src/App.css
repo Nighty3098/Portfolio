@@ -596,7 +596,7 @@ img {
   text-align: center;
 }
 
-.about-copy p + p {
+.about-copy p+p {
   margin-top: 1.2em;
 }
 
@@ -692,13 +692,14 @@ img {
 .projects-track-wrap.is-hscroll .projects-track {
   display: flex;
   flex-wrap: nowrap;
+  align-items: center;
   width: max-content;
   height: 100%;
   padding-right: calc(var(--hero-pad) * 2);
 }
 
 .projects-track-wrap.is-hscroll .project-row {
-  height: 100%;
+  height: min(100%, 800px);
   width: auto;
   aspect-ratio: 16 / 10;
   flex: 0 0 auto;
@@ -744,7 +745,6 @@ img {
 
 .project-row:hover .project-row-media img {
   transform: scale(1.08);
-  filter: blur(3px) brightness(0.72);
 }
 
 .project-row-overlay {
@@ -761,7 +761,7 @@ img {
 }
 
 .project-row:hover .project-row-overlay {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .project-row-brief {
@@ -905,6 +905,7 @@ img {
   padding: 0 var(--hero-pad) var(--sp-xxl);
   display: grid;
   grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
   gap: var(--sp-l);
 }
 
@@ -923,8 +924,11 @@ img {
 /* ========= ALL PROJECTS GRID CARDS ========= */
 
 .project-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  min-width: 0;
+  height: 100%;
   border: none;
   border-radius: var(--radius);
   background: var(--bg-2);
@@ -935,6 +939,7 @@ img {
 
 .project-card-media {
   position: relative;
+  flex: 0 0 auto;
   aspect-ratio: 16 / 10;
   overflow: hidden;
 }
@@ -952,10 +957,17 @@ img {
 }
 
 .project-card-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
   padding: var(--sp-m) var(--sp-m) var(--sp-l);
 }
 
 .project-card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-family: var(--font-display);
   font-size: clamp(1.3rem, 1.8vw, 1.9rem);
   font-weight: 400;
@@ -967,11 +979,12 @@ img {
 
 .project-card-brief {
   margin: var(--sp-s) 0 0;
+  min-height: calc(1.55em * 2);
   font-size: 15px;
   line-height: 1.55;
   color: var(--fg-2);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1076,6 +1089,7 @@ img {
   from {
     opacity: 0.3;
   }
+
   to {
     opacity: 1;
   }
@@ -1179,7 +1193,7 @@ img {
   padding-bottom: var(--sp-xl);
 }
 
-.modal-content > * {
+.modal-content>* {
   width: 100%;
   max-width: 800px;
 }
@@ -1575,6 +1589,7 @@ img {
   .project-row-media {
     aspect-ratio: auto;
     height: calc(100dvh * 0.16);
+    min-height: 0;
   }
 
   .page-head {

@@ -36,6 +36,7 @@ function AllProjects() {
   const catLabels = tt("projects.categories") as Record<string, string>;
 
   const items = tt("projects.items") as Array<{
+    id: number;
     title: string;
     info: string;
     brief: string;

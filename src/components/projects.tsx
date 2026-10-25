@@ -25,6 +25,15 @@ interface ProjectData {
 const projectsData: { projects: ProjectData[] } = {
   projects: [
     {
+      id: 19,
+      showOnHome: true,
+      categories: ["other"],
+      images: ["/images/dbv_1.webp", "/images/dbv_2.webp", "/images/dbv_3.webp", "/images/dbv_4.webp"],
+      technologies: ["TypeScript"],
+      demo: "",
+      source: "https://github.com/Nighty3098/DBV_vscode",
+    },
+    {
       id: 18,
       showOnHome: true,
       categories: ["sites"],
@@ -238,15 +247,20 @@ const projectsData: { projects: ProjectData[] } = {
 };
 
 interface ProjectTranslation {
+  id: number;
   title: string;
   info: string;
   brief: string;
   description: string;
 }
 
-const getLocalizedProjects = (items: ProjectTranslation[]) =>
-  projectsData.projects.map((project, projectIndex) => {
-    const translation = items[projectIndex];
+const getLocalizedProjects = (items: ProjectTranslation[]) => {
+  const translationsById = new Map(
+    items.map((translation) => [translation.id, translation]),
+  );
+
+  return projectsData.projects.map((project) => {
+    const translation = translationsById.get(project.id);
 
     return {
       ...project,
@@ -256,6 +270,7 @@ const getLocalizedProjects = (items: ProjectTranslation[]) =>
       description: translation?.description ?? "",
     };
   });
+};
 
 function Projects() {
   const { t, tt, locale } = useTranslate();
