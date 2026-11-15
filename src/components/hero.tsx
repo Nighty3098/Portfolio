@@ -62,7 +62,7 @@ function Hero() {
         <div className="hero-media">
           <img
             ref={mediaRef}
-            src="/bg_1.webp"
+            src="/bg_3.gif"
             alt=""
             fetchPriority="high"
             decoding="async"
