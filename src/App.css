@@ -4,6 +4,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght,ELSH@100..900,2&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Tiny5:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   --z-header: 100;
   --z-hover: 120;
@@ -34,12 +36,11 @@
   --header-h: 80px;
   --hero-pad: clamp(24px, 4vw, 64px);
 
-  --font-display: "Bebas Neue", sans-serif;
-  --font-head: "Oswald", sans-serif;
-  --font-body: "Exo 2", sans-serif;
-  --font-serif: "Cormorant Garamond", serif;
-  --font-hand: "Playfair Display", Georgia, serif;
-
+  --font-display: "Press Start 2P", monospace;
+  --font-head: "IBM Plex Mono", sans-serif;
+  --font-body: "IBM Plex Mono", monospace;
+  --font-serif: "IBM Plex Mono", Georgia, serif;
+  --font-hand: "Tiny5", Georgia, serif;
   --hero-title: var(--fg);
 
   --text-title: clamp(4rem, 11vw, 15rem);
@@ -819,9 +820,11 @@ img {
 }
 
 .project-row-arrow {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  align-content: center;
   width: clamp(3rem, 6vw, 4.5rem);
   height: clamp(3rem, 6vw, 4.5rem);
   border: 1px solid var(--line);
@@ -1218,7 +1221,7 @@ img {
 }
 
 .modal-content h2 {
-  font-family: "Oswald", sans-serif;
+  font-family: var(--font-head), sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: 1px;
   text-transform: uppercase;
