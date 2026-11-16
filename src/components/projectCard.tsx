@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Modal } from "./modal";
 import { useReducedMotion } from "../hooks/useReducedMotion";
+import { getRepoStarsBySources } from "../api/github";
+import PixelStarIcon from "./pixelStarIcon";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,8 +35,33 @@ function ProjectCard({
   inSlider = false,
 }: Readonly<ProjectCardProps>) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [stars, setStars] = useState<number | null>(null);
   const cardRef = useRef<HTMLButtonElement>(null);
   const reduce = useReducedMotion();
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!source || !source.trim()) {
+      setStars(null);
+      return;
+    }
+    const repoMatch = source.match(/github\.com\/([^/]+\/[^/]+)/i);
+    const repoKey = repoMatch ? repoMatch[1].toLowerCase() : null;
+    if (!repoKey) {
+      setStars(null);
+      return;
+    }
+    getRepoStarsBySources([source])
+      .then((map) => {
+        if (!cancelled) setStars(map[repoKey] ?? null);
+      })
+      .catch(() => {
+        if (!cancelled) setStars(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [source]);
 
   useEffect(() => {
     const el = cardRef.current;
@@ -106,7 +133,15 @@ function ProjectCard({
             <img src={images[0]} alt={title} loading="lazy" decoding="async" />
           </div>
           <div className="project-card-body">
-            <h3 className="project-card-title">{title}</h3>
+            <h3 className="project-card-title">
+              <span className="project-title-text">{title}</span>
+              {stars !== null && stars > 0 && (
+                <span className="project-stars" aria-label={`${stars} stars`}>
+                  <PixelStarIcon className="project-star-icon" />
+                  <span className="project-star-count">{stars}</span>
+                </span>
+              )}
+            </h3>
             <p className="project-card-brief">{brief}</p>
           </div>
         </button>
@@ -140,7 +175,15 @@ function ProjectCard({
           </div>
         </div>
         <div className="project-row-cap">
-          <h3 className="project-row-name">{title}</h3>
+          <h3 className="project-row-name">
+            <span className="project-title-text">{title}</span>
+            {stars !== null && stars > 0 && (
+              <span className="project-stars" aria-label={`${stars} stars`}>
+                <PixelStarIcon className="project-star-icon" />
+                <span className="project-star-count">{stars}</span>
+              </span>
+            )}
+          </h3>
           <span className="project-row-arrow" aria-hidden="true">
             →
           </span>

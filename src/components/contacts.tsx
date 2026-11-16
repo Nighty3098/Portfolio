@@ -5,6 +5,7 @@ import { useSectionReveal } from "../hooks/useSectionReveal";
 import SwapLabel from "./swapLabel";
 
 const EMAIL = "night3098games@gmail.com";
+const [EMAIL_USER, EMAIL_DOMAIN] = EMAIL.split("@");
 
 const socials = [
   { name: "Telegram", link: "https://t.me/Night3098" },
@@ -45,7 +46,7 @@ function MyContacts() {
   };
 
   return (
-    <div id="my-contacts" ref={ref} className="contacts" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
+    <div id="my-contacts" ref={ref} className="contacts" key={locale}>
       <div className="section-head">
         <h2 className="section-title">
           {t("contacts.title_prefix")}<img
@@ -66,7 +67,11 @@ function MyContacts() {
           onClick={copyEmail}
           data-cursor-hover="copy"
         >
-          <span className="contacts-email">{EMAIL}</span>
+          <span className="contacts-email">
+            <span className="contacts-email-part">{EMAIL_USER}</span>
+            <br className="contacts-email-break" />
+            <span className="contacts-email-part">@{EMAIL_DOMAIN}</span>
+          </span>
         </button>
         <div className={`contacts-copy-hint ${copied ? "copied" : ""}`}>
           <SwapLabel

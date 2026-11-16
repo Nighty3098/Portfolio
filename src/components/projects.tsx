@@ -73,7 +73,7 @@ const projectsData: { projects: ProjectData[] } = {
         ],
       technologies: ["Python", "PySide6", "OSINT", "React"],
       demo: "https://skyfallosint.vercel.app/",
-      source: "",
+      source: "https://github.com/Nighty3098/SkyFall",
     },
     {
       id: 3,

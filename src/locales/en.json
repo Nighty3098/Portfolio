@@ -182,6 +182,7 @@
   "project_card": {
     "demo": "Demo",
     "source": "Source",
+    "stars": "Stars",
     "open": "Open",
     "prev_image": "Previous image",
     "next_image": "Next image",

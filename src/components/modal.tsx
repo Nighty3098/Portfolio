@@ -1,6 +1,8 @@
 import gsap from "gsap";
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslate } from "../context/I18nContext";
+import { getRepoStarsBySources } from "../api/github";
+import PixelStarIcon from "./pixelStarIcon";
 
 interface CarouselProps {
   images: string[];
@@ -152,6 +154,35 @@ const Modal: React.FC<ModalProps> = ({
   const dialogRef = React.useRef<HTMLDialogElement>(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
+  const [stars, setStars] = useState<number | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!show || !source || !source.trim()) {
+      setStars(null);
+      return;
+    }
+
+    const repoMatch = source.match(/github\.com\/([^/]+\/[^/]+)/i);
+    const repoKey = repoMatch ? repoMatch[1].toLowerCase() : null;
+    if (!repoKey) {
+      setStars(null);
+      return;
+    }
+
+    getRepoStarsBySources([source])
+      .then((map) => {
+        if (cancelled) return;
+        setStars(map[repoKey] ?? null);
+      })
+      .catch(() => {
+        if (!cancelled) setStars(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [show, source]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -224,8 +255,16 @@ const Modal: React.FC<ModalProps> = ({
             alignItems: "center",
             justifyContent: "center",
             gap: "var(--sp-m)",
+            flexWrap: "wrap",
           }}
         >
+          {stars !== null && stars > 0 && (
+            <div className="modal-link modal-stars" aria-label={t("project_card.stars")}>
+              <PixelStarIcon className="project-star-icon" />
+              <span>{stars}</span>
+            </div>
+          )}
+
           {source && source.trim() !== "" && (
             <a
               href={source}

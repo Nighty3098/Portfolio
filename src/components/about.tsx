@@ -23,7 +23,7 @@ function About() {
   };
 
   return (
-    <section id="about-me" ref={ref} className="about-section" key={locale} style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
+    <section id="about-me" ref={ref} className="about-section" key={locale}>
       <div className="section-head">
         <h2 className="section-title">
           {t("about.title_prefix")}<img
