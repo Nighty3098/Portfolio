@@ -7,9 +7,9 @@ interface PixelStarIconProps {
 const PixelStarIcon: React.FC<PixelStarIconProps> = ({ className }) => (
   <svg
     className={className}
-    viewBox="0 0 16 16"
-    width="1em"
-    height="1em"
+    viewBox="0 0 15 15"
+    width="auto"
+    height="auto"
     aria-hidden="true"
     focusable="false"
     shapeRendering="crispEdges"
@@ -24,10 +24,6 @@ const PixelStarIcon: React.FC<PixelStarIconProps> = ({ className }) => (
     <rect x="9" y="9" width="3" height="2" fill="currentColor" />
     <rect x="3" y="11" width="3" height="2" fill="currentColor" />
     <rect x="10" y="11" width="3" height="2" fill="currentColor" />
-    <rect x="2" y="13" width="3" height="2" fill="currentColor" />
-    <rect x="11" y="13" width="3" height="2" fill="currentColor" />
-    <rect x="1" y="15" width="2" height="1" fill="currentColor" />
-    <rect x="13" y="15" width="2" height="1" fill="currentColor" />
   </svg>
 );
 

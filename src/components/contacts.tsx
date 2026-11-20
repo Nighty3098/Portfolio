@@ -8,7 +8,7 @@ const EMAIL = "night3098games@gmail.com";
 const [EMAIL_USER, EMAIL_DOMAIN] = EMAIL.split("@");
 
 const socials = [
-  { name: "Telegram", link: "https://t.me/Night3098" },
+  { name: "Telegram", link: "https://t.me/Nighty3098" },
   { name: "KWork", link: "https://kwork.ru/user/nighty_3098" },
   { name: "Reddit", link: "https://www.reddit.com/user/DEVELOPER0x31/" },
   { name: "Github", link: "https://github.com/Nighty3098" },
@@ -49,7 +49,8 @@ function MyContacts() {
     <div id="my-contacts" ref={ref} className="contacts" key={locale}>
       <div className="section-head">
         <h2 className="section-title">
-          {t("contacts.title_prefix")}<img
+          {t("contacts.title_prefix")}
+          <img
             src="me_2.webp"
             alt="me"
             className="title-img"
@@ -57,7 +58,7 @@ function MyContacts() {
             loading="lazy"
             decoding="async"
           />
-{t("contacts.title_suffix")}
+          {t("contacts.title_suffix")}
         </h2>
       </div>
 

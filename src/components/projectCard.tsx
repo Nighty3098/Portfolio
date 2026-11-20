@@ -95,7 +95,7 @@ function ProjectCard({
               start: "top 88%",
               once: true,
             },
-          }
+          },
         );
       } else {
         gsap.fromTo(
@@ -112,7 +112,7 @@ function ProjectCard({
               start: "top 92%",
               once: true,
             },
-          }
+          },
         );
       }
     }, el);
@@ -135,6 +135,7 @@ function ProjectCard({
           <div className="project-card-body">
             <h3 className="project-card-title">
               <span className="project-title-text">{title}</span>
+              <br />
               {stars !== null && stars > 0 && (
                 <span className="project-stars" aria-label={`${stars} stars`}>
                   <PixelStarIcon className="project-star-icon" />

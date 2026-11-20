@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Handjet:wght,ELSH@100..900,2&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Tiny5:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Handjet:wght,ELSH@100..900,2&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Tiny5:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --z-header: 100;
@@ -601,7 +601,7 @@ img {
   text-align: center;
 }
 
-.about-copy p+p {
+.about-copy p + p {
   margin-top: 1.2em;
 }
 
@@ -829,13 +829,13 @@ img {
 
 .project-title-text {
   overflow-wrap: anywhere;
+  line-height: 1.4;
 }
 
 .project-stars {
   display: inline-flex;
   align-items: center;
   gap: 0.25em;
-  margin-left: 0.6em;
   font-size: 0.8em;
   line-height: 1;
   letter-spacing: 0.04em;
@@ -1260,7 +1260,7 @@ img {
   padding-bottom: var(--sp-xl);
 }
 
-.modal-content>* {
+.modal-content > * {
   width: 100%;
   max-width: 800px;
 }
