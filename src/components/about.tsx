@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
@@ -12,7 +11,6 @@ function About() {
   const { t, locale } = useTranslate();
   const ref = useRef<HTMLElement>(null);
   const restTexts = ["about.p5"];
-  const [tilt] = useState(() => (Math.random() < 0.5 ? "-8deg" : "8deg"));
   const [tab, setTab] = useState<Tab>("about");
 
   useSectionReveal(ref, [locale]);
