@@ -21,10 +21,10 @@
     "resume": "RESUME",
     "contact_me": "Contact me",
     "p1": "Hello! I am Artem.",
-    "p2": "I studied at the SAIKT Programming Academy for 5 years and now I am studying at SibSUTIS University in Novosibirsk, Russia, at the Faculty of Network Data Transmission Technologies.",
+    "p2": "I studied for 5 years at the SAIKT Programming Academy, and now I am studying at SibSUTI in Novosibirsk at the Faculty of 'Network Data Transmission Technologies'.",
     "p3": "Stack: Python / C++ / TypeScript / React / QT / Docker / PostgreSQL.",
     "p4": "I build services that help solve my clients problems.",
-    "p5": "I am also interested in cybersecurity and OSINT - developing tools for both offensive security and intelligence gathering.",
+    "p5": "I'm interested in cybersecurity and OSINT - developing tools for both offensive security and intelligence gathering.",
     "osint_link": "OSINT projects",
     "pentest_link": "PENTESTING projects",
     "tab_about": "About"

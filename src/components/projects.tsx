@@ -155,7 +155,7 @@ const projectsData: { projects: ProjectData[] } = {
     },
     {
       id: 7,
-      showOnHome: true,
+      showOnHome: false,
       categories: ["sites"],
       images: ["/images/PrettyProfile_1.webp", "/images/PrettyProfile_2.webp"],
       technologies: ["NodeJS", "Vercel"],

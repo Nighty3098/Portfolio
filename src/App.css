@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Handjet:wght,ELSH@100..900,2&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Tiny5:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght,ELSH@100..900,2&display=swap');
 
 :root {
   --z-header: 100;
@@ -36,15 +37,16 @@
   --header-h: 80px;
   --hero-pad: clamp(24px, 4vw, 64px);
 
-  --font-display: "Press Start 2P", monospace;
+  --font-display: "IBM Plex Mono", monospace;
   --font-head: "IBM Plex Mono", sans-serif;
   --font-body: "IBM Plex Mono", monospace;
   --font-serif: "IBM Plex Mono", Georgia, serif;
-  --font-hand: "Tiny5", Georgia, serif;
+  --font-hand: "Handjet", serif;
   --hero-title: var(--fg);
 
   --text-title: clamp(4rem, 11vw, 15rem);
   --text-hero: clamp(3rem, 10vw, 7.5rem);
+  --large-text: clamp(2rem, 5vw, 6rem);
 }
 
 [data-theme="light"] {
@@ -225,7 +227,7 @@ img {
   left: 0;
   right: 0;
   z-index: var(--z-header);
-  background-color: var(--bg);
+  background-color: transparent;
 }
 
 .header-inner {
@@ -268,6 +270,7 @@ img {
   line-height: 1;
   letter-spacing: 0.06em;
   color: var(--fg);
+  background-color: var(--bg);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -497,7 +500,7 @@ img {
 .hero-line-inner {
   display: block;
   font-family: var(--font-hand);
-  font-size: clamp(3rem, 8vw, 8.5rem);
+  font-size: clamp(3rem, 10vw, 15rem);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: 0.01em;
@@ -541,6 +544,7 @@ img {
   text-transform: uppercase;
   overflow-wrap: break-word;
   color: var(--fg);
+  font-weight: 400;
 }
 
 .kicker {
@@ -556,6 +560,7 @@ img {
 .about-section {
   width: 100%;
   max-width: var(--max-w);
+  min-height: 50vh;
   padding: var(--sp-xxl) var(--hero-pad);
   margin: 0 auto;
   display: flex;
@@ -580,16 +585,23 @@ img {
   align-content: center;
   height: auto;
   width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.about-tile {
+  width: 100%;
+  gap: var(--sp-l);
+  flex-direction: row;
 }
 
 .about-copy p {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.85;
   color: var(--fg);
   opacity: 0.82;
   width: 100%;
-  max-width: 560px;
   text-wrap: pretty;
   text-justify: inter-word;
   text-align: justify;
@@ -599,6 +611,36 @@ img {
 
 .about-copy .about-copy--lead {
   text-align: center;
+  font-weight: 400;
+}
+
+.about-copy .about-copy-big {
+  font-size: var(--large-text);
+  font-family: var(--font-hand);
+  letter-spacing: -0.25rem;
+}
+
+.about-columns {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--sp-l);
+  padding: 0px;
+  margin: 0px;
+}
+
+.about-me-img {
+  height: calc(100vh - var(--header-h));
+  border-radius: var(--radius);
+  width: auto;
+  max-width: 50vw;
+  object-fit: cover;
+  object-position: center;
+  object-position: 0% 20%; 
 }
 
 .about-copy p + p {
@@ -827,7 +869,8 @@ img {
   overflow-wrap: anywhere;
 }
 
-.project-title-text {
+.project-title-text, .project-star-count {
+  font-family: var(--font-hand);
   overflow-wrap: anywhere;
   line-height: 1.4;
 }
@@ -1266,10 +1309,8 @@ img {
 }
 
 .modal-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: auto;
+  width: 100%;
+  text-align: right;
   background: none;
   border: none;
   color: var(--fg-2);
@@ -1298,7 +1339,7 @@ img {
   white-space: pre-line;
   text-align: justify;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.85;
   color: var(--fg);
   opacity: 0.82;
@@ -1616,10 +1657,6 @@ img {
     display: flex;
   }
 
-  .about-section {
-    min-height: 100vh;
-  }
-
   .about-layout {
     display: flex;
     flex-direction: column;
@@ -1657,6 +1694,20 @@ img {
 }
 
 @media (max-width: 860px) {
+  .about-tile {
+    flex-direction: column-reverse;
+  }
+
+  .about-me-img {
+    width: 100%;
+    max-width: 100vw;
+    height: 200px;
+  }
+
+  .about-copy .about-copy-big {
+    letter-spacing: 0em;
+  }
+  
   .projects-track {
     grid-template-columns: 1fr;
     gap: var(--sp-m);
