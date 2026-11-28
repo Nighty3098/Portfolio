@@ -22,38 +22,20 @@ const NoiseOverlay: React.FC<NoiseOverlayProps> = ({
         height: '100vh',
         pointerEvents: 'none',
         overflow: 'hidden',
+        contain: 'strict',
         opacity: opacity,
         zIndex: zIndex
       }}
     >
       <div
         style={{
-          width: '100%',
-          height: '100%',
-          backgroundImage: 'url("/grain.png")',
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `url("${process.env.PUBLIC_URL}/grain.png")`,
           backgroundRepeat: 'repeat',
           backgroundSize: '200px 200px',
-          animation: 'noise 2s steps(1) infinite',
-          willChange: 'background-position',
-          backfaceVisibility: 'hidden',
-          transform: 'translateZ(0)'
         }}
       />
-
-      <style>{`
-        @keyframes noise {
-          0%, 100% { background-position: 0 0; }
-          10% { background-position: -5% -10%; }
-          20% { background-position: -15% 5%; }
-          30% { background-position: 7% -25%; }
-          40% { background-position: 20% 25%; }
-          50% { background-position: -25% 10%; }
-          60% { background-position: 15% 5%; }
-          70% { background-position: 0% 15%; }
-          80% { background-position: 25% 35%; }
-          90% { background-position: -10% 10%; }
-        }
-      `}</style>
     </div>
   );
 };

@@ -8,8 +8,6 @@ const PixelStarIcon: React.FC<PixelStarIconProps> = ({ className }) => (
   <svg
     className={className}
     viewBox="0 0 15 15"
-    width="auto"
-    height="auto"
     aria-hidden="true"
     focusable="false"
     shapeRendering="crispEdges"

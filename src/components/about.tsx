@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslate } from "../context/I18nContext";
 import { useSectionReveal } from "../hooks/useSectionReveal";
+import { useParallax } from "../hooks/useParallax";
 import SwapLabel from "./swapLabel";
 import GitHubStatsTable from "./githubStats";
 
@@ -10,10 +11,13 @@ type Tab = "about" | "github";
 function About() {
   const { t, locale } = useTranslate();
   const ref = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const imgFrameRef = useRef<HTMLDivElement>(null);
   const restTexts = ["about.p5"];
   const [tab, setTab] = useState<Tab>("about");
 
   useSectionReveal(ref, [locale]);
+  useParallax(imgRef, imgFrameRef);
 
   const scrollToContacts = () => {
     const el = document.getElementById("my-contacts");
@@ -60,13 +64,16 @@ function About() {
                   </a>
                 </div>
               </div>
-              <img
-                src="me_original.webp"
-                alt="me"
-                className="about-me-img"
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="about-me-frame" ref={imgFrameRef}>
+                <img
+                  ref={imgRef}
+                  src="me_original.webp"
+                  alt="me"
+                  className="about-me-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
           </section>
 

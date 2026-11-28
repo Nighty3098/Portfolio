@@ -4,6 +4,13 @@ const CACHE_PREFIX = "github_cache_";
 const DEFAULT_CACHE_DURATION = 4 * 60 * 60 * 1000;
 const PROJECT_STARS_CACHE_DURATION = 3 * 60 * 60 * 1000;
 
+// Project cards mount at the same time and all ask for the same star map.
+// Keep one in-flight request per user instead of firing one per card.
+const repoStarsRequests = new Map<
+  string,
+  Promise<Record<string, number>>
+>();
+
 interface CacheEntry<T> {
   data: T;
   timestamp: number;
@@ -479,11 +486,10 @@ function normalizeRepoNameFromSource(source: string): string | null {
   }
 }
 
-async function getAllRepoStarsMap(username: string): Promise<Record<string, number>> {
-  const cacheId = `project-stars-v2:${username}`;
-  const cached = getCached<Record<string, number>>(cacheId, PROJECT_STARS_CACHE_DURATION);
-  if (cached) return cached;
-
+async function loadAllRepoStarsMap(
+  cacheId: string,
+  username: string,
+): Promise<Record<string, number>> {
   try {
     type Resp = {
       user: {
@@ -540,6 +546,29 @@ async function getAllRepoStarsMap(username: string): Promise<Record<string, numb
 
     setCache(cacheId, starMap);
     return starMap;
+  }
+}
+
+async function getAllRepoStarsMap(
+  username: string,
+): Promise<Record<string, number>> {
+  const cacheId = `project-stars-v2:${username}`;
+  const cached = getCached<Record<string, number>>(
+    cacheId,
+    PROJECT_STARS_CACHE_DURATION,
+  );
+  if (cached) return cached;
+
+  const existing = repoStarsRequests.get(cacheId);
+  if (existing) return existing;
+
+  const request = loadAllRepoStarsMap(cacheId, username);
+  repoStarsRequests.set(cacheId, request);
+
+  try {
+    return await request;
+  } finally {
+    repoStarsRequests.delete(cacheId);
   }
 }
 

@@ -38,11 +38,10 @@ function Hero() {
 
     tl.fromTo(
       lines,
-      { yPercent: 120, rotateZ: 16, filter: "blur(12px)" },
+      { yPercent: 120, rotateZ: 16 },
       {
         yPercent: 0,
         rotateZ: 0,
-        filter: "blur(0px)",
         duration: 1.2,
         ease: "power4.out",
         stagger: 0.16,

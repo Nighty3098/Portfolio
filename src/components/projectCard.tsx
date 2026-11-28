@@ -130,7 +130,13 @@ function ProjectCard({
           type="button"
         >
           <div className="project-card-media">
-            <img src={images[0]} alt={title} loading="lazy" decoding="async" />
+            <img
+              src={images[0]}
+              alt={title}
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+            />
           </div>
           <div className="project-card-body">
             <h3 className="project-card-title">
@@ -170,7 +176,13 @@ function ProjectCard({
         type="button"
       >
         <div className="project-row-media">
-          <img src={images[0]} alt={title} loading="lazy" decoding="async" />
+          <img
+            src={images[0]}
+            alt={title}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+          />
           <div className="project-row-overlay">
             <p className="project-row-brief">{brief}</p>
           </div>

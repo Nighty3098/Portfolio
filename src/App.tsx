@@ -12,6 +12,7 @@ import Seo from "./components/SEO";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import LenisProvider from "./components/lenisProvider";
 import NoiseOverlay from "./components/noiseOverlay";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type Lenis from "lenis";
 
 function GotoSection() {
@@ -44,6 +45,22 @@ function ScrollToTop() {
 }
 
 function App() {
+  useEffect(() => {
+    let cancelled = false;
+
+    // Web fonts can change element heights after the first paint. Recalculate
+    // every ScrollTrigger once they are ready so start/end positions stay
+    // accurate.
+    document.fonts?.ready.then(() => {
+      if (cancelled) return;
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <HashRouter>
       <LenisProvider>
